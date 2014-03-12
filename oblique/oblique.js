@@ -24,6 +24,7 @@ Oblique.prototype._listenToDirectivesInDOM=function() {
     if (this._lastIntervalId!=undefined) {
         clearInterval(this._lastIntervalId);
     }
+    this._applyDirectivesInDOM();
     this._lastIntervalId=setInterval(function () {
         self._applyDirectivesInDOM();
     }, this._intervalTimeInMs);
