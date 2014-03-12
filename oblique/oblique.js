@@ -38,15 +38,14 @@ Oblique.prototype._findAllElementWithAttrib=function(attribName) {
 };
 
 Oblique.prototype._applyDirectivesInDOM = function() {
-    for(var i=0;i<this._directiveConstructors.length;i++) {
-        var directive=this._directiveConstructors[i];
-        var self=this;
-        this._findAllElementWithAttrib(directive.NAME).each(function(i, DOMElement){
+    var self=this;
+    $.each(this._directiveConstructors, function(i, directive) {
+        self._findAllElementWithAttrib(directive.NAME).each(function(i, DOMElement){
             var element=$(DOMElement);
             if (self._elementHasDirectiveApplied(element, directive)) return;
             self._applyDirectiveOnElement(directive, element);
         });
-    }
+    });
 };
 
 Oblique.prototype.getIntervalTimeInMs=function() {
