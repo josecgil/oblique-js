@@ -1,4 +1,3 @@
-
 function ObliqueError(message) {
     if (this==window) return new ObliqueError(message);
     this.message=message;
@@ -32,7 +31,7 @@ Oblique.prototype._listenToDirectivesInDOM=function() {
 
 Oblique.prototype._elementHasDirectiveApplied = function (element, directive) {
     return element.data(directive.NAME);
-}
+};
 
 Oblique.prototype._applyDirectiveOnElement = function(directive, element) {
     element.data(directive.NAME, true);
@@ -76,10 +75,10 @@ Oblique.prototype.setIntervalTimeInMs=function(newIntervalTimeInMs) {
 Oblique.prototype._containsDirective=function(directiveConstructorFnToCheck) {
     var containsDirective=false;
     $.each(this._directiveConstructors, function(i, directiveConstructorFn){
-       if (directiveConstructorFn.NAME==directiveConstructorFnToCheck.NAME) {
-           containsDirective=true;
-           return false;
-       }
+        if (directiveConstructorFn.NAME==directiveConstructorFnToCheck.NAME) {
+            containsDirective=true;
+            return false;
+        }
     });
     return containsDirective;
 };
@@ -99,3 +98,5 @@ Oblique.prototype.registerDirective = function(directiveConstructorFn) {
 
     this._addDirective(directiveConstructorFn);
 };
+
+
