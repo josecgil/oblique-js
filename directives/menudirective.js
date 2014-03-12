@@ -5,4 +5,3 @@ var MenuDirective=function(DOMElement) {
 MenuDirective.NAME="data-vc-menu";
 
 Oblique().registerDirective(MenuDirective);
-Oblique().registerDirective(MenuDirective);

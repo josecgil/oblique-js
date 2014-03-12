@@ -17,7 +17,7 @@ var Oblique=function() {
     this._listenToDirectivesInDOM();
 };
 
-Oblique.DEFAULT_INTERVAL_MS = 100;
+Oblique.DEFAULT_INTERVAL_MS = 500;
 
 Oblique.prototype._listenToDirectivesInDOM=function() {
     var self=this;
