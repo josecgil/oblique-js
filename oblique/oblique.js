@@ -42,7 +42,7 @@ Oblique.prototype._applyDirectiveOnElement = function(directiveConstructorFn, el
     new directiveConstructorFn(DOMElement);
 };
 
-Oblique.prototype._findAllElementWithAttrib=function(attribName) {
+Oblique.prototype._findAllElementsWithAttrib=function(attribName) {
     var attribCSSSelector="*["+ attribName+"]";
     return $(attribCSSSelector);
 };
@@ -50,7 +50,7 @@ Oblique.prototype._findAllElementWithAttrib=function(attribName) {
 Oblique.prototype._applyDirectivesInDOM = function() {
     var self=this;
     $.each(this._directiveConstructors, function(i, directiveConstructorFn) {
-        self._findAllElementWithAttrib(directiveConstructorFn.NAME).each(function(i, DOMElement){
+        self._findAllElementsWithAttrib(directiveConstructorFn.NAME).each(function(i, DOMElement){
             var element=$(DOMElement);
             if (self._elementHasDirectiveApplied(element, directiveConstructorFn)) return true;
             self._applyDirectiveOnElement(directiveConstructorFn, element);
@@ -86,7 +86,7 @@ Oblique.prototype._containsDirective=function(directiveConstructorFnToCheck) {
     return containsDirective;
 };
 
-Oblique.prototype.registerDirective = function(directiveConstructorFn) {
+Oblique.prototype._throwErrorIfDirectiveIsNotValid=function(directiveConstructorFn) {
     if (!this._isAFunction(directiveConstructorFn)) {
         throw ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'");
     }
@@ -96,9 +96,11 @@ Oblique.prototype.registerDirective = function(directiveConstructorFn) {
     }
 
     if (this._containsDirective(directiveConstructorFn)) {
-        throw ObliqueError("Directive '"+directiveConstructorFn.NAME+"' already registered");
+        throw ObliqueError("Directive '" + directiveConstructorFn.NAME + "' already registered");
     }
-
+}
+Oblique.prototype.registerDirective = function(directiveConstructorFn) {
+    this._throwErrorIfDirectiveIsNotValid(directiveConstructorFn);
     this._addDirective(directiveConstructorFn);
 };
 

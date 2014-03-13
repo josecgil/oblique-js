@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/oblique/oblique.js" afterPath="$PROJECT_DIR$/oblique/oblique.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -26,10 +27,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
+            <state line="3" column="35" selection-start="68" selection-end="68" vertical-scroll-proportion="0.1042654" vertical-offset="0" max-vertical-offset="792">
               <folding />
             </state>
           </provider>
@@ -44,10 +45,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oblique.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="oblique.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/oblique/oblique.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="0" selection-start="1187" selection-end="1187" vertical-scroll-proportion="0.3253012" vertical-offset="664" max-vertical-offset="2442">
+            <state line="90" column="12" selection-start="2934" selection-end="2934" vertical-scroll-proportion="0.0" vertical-offset="1822" max-vertical-offset="2486">
               <folding />
             </state>
           </provider>
@@ -57,15 +58,6 @@
         <entry file="file://$PROJECT_DIR$/directives/calendardirective.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="286">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dropdownmenudirective.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/directives/dropdownmenudirective.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="572">
               <folding />
             </state>
           </provider>
@@ -86,6 +78,7 @@
       <list>
         <option value="$PROJECT_DIR$/directives/menudirective.js" />
         <option value="$PROJECT_DIR$/oblique/oblique.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -245,7 +238,11 @@
       <created>1394668406096</created>
       <updated>1394668406096</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Minor fixes">
+      <created>1394668884288</created>
+      <updated>1394668884288</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -286,7 +283,8 @@
     </option>
     <MESSAGE value="Change default interval time (100ms -&gt; 500ms)" />
     <MESSAGE value="Do a one pass to apply directives before setInterval" />
-    <option name="LAST_COMMIT_MESSAGE" value="Do a one pass to apply directives before setInterval" />
+    <MESSAGE value="Minor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -313,9 +311,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/directives/menudirective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
+        <state line="7" column="0" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="286">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oblique/oblique.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="90" column="12" selection-start="2934" selection-end="2934" vertical-scroll-proportion="0.0" vertical-offset="1822" max-vertical-offset="2486">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/directives/dropdownmenudirective.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="18" selection-start="314" selection-end="314" vertical-scroll-proportion="0.35745937" vertical-offset="0" max-vertical-offset="677">
           <folding />
         </state>
       </provider>
@@ -327,23 +339,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/directives/dropdownmenudirective.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="572">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/directives/menudirective.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="286">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oblique/oblique.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1187" selection-end="1187" vertical-scroll-proportion="0.3253012" vertical-offset="664" max-vertical-offset="2442">
+        <state line="3" column="35" selection-start="68" selection-end="68" vertical-scroll-proportion="0.1042654" vertical-offset="0" max-vertical-offset="792">
           <folding />
         </state>
       </provider>
