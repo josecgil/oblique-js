@@ -19,26 +19,38 @@ var Oblique=function() {
 
 Oblique.DEFAULT_INTERVAL_MS = 500;
 
-Oblique.prototype._listenToDirectivesInDOM=function() {
-    var self=this;
-    if (this._lastIntervalId!=undefined) {
+Oblique.prototype._clearLastInterval=function() {
+    if (this._lastIntervalId != undefined) {
         clearInterval(this._lastIntervalId);
     }
-    this._applyDirectivesInDOM();
-    this._lastIntervalId=setInterval(function () {
+}
+Oblique.prototype._applyDirectivesOnDocumentReady=function() {
+    var self=this;
+    $(document).ready(function () {
+        self._applyDirectivesInDOM();
+    });
+};
+
+Oblique.prototype._setNewInterval=function() {
+    var self=this;
+    this._lastIntervalId = setInterval(function () {
         self._applyDirectivesInDOM();
     }, this._intervalTimeInMs);
 };
 
-Oblique.prototype._elementHasDirectiveApplied = function (element, directive) {
-    return element.data(directive.NAME);
+Oblique.prototype._listenToDirectivesInDOM=function() {
+    this._clearLastInterval();
+    this._applyDirectivesOnDocumentReady();
+    this._setNewInterval();
 };
 
-Oblique.prototype._applyDirectiveOnElement = function(directiveConstructorFn, element) {
-    //Remember directive is Applied in this element
-    element.data(directiveConstructorFn.NAME, true);
+Oblique.prototype._elementHasDirectiveApplied = function (DOMElement, directive) {
+    return $(DOMElement).data(directive.NAME);
+};
 
-    var DOMElement=element.get(0);
+Oblique.prototype._applyDirectiveOnElement = function(directiveConstructorFn, DOMElement) {
+    //Remember directive is Applied in this element
+    $(DOMElement).data(directiveConstructorFn.NAME, true);
     new directiveConstructorFn(DOMElement);
 };
 
@@ -51,9 +63,8 @@ Oblique.prototype._applyDirectivesInDOM = function() {
     var self=this;
     $.each(this._directiveConstructors, function(i, directiveConstructorFn) {
         self._findAllElementsWithAttrib(directiveConstructorFn.NAME).each(function(i, DOMElement){
-            var element=$(DOMElement);
-            if (self._elementHasDirectiveApplied(element, directiveConstructorFn)) return true;
-            self._applyDirectiveOnElement(directiveConstructorFn, element);
+            if (self._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)) return true;
+            self._applyDirectiveOnElement(directiveConstructorFn, DOMElement);
         });
     });
 };
