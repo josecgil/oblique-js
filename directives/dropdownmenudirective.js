@@ -3,7 +3,8 @@ var DropDownMenuDirective=function(DOMElement) {
     var ul=element.find("ul");
     var a = element.children("a");
     ul.hide();
-    a.click(function(){
+    a.click(function(event){
+        event.preventDefault();
         ul.toggle();
         a.html(a.html()+"!");
     });
