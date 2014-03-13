@@ -23,7 +23,8 @@ Oblique.prototype._clearLastInterval=function() {
     if (this._lastIntervalId != undefined) {
         clearInterval(this._lastIntervalId);
     }
-}
+};
+
 Oblique.prototype._applyDirectivesOnDocumentReady=function() {
     var self=this;
     $(document).ready(function () {
@@ -49,7 +50,6 @@ Oblique.prototype._elementHasDirectiveApplied = function (DOMElement, directive)
 };
 
 Oblique.prototype._applyDirectiveOnElement = function(directiveConstructorFn, DOMElement) {
-    //Remember directive is Applied in this element
     $(DOMElement).data(directiveConstructorFn.NAME, true);
     new directiveConstructorFn(DOMElement);
 };
@@ -77,15 +77,6 @@ Oblique.prototype._isAFunction=function(memberToTest) {
     return typeof(memberToTest) == "function";
 };
 
-Oblique.prototype.getIntervalTimeInMs=function() {
-    return this._intervalTimeInMs;
-};
-
-Oblique.prototype.setIntervalTimeInMs=function(newIntervalTimeInMs) {
-    this._intervalTimeInMs=newIntervalTimeInMs;
-    this._listenToDirectivesInDOM();
-};
-
 Oblique.prototype._containsDirective=function(directiveConstructorFnToCheck) {
     var containsDirective=false;
     $.each(this._directiveConstructors, function(i, directiveConstructorFn){
@@ -109,9 +100,21 @@ Oblique.prototype._throwErrorIfDirectiveIsNotValid=function(directiveConstructor
     if (this._containsDirective(directiveConstructorFn)) {
         throw ObliqueError("Directive '" + directiveConstructorFn.NAME + "' already registered");
     }
-}
+};
+
+Oblique.prototype.getIntervalTimeInMs=function() {
+    return this._intervalTimeInMs;
+};
+
+Oblique.prototype.setIntervalTimeInMs=function(newIntervalTimeInMs) {
+    this._intervalTimeInMs=newIntervalTimeInMs;
+    this._listenToDirectivesInDOM();
+};
+
 Oblique.prototype.registerDirective = function(directiveConstructorFn) {
+
     this._throwErrorIfDirectiveIsNotValid(directiveConstructorFn);
+
     this._addDirective(directiveConstructorFn);
 };
 
