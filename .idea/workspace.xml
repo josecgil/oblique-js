@@ -47,7 +47,25 @@
       <file leaf-file-name="oblique.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/oblique/oblique.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="8" selection-start="716" selection-end="716" vertical-scroll-proportion="0.6626506" vertical-offset="132" max-vertical-offset="2398">
+            <state line="40" column="0" selection-start="1187" selection-end="1187" vertical-scroll-proportion="0.3253012" vertical-offset="664" max-vertical-offset="2442">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calendardirective.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/directives/calendardirective.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="286">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dropdownmenudirective.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/directives/dropdownmenudirective.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="0" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="572">
               <folding />
             </state>
           </provider>
@@ -223,7 +241,11 @@
       <created>1394668238197</created>
       <updated>1394668238197</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Do a one pass to apply directives before setInterval">
+      <created>1394668406096</created>
+      <updated>1394668406096</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -263,7 +285,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="Change default interval time (100ms -&gt; 500ms)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change default interval time (100ms -&gt; 500ms)" />
+    <MESSAGE value="Do a one pass to apply directives before setInterval" />
+    <option name="LAST_COMMIT_MESSAGE" value="Do a one pass to apply directives before setInterval" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -297,6 +320,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/directives/calendardirective.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="677">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/directives/dropdownmenudirective.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="572">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/directives/menudirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="0" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="286">
@@ -306,7 +343,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/oblique/oblique.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="8" selection-start="716" selection-end="716" vertical-scroll-proportion="0.6626506" vertical-offset="132" max-vertical-offset="2398">
+        <state line="40" column="0" selection-start="1187" selection-end="1187" vertical-scroll-proportion="0.3253012" vertical-offset="664" max-vertical-offset="2442">
           <folding />
         </state>
       </provider>

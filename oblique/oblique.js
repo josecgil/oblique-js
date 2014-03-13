@@ -34,10 +34,12 @@ Oblique.prototype._elementHasDirectiveApplied = function (element, directive) {
     return element.data(directive.NAME);
 };
 
-Oblique.prototype._applyDirectiveOnElement = function(directive, element) {
-    element.data(directive.NAME, true);
+Oblique.prototype._applyDirectiveOnElement = function(directiveConstructorFn, element) {
+    //Remember directive is Applied in this element
+    element.data(directiveConstructorFn.NAME, true);
+
     var DOMElement=element.get(0);
-    new directive(DOMElement);
+    new directiveConstructorFn(DOMElement);
 };
 
 Oblique.prototype._findAllElementWithAttrib=function(attribName) {
@@ -47,11 +49,11 @@ Oblique.prototype._findAllElementWithAttrib=function(attribName) {
 
 Oblique.prototype._applyDirectivesInDOM = function() {
     var self=this;
-    $.each(this._directiveConstructors, function(i, directive) {
-        self._findAllElementWithAttrib(directive.NAME).each(function(i, DOMElement){
+    $.each(this._directiveConstructors, function(i, directiveConstructorFn) {
+        self._findAllElementWithAttrib(directiveConstructorFn.NAME).each(function(i, DOMElement){
             var element=$(DOMElement);
-            if (self._elementHasDirectiveApplied(element, directive)) return;
-            self._applyDirectiveOnElement(directive, element);
+            if (self._elementHasDirectiveApplied(element, directiveConstructorFn)) return true;
+            self._applyDirectiveOnElement(directiveConstructorFn, element);
         });
     });
 };
