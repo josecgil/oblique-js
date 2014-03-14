@@ -2,6 +2,6 @@ var MenuDirective = function (DOMElement) {
     console.log(DOMElement);
 };
 
-MenuDirective.NAME = "data-vc-menu";
+MenuDirective.CSS_EXPRESSION = "*[data-vc-menu]";
 
 Oblique().registerDirective(MenuDirective);

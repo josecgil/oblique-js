@@ -40,32 +40,34 @@ Oblique.prototype._setNewInterval = function () {
 };
 
 Oblique.prototype._listenToDirectivesInDOM = function () {
-    this._clearLastInterval();
+    //this._clearLastInterval();
     this._applyDirectivesOnDocumentReady();
-    this._setNewInterval();
+    //this._setNewInterval();
 };
 
 Oblique.prototype._elementHasDirectiveApplied = function (DOMElement, directive) {
-    return $(DOMElement).data(directive.NAME);
+    return $(DOMElement).data(directive.CSS_EXPRESSION);
 };
 
 Oblique.prototype._applyDirectiveOnElement = function (directiveConstructorFn, DOMElement) {
-    $(DOMElement).data(directiveConstructorFn.NAME, true);
+    $(DOMElement).data(directiveConstructorFn.CSS_EXPRESSION, true);
     new directiveConstructorFn(DOMElement);
-};
-
-Oblique.prototype._findAllElementsWithAttrib = function (attribName) {
-    var attribCSSSelector = "*[" + attribName + "]";
-    return $(attribCSSSelector);
 };
 
 Oblique.prototype._applyDirectivesInDOM = function () {
     var self = this;
-    $.each(this._directiveConstructors, function (i, directiveConstructorFn) {
-        self._findAllElementsWithAttrib(directiveConstructorFn.NAME).each(function (i, DOMElement) {
-            if (self._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)) return true;
-            self._applyDirectiveOnElement(directiveConstructorFn, DOMElement);
-        });
+
+    var rootElement = document.getElementsByTagName("body")[0];
+    ObliqueDOMDocument.traverse(rootElement, function (DOMElement) {
+        if (DOMElement.nodeType != ObliqueDOMDocument.NODE_TYPE_ELEMENT) return true;
+
+        for (var i = 0; i < self._directiveConstructors.length; i++) {
+            var directiveConstructorFn = self._directiveConstructors[i];
+            if ($(DOMElement).is(directiveConstructorFn.CSS_EXPRESSION)) {
+                if (self._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)) return true;
+                self._applyDirectiveOnElement(directiveConstructorFn, DOMElement);
+            }
+        }
     });
 };
 
@@ -80,7 +82,7 @@ Oblique.prototype._isAFunction = function (memberToTest) {
 Oblique.prototype._containsDirective = function (directiveConstructorFnToCheck) {
     var containsDirective = false;
     $.each(this._directiveConstructors, function (i, directiveConstructorFn) {
-        if (directiveConstructorFn.NAME == directiveConstructorFnToCheck.NAME) {
+        if (directiveConstructorFn.CSS_EXPRESSION == directiveConstructorFnToCheck.CSS_EXPRESSION) {
             containsDirective = true;
             return false;
         }
@@ -93,12 +95,12 @@ Oblique.prototype._throwErrorIfDirectiveIsNotValid = function (directiveConstruc
         throw ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'");
     }
 
-    if (!directiveConstructorFn.NAME) {
-        throw ObliqueError("directive must has an static NAME property");
+    if (!directiveConstructorFn.CSS_EXPRESSION) {
+        throw ObliqueError("directive must has an static CSS_EXPRESSION property");
     }
 
     if (this._containsDirective(directiveConstructorFn)) {
-        throw ObliqueError("Directive '" + directiveConstructorFn.NAME + "' already registered");
+        throw ObliqueError("Directive '" + directiveConstructorFn.CSS_EXPRESSION + "' already registered");
     }
 };
 

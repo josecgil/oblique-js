@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/oblique/Demo.js" />
+        <item url="file://$PROJECT_DIR$/oblique/DOMTraversal.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/oblique/Demo.js" />
+      <root url="file://$PROJECT_DIR$/oblique/Demo.js" />
+      <root url="file://$PROJECT_DIR$/oblique/ObliqueDOMDocument.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
