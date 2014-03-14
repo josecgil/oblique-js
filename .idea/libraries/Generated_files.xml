@@ -9,7 +9,7 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/oblique/Demo.js" />
       <root url="file://$PROJECT_DIR$/oblique/Demo.js" />
-      <root url="file://$PROJECT_DIR$/oblique/ObliqueDOMDocument.js" />
+      <root url="file://$PROJECT_DIR$/oblique/bqDOMDocument.js" />
     </CLASSES>
     <SOURCES />
   </library>

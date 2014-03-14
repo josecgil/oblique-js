@@ -1,4 +1,4 @@
-class @ObliqueDOMDocument
+class @bqDOMDocument
 
   @traverse: (rootElement, callbackOnDOMElement) ->
     currentDOMElement = rootElement.firstChild

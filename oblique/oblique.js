@@ -58,8 +58,8 @@ Oblique.prototype._applyDirectivesInDOM = function () {
     var self = this;
 
     var rootElement = document.getElementsByTagName("body")[0];
-    ObliqueDOMDocument.traverse(rootElement, function (DOMElement) {
-        if (DOMElement.nodeType != ObliqueDOMDocument.NODE_TYPE_ELEMENT) return true;
+    bqDOMDocument.traverse(rootElement, function (DOMElement) {
+        if (DOMElement.nodeType != bqDOMDocument.NODE_TYPE_ELEMENT) return true;
 
         for (var i = 0; i < self._directiveConstructors.length; i++) {
             var directiveConstructorFn = self._directiveConstructors[i];
