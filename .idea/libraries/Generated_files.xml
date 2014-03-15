@@ -2,6 +2,7 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/directives/MenuDirective.js" />
         <item url="file://$PROJECT_DIR$/oblique/bqDOMDocument.js" />
         <item url="file://$PROJECT_DIR$/oblique/Oblique.js" />
       </sourceFilesUrls>
@@ -9,6 +10,7 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/oblique/Demo.js" />
       <root url="file://$PROJECT_DIR$/oblique/Demo.js" />
+      <root url="file://$PROJECT_DIR$/directives/MenuDirective.js" />
       <root url="file://$PROJECT_DIR$/oblique/Oblique.js" />
       <root url="file://$PROJECT_DIR$/oblique/bqDOMDocument.js" />
     </CLASSES>
