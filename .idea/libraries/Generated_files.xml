@@ -10,7 +10,7 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/oblique/Demo.js" />
       <root url="file://$PROJECT_DIR$/oblique/Demo.js" />
-      <root url="file://$PROJECT_DIR$/demo/directives/MenuDirective.js" />
+      <root url="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/Oblique.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.js" />
     </CLASSES>
