@@ -9,7 +9,7 @@ class @bqDOMDocument
   ###
 
   @traverse: (rootElemet, callbackOnDOMElement) ->
-  currentNode = rootElemet
+    currentNode = rootElemet
     while currentNode
 
       # If node have already been visited

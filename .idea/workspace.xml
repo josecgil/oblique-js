@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="Comment old traversal code">
+    <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="Fix tab bug in coffeescript">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee" afterPath="$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -47,7 +47,7 @@
       <file leaf-file-name="bqDOMDocument.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="2" selection-start="402" selection-end="402" vertical-scroll-proportion="0.29819277" vertical-offset="22" max-vertical-offset="1100">
+            <state line="11" column="4" selection-start="455" selection-end="455" vertical-scroll-proportion="0.26506025" vertical-offset="66" max-vertical-offset="1100">
               <folding />
             </state>
           </provider>
@@ -432,7 +432,11 @@
       <created>1394892127796</created>
       <updated>1394892127796</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Fix tab bug in coffeescript">
+      <created>1394892174793</created>
+      <updated>1394892174793</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -493,7 +497,8 @@
     <MESSAGE value="Change Exceptions tests to more jasmine idiomatic code" />
     <MESSAGE value="Some tests for DOM traversal&#10;New DOM traversal algorithm" />
     <MESSAGE value="Comment old traversal code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comment old traversal code" />
+    <MESSAGE value="Fix tab bug in coffeescript" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix tab bug in coffeescript" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -708,7 +713,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="2" selection-start="402" selection-end="402" vertical-scroll-proportion="0.29819277" vertical-offset="22" max-vertical-offset="1100">
+        <state line="11" column="4" selection-start="455" selection-end="455" vertical-scroll-proportion="0.26506025" vertical-offset="66" max-vertical-offset="1100">
           <folding />
         </state>
       </provider>
