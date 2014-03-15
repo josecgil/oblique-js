@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="Change Exceptions tests to more jasmine idiomatic code">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/bqDOMDocumentSpec.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/Oblique.coffee" afterPath="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.js" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/SpecRunner.html" afterPath="$PROJECT_DIR$/spec/SpecRunner.html" />
+    <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="Some tests for DOM traversal&#10;New DOM traversal algorithm">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee" afterPath="$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -35,7 +29,7 @@
       <file leaf-file-name="bqDOMDocumentSpec.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/bqDOMDocumentSpec.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="12" selection-start="656" selection-end="656" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="836">
+            <state line="26" column="14" selection-start="665" selection-end="665" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="836">
               <folding />
             </state>
           </provider>
@@ -53,7 +47,7 @@
       <file leaf-file-name="bqDOMDocument.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="14" selection-start="36" selection-end="36" vertical-scroll-proportion="0.06626506" vertical-offset="0" max-vertical-offset="1078">
+            <state line="9" column="2" selection-start="401" selection-end="401" vertical-scroll-proportion="0.29819277" vertical-offset="0" max-vertical-offset="1100">
               <folding />
             </state>
           </provider>
@@ -430,7 +424,11 @@
       <created>1394887556999</created>
       <updated>1394887556999</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Some tests for DOM traversal&#10;New DOM traversal algorithm">
+      <created>1394892065231</created>
+      <updated>1394892065231</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -489,7 +487,8 @@
     <MESSAGE value="Added first tests to Oblique" />
     <MESSAGE value="Tests for registerDirective" />
     <MESSAGE value="Change Exceptions tests to more jasmine idiomatic code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change Exceptions tests to more jasmine idiomatic code" />
+    <MESSAGE value="Some tests for DOM traversal&#10;New DOM traversal algorithm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some tests for DOM traversal&#10;New DOM traversal algorithm" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -697,14 +696,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/bqDOMDocumentSpec.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="12" selection-start="656" selection-end="656" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="836">
+        <state line="26" column="14" selection-start="665" selection-end="665" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="836">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="14" selection-start="36" selection-end="36" vertical-scroll-proportion="0.06626506" vertical-offset="0" max-vertical-offset="1078">
+        <state line="9" column="2" selection-start="401" selection-end="401" vertical-scroll-proportion="0.29819277" vertical-offset="0" max-vertical-offset="1100">
           <folding />
         </state>
       </provider>

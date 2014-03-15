@@ -1,12 +1,14 @@
 class @bqDOMDocument
 
+  ###
   @traverseOld: (rootElement, callbackOnDOMElement) ->
   currentDOMElement = rootElement.firstChild
-    while currentDOMElement
-      callbackOnDOMElement currentDOMElement
-      currentDOMElement = currentDOMElement.firstChild or currentDOMElement.nextSibling or ((if currentDOMElement.parentNode is rootElement then null else currentDOMElement.parentNode.nextSibling))
-
-  @traverse: (rootElemet, callbackOnDOMElement) ->
+  while currentDOMElement
+    callbackOnDOMElement currentDOMElement
+    currentDOMElement = currentDOMElement.firstChild or currentDOMElement.nextSibling or ((if currentDOMElement.parentNode is rootElement then null else currentDOMElement.parentNode.nextSibling))
+  ###
+  
+@traverse: (rootElemet, callbackOnDOMElement) ->
     currentNode = rootElemet
     while currentNode
 
