@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="Added first tests to Oblique">
+    <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="Tests for registerDirective">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/Oblique.coffee" afterPath="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.js" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/SpecRunner.html" afterPath="$PROJECT_DIR$/spec/SpecRunner.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -31,7 +32,16 @@
       <file leaf-file-name="ObliqueSpec.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="0" selection-start="1203" selection-end="1203" vertical-scroll-proportion="1.2921686" vertical-offset="0" max-vertical-offset="1276">
+            <state line="22" column="70" selection-start="734" selection-end="734" vertical-scroll-proportion="0.26506025" vertical-offset="308" max-vertical-offset="1320">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Oblique.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="67" column="4" selection-start="2353" selection-end="2353" vertical-scroll-proportion="0.0" vertical-offset="1360" max-vertical-offset="2024">
               <folding />
             </state>
           </provider>
@@ -74,8 +84,8 @@
         <option value="$PROJECT_DIR$/src/oblique/ObliqueError.coffee" />
         <option value="$PROJECT_DIR$/tools/bundle.sh" />
         <option value="$PROJECT_DIR$/samples/1/sampledemo.html" />
-        <option value="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
         <option value="$PROJECT_DIR$/spec/SpecRunner.html" />
+        <option value="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
         <option value="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
       </list>
     </option>
@@ -189,6 +199,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="oblique" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oblique-js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oblique-js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oblique" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Oblique.coffee" />
+              <option name="myItemType" value="com.intellij.plugins.watcher.projectView.NestingTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -398,7 +430,11 @@
       <created>1394884434606</created>
       <updated>1394884434606</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Tests for registerDirective">
+      <created>1394886126929</created>
+      <updated>1394886126929</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -455,7 +491,8 @@
     <MESSAGE value="Rename Demo to samples" />
     <MESSAGE value="Convert jasmine spec to CoffeeScript" />
     <MESSAGE value="Added first tests to Oblique" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added first tests to Oblique" />
+    <MESSAGE value="Tests for registerDirective" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tests for registerDirective" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -486,9 +523,7 @@
     <entry file="file://$PROJECT_DIR$/spec/SpecRunner.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="0" selection-start="784" selection-end="784" vertical-scroll-proportion="0.0" vertical-offset="352" max-vertical-offset="682">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -502,9 +537,7 @@
     <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="49" column="11" selection-start="1464" selection-end="1464" vertical-scroll-proportion="0.0" vertical-offset="783" max-vertical-offset="2156">
-          <folding>
-            <marker date="1394884433000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -609,26 +642,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3256">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/ObliqueError.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="0" selection-start="127" selection-end="127" vertical-scroll-proportion="0.12998523" vertical-offset="0" max-vertical-offset="677">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="66" selection-start="3119" selection-end="3119" vertical-scroll-proportion="0.49698794" vertical-offset="1518" max-vertical-offset="2244">
-          <folding>
-            <marker date="1394884433000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -649,9 +666,7 @@
     <entry file="file://$PROJECT_DIR$/spec/SpecRunner.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="43" selection-start="1126" selection-end="1126" vertical-scroll-proportion="0.75671405" vertical-offset="115" max-vertical-offset="814">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -662,9 +677,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="572" max-vertical-offset="3344">
+          <folding>
+            <marker date="1394887416000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1394887416000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1394887416000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1394887416000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="4" selection-start="2353" selection-end="2353" vertical-scroll-proportion="0.0" vertical-offset="1360" max-vertical-offset="2024">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="0" selection-start="1203" selection-end="1203" vertical-scroll-proportion="1.2921686" vertical-offset="0" max-vertical-offset="1276">
+        <state line="22" column="70" selection-start="734" selection-end="734" vertical-scroll-proportion="0.26506025" vertical-offset="308" max-vertical-offset="1320">
           <folding />
         </state>
       </provider>

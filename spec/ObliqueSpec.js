@@ -3,37 +3,30 @@
     describe("Oblique", function () {
         beforeEach(function (done) {
             Oblique().destroyInstance();
-            this.oblique = Oblique();
             $("#fixture").html("");
             return done();
         });
         afterEach(function () {
-            this.oblique.destroyInstance();
-            return this.oblique = void 0;
+            return Oblique().destroyInstance();
         });
         it("On creation it has a default interval time", function () {
-            return expect(this.oblique.getIntervalTimeInMs()).toBe(Oblique.DEFAULT_INTERVAL_MS);
+            Oblique().destroyInstance();
+            return expect(Oblique().getIntervalTimeInMs()).toBe(Oblique.DEFAULT_INTERVAL_MS);
         });
         it("We can change default interval time", function () {
-            var newIntervaltimeMs;
+            var newIntervaltimeMs, oblique;
             newIntervaltimeMs = 10000;
-            this.oblique.setIntervalTimeInMs(newIntervaltimeMs);
-            return expect(this.oblique.getIntervalTimeInMs()).toBe(newIntervaltimeMs);
+            oblique = Oblique();
+            oblique.setIntervalTimeInMs(newIntervaltimeMs);
+            return expect(oblique.getIntervalTimeInMs()).toBe(newIntervaltimeMs);
         });
         it("We can't change default interval time to invalid value", function () {
-            var error;
-            try {
-                this.oblique.setIntervalTimeInMs(-1);
-                throw Error("It must throw an ObliqueError");
-            } catch (_error) {
-                error = _error;
-                if (!(error instanceof ObliqueError)) {
-                    throw Error("It must throw an ObliqueError");
-                }
-            }
+            return expect(function () {
+                return Oblique().setIntervalTimeInMs(-1);
+            }).toThrow(new ObliqueError("IntervalTime must be a positive number"));
         });
         it("If a register a Directive if calls it constructor when expression is in DOM", function (done) {
-            var TestDirective, newHTML;
+            var TestDirective;
             TestDirective = (function () {
                 function TestDirective(DOMElement) {
                     Oblique().destroyInstance();
@@ -45,13 +38,12 @@
                 return TestDirective;
 
             })();
-            this.oblique.registerDirective(TestDirective);
-            this.oblique.setIntervalTimeInMs(10);
-            newHTML = "<div data-test></div>";
-            return $("#fixture").html(newHTML);
+            Oblique().registerDirective(TestDirective);
+            Oblique().setIntervalTimeInMs(10);
+            return $("#fixture").html("<div data-test></div>");
         });
-        return it("If a register a Directive if calls it constructor with the correct DOM element", function (done) {
-            var TestDirective, newHTML;
+        it("If a register a Directive if calls it constructor with the correct DOM element", function (done) {
+            var TestDirective;
             TestDirective = (function () {
                 function TestDirective(DOMElement) {
                     expect($(DOMElement).is("test[data-test]")).toBeTruthy();
@@ -64,10 +56,21 @@
                 return TestDirective;
 
             })();
-            this.oblique.registerDirective(TestDirective);
-            this.oblique.setIntervalTimeInMs(10);
-            newHTML = "<test data-test></test>";
-            return $("#fixture").html(newHTML);
+            Oblique().registerDirective(TestDirective);
+            return $("#fixture").html("<test data-test></test>");
+        });
+        return it("If a register a Directive without CSS_EXPRESSION it throws an Error", function () {
+            var TestDirective;
+            TestDirective = (function () {
+                function TestDirective() {
+                }
+
+                return TestDirective;
+
+            })();
+            return expect(function () {
+                return Oblique().registerDirective(TestDirective);
+            }).toThrow(new ObliqueError("directive must has an static CSS_EXPRESSION property"));
         });
     });
 

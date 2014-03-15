@@ -48,7 +48,7 @@ class @Oblique
 
   _applyDirectivesInDOM: ->
     #TODO: change this to a more human readable loop
-  rootElement = document.getElementsByTagName("body")[0]
+    rootElement = document.getElementsByTagName("body")[0]
     bqDOMDocument.traverse rootElement, (DOMElement) =>
       return true  unless DOMElement.nodeType is bqDOMDocument.NODE_TYPE_ELEMENT
       for directiveConstructorFn in @._directiveConstructors
@@ -63,19 +63,9 @@ class @Oblique
   _isAFunction: (memberToTest) ->
     typeof (memberToTest) is "function"
 
-  _containsDirective: (directiveConstructorFnToCheck) ->
-    containsDirective = false
-    $.each @_directiveConstructors, (i, directiveConstructorFn) ->
-      if directiveConstructorFn.CSS_EXPRESSION is directiveConstructorFnToCheck.CSS_EXPRESSION
-        containsDirective = true
-        false
-
-    containsDirective
-
   _throwErrorIfDirectiveIsNotValid: (directiveConstructorFn) ->
     throw ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'")  unless @_isAFunction(directiveConstructorFn)
     throw ObliqueError("directive must has an static CSS_EXPRESSION property")  unless directiveConstructorFn.CSS_EXPRESSION
-    throw ObliqueError("Directive '" + directiveConstructorFn.CSS_EXPRESSION + "' already registered")  if @_containsDirective(directiveConstructorFn)
     return
 
   getIntervalTimeInMs: ->

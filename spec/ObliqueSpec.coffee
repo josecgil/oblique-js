@@ -1,29 +1,26 @@
 describe "Oblique", ->
   beforeEach (done) ->
     Oblique().destroyInstance()
-    @oblique = Oblique()
     $("#fixture").html ""
     done()
 
   afterEach ->
-    @oblique.destroyInstance()
-    @oblique = undefined
+    Oblique().destroyInstance()
 
   it "On creation it has a default interval time", ->
-    expect(@oblique.getIntervalTimeInMs()).toBe Oblique.DEFAULT_INTERVAL_MS
+    Oblique().destroyInstance()
+    expect(Oblique().getIntervalTimeInMs()).toBe Oblique.DEFAULT_INTERVAL_MS
 
   it "We can change default interval time", ->
     newIntervaltimeMs = 10000
-    @oblique.setIntervalTimeInMs newIntervaltimeMs
-    expect(@oblique.getIntervalTimeInMs()).toBe newIntervaltimeMs
+    oblique = Oblique()
+    oblique.setIntervalTimeInMs newIntervaltimeMs
+    expect(oblique.getIntervalTimeInMs()).toBe newIntervaltimeMs
 
   it "We can't change default interval time to invalid value", ->
-    try
-      @oblique.setIntervalTimeInMs -1
-      throw Error "It must throw an ObliqueError"
-    catch error
-      if not (error instanceof ObliqueError)
-        throw Error "It must throw an ObliqueError"
+    expect(->
+      Oblique().setIntervalTimeInMs -1
+    ).toThrow(new ObliqueError("IntervalTime must be a positive number"))
 
   it "If a register a Directive if calls it constructor when expression is in DOM", (done)->
     class TestDirective
@@ -33,10 +30,9 @@ describe "Oblique", ->
 
       @CSS_EXPRESSION = "*[data-test]"
 
-    @oblique.registerDirective TestDirective
-    @oblique.setIntervalTimeInMs 10
-    newHTML = "<div data-test></div>"
-    $("#fixture").html newHTML
+    Oblique().registerDirective TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-test></div>"
 
   it "If a register a Directive if calls it constructor with the correct DOM element", (done)->
     class TestDirective
@@ -47,7 +43,12 @@ describe "Oblique", ->
 
       @CSS_EXPRESSION = "*[data-test]"
 
-    @oblique.registerDirective TestDirective
-    @oblique.setIntervalTimeInMs 10
-    newHTML = "<test data-test></test>"
-    $("#fixture").html newHTML
+    Oblique().registerDirective TestDirective
+    $("#fixture").html "<test data-test></test>"
+
+
+  it "If a register a Directive without CSS_EXPRESSION it throws an Error", ()->
+    class TestDirective
+    expect(->
+      Oblique().registerDirective TestDirective
+    ).toThrow(new ObliqueError("directive must has an static CSS_EXPRESSION property"))
