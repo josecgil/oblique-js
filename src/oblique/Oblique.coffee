@@ -43,20 +43,19 @@ class @Oblique
     new directiveConstructorFn DOMElement
     return
 
+
+  _mustApplyDirective: (DOMElement, directive) ->
+    return $(DOMElement).is(directive.CSS_EXPRESSION)
+
   _applyDirectivesInDOM: ->
     rootElement = document.getElementsByTagName("body")[0]
     bqDOMDocument.traverse rootElement, (DOMElement) =>
       return true  unless DOMElement.nodeType is bqDOMDocument.NODE_TYPE_ELEMENT
-      i = 0
-
-      while i < @._directiveConstructors.length
-        directiveConstructorFn = @._directiveConstructors[i]
-        if $(DOMElement).is(directiveConstructorFn.CSS_EXPRESSION)
-          return true  if @._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)
+      for directiveConstructorFn in @._directiveConstructors
+        if @_mustApplyDirective DOMElement, directiveConstructorFn
+          return true if @._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)
           @._applyDirectiveOnElement directiveConstructorFn, DOMElement
-        i++
       return
-
 
   _addDirective: (directiveConstructorFn) ->
     @_directiveConstructors.push directiveConstructorFn

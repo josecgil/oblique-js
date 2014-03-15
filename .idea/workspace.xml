@@ -2,11 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="Migrate MenuDirective to CoffeeScript&#10;Delete old oblique (JS)">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/directives/MenuDirective.coffee" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/oblique/oblique_js.js" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jasmine-2.0.0/jasmine_favicon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/demo/directives/MenuDirective.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/SpecRunner.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jasmine-2.0.0/boot.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/bundle.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jasmine-2.0.0/console.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jasmine-2.0.0/jasmine-html.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jasmine-2.0.0/jasmine.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jasmine-2.0.0/jasmine.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/directives/MenuDirective.coffee" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/oblique/oblique.js" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/directives/calendardirective.js" afterPath="$PROJECT_DIR$/demo/directives/calendardirective.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/directives/dropdownmenudirective.js" afterPath="$PROJECT_DIR$/demo/directives/dropdownmenudirective.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/directives/fastimagedirective.js" afterPath="$PROJECT_DIR$/demo/directives/fastimagedirective.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/demo/sampledemo.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/oblique/Oblique.coffee" afterPath="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/oblique/bqDOMDocument.coffee" afterPath="$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/oblique/Oblique.coffee" afterPath="$PROJECT_DIR$/oblique/Oblique.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -57,6 +71,13 @@
         <option value="$PROJECT_DIR$/directives/menudirective_old.js" />
         <option value="$PROJECT_DIR$/directives/MenuDirective.coffee" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/src/oblique/bqDOMDocument.js" />
+        <option value="$PROJECT_DIR$/dist/bundle.sh" />
+        <option value="$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee" />
+        <option value="$PROJECT_DIR$/demo/sampledemo.html" />
+        <option value="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
+        <option value="$PROJECT_DIR$/spec/ObliqueSpec.js" />
+        <option value="$PROJECT_DIR$/spec/SpecRunner.html" />
       </list>
     </option>
   </component>
@@ -64,6 +85,22 @@
     <option name="y" value="22" />
     <option name="width" value="1280" />
     <option name="height" value="774" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>CoffeeScript</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -91,6 +128,17 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Tests" />
+        <subPane subId="Changed Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -109,54 +157,58 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="directives" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="LayoutCode.rearrangeEntriesJavaScript" value="false" />
-    <property name="options.lastSelected" value="preferences.keymap" />
+    <property name="options.lastSelected" value="settings" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="SearchEverywhereHistory" value="" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="46" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="47" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="48" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="455" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="46" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="47" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="48" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="455" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/lib" />
       <recent name="$PROJECT_DIR$/directives" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tools" />
+      <recent name="$PROJECT_DIR$/demo" />
+      <recent name="$PROJECT_DIR$/spec" />
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -167,23 +219,15 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -270,24 +314,24 @@
     <frame x="0" y="22" width="1280" height="774" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20703125" sideWeight="0.4992908" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20703125" sideWeight="0.4992908" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.50070924" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32907802" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32907802" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -321,144 +365,163 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/directives/calendardirective.js">
+    <entry file="file://$PROJECT_DIR$/demo/directives/calendardirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="7" selection-start="147" selection-end="147" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="286">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oblique/Oblique.coffee">
+    <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="49" column="11" selection-start="1464" selection-end="1464" vertical-scroll-proportion="0.0" vertical-offset="783" max-vertical-offset="2156">
-          <folding>
-            <marker date="1394873036000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/directives/fastimagedirective.js">
+    <entry file="file://$PROJECT_DIR$/demo/directives/fastimagedirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="7" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="484">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/directives/dropdownmenudirective.js">
+    <entry file="file://$PROJECT_DIR$/demo/directives/dropdownmenudirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="7" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="418" max-vertical-offset="594">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/demo/sampledemo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="55" selection-start="287" selection-end="287" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1210">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/directives/menudirective_old.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="7" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="286">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/directives/calendardirective.js">
+    <entry file="file://$PROJECT_DIR$/demo/directives/calendardirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="286">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/directives/dropdownmenudirective.js">
+    <entry file="file://$PROJECT_DIR$/demo/directives/dropdownmenudirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="31" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0" vertical-offset="176" max-vertical-offset="594">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/demo/sampledemo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/directives/menudirective_old.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="198" selection-end="198" vertical-scroll-proportion="0.0" vertical-offset="176" max-vertical-offset="308">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oblique/bqDOMDocument.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="641" selection-end="641" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="682" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oblique/bqDOMDocument.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="14" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/directives/fastimagedirective.js">
+    <entry file="file://$PROJECT_DIR$/demo/directives/fastimagedirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="7" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="484">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/directives/dropdownmenudirective.js">
+    <entry file="file://$PROJECT_DIR$/demo/directives/dropdownmenudirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="7" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="594">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oblique/Oblique.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="7" selection-start="1822" selection-end="1822" vertical-scroll-proportion="0.0" vertical-offset="912" max-vertical-offset="2134">
-          <folding>
-            <marker date="1394873036000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/directives/calendardirective.js">
+    <entry file="file://$PROJECT_DIR$/demo/directives/calendardirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="29" selection-start="110" selection-end="110" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="286">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/directives/MenuDirective.js">
+    <entry file="file://$PROJECT_DIR$/demo/directives/MenuDirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="528">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/directives/MenuDirective.coffee">
+    <entry file="file://$PROJECT_DIR$/demo/directives/MenuDirective.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="41" selection-start="156" selection-end="156" vertical-scroll-proportion="0.29662922" vertical-offset="0" max-vertical-offset="445">
+        <state line="6" column="41" selection-start="159" selection-end="159" vertical-scroll-proportion="0.29662922" vertical-offset="0" max-vertical-offset="445">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/directives/menudirective_old.js">
+    <entry file="file://$PROJECT_DIR$/lib/jasmine-2.0.0/boot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="2" selection-start="136" selection-end="136" vertical-scroll-proportion="0.29662922" vertical-offset="0" max-vertical-offset="445">
+        <state line="3" column="2" selection-start="356" selection-end="356" vertical-scroll-proportion="0.15277778" vertical-offset="0" max-vertical-offset="4114">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/dist/oblique.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="27" selection-start="706" selection-end="706" vertical-scroll-proportion="0.54862845" vertical-offset="132" max-vertical-offset="1210">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/bundle.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="57" selection-start="85" selection-end="85" vertical-scroll-proportion="0.104761906" vertical-offset="0" max-vertical-offset="420">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.42592594" vertical-offset="184" max-vertical-offset="638">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="2" selection-start="421" selection-end="421" vertical-scroll-proportion="0.45833334" vertical-offset="0" max-vertical-offset="432">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3256">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/sampledemo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="65" selection-start="304" selection-end="304" vertical-scroll-proportion="0.054862842" vertical-offset="110" max-vertical-offset="1210">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="352">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="6" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2134">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/SpecRunner.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="0" selection-start="892" selection-end="892" vertical-scroll-proportion="0.8354115" vertical-offset="193" max-vertical-offset="682">
           <folding />
         </state>
       </provider>
