@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="jasmine" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/lib/jasmine-2.0.0" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/jasmine-2.0.0" />
+    </CLASSES>
+    <DOCUMENTATION>
+      <root url="http://jasmine.github.io/2.0/introduction.html" />
+    </DOCUMENTATION>
+    <SOURCES />
+  </library>
+</component>
