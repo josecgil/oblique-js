@@ -1,13 +1,11 @@
-class @ObliqueError
-  constructor: (@message) ->
-    return new ObliqueError(@message) if @ is window
-
 class @Oblique
 
   constructor: ->
-    return new Oblique()  if @ is window
+    return new Oblique() if @ is window
     return Oblique._singletonInstance  if Oblique._singletonInstance
     Oblique._singletonInstance = @
+
+    @_throwErrorIfJQueryIsntLoaded()
 
     #Default private properties
     @_intervalTimeInMs = Oblique.DEFAULT_INTERVAL_MS
@@ -17,9 +15,11 @@ class @Oblique
 
   @DEFAULT_INTERVAL_MS = 500
 
+  _throwErrorIfJQueryIsntLoaded: ->
+    throw new ObliqueError("Oblique needs jQuery to work") if not window.jQuery
+
   _clearLastInterval: ->
     clearInterval @_lastIntervalId  unless @_lastIntervalId is `undefined`
-
 
   _applyDirectivesOnDocumentReady: ->
     $(document).ready =>
@@ -43,12 +43,12 @@ class @Oblique
     new directiveConstructorFn DOMElement
     return
 
-
   _mustApplyDirective: (DOMElement, directive) ->
     return $(DOMElement).is(directive.CSS_EXPRESSION)
 
   _applyDirectivesInDOM: ->
-    rootElement = document.getElementsByTagName("body")[0]
+    #TODO: change this to a more human readable loop
+  rootElement = document.getElementsByTagName("body")[0]
     bqDOMDocument.traverse rootElement, (DOMElement) =>
       return true  unless DOMElement.nodeType is bqDOMDocument.NODE_TYPE_ELEMENT
       for directiveConstructorFn in @._directiveConstructors
@@ -82,6 +82,7 @@ class @Oblique
     @_intervalTimeInMs
 
   setIntervalTimeInMs: (newIntervalTimeInMs) ->
+    throw new ObliqueError("IntervalTime must be a positive number") if newIntervalTimeInMs <= 0
     @_intervalTimeInMs = newIntervalTimeInMs
     @_listenToDirectivesInDOM()
     return
@@ -90,3 +91,7 @@ class @Oblique
     @_throwErrorIfDirectiveIsNotValid directiveConstructorFn
     @_addDirective directiveConstructorFn
     return
+
+  destroyInstance: ->
+    @_clearLastInterval();
+    Oblique._singletonInstance = undefined;

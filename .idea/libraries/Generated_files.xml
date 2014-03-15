@@ -2,6 +2,7 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/src/oblique/ObliqueError.js" />
         <item url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
         <item url="file://$PROJECT_DIR$/src/oblique/Oblique.js" />
         <item url="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.js" />
@@ -10,6 +11,7 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/oblique/Demo.js" />
       <root url="file://$PROJECT_DIR$/oblique/Demo.js" />
+      <root url="file://$PROJECT_DIR$/src/oblique/ObliqueError.js" />
       <root url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
       <root url="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/Oblique.js" />

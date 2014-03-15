@@ -2,10 +2,33 @@
 (function () {
     describe("Oblique", function () {
         beforeEach(function () {
-            return console.log("");
+            Oblique().destroyInstance();
+            return this.oblique = Oblique();
         });
-        return it("First Test", function () {
-            return expect(true).toBe(true);
+        afterEach(function () {
+            this.oblique.destroyInstance();
+            return this.oblique = void 0;
+        });
+        it("On creation it has a default interval time", function () {
+            return expect(this.oblique.getIntervalTimeInMs()).toBe(Oblique.DEFAULT_INTERVAL_MS);
+        });
+        it("We can change default interval time", function () {
+            var newIntervaltimeMs;
+            newIntervaltimeMs = 10000;
+            this.oblique.setIntervalTimeInMs(newIntervaltimeMs);
+            return expect(this.oblique.getIntervalTimeInMs()).toBe(newIntervaltimeMs);
+        });
+        return it("We can't change default interval time to invalid value", function () {
+            var error;
+            try {
+                this.oblique.setIntervalTimeInMs(-1);
+                throw Error("It must throw an ObliqueError");
+            } catch (_error) {
+                error = _error;
+                if (!(error instanceof ObliqueError)) {
+                    throw Error("It must throw an ObliqueError");
+                }
+            }
         });
     });
 
