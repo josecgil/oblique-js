@@ -59,7 +59,7 @@
             Oblique().registerDirective(TestDirective);
             return $("#fixture").html("<test data-test></test>");
         });
-        return it("If a register a Directive without CSS_EXPRESSION it throws an Error", function () {
+        it("If a register a Directive without CSS_EXPRESSION it throws an Error", function () {
             var TestDirective;
             TestDirective = (function () {
                 function TestDirective() {
@@ -71,6 +71,11 @@
             return expect(function () {
                 return Oblique().registerDirective(TestDirective);
             }).toThrow(new ObliqueError("directive must has an static CSS_EXPRESSION property"));
+        });
+        return it("If a register an object that no is a Directive it throws an Error", function () {
+            return expect(function () {
+                return Oblique().registerDirective({});
+            }).toThrow(new ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'"));
         });
     });
 

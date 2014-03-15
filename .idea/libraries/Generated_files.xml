@@ -4,6 +4,7 @@
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/src/oblique/ObliqueError.js" />
         <item url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
+        <item url="file://$PROJECT_DIR$/spec/bqDOMDocumentSpec.js" />
         <item url="file://$PROJECT_DIR$/src/oblique/Oblique.js" />
         <item url="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.js" />
       </sourceFilesUrls>
@@ -14,6 +15,7 @@
       <root url="file://$PROJECT_DIR$/src/oblique/ObliqueError.js" />
       <root url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
       <root url="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js" />
+      <root url="file://$PROJECT_DIR$/spec/bqDOMDocumentSpec.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/Oblique.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.js" />
     </CLASSES>
