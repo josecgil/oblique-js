@@ -7,9 +7,9 @@ class @bqDOMDocument
     callbackOnDOMElement currentDOMElement
     currentDOMElement = currentDOMElement.firstChild or currentDOMElement.nextSibling or ((if currentDOMElement.parentNode is rootElement then null else currentDOMElement.parentNode.nextSibling))
   ###
-  
-@traverse: (rootElemet, callbackOnDOMElement) ->
-    currentNode = rootElemet
+
+  @traverse: (rootElemet, callbackOnDOMElement) ->
+  currentNode = rootElemet
     while currentNode
 
       # If node have already been visited
