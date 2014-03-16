@@ -8,15 +8,27 @@ class @bqDOMDocument
     currentDOMElement = currentDOMElement.firstChild or currentDOMElement.nextSibling or ((if currentDOMElement.parentNode is rootElement then null else currentDOMElement.parentNode.nextSibling))
   ###
 
+  @addNodeToVisited: (node, visitedNodes) ->
+    visitedNodes.push node
+
+  @removeNodeFromVisited: (node, visitedNodes) ->
+    index = visitedNodes.indexOf node
+    visitedNodes.splice index, 1 if (index > -1)
+
+
+  @nodeHasBeenVisited: (node, visitedNodes) ->
+    return visitedNodes.indexOf(node) > -1
+
   @traverse: (rootElemet, callbackOnDOMElement) ->
+    visitedNodes = []
     currentNode = rootElemet
     while currentNode
 
       # If node have already been visited
-      if currentNode.hasBeenVisited
+      if nodeHasBeenVisited node, visitedNodes
 
         # Remove mark for visited nodes
-        currentNode.hasBeenVisited = undefined
+        @removeNodeFromVisited(node, visitedNodes)
 
         # Once we reach the rootElemet element again traversal
         # is done and we can break

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="Fix tab bug in coffeescript">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/Oblique.coffee" afterPath="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee" afterPath="$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/bqDOMDocumentSpec.coffee" afterPath="$PROJECT_DIR$/spec/bqDOMDocumentSpec.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -29,16 +31,16 @@
       <file leaf-file-name="bqDOMDocumentSpec.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/bqDOMDocumentSpec.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="14" selection-start="665" selection-end="665" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="836">
+            <state line="7" column="5" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="880">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Oblique.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
+      <file leaf-file-name="ObliqueSpec.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="26" selection-start="1606" selection-end="1660" vertical-scroll-proportion="0.0" vertical-offset="1008" max-vertical-offset="2024">
+            <state line="31" column="0" selection-start="981" selection-end="981" vertical-scroll-proportion="0.0" vertical-offset="546" max-vertical-offset="1408">
               <folding />
             </state>
           </provider>
@@ -47,7 +49,16 @@
       <file leaf-file-name="bqDOMDocument.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="4" selection-start="455" selection-end="455" vertical-scroll-proportion="0.26506025" vertical-offset="66" max-vertical-offset="1100">
+            <state line="1" column="0" selection-start="21" selection-end="21" vertical-scroll-proportion="0.03313253" vertical-offset="0" max-vertical-offset="1364">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Oblique.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="62" column="0" selection-start="2099" selection-end="2099" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2112">
               <folding />
             </state>
           </provider>
@@ -89,9 +100,9 @@
         <option value="$PROJECT_DIR$/src/oblique/ObliqueError.coffee" />
         <option value="$PROJECT_DIR$/tools/bundle.sh" />
         <option value="$PROJECT_DIR$/samples/1/sampledemo.html" />
-        <option value="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
         <option value="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
         <option value="$PROJECT_DIR$/spec/SpecRunner.html" />
+        <option value="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
         <option value="$PROJECT_DIR$/spec/bqDOMDocumentSpec.coffee" />
         <option value="$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee" />
       </list>
@@ -147,17 +158,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Tests" />
-        <subPane subId="Changed Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -238,6 +238,17 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Tests" />
+        <subPane subId="Changed Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -284,6 +295,14 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -294,23 +313,15 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -436,18 +447,20 @@
       <created>1394892174793</created>
       <updated>1394892174793</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Fix tab bug in coffeescript">
+      <created>1394892203681</created>
+      <updated>1394892203681</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20703125" sideWeight="0.4992908" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -457,10 +470,12 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -514,16 +529,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="5" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="396">
-          <folding />
-        </state>
+        <state line="3" column="5" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="396" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tools/bundle.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="37" selection-start="65" selection-end="65" vertical-scroll-proportion="0.0" vertical-offset="44" max-vertical-offset="176">
-          <folding />
-        </state>
+        <state line="2" column="37" selection-start="65" selection-end="65" vertical-scroll-proportion="0.0" vertical-offset="44" max-vertical-offset="176" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/SpecRunner.html">
@@ -535,9 +546,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/directives/calendardirective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="7" selection-start="147" selection-end="147" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="286">
-          <folding />
-        </state>
+        <state line="6" column="7" selection-start="147" selection-end="147" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="286" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
@@ -549,58 +558,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/directives/fastimagedirective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="7" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="484">
-          <folding />
-        </state>
+        <state line="15" column="7" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="484" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/directives/dropdownmenudirective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="7" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="418" max-vertical-offset="594">
-          <folding />
-        </state>
+        <state line="19" column="7" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="418" max-vertical-offset="594" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/sampledemo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="55" selection-start="287" selection-end="287" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1210">
-          <folding />
-        </state>
+        <state line="6" column="55" selection-start="287" selection-end="287" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1210" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/directives/calendardirective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="286">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="286" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/directives/dropdownmenudirective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="31" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0" vertical-offset="176" max-vertical-offset="594">
-          <folding />
-        </state>
+        <state line="8" column="31" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0" vertical-offset="176" max-vertical-offset="594" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/sampledemo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/directives/fastimagedirective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="7" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="484">
-          <folding />
-        </state>
+        <state line="15" column="7" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="484" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/directives/dropdownmenudirective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="7" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="594">
-          <folding />
-        </state>
+        <state line="19" column="7" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="594" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js">
@@ -610,77 +603,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="41" selection-start="159" selection-end="159" vertical-scroll-proportion="0.29662922" vertical-offset="0" max-vertical-offset="445">
-          <folding />
-        </state>
+        <state line="6" column="41" selection-start="159" selection-end="159" vertical-scroll-proportion="0.29662922" vertical-offset="0" max-vertical-offset="445" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/jasmine-2.0.0/boot.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="2" selection-start="356" selection-end="356" vertical-scroll-proportion="0.15277778" vertical-offset="0" max-vertical-offset="4114">
-          <folding />
-        </state>
+        <state line="3" column="2" selection-start="356" selection-end="356" vertical-scroll-proportion="0.15277778" vertical-offset="0" max-vertical-offset="4114" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.42592594" vertical-offset="184" max-vertical-offset="638">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.42592594" vertical-offset="184" max-vertical-offset="638" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tools/bundle.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="40" selection-start="78" selection-end="78" vertical-scroll-proportion="0.14831461" vertical-offset="0" max-vertical-offset="445">
-          <folding />
-        </state>
+        <state line="3" column="40" selection-start="78" selection-end="78" vertical-scroll-proportion="0.14831461" vertical-offset="0" max-vertical-offset="445" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/oblique.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="2586" selection-start="2586" selection-end="2586" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
-          <folding />
-        </state>
+        <state line="0" column="2586" selection-start="2586" selection-end="2586" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/ObliqueError.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="127" selection-end="127" vertical-scroll-proportion="0.12998523" vertical-offset="0" max-vertical-offset="677">
-          <folding />
-        </state>
+        <state line="4" column="0" selection-start="127" selection-end="127" vertical-scroll-proportion="0.12998523" vertical-offset="0" max-vertical-offset="677" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/directives/calendardirective.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="32" selection-start="99" selection-end="113" vertical-scroll-proportion="0.12998523" vertical-offset="0" max-vertical-offset="677">
-          <folding />
-        </state>
+        <state line="4" column="32" selection-start="99" selection-end="113" vertical-scroll-proportion="0.12998523" vertical-offset="0" max-vertical-offset="677" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/sampledemo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="18" selection-start="695" selection-end="695" vertical-scroll-proportion="0.2085308" vertical-offset="286" max-vertical-offset="1188">
-          <folding />
-        </state>
+        <state line="19" column="18" selection-start="695" selection-end="695" vertical-scroll-proportion="0.2085308" vertical-offset="286" max-vertical-offset="1188" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="15" selection-start="590" selection-end="590" vertical-scroll-proportion="-0.45783132" vertical-offset="678" max-vertical-offset="1342">
-          <folding />
-        </state>
+        <state line="17" column="15" selection-start="590" selection-end="590" vertical-scroll-proportion="-0.45783132" vertical-offset="678" max-vertical-offset="1342" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="572" max-vertical-offset="3344">
-          <folding>
-            <marker date="1394890702000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1394890702000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1394890702000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1394890702000" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="572" max-vertical-offset="3344" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/SpecRunner.html">
@@ -690,30 +658,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
+    <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="101" selection-start="2007" selection-end="2007" vertical-scroll-proportion="0.8012048" vertical-offset="722" max-vertical-offset="1408">
+        <state line="62" column="0" selection-start="2099" selection-end="2099" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2112">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
+    <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="26" selection-start="1606" selection-end="1660" vertical-scroll-proportion="0.0" vertical-offset="1008" max-vertical-offset="2024">
+        <state line="31" column="0" selection-start="981" selection-end="981" vertical-scroll-proportion="0.0" vertical-offset="546" max-vertical-offset="1408">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/bqDOMDocumentSpec.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="14" selection-start="665" selection-end="665" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="836">
+        <state line="7" column="5" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="880">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="4" selection-start="455" selection-end="455" vertical-scroll-proportion="0.26506025" vertical-offset="66" max-vertical-offset="1100">
+        <state line="1" column="0" selection-start="21" selection-end="21" vertical-scroll-proportion="0.03313253" vertical-offset="0" max-vertical-offset="1364">
           <folding />
         </state>
       </provider>

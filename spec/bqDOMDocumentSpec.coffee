@@ -5,16 +5,18 @@ describe "bqDOMDocument", ->
 
   afterEach ->
 
-  it "Can traverse a one element DOM", (done) ->
-    testHTML = "<div>A simple DOM</div>"
-    $("#fixture").html testHTML
-    rootElement = $("#fixture").get(0)
-    count = 0;
-    bqDOMDocument.traverse rootElement, (DOMElement)->
-      count++
-      if (count is 2)
-        expect($(DOMElement).get(0).outerHTML).toBe testHTML
-        done()
+    ###
+    it "Can traverse a one element DOM", (done) ->
+      testHTML = "<div>A simple DOM</div>"
+      $("#fixture").html testHTML
+      rootElement = $("#fixture").get(0)
+      count = 0;
+      bqDOMDocument.traverse rootElement, (DOMElement)->
+        count++
+        if (count is 2)
+          expect($(DOMElement).get(0).outerHTML).toBe testHTML
+          done()
+    ###
 
   it "Can traverse 100 element DOM", (done) ->
     testHTML = "<div>A simple DOM</div>"
