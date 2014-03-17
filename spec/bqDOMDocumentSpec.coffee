@@ -5,23 +5,23 @@ describe "bqDOMDocument", ->
 
   afterEach ->
 
-    it "Can traverse a one element DOM", (done) ->
-      testHTML = "<div>A simple DOM</div>"
-      $("#fixture").html testHTML
-      rootElement = $("#fixture").get(0)
-      count = 0;
-      bqDOMDocument.traverse rootElement, (DOMElement)->
-        count++
-        if (count is 2)
-          expect($(DOMElement).get(0).outerHTML).toBe testHTML
-          done()
+  it "Can traverse a simple DOM", (done) ->
+    testHTML = "<div>A simple DOM</div>"
+    $("#fixture").html testHTML
+    rootElement = $("#fixture").get(0)
+    count = 0;
+    bqDOMDocument.traverse rootElement, (DOMElement)->
+      count++
+      if (count is 2)
+        expect($(DOMElement).get(0).outerHTML).toBe testHTML
+        done()
 
   it "Can traverse 10 element DOM", (done) ->
-    testHTML = "<div>A simple DOM</div>"
+    testHTML = "<div>A medium DOM</div>"
 
     fixture = $("#fixture")
-    for i in [1..10]
-    fixture.append testHTML
+
+    fixture.append testHTML for [1..10]
 
     rootElement = fixture.get(0)
     count = 0;

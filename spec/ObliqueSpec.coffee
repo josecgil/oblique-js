@@ -47,12 +47,12 @@ describe "Oblique", ->
     $("#fixture").html "<test data-test></test>"
 
   it "If I register a Directive without CSS_EXPRESSION it throws an Error", ()->
-  class TestDirective
+    class TestDirective
     expect(->
       Oblique().registerDirective TestDirective
     ).toThrow(new ObliqueError("directive must has an static CSS_EXPRESSION property"))
 
   it "If I register an object that no is a Directive it throws an Error", ()->
-  expect(->
+    expect(->
       Oblique().registerDirective {}
     ).toThrow(new ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'"))
