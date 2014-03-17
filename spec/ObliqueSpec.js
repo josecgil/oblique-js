@@ -4,7 +4,7 @@
     beforeEach(function(done) {
       Oblique().destroy();
       Oblique().setIntervalTimeInMs;
-      $("#fixture").html("");
+      FixtureHelper.clear();
       return done();
     });
     afterEach(function() {
@@ -93,10 +93,111 @@
         return Oblique().registerDirective(TestDirective);
       }).toThrow(new ObliqueError("directive must has an static CSS_EXPRESSION property"));
     });
-    return it("If I register an object that no is a Directive it throws an Error", function() {
+    it("If I register an object that no is a Directive it throws an Error", function() {
       return expect(function() {
         return Oblique().registerDirective({});
       }).toThrow(new ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'"));
+    });
+    it("must execute 1 directive in a 10000 elements DOM in <200ms", function(done) {
+      var DOM_ELEMENTS_COUNT, TestDirective, counter, interval;
+      DOM_ELEMENTS_COUNT = 4 * 250;
+      FixtureHelper.appendHTML("<p class='test'>nice DOM</p>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<div class='test'>nice DOM</div>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<span class='test'>nice DOM</span>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<test class='test'>nice DOM</test>", DOM_ELEMENTS_COUNT / 4);
+      interval = new Interval();
+      counter = 0;
+      TestDirective = (function() {
+        function TestDirective() {
+          counter++;
+          if (counter === DOM_ELEMENTS_COUNT) {
+            interval.stop();
+            expect(interval.timeInMs).toBeLessThan(200);
+            done();
+          }
+        }
+
+        TestDirective.CSS_EXPRESSION = ".test";
+
+        return TestDirective;
+
+      })();
+      interval.start();
+      Oblique().registerDirective(TestDirective);
+      return Oblique().setIntervalTimeInMs(10);
+    });
+    return it("must execute 5 directives in a 10000 elements DOM in <400ms", function(done) {
+      var DOM_ELEMENTS_COUNT, TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5, counter, interval;
+      DOM_ELEMENTS_COUNT = 4 * 250;
+      FixtureHelper.appendHTML("<p class='test'>nice DOM</p>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<div class='test'>nice DOM</div>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<span class='test'>nice DOM</span>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<test class='test'>nice DOM</test>", DOM_ELEMENTS_COUNT / 4);
+      interval = new Interval();
+      counter = 0;
+      TestDirective = (function() {
+        function TestDirective() {
+          counter++;
+        }
+
+        TestDirective.CSS_EXPRESSION = ".test";
+
+        return TestDirective;
+
+      })();
+      TestDirective2 = (function() {
+        function TestDirective2() {
+          counter++;
+        }
+
+        TestDirective2.CSS_EXPRESSION = ".test";
+
+        return TestDirective2;
+
+      })();
+      TestDirective3 = (function() {
+        function TestDirective3() {
+          counter++;
+        }
+
+        TestDirective3.CSS_EXPRESSION = ".test";
+
+        return TestDirective3;
+
+      })();
+      TestDirective4 = (function() {
+        function TestDirective4() {
+          counter++;
+        }
+
+        TestDirective4.CSS_EXPRESSION = ".test";
+
+        return TestDirective4;
+
+      })();
+      TestDirective5 = (function() {
+        function TestDirective5() {
+          counter++;
+          if (counter === (DOM_ELEMENTS_COUNT * 5)) {
+            interval.stop();
+            console.log(interval.timeInMs);
+            expect(interval.timeInMs).toBeLessThan(400);
+            done();
+          }
+        }
+
+        TestDirective5.CSS_EXPRESSION = ".test";
+
+        return TestDirective5;
+
+      })();
+      interval.start();
+      Oblique().registerDirective(TestDirective);
+      Oblique().registerDirective(TestDirective2);
+      Oblique().registerDirective(TestDirective3);
+      Oblique().registerDirective(TestDirective4);
+      Oblique().registerDirective(TestDirective5);
+      return Oblique().setIntervalTimeInMs(10);
     });
   });
 

@@ -2,7 +2,7 @@ describe "Oblique", ->
   beforeEach (done) ->
     Oblique().destroy()
     Oblique().setIntervalTimeInMs
-    $("#fixture").html ""
+    FixtureHelper.clear()
     done()
 
   afterEach ->
@@ -77,3 +77,76 @@ describe "Oblique", ->
     expect(->
       Oblique().registerDirective {}
     ).toThrow(new ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'"))
+
+  it "must execute 1 directive in a 10000 elements DOM in <200ms", (done)->
+
+    DOM_ELEMENTS_COUNT = 4*250
+    FixtureHelper.appendHTML "<p class='test'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<div class='test'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<span class='test'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<test class='test'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
+
+    interval=new Interval()
+    counter=0
+    class TestDirective
+      constructor: ()->
+        counter++
+        if (counter is (DOM_ELEMENTS_COUNT))
+          interval.stop()
+          expect(interval.timeInMs).toBeLessThan 200
+          done()
+
+      @CSS_EXPRESSION = ".test"
+
+    interval.start()
+    Oblique().registerDirective(TestDirective)
+    Oblique().setIntervalTimeInMs 10
+
+  it "must execute 5 directives in a 10000 elements DOM in <400ms", (done)->
+
+    DOM_ELEMENTS_COUNT = 4*250
+    FixtureHelper.appendHTML "<p class='test'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<div class='test'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<span class='test'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<test class='test'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
+
+    interval=new Interval()
+    counter=0
+    class TestDirective
+      constructor: ()->
+        counter++
+      @CSS_EXPRESSION = ".test"
+
+    class TestDirective2
+      constructor: ()->
+        counter++
+      @CSS_EXPRESSION = ".test"
+
+    class TestDirective3
+      constructor: ()->
+        counter++
+      @CSS_EXPRESSION = ".test"
+
+    class TestDirective4
+      constructor: ()->
+        counter++
+      @CSS_EXPRESSION = ".test"
+
+    class TestDirective5
+      constructor: ()->
+        counter++
+        if (counter is (DOM_ELEMENTS_COUNT*5))
+          interval.stop()
+          console.log interval.timeInMs
+          expect(interval.timeInMs).toBeLessThan 400
+          done()
+
+      @CSS_EXPRESSION = ".test"
+
+    interval.start()
+    Oblique().registerDirective(TestDirective)
+    Oblique().registerDirective(TestDirective2)
+    Oblique().registerDirective(TestDirective3)
+    Oblique().registerDirective(TestDirective4)
+    Oblique().registerDirective(TestDirective5)
+    Oblique().setIntervalTimeInMs 10

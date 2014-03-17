@@ -4,10 +4,12 @@
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/src/oblique/ObliqueError.js" />
         <item url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
-        <item url="file://$PROJECT_DIR$/samples/1/directives/Clock.js" />
+        <item url="file://$PROJECT_DIR$/spec/Interval.js" />
+        <item url="file://$PROJECT_DIR$/spec/FixtureHelper.js" />
+        <item url="file://$PROJECT_DIR$/samples/1/directives/ClockDirective.js" />
         <item url="file://$PROJECT_DIR$/src/oblique/Oblique.js" />
-        <item url="file://$PROJECT_DIR$/src/oblique/bqDOMElement.js" />
-        <item url="file://$PROJECT_DIR$/spec/bqDOMElementSpec.js" />
+        <item url="file://$PROJECT_DIR$/spec/IntervalSpec.js" />
+        <item url="file://$PROJECT_DIR$/spec/ObliqueDOMElementSpec.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
@@ -18,10 +20,13 @@
       <root url="file://$PROJECT_DIR$/src/oblique/ObliqueError.js" />
       <root url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
       <root url="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js" />
+      <root url="file://$PROJECT_DIR$/spec/Interval.js" />
+      <root url="file://$PROJECT_DIR$/spec/FixtureHelper.js" />
       <root url="file://$PROJECT_DIR$/samples/1/directives/ClockDirective.js" />
+      <root url="file://$PROJECT_DIR$/spec/IntervalSpec.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/Oblique.js" />
+      <root url="file://$PROJECT_DIR$/spec/ObliqueDOMElementSpec.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/ObliqueDOMElement.js" />
-      <root url="file://$PROJECT_DIR$/spec/bqDOMElementSpec.js" />
     </CLASSES>
     <SOURCES />
   </library>

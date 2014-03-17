@@ -5,15 +5,9 @@ describe "ObliqueDOMElement", ->
 
   afterEach ->
 
-  makeHTMLInFixture = (newHTML, times=1) ->
-    fixtureJQuery = $("#fixture")
-    fixtureJQuery.html("")
-    fixtureJQuery.append newHTML for [1..times]
-    fixtureJQuery.get 0
-
   it "Can traverse a simple DOM", (done) ->
     testHTML="<div>A simple DOM</div>"
-    rootElement = makeHTMLInFixture testHTML
+    rootElement = FixtureHelper.appendHTML testHTML
     count = 0;
     ObliqueDOMElement._traverse rootElement, (DOMElement)->
       count++
@@ -25,7 +19,7 @@ describe "ObliqueDOMElement", ->
     testHTML = "<div>A medium DOM</div>"
 
     ELEMENTS_COUNT = 10
-    rootElement = makeHTMLInFixture testHTML, ELEMENTS_COUNT
+    rootElement = FixtureHelper.appendHTML testHTML, ELEMENTS_COUNT
 
     count = 0;
     ObliqueDOMElement._traverse rootElement, (DOMElement)->
@@ -38,7 +32,7 @@ describe "ObliqueDOMElement", ->
     testHTML = "<div>A large DOM</div>"
 
     ELEMENTS_COUNT = 10000
-    rootElement = makeHTMLInFixture testHTML, ELEMENTS_COUNT
+    rootElement = FixtureHelper.appendHTML testHTML, ELEMENTS_COUNT
 
     count = 0;
     ObliqueDOMElement._traverse rootElement, (DOMElement)->
@@ -49,7 +43,7 @@ describe "ObliqueDOMElement", ->
 
   it "Can traverse complex DOM", (done) ->
     testHTML = "<div id='one'>A complex <strong>DOM</strong>.<p>Is Here</p>.</div>"
-    rootElement = makeHTMLInFixture testHTML
+    rootElement = FixtureHelper.appendHTML testHTML
 
     traversedDOMElements=[]
     ObliqueDOMElement._traverse rootElement, (DOMElement)->
@@ -63,7 +57,7 @@ describe "ObliqueDOMElement", ->
 
   it "If a set a flag, flag is set", () ->
     testHTML = "<div></div>"
-    fixture = makeHTMLInFixture testHTML
+    fixture = FixtureHelper.appendHTML testHTML
     bqElement=new ObliqueDOMElement(fixture)
     FLAG_NAME = "visited"
     bqElement.setFlag FLAG_NAME
@@ -71,7 +65,7 @@ describe "ObliqueDOMElement", ->
 
   it "If a set a flag and I recreate the same DOMElement flag is set", () ->
     testHTML = "<div></div>"
-    fixture = makeHTMLInFixture testHTML
+    fixture = FixtureHelper.appendHTML testHTML
     bqElement=new ObliqueDOMElement fixture
     FLAG_NAME = "visited"
     bqElement.setFlag FLAG_NAME
@@ -79,7 +73,6 @@ describe "ObliqueDOMElement", ->
     bqElement2=new ObliqueDOMElement fixture
     hasVisitedFlag = bqElement2.hasFlag FLAG_NAME
     expect(hasVisitedFlag).toBeTruthy()
-
 
   it "If a unset a flag, flag is not present", () ->
     fixture = $("#fixture")

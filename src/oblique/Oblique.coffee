@@ -67,6 +67,8 @@ class @Oblique
     finally
       @_isApplyingDirectivesInDOM = false
 
+
+
   _addDirective: (directiveConstructorFn) ->
     @_directiveConstructors.push directiveConstructorFn
 
