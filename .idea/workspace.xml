@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/oblique/DirectiveCollection.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/DirectiveCollectionSpec.coffee" afterPath="$PROJECT_DIR$/spec/DirectiveCollectionSpec.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/SpecRunner.html" afterPath="$PROJECT_DIR$/spec/SpecRunner.html" />
+    <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="Implemented first version of DirectiveCollection&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/Oblique.coffee" afterPath="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -29,31 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DirectiveCollection.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/oblique/DirectiveCollection.coffee">
+      <file leaf-file-name="Oblique.coffee" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="32" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0" vertical-offset="159" max-vertical-offset="836">
+            <state line="57" column="20" selection-start="1851" selection-end="1854" vertical-scroll-proportion="0.63554215" vertical-offset="832" max-vertical-offset="2112">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DirectiveCollectionSpec.coffee" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/spec/DirectiveCollectionSpec.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="6" selection-start="1737" selection-end="1737" vertical-scroll-proportion="0.41666666" vertical-offset="1206" max-vertical-offset="1936">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpecRunner.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/SpecRunner.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="798" selection-end="798" vertical-scroll-proportion="-12.064516" vertical-offset="0" max-vertical-offset="946">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -106,11 +83,11 @@
         <option value="$PROJECT_DIR$/spec/Interval.coffee" />
         <option value="$PROJECT_DIR$/src/oblique/Oblique.js" />
         <option value="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
-        <option value="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
         <option value="$PROJECT_DIR$/spec/DirectiveCollection.coffee" />
         <option value="$PROJECT_DIR$/spec/SpecRunner.html" />
         <option value="$PROJECT_DIR$/src/oblique/DirectiveCollection.coffee" />
         <option value="$PROJECT_DIR$/spec/DirectiveCollectionSpec.coffee" />
+        <option value="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
       </list>
     </option>
   </component>
@@ -542,7 +519,11 @@
       <created>1395082033051</created>
       <updated>1395082033052</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Implemented first version of DirectiveCollection">
+      <created>1395093162470</created>
+      <updated>1395093162470</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -559,7 +540,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.50070924" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32907802" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -583,7 +564,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Sample directive to change src of all images" />
     <MESSAGE value="Migrate oblique to CoffeeScript" />
     <MESSAGE value="Migrate MenuDirective to CoffeeScript&#10;Delete old oblique (JS)" />
     <MESSAGE value="Create base project folder structure for src/specs/dist&#10;Create tool to minify and bundle oblique" />
@@ -608,7 +588,8 @@
     <MESSAGE value="added performance tests" />
     <MESSAGE value="optimize code for performance" />
     <MESSAGE value="Added tests for DirectiveCollection (future Class)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added tests for DirectiveCollection (future Class)" />
+    <MESSAGE value="Implemented first version of DirectiveCollection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented first version of DirectiveCollection" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -733,7 +714,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/ObliqueError.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="127" selection-end="127" vertical-scroll-proportion="0.12998523" vertical-offset="0" max-vertical-offset="677" />
+        <state line="4" column="0" selection-start="127" selection-end="127" vertical-scroll-proportion="0.12998523" vertical-offset="0" max-vertical-offset="677">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.js">
@@ -807,16 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="32" selection-start="1943" selection-end="1943" vertical-scroll-proportion="0.0" vertical-offset="987" max-vertical-offset="2992">
-          <folding>
-            <marker date="1395081121000" expanded="true" signature="-1:-1" placeholder="_throwErrorIfJQueryIsntLoaded: -&gt;&#10;    throw new ObliqueError(&quot;Oblique needs jQuery to work&quot;) if not window.jQuery..." />
-            <marker date="1395081121000" expanded="true" signature="-1:-1" placeholder="_applyDirectivesInDOM: -&gt;&#10;    return if (@_isApplyingDirectivesInDOM)&#10;    @_isApplyingDirectivesInDOM = true&#10;    try&#10;      #TODO: change this to a more human readable loop&#10;      #TODO: only evaluate an CSSExpression one time if 2+ directives share CSSExpressions&#10;      rootElement = document.getElementsByTagName(&quot;body&quot;)[0]&#10;&#10;      rootBqElement=new ObliqueDOMElement rootElement&#10;&#10;      rootBqElement.eachDescendant(&#10;        (DOMElement) =&gt;&#10;          for directiveConstructorFn in @_directives&#10;            return true if @._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)&#10;            if @_mustApplyDirective DOMElement, directiveConstructorFn&#10;              @._applyDirectiveOnElement directiveConstructorFn, DOMElement&#10;      )&#10;    finally&#10;      @_isApplyingDirectivesInDOM = false..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/ObliqueDOMElementSpec.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="70" column="29" selection-start="0" selection-end="2846" vertical-scroll-proportion="2.2747414" vertical-offset="0" max-vertical-offset="1980">
@@ -828,15 +801,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="115" column="0" selection-start="3827" selection-end="3924" vertical-scroll-proportion="0.0" vertical-offset="2373" max-vertical-offset="3498">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/SpecRunner.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="798" selection-end="798" vertical-scroll-proportion="-12.064516" vertical-offset="0" max-vertical-offset="946">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -854,16 +818,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/oblique/DirectiveCollection.coffee">
+    <entry file="file://$PROJECT_DIR$/spec/DirectiveCollectionSpec.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="32" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0" vertical-offset="159" max-vertical-offset="836">
+        <state line="63" column="6" selection-start="1737" selection-end="1737" vertical-scroll-proportion="0.41666666" vertical-offset="1206" max-vertical-offset="1936">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/DirectiveCollectionSpec.coffee">
+    <entry file="file://$PROJECT_DIR$/src/oblique/DirectiveCollection.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="6" selection-start="1737" selection-end="1737" vertical-scroll-proportion="0.41666666" vertical-offset="1206" max-vertical-offset="1936">
+        <state line="28" column="32" selection-start="657" selection-end="657" vertical-scroll-proportion="1.0269663" vertical-offset="159" max-vertical-offset="836">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/SpecRunner.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="798" selection-end="798" vertical-scroll-proportion="0.9326683" vertical-offset="0" max-vertical-offset="946">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="20" selection-start="1851" selection-end="1854" vertical-scroll-proportion="0.63554215" vertical-offset="832" max-vertical-offset="2112">
           <folding />
         </state>
       </provider>
