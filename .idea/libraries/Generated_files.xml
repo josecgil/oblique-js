@@ -3,10 +3,11 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/src/oblique/ObliqueError.js" />
+        <item url="file://$PROJECT_DIR$/src/oblique/DirectiveCollection.js" />
         <item url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/Interval.js" />
         <item url="file://$PROJECT_DIR$/spec/FixtureHelper.js" />
-        <item url="file://$PROJECT_DIR$/spec/DirectiveCollection.js" />
+        <item url="file://$PROJECT_DIR$/spec/DirectiveCollectionSpec.js" />
         <item url="file://$PROJECT_DIR$/samples/1/directives/ClockDirective.js" />
         <item url="file://$PROJECT_DIR$/spec/IntervalSpec.js" />
         <item url="file://$PROJECT_DIR$/src/oblique/Oblique.js" />
@@ -19,6 +20,7 @@
       <root url="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/ObliqueError.js" />
+      <root url="file://$PROJECT_DIR$/src/oblique/DirectiveCollection.js" />
       <root url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
       <root url="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js" />
       <root url="file://$PROJECT_DIR$/spec/Interval.js" />
