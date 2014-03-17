@@ -9,7 +9,7 @@ class @Oblique
 
     #Default private properties
     @_intervalTimeInMs = Oblique.DEFAULT_INTERVAL_MS
-    @_lastIntervalId = `undefined`
+    @_lastIntervalId = undefined
     @_directiveConstructors = []
     @_listenToDirectivesInDOM()
 
@@ -19,7 +19,7 @@ class @Oblique
     throw new ObliqueError("Oblique needs jQuery to work") if not window.jQuery
 
   _clearLastInterval: ->
-    clearInterval @_lastIntervalId  unless @_lastIntervalId is `undefined`
+    clearInterval @_lastIntervalId  unless @_lastIntervalId is undefined
 
   _applyDirectivesOnDocumentReady: ->
     $(document).ready =>
@@ -50,16 +50,18 @@ class @Oblique
   _applyDirectivesInDOM: ->
     return if (@_isApplyingDirectives)
     @_isApplyingDirectives = true
+    try
     #TODO: change this to a more human readable loop
-    rootElement = document.getElementsByTagName("body")[0]
-    bqDOMDocument.traverse rootElement, (DOMElement) =>
-      return true  unless DOMElement.nodeType is bqDOMDocument.ELEMENT_NODE_TYPE
-      for directiveConstructorFn in @._directiveConstructors
-        if @_mustApplyDirective DOMElement, directiveConstructorFn
-          return true if @._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)
-          @._applyDirectiveOnElement directiveConstructorFn, DOMElement
-      return
-    @_isApplyingDirectives = true
+      rootElement = document.getElementsByTagName("body")[0]
+      bqDOMDocument.traverse rootElement, (DOMElement) =>
+        return true  unless DOMElement.nodeType is bqDOMDocument.ELEMENT_NODE_TYPE
+        for directiveConstructorFn in @._directiveConstructors
+          if @_mustApplyDirective DOMElement, directiveConstructorFn
+            return true if @._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)
+            @._applyDirectiveOnElement directiveConstructorFn, DOMElement
+        return
+    finally
+      @_isApplyingDirectives = false
 
   _addDirective: (directiveConstructorFn) ->
     @_directiveConstructors.push directiveConstructorFn
@@ -86,6 +88,6 @@ class @Oblique
     @_addDirective directiveConstructorFn
     return
 
-  destroyInstance: ->
-    @_clearLastInterval();
-    Oblique._singletonInstance = undefined;
+  destroy: ->
+    @_clearLastInterval()
+    delete Oblique._singletonInstance

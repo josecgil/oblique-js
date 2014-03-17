@@ -1,14 +1,14 @@
 describe "Oblique", ->
   beforeEach (done) ->
-    Oblique().destroyInstance()
+    Oblique().destroy()
+    Oblique().setIntervalTimeInMs
     $("#fixture").html ""
     done()
 
   afterEach ->
-    Oblique().destroyInstance()
+    Oblique().destroy()
 
   it "On creation it has a default interval time", ->
-    Oblique().destroyInstance()
     expect(Oblique().getIntervalTimeInMs()).toBe Oblique.DEFAULT_INTERVAL_MS
 
   it "We can change default interval time", ->
@@ -25,7 +25,7 @@ describe "Oblique", ->
   it "If a register a Directive if calls it constructor when expression is in DOM", (done)->
     class TestDirective
       constructor: (DOMElement)->
-        Oblique().destroyInstance()
+        Oblique().destroy()
         done()
 
       @CSS_EXPRESSION = "*[data-test]"
@@ -38,7 +38,7 @@ describe "Oblique", ->
     class TestDirective
       constructor: (DOMElement)->
         expect($(DOMElement).is("test[data-test]")).toBeTruthy()
-        Oblique().destroyInstance()
+        Oblique().destroy()
         done()
 
       @CSS_EXPRESSION = "*[data-test]"
@@ -46,13 +46,13 @@ describe "Oblique", ->
     Oblique().registerDirective TestDirective
     $("#fixture").html "<test data-test></test>"
 
-  it "If a register a Directive without CSS_EXPRESSION it throws an Error", ()->
-    class TestDirective
+  it "If I register a Directive without CSS_EXPRESSION it throws an Error", ()->
+  class TestDirective
     expect(->
       Oblique().registerDirective TestDirective
     ).toThrow(new ObliqueError("directive must has an static CSS_EXPRESSION property"))
 
-  it "If a register an object that no is a Directive it throws an Error", ()->
-    expect(->
+  it "If I register an object that no is a Directive it throws an Error", ()->
+  expect(->
       Oblique().registerDirective {}
     ).toThrow(new ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'"))

@@ -2,15 +2,15 @@
 (function () {
     describe("Oblique", function () {
         beforeEach(function (done) {
-            Oblique().destroyInstance();
+            Oblique().destroy();
+            Oblique().setIntervalTimeInMs;
             $("#fixture").html("");
             return done();
         });
         afterEach(function () {
-            return Oblique().destroyInstance();
+            return Oblique().destroy();
         });
         it("On creation it has a default interval time", function () {
-            Oblique().destroyInstance();
             return expect(Oblique().getIntervalTimeInMs()).toBe(Oblique.DEFAULT_INTERVAL_MS);
         });
         it("We can change default interval time", function () {
@@ -29,7 +29,7 @@
             var TestDirective;
             TestDirective = (function () {
                 function TestDirective(DOMElement) {
-                    Oblique().destroyInstance();
+                    Oblique().destroy();
                     done();
                 }
 
@@ -47,7 +47,7 @@
             TestDirective = (function () {
                 function TestDirective(DOMElement) {
                     expect($(DOMElement).is("test[data-test]")).toBeTruthy();
-                    Oblique().destroyInstance();
+                    Oblique().destroy();
                     done();
                 }
 
@@ -59,7 +59,7 @@
             Oblique().registerDirective(TestDirective);
             return $("#fixture").html("<test data-test></test>");
         });
-        it("If a register a Directive without CSS_EXPRESSION it throws an Error", function () {
+        it("If I register a Directive without CSS_EXPRESSION it throws an Error", function () {
             var TestDirective;
             TestDirective = (function () {
                 function TestDirective() {
@@ -72,7 +72,7 @@
                 return Oblique().registerDirective(TestDirective);
             }).toThrow(new ObliqueError("directive must has an static CSS_EXPRESSION property"));
         });
-        return it("If a register an object that no is a Directive it throws an Error", function () {
+        return it("If I register an object that no is a Directive it throws an Error", function () {
             return expect(function () {
                 return Oblique().registerDirective({});
             }).toThrow(new ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'"));
