@@ -11,7 +11,7 @@ describe "bqDOMElement", ->
     fixtureJQuery.append newHTML for [1..times]
     fixtureJQuery.get 0
 
-  it "Can _traverse a simple DOM", (done) ->
+  it "Can traverse a simple DOM", (done) ->
     testHTML="<div>A simple DOM</div>"
     rootElement = makeHTMLInFixture testHTML
     count = 0;
@@ -21,19 +21,33 @@ describe "bqDOMElement", ->
         expect($(DOMElement).get(0).outerHTML).toBe testHTML
         done()
 
-  it "Can _traverse 10 element DOM", (done) ->
+  it "Can traverse a normal DOM", (done) ->
     testHTML = "<div>A medium DOM</div>"
 
-    rootElement = makeHTMLInFixture testHTML, 10
+    ELEMENTS_COUNT = 10
+    rootElement = makeHTMLInFixture testHTML, ELEMENTS_COUNT
 
     count = 0;
     bqDOMElement._traverse rootElement, (DOMElement)->
       count++
-      return if (count isnt 11)
+      return if (count isnt ELEMENTS_COUNT+1)
       expect($(DOMElement).get(0).outerHTML).toBe testHTML
       done()
 
-  it "Can _traverse complex DOM", (done) ->
+  it "Can traverse a large DOM", (done) ->
+    testHTML = "<div>A large DOM</div>"
+
+    ELEMENTS_COUNT = 10000
+    rootElement = makeHTMLInFixture testHTML, ELEMENTS_COUNT
+
+    count = 0;
+    bqDOMElement._traverse rootElement, (DOMElement)->
+      count++
+      return if (count isnt ELEMENTS_COUNT+1)
+      expect($(DOMElement).get(0).outerHTML).toBe testHTML
+      done()
+
+  it "Can traverse complex DOM", (done) ->
     testHTML = "<div id='one'>A complex <strong>DOM</strong>.<p>Is Here</p>.</div>"
     rootElement = makeHTMLInFixture testHTML
 
