@@ -28,7 +28,7 @@
     it("If I register a Directive it calls its constructor when expression is in DOM", function(done) {
       var TestDirective;
       TestDirective = (function() {
-        function TestDirective(DOMElement) {
+        function TestDirective() {
           Oblique().destroy();
           done();
         }
@@ -41,6 +41,28 @@
       Oblique().registerDirective(TestDirective);
       Oblique().setIntervalTimeInMs(10);
       return $("#fixture").html("<div data-test></div>");
+    });
+    it("If I register a Directive it calls its constructor only one time when expression is in DOM", function(done) {
+      var TestDirective, counter;
+      counter = 0;
+      TestDirective = (function() {
+        function TestDirective() {
+          counter++;
+        }
+
+        TestDirective.CSS_EXPRESSION = "*[data-test]";
+
+        return TestDirective;
+
+      })();
+      Oblique().registerDirective(TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      $("#fixture").html("<div data-test></div>");
+      return setTimeout(function() {
+        Oblique().destroy();
+        expect(counter).toBe(1);
+        return done();
+      }, 100);
     });
     it("If I register a Directive it calls its constructor with the correct DOM element", function(done) {
       var TestDirective;

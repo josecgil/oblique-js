@@ -2,8 +2,7 @@ class @bqDOMElement
 
   constructor:(DOMElement)->
     @_DOMElement=DOMElement
-    @_jQueryElement=$(DOMElement)
-    @_DOMElement.bqFlags={}
+    @_jQueryElement=jQuery(DOMElement)
 
   isTag: ->
     bqDOMElement._isTag(@_DOMElement)
@@ -12,21 +11,19 @@ class @bqDOMElement
     @_jQueryElement.is(cssExpression)
 
   setFlag: (flagName) ->
-    @_DOMElement.bqFlags[flagName]=true
-
-  hasFlag: (flagName) ->
-    return true if @_DOMElement.bqFlags[flagName] is true
-    false
+    @_jQueryElement.data(flagName, true)
 
   unsetFlag: (flagName) ->
-    delete @_DOMElement.bqFlags[flagName]
+    @_jQueryElement.removeData(flagName)
 
-  @_isTag: (DOMElement) ->
-    DOMElement.nodeType is 1
-
+  hasFlag: (flagName) ->
+    @_jQueryElement.data(flagName)
 
   eachDescendant: (callbackOnDOMElement) ->
     bqDOMElement._traverse(@_DOMElement, callbackOnDOMElement)
+
+  @_isTag: (DOMElement) ->
+    DOMElement.nodeType is 1
 
   @_traverse: (parentElement, callbackOnDOMElement) ->
     elementsToTraverse = []

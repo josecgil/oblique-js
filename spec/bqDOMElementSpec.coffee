@@ -1,14 +1,19 @@
-describe "bqDOMDocument", ->
+describe "bqDOMElement", ->
   beforeEach (done) ->
     $("#fixture").html ""
     done()
 
   afterEach ->
 
+  makeHTMLInFixture = (newHTML, times=1) ->
+    fixtureJQuery = $("#fixture")
+    fixtureJQuery.html("")
+    fixtureJQuery.append newHTML for [1..times]
+    fixtureJQuery.get 0
+
   it "Can _traverse a simple DOM", (done) ->
-    testHTML = "<div>A simple DOM</div>"
-    $("#fixture").html testHTML
-    rootElement = $("#fixture").get(0)
+    testHTML="<div>A simple DOM</div>"
+    rootElement = makeHTMLInFixture testHTML
     count = 0;
     bqDOMElement._traverse rootElement, (DOMElement)->
       count++
@@ -19,11 +24,8 @@ describe "bqDOMDocument", ->
   it "Can _traverse 10 element DOM", (done) ->
     testHTML = "<div>A medium DOM</div>"
 
-    fixture = $("#fixture")
+    rootElement = makeHTMLInFixture testHTML, 10
 
-    fixture.append testHTML for [1..10]
-
-    rootElement = fixture.get(0)
     count = 0;
     bqDOMElement._traverse rootElement, (DOMElement)->
       count++
@@ -33,14 +35,10 @@ describe "bqDOMDocument", ->
 
   it "Can _traverse complex DOM", (done) ->
     testHTML = "<div id='one'>A complex <strong>DOM</strong>.<p>Is Here</p>.</div>"
-
-    fixture = $("#fixture")
-    fixture.append testHTML
+    rootElement = makeHTMLInFixture testHTML
 
     traversedDOMElements=[]
-    rootElement = fixture.get(0)
     bqDOMElement._traverse rootElement, (DOMElement)->
-      console.log "---> " + DOMElement.outerHTML
       traversedDOMElements.push $(DOMElement)
       return if (traversedDOMElements.length isnt 4)
       expect(traversedDOMElements[0].is("div#fixture")).toBeTruthy()
@@ -50,15 +48,30 @@ describe "bqDOMDocument", ->
       done()
 
   it "If a set a flag, flag is set", () ->
-    fixture = $("#fixture")
-    bqElement=new bqDOMElement(fixture.get(0))
-    bqElement.setFlag "visited"
-    expect(bqElement.hasFlag "visited").toBeTruthy()
+    testHTML = "<div></div>"
+    fixture = makeHTMLInFixture testHTML
+    bqElement=new bqDOMElement(fixture)
+    FLAG_NAME = "visited"
+    bqElement.setFlag FLAG_NAME
+    expect(bqElement.hasFlag FLAG_NAME).toBeTruthy()
+
+  it "If a set a flag and I recreate the same DOMElement flag is set", () ->
+    testHTML = "<div></div>"
+    fixture = makeHTMLInFixture testHTML
+    bqElement=new bqDOMElement fixture
+    FLAG_NAME = "visited"
+    bqElement.setFlag FLAG_NAME
+
+    bqElement2=new bqDOMElement fixture
+    hasVisitedFlag = bqElement2.hasFlag FLAG_NAME
+    expect(hasVisitedFlag).toBeTruthy()
+
 
   it "If a unset a flag, flag is not present", () ->
     fixture = $("#fixture")
     bqElement=new bqDOMElement(fixture.get(0))
-    bqElement.setFlag "visited"
-    expect(bqElement.hasFlag "visited").toBeTruthy()
-    bqElement.unsetFlag "visited"
-    expect(bqElement.hasFlag "visited").toBeFalsy()
+    FLAG_NAME = "visited"
+    bqElement.setFlag FLAG_NAME
+    expect(bqElement.hasFlag FLAG_NAME).toBeTruthy()
+    bqElement.unsetFlag FLAG_NAME
+    expect(bqElement.hasFlag FLAG_NAME).toBeFalsy()

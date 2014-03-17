@@ -35,23 +35,33 @@ class @Oblique
     @_applyDirectivesOnDocumentReady()
     @_setNewInterval()
 
-  _elementHasDirectiveApplied: (DOMElement, directive) ->
-    $(DOMElement).data directive.CSS_EXPRESSION
+  _elementHasDirectiveApplied: (DOMElement, directiveConstructorFn) ->
+    bqElement = new bqDOMElement(DOMElement)
+    bqElement.hasFlag directiveConstructorFn.name
 
   _applyDirectiveOnElement: (directiveConstructorFn, DOMElement) ->
-    $(DOMElement).data directiveConstructorFn.CSS_EXPRESSION, true
+    bqElement = new bqDOMElement(DOMElement)
+    bqElement.setFlag directiveConstructorFn.name
+    new directiveConstructorFn DOMElement
+    return
+
+  _elementHasDirectiveAppliedOld: (DOMElement, directive) ->
+    $(DOMElement).data directive.name
+
+  _applyDirectiveOnElementOld: (directiveConstructorFn, DOMElement) ->
+    $(DOMElement).data directiveConstructorFn.name, true
     new directiveConstructorFn DOMElement
     return
 
   _mustApplyDirective: (DOMElement, directive) ->
     return new bqDOMElement(DOMElement).matchCSSExpression(directive.CSS_EXPRESSION)
 
-  @_isApplyingDirectives = false
+  @_isApplyingDirectivesInDOM = false
   _applyDirectivesInDOM: ->
-    return if (@_isApplyingDirectives)
-    @_isApplyingDirectives = true
+    return if (@_isApplyingDirectivesInDOM)
+    @_isApplyingDirectivesInDOM = true
     try
-    #TODO: change this to a more human readable loop
+      #TODO: change this to a more human readable loop
       rootElement = document.getElementsByTagName("body")[0]
 
       rootBqElement=new bqDOMElement rootElement
@@ -65,7 +75,7 @@ class @Oblique
           return
       )
     finally
-      @_isApplyingDirectives = false
+      @_isApplyingDirectivesInDOM = false
 
   _addDirective: (directiveConstructorFn) ->
     @_directiveConstructors.push directiveConstructorFn

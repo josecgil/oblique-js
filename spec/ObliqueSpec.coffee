@@ -24,7 +24,7 @@ describe "Oblique", ->
 
   it "If I register a Directive it calls its constructor when expression is in DOM", (done)->
     class TestDirective
-      constructor: (DOMElement)->
+      constructor: ()->
         Oblique().destroy()
         done()
 
@@ -33,6 +33,27 @@ describe "Oblique", ->
     Oblique().registerDirective TestDirective
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-test></div>"
+
+
+  it "If I register a Directive it calls its constructor only one time when expression is in DOM", (done)->
+    counter=0
+    class TestDirective
+      constructor: ()->
+        counter++
+
+      @CSS_EXPRESSION = "*[data-test]"
+
+    Oblique().registerDirective TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-test></div>"
+
+    setTimeout ->
+      Oblique().destroy()
+      expect(counter).toBe 1
+      done()
+    , 100
+
+
 
   it "If I register a Directive it calls its constructor with the correct DOM element", (done)->
     class TestDirective

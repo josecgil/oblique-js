@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/spec/bqDOMDocumentSpec.coffee" afterPath="$PROJECT_DIR$/spec/bqDOMElementSpec.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/Oblique.coffee" afterPath="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.js" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/SpecRunner.html" afterPath="$PROJECT_DIR$/spec/SpecRunner.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/bqDOMElement.coffee" afterPath="$PROJECT_DIR$/src/oblique/bqDOMElement.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -26,10 +32,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="bqDOMDocumentSpec.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/bqDOMDocumentSpec.coffee">
+      <file leaf-file-name="bqDOMElementSpec.coffee" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/spec/bqDOMElementSpec.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="51" selection-start="2050" selection-end="2050" vertical-scroll-proportion="0.0" vertical-offset="775" max-vertical-offset="1540">
+            <state line="59" column="40" selection-start="1961" selection-end="1961" vertical-scroll-proportion="0.83751845" vertical-offset="731" max-vertical-offset="1826">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bqDOMElement.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/oblique/bqDOMElement.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="17" selection-start="628" selection-end="628" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="990">
               <folding />
             </state>
           </provider>
@@ -38,16 +53,16 @@
       <file leaf-file-name="ObliqueSpec.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="34" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0" vertical-offset="506" max-vertical-offset="1408">
+            <state line="55" column="0" selection-start="1534" selection-end="1534" vertical-scroll-proportion="0.0" vertical-offset="1118" max-vertical-offset="1870">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bqDOMElement.coffee" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/oblique/bqDOMElement.coffee">
+      <file leaf-file-name="Oblique.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="22" selection-start="134" selection-end="134" vertical-scroll-proportion="0.16248153" vertical-offset="0" max-vertical-offset="1056">
+            <state line="38" column="24" selection-start="1074" selection-end="1074" vertical-scroll-proportion="0.0" vertical-offset="700" max-vertical-offset="2486">
               <folding />
             </state>
           </provider>
@@ -66,15 +81,6 @@
         <entry file="file://$PROJECT_DIR$/spec/SpecRunner.html">
           <provider selected="true" editor-type-id="text-editor">
             <state line="16" column="70" selection-start="786" selection-end="786" vertical-scroll-proportion="-7.645161" vertical-offset="115" max-vertical-offset="836">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Oblique.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="0" selection-start="1037" selection-end="1085" vertical-scroll-proportion="0.0" vertical-offset="638" max-vertical-offset="2266">
               <folding />
             </state>
           </provider>
@@ -117,12 +123,13 @@
         <option value="$PROJECT_DIR$/samples/1/sampledemo.html" />
         <option value="$PROJECT_DIR$/spec/ObliqueSpec.js" />
         <option value="$PROJECT_DIR$/src/oblique/bqDOMDocument.coffee" />
-        <option value="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
         <option value="$PROJECT_DIR$/spec/SpecRunner.html" />
         <option value="$PROJECT_DIR$/spec/bqDOMDocumentSpec.js" />
-        <option value="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
         <option value="$PROJECT_DIR$/spec/bqDOMDocumentSpec.coffee" />
+        <option value="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
+        <option value="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
         <option value="$PROJECT_DIR$/src/oblique/bqDOMElement.coffee" />
+        <option value="$PROJECT_DIR$/spec/bqDOMElementSpec.coffee" />
       </list>
     </option>
   </component>
@@ -529,7 +536,11 @@
       <created>1395058526086</created>
       <updated>1395058526086</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="change flags implementation from jQuery to vanillaJS">
+      <created>1395059101834</created>
+      <updated>1395059101834</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -570,7 +581,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Minor fixes" />
     <MESSAGE value="Minor refactors&#10;" />
     <MESSAGE value="Apply Directives on document ready&#10;Method names refactor" />
     <MESSAGE value="preventDefault in click Event in sample Directive" />
@@ -595,7 +605,8 @@
     <MESSAGE value="Better DOMDocument traversal" />
     <MESSAGE value="Only traverse tags" />
     <MESSAGE value="create flag concept in bqDOMElement" />
-    <option name="LAST_COMMIT_MESSAGE" value="create flag concept in bqDOMElement" />
+    <MESSAGE value="change flags implementation from jQuery to vanillaJS" />
+    <option name="LAST_COMMIT_MESSAGE" value="change flags implementation from jQuery to vanillaJS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -728,7 +739,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/ObliqueError.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="127" selection-end="127" vertical-scroll-proportion="0.12998523" vertical-offset="0" max-vertical-offset="677" />
+        <state line="4" column="0" selection-start="127" selection-end="127" vertical-scroll-proportion="0.12998523" vertical-offset="0" max-vertical-offset="677">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/directives/calendardirective.js">
@@ -766,37 +779,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/bqDOMDocumentSpec.js">
+    <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="19" selection-start="1261" selection-end="1261" vertical-scroll-proportion="0.65834635" vertical-offset="458" max-vertical-offset="1518">
+        <state line="55" column="0" selection-start="1534" selection-end="1534" vertical-scroll-proportion="0.0" vertical-offset="1118" max-vertical-offset="1870">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/Oblique.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="0" selection-start="1037" selection-end="1085" vertical-scroll-proportion="0.0" vertical-offset="638" max-vertical-offset="2266">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="34" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0" vertical-offset="506" max-vertical-offset="1408">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/bqDOMDocumentSpec.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="51" selection-start="2050" selection-end="2050" vertical-scroll-proportion="0.0" vertical-offset="775" max-vertical-offset="1540">
+        <state line="38" column="24" selection-start="1074" selection-end="1074" vertical-scroll-proportion="0.0" vertical-offset="700" max-vertical-offset="2486">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/bqDOMElement.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="22" selection-start="134" selection-end="134" vertical-scroll-proportion="0.16248153" vertical-offset="0" max-vertical-offset="1056">
+        <state line="27" column="17" selection-start="628" selection-end="628" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="990">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/bqDOMElementSpec.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="40" selection-start="1961" selection-end="1961" vertical-scroll-proportion="0.83751845" vertical-offset="731" max-vertical-offset="1826">
           <folding />
         </state>
       </provider>
