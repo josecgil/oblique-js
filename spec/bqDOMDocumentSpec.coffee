@@ -31,3 +31,22 @@ describe "bqDOMDocument", ->
       return if (count isnt 11)
       expect($(DOMElement).get(0).outerHTML).toBe testHTML
       done()
+
+  it "Can traverse complex DOM", (done) ->
+    testHTML = "<div id='one'>A complex <strong>DOM</strong>.<p>Is Here</p>.</div>"
+
+    fixture = $("#fixture")
+    fixture.append testHTML
+
+    traversedDOMElements=[]
+    rootElement = fixture.get(0)
+    bqDOMDocument.traverse rootElement, (DOMElement)->
+      return if DOMElement.nodeType isnt bqDOMDocument.ELEMENT_NODE_TYPE
+      console.log "---> " + DOMElement.outerHTML
+      traversedDOMElements.push $(DOMElement)
+      return if (traversedDOMElements.length isnt 4)
+      expect(traversedDOMElements[0].is("div#fixture")).toBeTruthy()
+      expect(traversedDOMElements[1].is("div#one")).toBeTruthy()
+      expect(traversedDOMElements[2].is("strong")).toBeTruthy()
+      expect(traversedDOMElements[3].is("p")).toBeTruthy()
+      done()
