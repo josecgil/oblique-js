@@ -1,7 +1,7 @@
 describe "Oblique", ->
   beforeEach (done) ->
     Oblique().destroy()
-    Oblique().setIntervalTimeInMs
+    Oblique().setIntervalTimeInMs 10
     FixtureHelper.clear()
     done()
 
@@ -9,6 +9,7 @@ describe "Oblique", ->
     Oblique().destroy()
 
   it "On creation it has a default interval time", ->
+    Oblique().destroy()
     expect(Oblique().getIntervalTimeInMs()).toBe Oblique.DEFAULT_INTERVAL_MS
 
   it "Can change default interval time", ->

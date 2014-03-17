@@ -3,7 +3,7 @@
   describe("Oblique", function() {
     beforeEach(function(done) {
       Oblique().destroy();
-      Oblique().setIntervalTimeInMs;
+      Oblique().setIntervalTimeInMs(10);
       FixtureHelper.clear();
       return done();
     });
@@ -11,6 +11,7 @@
       return Oblique().destroy();
     });
     it("On creation it has a default interval time", function() {
+      Oblique().destroy();
       return expect(Oblique().getIntervalTimeInMs()).toBe(Oblique.DEFAULT_INTERVAL_MS);
     });
     it("Can change default interval time", function() {
