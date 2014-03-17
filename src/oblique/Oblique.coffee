@@ -22,7 +22,7 @@ class @Oblique
     clearInterval @_lastIntervalId  unless @_lastIntervalId is undefined
 
   _applyDirectivesOnDocumentReady: ->
-    $(document).ready =>
+    jQuery(document).ready =>
       @_applyDirectivesInDOM()
 
   _setNewInterval: ->
@@ -36,25 +36,16 @@ class @Oblique
     @_setNewInterval()
 
   _elementHasDirectiveApplied: (DOMElement, directiveConstructorFn) ->
-    bqElement = new bqDOMElement(DOMElement)
+    bqElement = new ObliqueDOMElement(DOMElement)
     bqElement.hasFlag directiveConstructorFn.name
 
   _applyDirectiveOnElement: (directiveConstructorFn, DOMElement) ->
-    bqElement = new bqDOMElement(DOMElement)
+    bqElement = new ObliqueDOMElement(DOMElement)
     bqElement.setFlag directiveConstructorFn.name
     new directiveConstructorFn DOMElement
-    return
-
-  _elementHasDirectiveAppliedOld: (DOMElement, directive) ->
-    $(DOMElement).data directive.name
-
-  _applyDirectiveOnElementOld: (directiveConstructorFn, DOMElement) ->
-    $(DOMElement).data directiveConstructorFn.name, true
-    new directiveConstructorFn DOMElement
-    return
 
   _mustApplyDirective: (DOMElement, directive) ->
-    return new bqDOMElement(DOMElement).matchCSSExpression(directive.CSS_EXPRESSION)
+    new ObliqueDOMElement(DOMElement).matchCSSExpression(directive.CSS_EXPRESSION)
 
   @_isApplyingDirectivesInDOM = false
   _applyDirectivesInDOM: ->
@@ -64,7 +55,7 @@ class @Oblique
       #TODO: change this to a more human readable loop
       rootElement = document.getElementsByTagName("body")[0]
 
-      rootBqElement=new bqDOMElement rootElement
+      rootBqElement=new ObliqueDOMElement rootElement
 
       rootBqElement.eachDescendant(
         (DOMElement) =>
@@ -72,7 +63,6 @@ class @Oblique
             if @_mustApplyDirective DOMElement, directiveConstructorFn
               return true if @._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)
               @._applyDirectiveOnElement directiveConstructorFn, DOMElement
-          return
       )
     finally
       @_isApplyingDirectivesInDOM = false
@@ -86,7 +76,6 @@ class @Oblique
   _throwErrorIfDirectiveIsNotValid: (directiveConstructorFn) ->
     throw ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'")  unless @_isAFunction(directiveConstructorFn)
     throw ObliqueError("directive must has an static CSS_EXPRESSION property")  unless directiveConstructorFn.CSS_EXPRESSION
-    return
 
   getIntervalTimeInMs: ->
     @_intervalTimeInMs
@@ -95,13 +84,14 @@ class @Oblique
     throw new ObliqueError("IntervalTime must be a positive number") if newIntervalTimeInMs <= 0
     @_intervalTimeInMs = newIntervalTimeInMs
     @_listenToDirectivesInDOM()
-    return
 
   registerDirective: (directiveConstructorFn) ->
     @_throwErrorIfDirectiveIsNotValid directiveConstructorFn
     @_addDirective directiveConstructorFn
-    return
 
   destroy: ->
     @_clearLastInterval()
-    delete Oblique._singletonInstance
+    try
+      delete Oblique._singletonInstance
+    catch e
+      Oblique._singletonInstance = undefined
