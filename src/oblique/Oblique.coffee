@@ -45,29 +45,21 @@ class @Oblique
     try
       #TODO: change this to a more human readable loop
       rootElement = document.getElementsByTagName("body")[0]
+      rootObElement=new ObliqueDOMElement rootElement
 
-      rootBqElement=new ObliqueDOMElement rootElement
-
-      rootBqElement.eachDescendant(
+      rootObElement.eachDescendant(
         (DOMElement) =>
           obElement=new ObliqueDOMElement(DOMElement)
           for cssExpr in @_directiveCollection.getCSSExpressions()
             continue if not obElement.matchCSSExpression cssExpr
-            for directive in @_directiveCollection.getDirectivesBy cssExpr
+            for directive in @_directiveCollection.getDirectivesByCSSExpression cssExpr
               directiveName = directive.name
-              if not obElement.hasFlag directiveName
-                obElement.setFlag directiveName
-                new directive DOMElement
+              continue if obElement.hasFlag directiveName
+              obElement.setFlag directiveName
+              new directive DOMElement
       )
     finally
       @_isApplyingDirectivesInDOM = false
-
-  _isAFunction: (memberToTest) ->
-    typeof (memberToTest) is "function"
-
-  _throwErrorIfDirectiveIsNotValid: (directiveConstructorFn) ->
-    throw ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'")  unless @_isAFunction(directiveConstructorFn)
-    throw ObliqueError("directive must has an static CSS_EXPRESSION property")  unless directiveConstructorFn.CSS_EXPRESSION
 
   getIntervalTimeInMs: ->
     @_intervalTimeInMs
@@ -78,9 +70,7 @@ class @Oblique
     @_listenToDirectivesInDOM()
 
   registerDirective: (directiveConstructorFn) ->
-    @_throwErrorIfDirectiveIsNotValid directiveConstructorFn
     @_directiveCollection.add directiveConstructorFn
-
 
   destroy: ->
     @_clearLastInterval()
