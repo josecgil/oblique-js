@@ -13,19 +13,19 @@
     it("On creation it has a default interval time", function() {
       return expect(Oblique().getIntervalTimeInMs()).toBe(Oblique.DEFAULT_INTERVAL_MS);
     });
-    it("We can change default interval time", function() {
+    it("Can change default interval time", function() {
       var newIntervaltimeMs, oblique;
       newIntervaltimeMs = 10000;
       oblique = Oblique();
       oblique.setIntervalTimeInMs(newIntervaltimeMs);
       return expect(oblique.getIntervalTimeInMs()).toBe(newIntervaltimeMs);
     });
-    it("We can't change default interval time to invalid value", function() {
+    it("Can't change default interval time to invalid value", function() {
       return expect(function() {
         return Oblique().setIntervalTimeInMs(-1);
       }).toThrow(new ObliqueError("IntervalTime must be a positive number"));
     });
-    it("If a register a Directive if calls it constructor when expression is in DOM", function(done) {
+    it("If I register a Directive it calls its constructor when expression is in DOM", function(done) {
       var TestDirective;
       TestDirective = (function() {
         function TestDirective(DOMElement) {
@@ -42,7 +42,7 @@
       Oblique().setIntervalTimeInMs(10);
       return $("#fixture").html("<div data-test></div>");
     });
-    it("If a register a Directive if calls it constructor with the correct DOM element", function(done) {
+    it("If I register a Directive it calls its constructor with the correct DOM element", function(done) {
       var TestDirective;
       TestDirective = (function() {
         function TestDirective(DOMElement) {

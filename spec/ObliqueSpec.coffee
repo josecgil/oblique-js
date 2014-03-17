@@ -11,18 +11,18 @@ describe "Oblique", ->
   it "On creation it has a default interval time", ->
     expect(Oblique().getIntervalTimeInMs()).toBe Oblique.DEFAULT_INTERVAL_MS
 
-  it "We can change default interval time", ->
+  it "Can change default interval time", ->
     newIntervaltimeMs = 10000
     oblique = Oblique()
     oblique.setIntervalTimeInMs newIntervaltimeMs
     expect(oblique.getIntervalTimeInMs()).toBe newIntervaltimeMs
 
-  it "We can't change default interval time to invalid value", ->
+  it "Can't change default interval time to invalid value", ->
     expect(->
       Oblique().setIntervalTimeInMs -1
     ).toThrow(new ObliqueError("IntervalTime must be a positive number"))
 
-  it "If a register a Directive if calls it constructor when expression is in DOM", (done)->
+  it "If I register a Directive it calls its constructor when expression is in DOM", (done)->
     class TestDirective
       constructor: (DOMElement)->
         Oblique().destroy()
@@ -34,7 +34,7 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-test></div>"
 
-  it "If a register a Directive if calls it constructor with the correct DOM element", (done)->
+  it "If I register a Directive it calls its constructor with the correct DOM element", (done)->
     class TestDirective
       constructor: (DOMElement)->
         expect($(DOMElement).is("test[data-test]")).toBeTruthy()

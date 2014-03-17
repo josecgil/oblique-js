@@ -53,8 +53,7 @@ class @Oblique
     try
     #TODO: change this to a more human readable loop
       rootElement = document.getElementsByTagName("body")[0]
-      bqDOMDocument.traverse rootElement, (DOMElement) =>
-        return true  unless DOMElement.nodeType is bqDOMDocument.ELEMENT_NODE_TYPE
+      bqDOMElement.traverse rootElement, (DOMElement) =>
         for directiveConstructorFn in @._directiveConstructors
           if @_mustApplyDirective DOMElement, directiveConstructorFn
             return true if @._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)

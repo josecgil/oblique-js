@@ -10,7 +10,7 @@ describe "bqDOMDocument", ->
     $("#fixture").html testHTML
     rootElement = $("#fixture").get(0)
     count = 0;
-    bqDOMDocument.traverse rootElement, (DOMElement)->
+    bqDOMElement.traverse rootElement, (DOMElement)->
       count++
       if (count is 2)
         expect($(DOMElement).get(0).outerHTML).toBe testHTML
@@ -25,8 +25,7 @@ describe "bqDOMDocument", ->
 
     rootElement = fixture.get(0)
     count = 0;
-    bqDOMDocument.traverse rootElement, (DOMElement)->
-      return if DOMElement.nodeType isnt bqDOMDocument.ELEMENT_NODE_TYPE
+    bqDOMElement.traverse rootElement, (DOMElement)->
       count++
       return if (count isnt 11)
       expect($(DOMElement).get(0).outerHTML).toBe testHTML
@@ -40,8 +39,7 @@ describe "bqDOMDocument", ->
 
     traversedDOMElements=[]
     rootElement = fixture.get(0)
-    bqDOMDocument.traverse rootElement, (DOMElement)->
-      return if DOMElement.nodeType isnt bqDOMDocument.ELEMENT_NODE_TYPE
+    bqDOMElement.traverse rootElement, (DOMElement)->
       console.log "---> " + DOMElement.outerHTML
       traversedDOMElements.push $(DOMElement)
       return if (traversedDOMElements.length isnt 4)

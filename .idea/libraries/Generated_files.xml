@@ -7,6 +7,7 @@
         <item url="file://$PROJECT_DIR$/spec/bqDOMDocumentSpec.js" />
         <item url="file://$PROJECT_DIR$/src/oblique/Oblique.js" />
         <item url="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.js" />
+        <item url="file://$PROJECT_DIR$/src/oblique/bqDOMElement.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
@@ -17,6 +18,7 @@
       <root url="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js" />
       <root url="file://$PROJECT_DIR$/spec/bqDOMDocumentSpec.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/Oblique.js" />
+      <root url="file://$PROJECT_DIR$/src/oblique/bqDOMElement.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/bqDOMDocument.js" />
     </CLASSES>
     <SOURCES />
