@@ -5,18 +5,18 @@ describe "bqDOMDocument", ->
 
   afterEach ->
 
-  it "Can traverse a simple DOM", (done) ->
+  it "Can _traverse a simple DOM", (done) ->
     testHTML = "<div>A simple DOM</div>"
     $("#fixture").html testHTML
     rootElement = $("#fixture").get(0)
     count = 0;
-    bqDOMElement.traverse rootElement, (DOMElement)->
+    bqDOMElement._traverse rootElement, (DOMElement)->
       count++
       if (count is 2)
         expect($(DOMElement).get(0).outerHTML).toBe testHTML
         done()
 
-  it "Can traverse 10 element DOM", (done) ->
+  it "Can _traverse 10 element DOM", (done) ->
     testHTML = "<div>A medium DOM</div>"
 
     fixture = $("#fixture")
@@ -25,13 +25,13 @@ describe "bqDOMDocument", ->
 
     rootElement = fixture.get(0)
     count = 0;
-    bqDOMElement.traverse rootElement, (DOMElement)->
+    bqDOMElement._traverse rootElement, (DOMElement)->
       count++
       return if (count isnt 11)
       expect($(DOMElement).get(0).outerHTML).toBe testHTML
       done()
 
-  it "Can traverse complex DOM", (done) ->
+  it "Can _traverse complex DOM", (done) ->
     testHTML = "<div id='one'>A complex <strong>DOM</strong>.<p>Is Here</p>.</div>"
 
     fixture = $("#fixture")
@@ -39,7 +39,7 @@ describe "bqDOMDocument", ->
 
     traversedDOMElements=[]
     rootElement = fixture.get(0)
-    bqDOMElement.traverse rootElement, (DOMElement)->
+    bqDOMElement._traverse rootElement, (DOMElement)->
       console.log "---> " + DOMElement.outerHTML
       traversedDOMElements.push $(DOMElement)
       return if (traversedDOMElements.length isnt 4)
@@ -48,3 +48,17 @@ describe "bqDOMDocument", ->
       expect(traversedDOMElements[2].is("strong")).toBeTruthy()
       expect(traversedDOMElements[3].is("p")).toBeTruthy()
       done()
+
+  it "If a set a flag, flag is set", () ->
+    fixture = $("#fixture")
+    bqElement=new bqDOMElement(fixture.get(0))
+    bqElement.setFlag "visited"
+    expect(bqElement.hasFlag "visited").toBeTruthy()
+
+  it "If a unset a flag, flag is not present", () ->
+    fixture = $("#fixture")
+    bqElement=new bqDOMElement(fixture.get(0))
+    bqElement.setFlag "visited"
+    expect(bqElement.hasFlag "visited").toBeTruthy()
+    bqElement.unsetFlag "visited"
+    expect(bqElement.hasFlag "visited").toBeFalsy()

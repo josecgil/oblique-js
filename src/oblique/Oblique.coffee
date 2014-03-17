@@ -44,7 +44,7 @@ class @Oblique
     return
 
   _mustApplyDirective: (DOMElement, directive) ->
-    return $(DOMElement).is(directive.CSS_EXPRESSION)
+    return new bqDOMElement(DOMElement).matchCSSExpression(directive.CSS_EXPRESSION)
 
   @_isApplyingDirectives = false
   _applyDirectivesInDOM: ->
@@ -53,12 +53,17 @@ class @Oblique
     try
     #TODO: change this to a more human readable loop
       rootElement = document.getElementsByTagName("body")[0]
-      bqDOMElement.traverse rootElement, (DOMElement) =>
-        for directiveConstructorFn in @._directiveConstructors
-          if @_mustApplyDirective DOMElement, directiveConstructorFn
-            return true if @._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)
-            @._applyDirectiveOnElement directiveConstructorFn, DOMElement
-        return
+
+      rootBqElement=new bqDOMElement rootElement
+
+      rootBqElement.eachDescendant(
+        (DOMElement) =>
+          for directiveConstructorFn in @._directiveConstructors
+            if @_mustApplyDirective DOMElement, directiveConstructorFn
+              return true if @._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)
+              @._applyDirectiveOnElement directiveConstructorFn, DOMElement
+          return
+      )
     finally
       @_isApplyingDirectives = false
 
