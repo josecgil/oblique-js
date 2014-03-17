@@ -3,6 +3,7 @@ class @bqDOMElement
   constructor:(DOMElement)->
     @_DOMElement=DOMElement
     @_jQueryElement=$(DOMElement)
+    @_DOMElement.bqFlags={}
 
   isTag: ->
     bqDOMElement._isTag(@_DOMElement)
@@ -10,22 +11,15 @@ class @bqDOMElement
   matchCSSExpression: (cssExpression) ->
     @_jQueryElement.is(cssExpression)
 
-  ###
-  TODO: falta setflag(name) unsetFlag(name) en esta clase como sustituto de:
-      $(DOMElement).data directive.CSS_EXPRESSION
-        falta también testear todo lo nuevo
-  ###
-
   setFlag: (flagName) ->
-    @_jQueryElement.data(flagName,true)
+    @_DOMElement.bqFlags[flagName]=true
 
   hasFlag: (flagName) ->
-    return true if @_jQueryElement.data(flagName) is true
+    return true if @_DOMElement.bqFlags[flagName] is true
     false
 
   unsetFlag: (flagName) ->
-    @_jQueryElement.data(flagName, false)
-
+    delete @_DOMElement.bqFlags[flagName]
 
   @_isTag: (DOMElement) ->
     DOMElement.nodeType is 1
