@@ -10,7 +10,7 @@ class @Oblique
     #Default private properties
     @_intervalTimeInMs = Oblique.DEFAULT_INTERVAL_MS
     @_lastIntervalId = undefined
-    @_directiveConstructors = []
+    @_directives = []
     @_listenToDirectivesInDOM()
 
   @DEFAULT_INTERVAL_MS = 500
@@ -47,30 +47,61 @@ class @Oblique
   _mustApplyDirective: (DOMElement, directive) ->
     new ObliqueDOMElement(DOMElement).matchCSSExpression(directive.CSS_EXPRESSION)
 
+
   @_isApplyingDirectivesInDOM = false
   _applyDirectivesInDOM: ->
     return if (@_isApplyingDirectivesInDOM)
     @_isApplyingDirectivesInDOM = true
     try
       #TODO: change this to a more human readable loop
+      #TODO: only evaluate an CSSExpression one time if 2+ directives share CSSExpressions
       rootElement = document.getElementsByTagName("body")[0]
 
       rootBqElement=new ObliqueDOMElement rootElement
 
       rootBqElement.eachDescendant(
         (DOMElement) =>
-          for directiveConstructorFn in @._directiveConstructors
+          for directiveConstructorFn in @_directives
+            return true if @._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)
             if @_mustApplyDirective DOMElement, directiveConstructorFn
-              return true if @._elementHasDirectiveApplied(DOMElement, directiveConstructorFn)
               @._applyDirectiveOnElement directiveConstructorFn, DOMElement
       )
     finally
       @_isApplyingDirectivesInDOM = false
 
+  ###
+  TODO: only evaluate an CSSExpression one time if 2+ directives share CSSExpressions
+  @_isApplyingDirectivesInDOM = false
+  _applyDirectivesInDOM: ->
+    return if (@_isApplyingDirectivesInDOM)
+    @_isApplyingDirectivesInDOM = true
+    try
+      rootElement = document.getElementsByTagName("body")[0]
 
+      rootBqElement=new ObliqueDOMElement rootElement
 
-  _addDirective: (directiveConstructorFn) ->
-    @_directiveConstructors.push directiveConstructorFn
+      rootBqElement.eachDescendant(
+        (DOMElement) =>
+          for cssExpression, directives of @_directivesMap
+            obElement=new ObliqueDOMElement DOMElement
+            return true if not obElement.matchCSSExpression(cssExpression)
+            for directive in directives
+              if not @_elementHasDirectiveApplied(DOMElement, directive)
+                @_applyDirectiveOnElement directive, DOMElement
+      )
+    finally
+      @_isApplyingDirectivesInDOM = false
+
+  _addDirective: (directive) ->
+    directives=@_directivesMap[directive.CSS_EXPRESSION]
+    directives=[] if not directives
+    directives.push directive
+    @_directivesMap[directive.CSS_EXPRESSION]=directives
+
+  ###
+
+  _addDirective: (directive) ->
+    @_directives.push directive
 
   _isAFunction: (memberToTest) ->
     typeof (memberToTest) is "function"

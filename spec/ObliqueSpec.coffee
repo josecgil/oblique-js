@@ -104,6 +104,7 @@ describe "Oblique", ->
 
   it "must execute 5 directives in a 10000 elements DOM in <400ms", (done)->
 
+    #TODO: test with different expressions in each Directive
     DOM_ELEMENTS_COUNT = 4*250
     FixtureHelper.appendHTML "<p class='test'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
     FixtureHelper.appendHTML "<div class='test'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
