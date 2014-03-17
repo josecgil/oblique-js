@@ -1,6 +1,8 @@
 class @DirectiveCollection
   constructor:()->
     @directives=[]
+    #pre-calc this when adding a Directive for fast access
+    @_cssExpressions=[]
 
   count:() ->
     @directives.length
@@ -8,16 +10,19 @@ class @DirectiveCollection
   _isAFunction: (memberToTest) ->
     typeof (memberToTest) is "function"
 
-  NOT_A_FUNCTION_CLASS_ERROR_MESSAGE = "registerDirective must be called with a Directive 'Constructor/Class'"
-  DOESNT_HAVE_PROPERTY_CSS_EXPR_MESSAGE = "directive must has an static CSS_EXPRESSION property"
+  @NOT_A_FUNCTION_CLASS_ERROR_MESSAGE = "registerDirective must be called with a Directive 'Constructor/Class'"
+  @DOESNT_HAVE_PROPERTY_CSS_EXPR_MESSAGE = "directive must has an static CSS_EXPRESSION property"
 
   _throwErrorIfDirectiveIsNotValid: (directive) ->
-    throw ObliqueError(NOT_A_FUNCTION_CLASS_ERROR_MESSAGE) if not @_isAFunction(directive)
-    throw ObliqueError(DOESNT_HAVE_PROPERTY_CSS_EXPR_MESSAGE) if not directive.CSS_EXPRESSION
+    if not @_isAFunction(directive)
+      throw ObliqueError(DirectiveCollection.NOT_A_FUNCTION_CLASS_ERROR_MESSAGE)
+    if not directive.CSS_EXPRESSION
+      throw ObliqueError(DirectiveCollection.DOESNT_HAVE_PROPERTY_CSS_EXPR_MESSAGE)
 
   add:(directive) ->
     @_throwErrorIfDirectiveIsNotValid(directive)
     @directives.push directive
+    @_buildCSSExpressions()
 
   at:(index)->
     @directives[index]
@@ -27,13 +32,15 @@ class @DirectiveCollection
       return true if exprToSearch is expr
     false
 
-  getCSSExpressions: ->
-    cssExpressions=[]
+  _buildCSSExpressions : ->
+    @_cssExpressions=[]
     for directive in @directives
       cssExpr = directive.CSS_EXPRESSION
-      continue if @_containsCssExpr cssExpr, cssExpressions
-      cssExpressions.push cssExpr
-    cssExpressions
+      continue if @_containsCssExpr cssExpr, @_cssExpressions
+      @_cssExpressions.push cssExpr
+
+  getCSSExpressions : ->
+    @_cssExpressions
 
   getDirectivesByCSSExpression: (cssExpression) ->
     directivesWithCSSExpr=[]

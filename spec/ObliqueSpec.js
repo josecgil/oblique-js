@@ -57,7 +57,7 @@
       })();
       Oblique().registerDirective(TestDirective);
       Oblique().setIntervalTimeInMs(10);
-      $("#fixture").html("<div data-test></div>");
+      FixtureHelper.appendHTML("<div data-test></div>");
       return setTimeout(function() {
         Oblique().destroy();
         expect(counter).toBe(1);
@@ -79,7 +79,7 @@
 
       })();
       Oblique().registerDirective(TestDirective);
-      return $("#fixture").html("<test data-test></test>");
+      return FixtureHelper.appendHTML("<test data-test></test>");
     });
     it("If I register a Directive without CSS_EXPRESSION it throws an Error", function() {
       var TestDirective;

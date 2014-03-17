@@ -45,7 +45,8 @@ describe "Oblique", ->
 
     Oblique().registerDirective TestDirective
     Oblique().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-test></div>"
+
+    FixtureHelper.appendHTML "<div data-test></div>"
 
     setTimeout ->
       Oblique().destroy()
@@ -65,7 +66,7 @@ describe "Oblique", ->
       @CSS_EXPRESSION = "*[data-test]"
 
     Oblique().registerDirective TestDirective
-    $("#fixture").html "<test data-test></test>"
+    FixtureHelper.appendHTML "<test data-test></test>"
 
   it "If I register a Directive without CSS_EXPRESSION it throws an Error", ()->
     class TestDirective
