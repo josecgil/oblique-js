@@ -130,7 +130,7 @@
       DirectiveProcessor().registerDirective(TestDirective);
       return DirectiveProcessor().setIntervalTimeInMs(10);
     });
-    return it("must execute 5 directives in a 10000 elements DOM in <400ms", function(done) {
+    it("must execute 5 directives in a 10000 elements DOM in <400ms", function(done) {
       var DOM_ELEMENTS_COUNT, TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5, counter, interval;
       DOM_ELEMENTS_COUNT = 4 * 250;
       FixtureHelper.appendHTML("<p class='test'>nice DOM</p>", DOM_ELEMENTS_COUNT / 4);
@@ -201,6 +201,63 @@
       DirectiveProcessor().registerDirective(TestDirective3);
       DirectiveProcessor().registerDirective(TestDirective4);
       DirectiveProcessor().registerDirective(TestDirective5);
+      return DirectiveProcessor().setIntervalTimeInMs(10);
+    });
+    return it("must execute 4 directives with different CSSExpressions", function(done) {
+      var DOM_ELEMENTS_COUNT, TestDirective, TestDirective2, TestDirective3, TestDirective4, counter;
+      DOM_ELEMENTS_COUNT = 4 * 250;
+      FixtureHelper.appendHTML("<p class='test1'>nice DOM</p>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<div class='test2'>nice DOM</div>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<span class='test3'>nice DOM</span>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<test class='test4'>nice DOM</test>", DOM_ELEMENTS_COUNT / 4);
+      counter = 0;
+      TestDirective = (function() {
+        function TestDirective() {
+          counter++;
+        }
+
+        TestDirective.CSS_EXPRESSION = ".test1";
+
+        return TestDirective;
+
+      })();
+      TestDirective2 = (function() {
+        function TestDirective2() {
+          counter++;
+        }
+
+        TestDirective2.CSS_EXPRESSION = ".test2";
+
+        return TestDirective2;
+
+      })();
+      TestDirective3 = (function() {
+        function TestDirective3() {
+          counter++;
+        }
+
+        TestDirective3.CSS_EXPRESSION = ".test3";
+
+        return TestDirective3;
+
+      })();
+      TestDirective4 = (function() {
+        function TestDirective4() {
+          counter++;
+          if (counter === DOM_ELEMENTS_COUNT) {
+            done();
+          }
+        }
+
+        TestDirective4.CSS_EXPRESSION = ".test4";
+
+        return TestDirective4;
+
+      })();
+      DirectiveProcessor().registerDirective(TestDirective);
+      DirectiveProcessor().registerDirective(TestDirective2);
+      DirectiveProcessor().registerDirective(TestDirective3);
+      DirectiveProcessor().registerDirective(TestDirective4);
       return DirectiveProcessor().setIntervalTimeInMs(10);
     });
   });

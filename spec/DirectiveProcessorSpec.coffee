@@ -157,3 +157,39 @@ describe "DirectiveProcessor", ->
     DirectiveProcessor().registerDirective(TestDirective4)
     DirectiveProcessor().registerDirective(TestDirective5)
     DirectiveProcessor().setIntervalTimeInMs 10
+
+  it "must execute 4 directives with different CSSExpressions", (done)->
+
+    DOM_ELEMENTS_COUNT = 4*250
+    FixtureHelper.appendHTML "<p class='test1'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<div class='test2'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<span class='test3'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<test class='test4'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
+
+    counter=0
+    class TestDirective
+      constructor: ()->
+        counter++
+      @CSS_EXPRESSION = ".test1"
+
+    class TestDirective2
+      constructor: ()->
+        counter++
+      @CSS_EXPRESSION = ".test2"
+
+    class TestDirective3
+      constructor: ()->
+        counter++
+      @CSS_EXPRESSION = ".test3"
+
+    class TestDirective4
+      constructor: ()->
+        counter++
+        done() if (counter is DOM_ELEMENTS_COUNT)
+      @CSS_EXPRESSION = ".test4"
+
+    DirectiveProcessor().registerDirective(TestDirective)
+    DirectiveProcessor().registerDirective(TestDirective2)
+    DirectiveProcessor().registerDirective(TestDirective3)
+    DirectiveProcessor().registerDirective(TestDirective4)
+    DirectiveProcessor().setIntervalTimeInMs 10

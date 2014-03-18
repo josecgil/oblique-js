@@ -1,0 +1,12 @@
+-jasmine specRunner
+-source maps
+-http module
+-jQuery lite or jQuery
+-Add tests coverage tool
+
+-Change timeout for DOMSubTreeChanged y MutationObserver when available
+    http://stackoverflow.com/questions/2844565/is-there-a-jquery-dom-change-listener
+    TimedDOMObserver
+    DOMChangeObserver
+    MutationObserver
+    (previous refactor, extract to TimedDOMObserver)

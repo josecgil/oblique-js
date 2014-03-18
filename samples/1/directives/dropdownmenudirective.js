@@ -13,4 +13,3 @@ var DropDownMenuDirective = function (DOMElement) {
 DropDownMenuDirective.CSS_EXPRESSION = "*[data-vc-dropdownmenu]";
 
 Oblique().registerDirective(DropDownMenuDirective);
-
