@@ -1,4 +1,8 @@
 describe "DirectiveCollection", ->
+
+  DirectiveCollection=ObliqueNS.DirectiveCollection
+  ObError=ObliqueNS.Error
+
   beforeEach () ->
 
   afterEach ->
@@ -88,10 +92,10 @@ describe "DirectiveCollection", ->
     directivesCollection=new DirectiveCollection()
     expect(->
       directivesCollection.add TestDirective
-    ).toThrow(new ObliqueError("directive must has an static CSS_EXPRESSION property"))
+    ).toThrow(new ObError("directive must has an static CSS_EXPRESSION property"))
 
   it "If I add an object that no is a Directive it throws an Error", ()->
     directivesCollection=new DirectiveCollection()
     expect(->
       directivesCollection.add {}
-    ).toThrow(new ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'"))
+    ).toThrow(new ObError("registerDirective must be called with a Directive 'Constructor/Class'"))

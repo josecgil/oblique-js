@@ -1,38 +1,42 @@
-describe "Oblique", ->
+describe "DirectiveProcessor", ->
+
+  DirectiveProcessor=ObliqueNS.DirectiveProcessor
+  ObError=ObliqueNS.Error
+
   beforeEach (done) ->
-    Oblique().destroy()
-    Oblique().setIntervalTimeInMs 10
+    DirectiveProcessor().destroy()
+    DirectiveProcessor().setIntervalTimeInMs 10
     FixtureHelper.clear()
     done()
 
   afterEach ->
-    Oblique().destroy()
+    DirectiveProcessor().destroy()
 
   it "On creation it has a default interval time", ->
-    Oblique().destroy()
-    expect(Oblique().getIntervalTimeInMs()).toBe Oblique.DEFAULT_INTERVAL_MS
+    DirectiveProcessor().destroy()
+    expect(DirectiveProcessor().getIntervalTimeInMs()).toBe DirectiveProcessor.DEFAULT_INTERVAL_MS
 
   it "Can change default interval time", ->
     newIntervaltimeMs = 10000
-    oblique = Oblique()
+    oblique = DirectiveProcessor()
     oblique.setIntervalTimeInMs newIntervaltimeMs
     expect(oblique.getIntervalTimeInMs()).toBe newIntervaltimeMs
 
   it "Can't change default interval time to invalid value", ->
     expect(->
-      Oblique().setIntervalTimeInMs -1
-    ).toThrow(new ObliqueError("IntervalTime must be a positive number"))
+      DirectiveProcessor().setIntervalTimeInMs -1
+    ).toThrow(new ObError("IntervalTime must be a positive number"))
 
   it "If I register a Directive it calls its constructor when expression is in DOM", (done)->
     class TestDirective
       constructor: ()->
-        Oblique().destroy()
+        DirectiveProcessor().destroy()
         done()
 
       @CSS_EXPRESSION = "*[data-test]"
 
-    Oblique().registerDirective TestDirective
-    Oblique().setIntervalTimeInMs 10
+    DirectiveProcessor().registerDirective TestDirective
+    DirectiveProcessor().setIntervalTimeInMs 10
     $("#fixture").html "<div data-test></div>"
 
 
@@ -44,13 +48,13 @@ describe "Oblique", ->
 
       @CSS_EXPRESSION = "*[data-test]"
 
-    Oblique().registerDirective TestDirective
-    Oblique().setIntervalTimeInMs 10
+    DirectiveProcessor().registerDirective TestDirective
+    DirectiveProcessor().setIntervalTimeInMs 10
 
     FixtureHelper.appendHTML "<div data-test></div>"
 
     setTimeout ->
-      Oblique().destroy()
+      DirectiveProcessor().destroy()
       expect(counter).toBe 1
       done()
     , 100
@@ -61,24 +65,24 @@ describe "Oblique", ->
     class TestDirective
       constructor: (DOMElement)->
         expect($(DOMElement).is("test[data-test]")).toBeTruthy()
-        Oblique().destroy()
+        DirectiveProcessor().destroy()
         done()
 
       @CSS_EXPRESSION = "*[data-test]"
 
-    Oblique().registerDirective TestDirective
+    DirectiveProcessor().registerDirective TestDirective
     FixtureHelper.appendHTML "<test data-test></test>"
 
   it "If I register a Directive without CSS_EXPRESSION it throws an Error", ()->
     class TestDirective
     expect(->
-      Oblique().registerDirective TestDirective
-    ).toThrow(new ObliqueError("directive must has an static CSS_EXPRESSION property"))
+      DirectiveProcessor().registerDirective TestDirective
+    ).toThrow(new ObError("directive must has an static CSS_EXPRESSION property"))
 
   it "If I register an object that no is a Directive it throws an Error", ()->
     expect(->
-      Oblique().registerDirective {}
-    ).toThrow(new ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'"))
+      DirectiveProcessor().registerDirective {}
+    ).toThrow(new ObError("registerDirective must be called with a Directive 'Constructor/Class'"))
 
   it "must execute 1 directive in a 10000 elements DOM in <200ms", (done)->
 
@@ -101,8 +105,8 @@ describe "Oblique", ->
       @CSS_EXPRESSION = ".test"
 
     interval.start()
-    Oblique().registerDirective(TestDirective)
-    Oblique().setIntervalTimeInMs 10
+    DirectiveProcessor().registerDirective(TestDirective)
+    DirectiveProcessor().setIntervalTimeInMs 10
 
   it "must execute 5 directives in a 10000 elements DOM in <400ms", (done)->
 
@@ -147,9 +151,9 @@ describe "Oblique", ->
       @CSS_EXPRESSION = ".test"
 
     interval.start()
-    Oblique().registerDirective(TestDirective)
-    Oblique().registerDirective(TestDirective2)
-    Oblique().registerDirective(TestDirective3)
-    Oblique().registerDirective(TestDirective4)
-    Oblique().registerDirective(TestDirective5)
-    Oblique().setIntervalTimeInMs 10
+    DirectiveProcessor().registerDirective(TestDirective)
+    DirectiveProcessor().registerDirective(TestDirective2)
+    DirectiveProcessor().registerDirective(TestDirective3)
+    DirectiveProcessor().registerDirective(TestDirective4)
+    DirectiveProcessor().registerDirective(TestDirective5)
+    DirectiveProcessor().setIntervalTimeInMs 10

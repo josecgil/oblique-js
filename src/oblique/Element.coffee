@@ -1,11 +1,13 @@
-class @ObliqueDOMElement
+window.ObliqueNS=window.ObliqueNS or {}
+
+class Element
 
   constructor:(DOMElement)->
     @_DOMElement=DOMElement
     @_jQueryElement=jQuery(DOMElement)
 
   isTag: ->
-    ObliqueDOMElement._isTag(@_DOMElement)
+    Element._isTag(@_DOMElement)
 
   matchCSSExpression: (cssExpression) ->
     @_jQueryElement.is(cssExpression)
@@ -20,20 +22,22 @@ class @ObliqueDOMElement
     @_jQueryElement.data(flagName)
 
   eachDescendant: (callbackOnDOMElement) ->
-    ObliqueDOMElement._traverse(@_DOMElement, callbackOnDOMElement)
+    Element._traverse(@_DOMElement, callbackOnDOMElement)
 
   @_isTag: (DOMElement) ->
     DOMElement.nodeType is 1
 
   @_traverse: (parentElement, callbackOnDOMElement) ->
     elementsToTraverse = []
-    if ObliqueDOMElement._isTag parentElement
+    if Element._isTag parentElement
       elementsToTraverse.push parentElement
 
     callbackOnDOMElement parentElement
     while elementsToTraverse.length > 0
       currentElement = elementsToTraverse.pop()
       for child in currentElement.children
-        if ObliqueDOMElement._isTag child
+        if Element._isTag child
           elementsToTraverse.push child
           callbackOnDOMElement child
+
+ObliqueNS.Element=Element

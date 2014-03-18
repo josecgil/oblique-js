@@ -1,4 +1,7 @@
-class @DirectiveCollection
+window.ObliqueNS=window.ObliqueNS or {}
+
+class DirectiveCollection
+
   constructor:()->
     @directives=[]
     #pre-calc this when adding a Directive for fast access
@@ -15,9 +18,9 @@ class @DirectiveCollection
 
   _throwErrorIfDirectiveIsNotValid: (directive) ->
     if not @_isAFunction(directive)
-      throw ObliqueError(DirectiveCollection.NOT_A_FUNCTION_CLASS_ERROR_MESSAGE)
+      throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.NOT_A_FUNCTION_CLASS_ERROR_MESSAGE)
     if not directive.CSS_EXPRESSION
-      throw ObliqueError(DirectiveCollection.DOESNT_HAVE_PROPERTY_CSS_EXPR_MESSAGE)
+      throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.DOESNT_HAVE_PROPERTY_CSS_EXPR_MESSAGE)
 
   add:(directive) ->
     @_throwErrorIfDirectiveIsNotValid(directive)
@@ -49,3 +52,5 @@ class @DirectiveCollection
       continue if cssExpr isnt cssExpression
       directivesWithCSSExpr.push directive
     directivesWithCSSExpr
+
+ObliqueNS.DirectiveCollection=DirectiveCollection

@@ -1,22 +1,26 @@
-class @Oblique
+window.ObliqueNS=window.ObliqueNS or {}
+
+class DirectiveProcessor
+
+  Element=ObliqueNS.Element
 
   constructor: ->
-    return new Oblique() if @ is window
-    return Oblique._singletonInstance  if Oblique._singletonInstance
-    Oblique._singletonInstance = @
+    return new DirectiveProcessor() if @ is window
+    return DirectiveProcessor._singletonInstance  if DirectiveProcessor._singletonInstance
+    DirectiveProcessor._singletonInstance = @
 
     @_throwErrorIfJQueryIsntLoaded()
 
     #Default private properties
-    @_intervalTimeInMs = Oblique.DEFAULT_INTERVAL_MS
+    @_intervalTimeInMs = DirectiveProcessor.DEFAULT_INTERVAL_MS
     @_lastIntervalId = undefined
-    @_directiveCollection = new DirectiveCollection()
+    @_directiveCollection = new ObliqueNS.DirectiveCollection()
     @_listenToDirectivesInDOM()
 
   @DEFAULT_INTERVAL_MS = 500
 
   _throwErrorIfJQueryIsntLoaded: ->
-    throw new ObliqueError("Oblique needs jQuery to work") if not window.jQuery
+    throw new Error("DirectiveProcessor needs jQuery to work") if not window.jQuery
 
   _clearLastInterval: ->
     clearInterval @_lastIntervalId  unless @_lastIntervalId is undefined
@@ -35,9 +39,6 @@ class @Oblique
     @_applyDirectivesOnDocumentReady()
     @_setNewInterval()
 
-  _mustApplyDirective: (DOMElement, directive) ->
-    new ObliqueDOMElement(DOMElement).matchCSSExpression(directive.CSS_EXPRESSION)
-
   @_isApplyingDirectivesInDOM = false
   _applyDirectivesInDOM: ->
     return if (@_isApplyingDirectivesInDOM)
@@ -45,11 +46,11 @@ class @Oblique
     try
       #TODO: change this to a more human readable loop
       rootElement = document.getElementsByTagName("body")[0]
-      rootObElement=new ObliqueDOMElement rootElement
+      rootObElement=new ObliqueNS.Element rootElement
 
       rootObElement.eachDescendant(
         (DOMElement) =>
-          obElement=new ObliqueDOMElement(DOMElement)
+          obElement=new ObliqueNS.Element(DOMElement)
           for cssExpr in @_directiveCollection.getCSSExpressions()
             continue if not obElement.matchCSSExpression cssExpr
             for directive in @_directiveCollection.getDirectivesByCSSExpression cssExpr
@@ -65,7 +66,7 @@ class @Oblique
     @_intervalTimeInMs
 
   setIntervalTimeInMs: (newIntervalTimeInMs) ->
-    throw new ObliqueError("IntervalTime must be a positive number") if newIntervalTimeInMs <= 0
+    throw new ObliqueNS.Error("IntervalTime must be a positive number") if newIntervalTimeInMs <= 0
     @_intervalTimeInMs = newIntervalTimeInMs
     @_listenToDirectivesInDOM()
 
@@ -75,6 +76,9 @@ class @Oblique
   destroy: ->
     @_clearLastInterval()
     try
-      delete Oblique._singletonInstance
+      delete DirectiveProcessor._singletonInstance
     catch e
-      Oblique._singletonInstance = undefined
+      DirectiveProcessor._singletonInstance = undefined
+
+ObliqueNS.DirectiveProcessor=DirectiveProcessor
+window.Oblique=DirectiveProcessor

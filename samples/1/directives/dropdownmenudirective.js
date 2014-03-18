@@ -8,11 +8,6 @@ var DropDownMenuDirective = function (DOMElement) {
         ul.toggle();
         a.html(a.html() + "!");
     });
-    element.hover(function () {
-        ul.show();
-    }, function () {
-        ul.hide();
-    });
 };
 
 DropDownMenuDirective.CSS_EXPRESSION = "*[data-vc-dropdownmenu]";

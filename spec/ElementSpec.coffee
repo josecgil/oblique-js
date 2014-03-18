@@ -1,4 +1,7 @@
-describe "ObliqueDOMElement", ->
+describe "Element", ->
+
+  Element=ObliqueNS.Element
+
   beforeEach (done) ->
     $("#fixture").html ""
     done()
@@ -9,7 +12,7 @@ describe "ObliqueDOMElement", ->
     testHTML="<div>A simple DOM</div>"
     rootElement = FixtureHelper.appendHTML testHTML
     count = 0;
-    ObliqueDOMElement._traverse rootElement, (DOMElement)->
+    Element._traverse rootElement, (DOMElement)->
       count++
       if (count is 2)
         expect($(DOMElement).get(0).outerHTML).toBe testHTML
@@ -22,7 +25,7 @@ describe "ObliqueDOMElement", ->
     rootElement = FixtureHelper.appendHTML testHTML, ELEMENTS_COUNT
 
     count = 0;
-    ObliqueDOMElement._traverse rootElement, (DOMElement)->
+    Element._traverse rootElement, (DOMElement)->
       count++
       return if (count isnt ELEMENTS_COUNT+1)
       expect($(DOMElement).get(0).outerHTML).toBe testHTML
@@ -35,7 +38,7 @@ describe "ObliqueDOMElement", ->
     rootElement = FixtureHelper.appendHTML testHTML, ELEMENTS_COUNT
 
     count = 0;
-    ObliqueDOMElement._traverse rootElement, (DOMElement)->
+    Element._traverse rootElement, (DOMElement)->
       count++
       return if (count isnt ELEMENTS_COUNT+1)
       expect($(DOMElement).get(0).outerHTML).toBe testHTML
@@ -46,7 +49,7 @@ describe "ObliqueDOMElement", ->
     rootElement = FixtureHelper.appendHTML testHTML
 
     traversedDOMElements=[]
-    ObliqueDOMElement._traverse rootElement, (DOMElement)->
+    Element._traverse rootElement, (DOMElement)->
       traversedDOMElements.push $(DOMElement)
       return if (traversedDOMElements.length isnt 4)
       expect(traversedDOMElements[0].is("div#fixture")).toBeTruthy()
@@ -58,7 +61,7 @@ describe "ObliqueDOMElement", ->
   it "If a set a flag, flag is set", () ->
     testHTML = "<div></div>"
     fixture = FixtureHelper.appendHTML testHTML
-    bqElement=new ObliqueDOMElement(fixture)
+    bqElement=new Element(fixture)
     FLAG_NAME = "visited"
     bqElement.setFlag FLAG_NAME
     expect(bqElement.hasFlag FLAG_NAME).toBeTruthy()
@@ -66,17 +69,17 @@ describe "ObliqueDOMElement", ->
   it "If a set a flag and I recreate the same DOMElement flag is set", () ->
     testHTML = "<div></div>"
     fixture = FixtureHelper.appendHTML testHTML
-    bqElement=new ObliqueDOMElement fixture
+    bqElement=new Element fixture
     FLAG_NAME = "visited"
     bqElement.setFlag FLAG_NAME
 
-    bqElement2=new ObliqueDOMElement fixture
+    bqElement2=new Element fixture
     hasVisitedFlag = bqElement2.hasFlag FLAG_NAME
     expect(hasVisitedFlag).toBeTruthy()
 
   it "If a unset a flag, flag is not present", () ->
     fixture = $("#fixture")
-    bqElement=new ObliqueDOMElement(fixture.get(0))
+    bqElement=new Element(fixture.get(0))
     FLAG_NAME = "visited"
     bqElement.setFlag FLAG_NAME
     expect(bqElement.hasFlag FLAG_NAME).toBeTruthy()
