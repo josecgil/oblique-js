@@ -1,8 +1,11 @@
--jasmine specRunner
+-jasmine specRunner (karma?)
 -source maps
 -http module
 -jQuery lite or jQuery
+-Reduce dependency from jQuery
 -Add tests coverage tool
+-Rework samples to more beautiful presentation (bootstrap?)
+-Extract directives from current CMS
 
 -Change timeout for DOMSubTreeChanged y MutationObserver when available
     http://stackoverflow.com/questions/2844565/is-there-a-jquery-dom-change-listener
