@@ -2,7 +2,7 @@
 (function() {
   var Element;
 
-  window.ObliqueNS = window.ObliqueNS || {};
+  this.ObliqueNS = this.ObliqueNS || {};
 
   Element = (function() {
     function Element(DOMElement) {

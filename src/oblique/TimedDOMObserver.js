@@ -2,7 +2,7 @@
 (function() {
   var TimedDOMObserver;
 
-  window.ObliqueNS = window.ObliqueNS || {};
+  this.ObliqueNS = this.ObliqueNS || {};
 
   TimedDOMObserver = (function() {
     function TimedDOMObserver() {

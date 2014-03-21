@@ -2,7 +2,7 @@
 (function() {
   var DirectiveProcessor;
 
-  window.ObliqueNS = window.ObliqueNS || {};
+  this.ObliqueNS = this.ObliqueNS || {};
 
   DirectiveProcessor = (function() {
     var Element;
@@ -139,6 +139,6 @@
 
   ObliqueNS.DirectiveProcessor = DirectiveProcessor;
 
-  window.Oblique = DirectiveProcessor;
+  this.Oblique = DirectiveProcessor;
 
 }).call(this);

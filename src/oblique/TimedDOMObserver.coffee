@@ -1,4 +1,4 @@
-window.ObliqueNS=window.ObliqueNS or {}
+@.ObliqueNS=@.ObliqueNS or {}
 
 class TimedDOMObserver
 

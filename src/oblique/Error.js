@@ -2,7 +2,7 @@
 (function() {
   var Error;
 
-  window.ObliqueNS = window.ObliqueNS || {};
+  this.ObliqueNS = this.ObliqueNS || {};
 
   Error = (function() {
     function Error(message) {

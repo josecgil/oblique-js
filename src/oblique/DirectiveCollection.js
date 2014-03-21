@@ -2,7 +2,7 @@
 (function() {
   var DirectiveCollection;
 
-  window.ObliqueNS = window.ObliqueNS || {};
+  this.ObliqueNS = this.ObliqueNS || {};
 
   DirectiveCollection = (function() {
     function DirectiveCollection() {

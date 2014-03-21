@@ -1,4 +1,4 @@
-window.ObliqueNS=window.ObliqueNS or {}
+@.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveProcessor
 
@@ -81,4 +81,4 @@ class DirectiveProcessor
       DirectiveProcessor._singletonInstance = undefined
 
 ObliqueNS.DirectiveProcessor=DirectiveProcessor
-window.Oblique=DirectiveProcessor
+@.Oblique=DirectiveProcessor
