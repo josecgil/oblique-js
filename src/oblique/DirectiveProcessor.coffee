@@ -3,6 +3,7 @@
 class DirectiveProcessor
 
   Element=ObliqueNS.Element
+  TimedDOMObserver=ObliqueNS.TimedDOMObserver
 
   constructor: ->
     return new DirectiveProcessor() if @ is window
@@ -12,9 +13,9 @@ class DirectiveProcessor
     @_throwErrorIfJQueryIsntLoaded()
 
     #Default private properties
-    @_intervalTimeInMs = DirectiveProcessor.DEFAULT_INTERVAL_MS
-    @_lastIntervalId = undefined
     @_directiveCollection = new ObliqueNS.DirectiveCollection()
+    @_timedDOMObserver=new TimedDOMObserver()
+    @_timedDOMObserver.setIntervalInMs DirectiveProcessor.DEFAULT_INTERVAL_MS
     @_listenToDirectivesInDOM()
 
   @DEFAULT_INTERVAL_MS = 500
@@ -22,22 +23,16 @@ class DirectiveProcessor
   _throwErrorIfJQueryIsntLoaded: ->
     throw new Error("DirectiveProcessor needs jQuery to work") if not window.jQuery
 
-  _clearLastInterval: ->
-    clearInterval @_lastIntervalId  unless @_lastIntervalId is undefined
-
   _applyDirectivesOnDocumentReady: ->
     jQuery(document).ready =>
       @_applyDirectivesInDOM()
-
-  _setNewInterval: ->
-    @_lastIntervalId = setInterval =>
-      @_applyDirectivesInDOM()
-    , @_intervalTimeInMs
+      @_timedDOMObserver.onChange(=>
+        @_applyDirectivesInDOM()
+      )
+      @_timedDOMObserver.observe()
 
   _listenToDirectivesInDOM: ->
-    @_clearLastInterval()
     @_applyDirectivesOnDocumentReady()
-    @_setNewInterval()
 
   @_isApplyingDirectivesInDOM = false
   _applyDirectivesInDOM: ->
@@ -63,18 +58,17 @@ class DirectiveProcessor
       @_isApplyingDirectivesInDOM = false
 
   getIntervalTimeInMs: ->
-    @_intervalTimeInMs
+    @_timedDOMObserver.getIntervalInMs()
 
   setIntervalTimeInMs: (newIntervalTimeInMs) ->
     throw new ObliqueNS.Error("IntervalTime must be a positive number") if newIntervalTimeInMs <= 0
-    @_intervalTimeInMs = newIntervalTimeInMs
-    @_listenToDirectivesInDOM()
+    @_timedDOMObserver.setIntervalInMs newIntervalTimeInMs
 
   registerDirective: (directiveConstructorFn) ->
     @_directiveCollection.add directiveConstructorFn
 
   destroy: ->
-    @_clearLastInterval()
+    @_timedDOMObserver.destroy()
     try
       delete DirectiveProcessor._singletonInstance
     catch e

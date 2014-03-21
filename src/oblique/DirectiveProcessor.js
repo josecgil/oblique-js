@@ -5,9 +5,11 @@
   this.ObliqueNS = this.ObliqueNS || {};
 
   DirectiveProcessor = (function() {
-    var Element;
+    var Element, TimedDOMObserver;
 
     Element = ObliqueNS.Element;
+
+    TimedDOMObserver = ObliqueNS.TimedDOMObserver;
 
     function DirectiveProcessor() {
       if (this === window) {
@@ -18,9 +20,9 @@
       }
       DirectiveProcessor._singletonInstance = this;
       this._throwErrorIfJQueryIsntLoaded();
-      this._intervalTimeInMs = DirectiveProcessor.DEFAULT_INTERVAL_MS;
-      this._lastIntervalId = void 0;
       this._directiveCollection = new ObliqueNS.DirectiveCollection();
+      this._timedDOMObserver = new TimedDOMObserver();
+      this._timedDOMObserver.setIntervalInMs(DirectiveProcessor.DEFAULT_INTERVAL_MS);
       this._listenToDirectivesInDOM();
     }
 
@@ -32,32 +34,28 @@
       }
     };
 
-    DirectiveProcessor.prototype._clearLastInterval = function() {
-      if (this._lastIntervalId !== void 0) {
-        return clearInterval(this._lastIntervalId);
-      }
-    };
-
     DirectiveProcessor.prototype._applyDirectivesOnDocumentReady = function() {
       return jQuery(document).ready((function(_this) {
         return function() {
-          return _this._applyDirectivesInDOM();
+          _this._applyDirectivesInDOM();
+          _this._timedDOMObserver.onChange(function() {
+            return _this._applyDirectivesInDOM();
+          });
+          return _this._timedDOMObserver.observe();
         };
       })(this));
     };
 
-    DirectiveProcessor.prototype._setNewInterval = function() {
-      return this._lastIntervalId = setInterval((function(_this) {
-        return function() {
-          return _this._applyDirectivesInDOM();
-        };
-      })(this), this._intervalTimeInMs);
-    };
+
+    /*
+    _setNewInterval: ->
+      @_lastIntervalId = setInterval =>
+        @_applyDirectivesInDOM()
+      , @_intervalTimeInMs
+     */
 
     DirectiveProcessor.prototype._listenToDirectivesInDOM = function() {
-      this._clearLastInterval();
-      this._applyDirectivesOnDocumentReady();
-      return this._setNewInterval();
+      return this._applyDirectivesOnDocumentReady();
     };
 
     DirectiveProcessor._isApplyingDirectivesInDOM = false;
@@ -107,15 +105,14 @@
     };
 
     DirectiveProcessor.prototype.getIntervalTimeInMs = function() {
-      return this._intervalTimeInMs;
+      return this._timedDOMObserver.getIntervalInMs();
     };
 
     DirectiveProcessor.prototype.setIntervalTimeInMs = function(newIntervalTimeInMs) {
       if (newIntervalTimeInMs <= 0) {
         throw new ObliqueNS.Error("IntervalTime must be a positive number");
       }
-      this._intervalTimeInMs = newIntervalTimeInMs;
-      return this._listenToDirectivesInDOM();
+      return this._timedDOMObserver.setIntervalInMs(newIntervalTimeInMs);
     };
 
     DirectiveProcessor.prototype.registerDirective = function(directiveConstructorFn) {
@@ -124,7 +121,7 @@
 
     DirectiveProcessor.prototype.destroy = function() {
       var e;
-      this._clearLastInterval();
+      this._timedDOMObserver.destroy();
       try {
         return delete DirectiveProcessor._singletonInstance;
       } catch (_error) {

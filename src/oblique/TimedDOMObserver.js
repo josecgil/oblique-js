@@ -15,8 +15,22 @@
       return this._callback = callback;
     };
 
+    TimedDOMObserver.prototype.getIntervalInMs = function() {
+      return this._intervalInMs;
+    };
+
     TimedDOMObserver.prototype.setIntervalInMs = function(newIntervalInMs) {
-      return this._intervalInMs = newIntervalInMs;
+      this._intervalInMs = newIntervalInMs;
+      if (this._isObserving()) {
+        return this.observe();
+      }
+    };
+
+    TimedDOMObserver.prototype._isObserving = function() {
+      if (this._intervalId !== void 0) {
+        return true;
+      }
+      return false;
     };
 
     TimedDOMObserver.prototype.observe = function() {

@@ -10,8 +10,17 @@ class TimedDOMObserver
   onChange:(callback)->
     @_callback=callback
 
+  getIntervalInMs: ->
+    @_intervalInMs
+
   setIntervalInMs:(newIntervalInMs) ->
     @_intervalInMs=newIntervalInMs
+
+    @observe() if @_isObserving()
+
+  _isObserving:->
+    return true if @_intervalId isnt undefined
+    false
 
   observe:->
     @destroy()
