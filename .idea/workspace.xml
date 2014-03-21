@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SpecRunner.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/spec/SpecRunner.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/spec/IntervalSpec.coffee" afterPath="$PROJECT_DIR$/spec/helpers/IntervalSpec.coffee" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/spec/IntervalSpec.js" afterPath="$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/DirectiveProcessor.coffee" afterPath="$PROJECT_DIR$/src/oblique/DirectiveProcessor.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/DirectiveProcessor.js" afterPath="$PROJECT_DIR$/src/oblique/DirectiveProcessor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/DirectiveProcessorSpec.coffee" afterPath="$PROJECT_DIR$/spec/DirectiveProcessorSpec.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/DirectiveProcessorSpec.js" afterPath="$PROJECT_DIR$/spec/DirectiveProcessorSpec.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/TimedDOMObserver.coffee" afterPath="$PROJECT_DIR$/src/oblique/TimedDOMObserver.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/TimedDOMObserver.js" afterPath="$PROJECT_DIR$/src/oblique/TimedDOMObserver.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/TimedDOMObserverSpec.coffee" afterPath="$PROJECT_DIR$/spec/TimedDOMObserverSpec.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" afterPath="$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.js" afterPath="$PROJECT_DIR$/dist/oblique.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.min.js" afterPath="$PROJECT_DIR$/dist/oblique.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -37,65 +27,7 @@
     <favorites_list name="oblique-js" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="DirectiveProcessor.coffee" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/oblique/DirectiveProcessor.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="16" selection-start="1406" selection-end="1406" vertical-scroll-proportion="0.107644305" vertical-offset="899" max-vertical-offset="1760">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpecRunner.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SpecRunner.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="16" selection-start="714" selection-end="714" vertical-scroll-proportion="-5.806452" vertical-offset="172" max-vertical-offset="1034">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DirectiveProcessorSpec.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/DirectiveProcessorSpec.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="14" selection-start="270" selection-end="270" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4400">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimedDOMObserverSpec.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/TimedDOMObserverSpec.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0" vertical-offset="137" max-vertical-offset="814">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimedDOMObserver.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/oblique/TimedDOMObserver.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="12" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="638">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimedDOMObserver.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/oblique/TimedDOMObserver.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="74" selection-end="74" vertical-scroll-proportion="0.0" vertical-offset="242" max-vertical-offset="1078">
-              <folding>
-                <marker date="1395402496000" expanded="true" signature="471:534" placeholder="{...}" />
-                <marker date="1395402496000" expanded="true" signature="452:529" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -151,14 +83,14 @@
         <option value="$PROJECT_DIR$/TODO" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/tools/bundle.sh" />
-        <option value="$PROJECT_DIR$/src/oblique/DirectiveCollection.coffee" />
-        <option value="$PROJECT_DIR$/src/oblique/Element.coffee" />
         <option value="$PROJECT_DIR$/src/oblique/Error.coffee" />
         <option value="$PROJECT_DIR$/spec/TimedDOMObserverSpec.coffee" />
         <option value="$PROJECT_DIR$/SpecRunner.html" />
         <option value="$PROJECT_DIR$/spec/DirectiveProcessorSpec.coffee" />
         <option value="$PROJECT_DIR$/src/oblique/TimedDOMObserver.coffee" />
         <option value="$PROJECT_DIR$/src/oblique/DirectiveProcessor.coffee" />
+        <option value="$PROJECT_DIR$/src/oblique/Element.coffee" />
+        <option value="$PROJECT_DIR$/src/oblique/DirectiveCollection.coffee" />
       </list>
     </option>
   </component>
@@ -228,28 +160,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="oblique-js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TimedDOMObserver.coffee" />
-              <option name="myItemType" value="com.intellij.plugins.watcher.projectView.NestingTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -645,19 +555,23 @@
       <created>1395398889027</created>
       <updated>1395398889028</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="refactor TimedDOMObserver">
+      <created>1395402636454</created>
+      <updated>1395402636455</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20703125" sideWeight="0.4992908" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20703125" sideWeight="0.4992908" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20703125" sideWeight="0.50070924" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -686,7 +600,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="change flags implementation from jQuery to vanillaJS" />
     <MESSAGE value="change flags implementation from vanillaJS to JQuery&#10;Refactor bqDOMElmentSpec&#10;" />
     <MESSAGE value="Refactor tests names and constants&#10;Added large DOM test" />
     <MESSAGE value="Removed all references to $, replaced with jQuery" />
@@ -711,7 +624,8 @@
     <MESSAGE value="Better script to bundle &amp; minify &#10;little refactors in DirectiveProcessor" />
     <MESSAGE value="ignore source js int git, only track coffee source files" />
     <MESSAGE value="Build src coffee -&gt; js in bundle &amp; minify process" />
-    <option name="LAST_COMMIT_MESSAGE" value="Build src coffee -&gt; js in bundle &amp; minify process" />
+    <MESSAGE value="refactor TimedDOMObserver" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor TimedDOMObserver" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -888,46 +802,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="5" selection-start="82" selection-end="82" vertical-scroll-proportion="0.0" vertical-offset="1980" max-vertical-offset="8668">
           <folding>
-            <marker date="1395398798000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1395402756000" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="16" selection-start="16" selection-end="16" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="445">
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tools/bundle.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="13" selection-start="227" selection-end="227" vertical-scroll-proportion="0.44494382" vertical-offset="0" max-vertical-offset="445">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/oblique/DirectiveCollection.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1342">
-          <folding>
-            <marker date="1395398721000" expanded="true" signature="-1:-1" placeholder="constructor:()-&gt;&#10;    @directives=[]&#10;    #pre-calc this when adding a Directive for fast access&#10;    @_cssExpressions=[]..." />
-            <marker date="1395398721000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395398721000" expanded="true" signature="-1:-1" placeholder="_throwErrorIfDirectiveIsNotValid: (directive) -&gt;&#10;    if not @_isAFunction(directive)&#10;      throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.NOT_A_FUNCTION_CLASS_ERROR_MESSAGE)&#10;    if not directive.CSS_EXPRESSION&#10;      throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.DOESNT_HAVE_PROPERTY_CSS_EXPR_MESSAGE)..." />
-            <marker date="1395398721000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395398721000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395398721000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395398721000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395398721000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395398721000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395398721000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/oblique/Element.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="142" selection-end="142" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1056">
           <folding />
         </state>
       </provider>
@@ -962,45 +844,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/TimedDOMObserver.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="74" selection-end="74" vertical-scroll-proportion="0.0" vertical-offset="242" max-vertical-offset="1078">
+        <state line="4" column="0" selection-start="74" selection-end="74" vertical-scroll-proportion="-0.22747415" vertical-offset="242" max-vertical-offset="1078">
           <folding>
-            <marker date="1395402496000" expanded="true" signature="471:534" placeholder="{...}" />
-            <marker date="1395402496000" expanded="true" signature="452:529" placeholder="{...}" />
+            <marker date="1395402756000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1395402756000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1395402756000" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/TimedDOMObserverSpec.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0" vertical-offset="137" max-vertical-offset="814">
+        <state line="24" column="0" selection-start="496" selection-end="496" vertical-scroll-proportion="0.577548" vertical-offset="137" max-vertical-offset="814">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SpecRunner.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="16" selection-start="714" selection-end="714" vertical-scroll-proportion="-5.806452" vertical-offset="172" max-vertical-offset="1034">
+        <state line="16" column="16" selection-start="714" selection-end="714" vertical-scroll-proportion="0.2843602" vertical-offset="172" max-vertical-offset="1034">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/DirectiveProcessorSpec.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="14" selection-start="270" selection-end="270" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4400">
+        <state line="11" column="14" selection-start="270" selection-end="270" vertical-scroll-proportion="0.36445785" vertical-offset="0" max-vertical-offset="4400">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/TimedDOMObserver.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="12" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="638">
-          <folding />
+        <state line="14" column="12" selection-start="235" selection-end="235" vertical-scroll-proportion="0.4549483" vertical-offset="0" max-vertical-offset="677">
+          <folding>
+            <marker date="1395402496000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oblique/DirectiveProcessor.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="16" selection-start="1406" selection-end="1406" vertical-scroll-proportion="0.107644305" vertical-offset="899" max-vertical-offset="1760">
+        <state line="44" column="16" selection-start="1406" selection-end="1406" vertical-scroll-proportion="0.0" vertical-offset="899" max-vertical-offset="1760">
+          <folding>
+            <marker date="1395402584000" expanded="true" signature="-1:-1" placeholder="constructor: -&gt;&#10;    return new DirectiveProcessor() if @ is window&#10;&#10;    return DirectiveProcessor._singletonInstance  if DirectiveProcessor._singletonInstance&#10;    DirectiveProcessor._singletonInstance = @&#10;&#10;    @_throwErrorIfJQueryIsntLoaded()&#10;&#10;    @_directiveCollection = new ObliqueNS.DirectiveCollection()&#10;&#10;    @_timedDOMObserver=@_createTimedDOMObserver(DirectiveProcessor.DEFAULT_INTERVAL_MS)&#10;    jQuery(document).ready =&gt;&#10;      @_applyDirectivesInDOM()&#10;      @_timedDOMObserver.observe()..." />
+            <marker date="1395402584000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/oblique/Element.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="404" selection-end="404" vertical-scroll-proportion="0.0" vertical-offset="110" max-vertical-offset="1056">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/oblique/DirectiveCollection.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="0" selection-start="826" selection-end="826" vertical-scroll-proportion="0.5834633" vertical-offset="132" max-vertical-offset="1342">
           <folding />
         </state>
       </provider>
