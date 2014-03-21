@@ -2,48 +2,50 @@
 
 class DirectiveProcessor
 
-  Element=ObliqueNS.Element
-  TimedDOMObserver=ObliqueNS.TimedDOMObserver
-
   constructor: ->
     return new DirectiveProcessor() if @ is window
+
     return DirectiveProcessor._singletonInstance  if DirectiveProcessor._singletonInstance
     DirectiveProcessor._singletonInstance = @
 
     @_throwErrorIfJQueryIsntLoaded()
 
-    #Default private properties
     @_directiveCollection = new ObliqueNS.DirectiveCollection()
-    @_timedDOMObserver=new TimedDOMObserver()
+
+    @_timedDOMObserver=new ObliqueNS.TimedDOMObserver()
     @_timedDOMObserver.setIntervalInMs DirectiveProcessor.DEFAULT_INTERVAL_MS
-    @_listenToDirectivesInDOM()
+    @_timedDOMObserver.onChange(=>
+      @_applyDirectivesInDOM()
+    )
+    @_listenToDOMReady()
 
   @DEFAULT_INTERVAL_MS = 500
 
   _throwErrorIfJQueryIsntLoaded: ->
     throw new Error("DirectiveProcessor needs jQuery to work") if not window.jQuery
 
-  _applyDirectivesOnDocumentReady: ->
+  _setupTimedDOMObserver:->
+    @_timedDOMObserver=new ObliqueNS.TimedDOMObserver()
+    @_timedDOMObserver.setIntervalInMs DirectiveProcessor.DEFAULT_INTERVAL_MS
+    @_timedDOMObserver.onChange(=>
+      @_applyDirectivesInDOM()
+    )
+
+  _listenToDOMReady: ->
     jQuery(document).ready =>
       @_applyDirectivesInDOM()
-      @_timedDOMObserver.onChange(=>
-        @_applyDirectivesInDOM()
-      )
       @_timedDOMObserver.observe()
-
-  _listenToDirectivesInDOM: ->
-    @_applyDirectivesOnDocumentReady()
 
   @_isApplyingDirectivesInDOM = false
   _applyDirectivesInDOM: ->
-    return if (@_isApplyingDirectivesInDOM)
+    return if @_isApplyingDirectivesInDOM
     @_isApplyingDirectivesInDOM = true
     try
       #TODO: change this to a more human readable loop
-      rootElement = document.getElementsByTagName("body")[0]
-      rootObElement=new ObliqueNS.Element rootElement
+      rootDOMElement = document.getElementsByTagName("body")[0]
+      rootElement=new ObliqueNS.Element rootDOMElement
 
-      rootObElement.eachDescendant(
+      rootElement.eachDescendant(
         (DOMElement) =>
           obElement=new ObliqueNS.Element(DOMElement)
           for cssExpr in @_directiveCollection.getCSSExpressions()

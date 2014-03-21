@@ -5,12 +5,6 @@
   this.ObliqueNS = this.ObliqueNS || {};
 
   DirectiveProcessor = (function() {
-    var Element, TimedDOMObserver;
-
-    Element = ObliqueNS.Element;
-
-    TimedDOMObserver = ObliqueNS.TimedDOMObserver;
-
     function DirectiveProcessor() {
       if (this === window) {
         return new DirectiveProcessor();
@@ -21,9 +15,14 @@
       DirectiveProcessor._singletonInstance = this;
       this._throwErrorIfJQueryIsntLoaded();
       this._directiveCollection = new ObliqueNS.DirectiveCollection();
-      this._timedDOMObserver = new TimedDOMObserver();
+      this._timedDOMObserver = new ObliqueNS.TimedDOMObserver();
       this._timedDOMObserver.setIntervalInMs(DirectiveProcessor.DEFAULT_INTERVAL_MS);
-      this._listenToDirectivesInDOM();
+      this._timedDOMObserver.onChange((function(_this) {
+        return function() {
+          return _this._applyDirectivesInDOM();
+        };
+      })(this));
+      this._listenToDOMReady();
     }
 
     DirectiveProcessor.DEFAULT_INTERVAL_MS = 500;
@@ -34,42 +33,37 @@
       }
     };
 
-    DirectiveProcessor.prototype._applyDirectivesOnDocumentReady = function() {
+    DirectiveProcessor.prototype._setupTimedDOMObserver = function() {
+      this._timedDOMObserver = new ObliqueNS.TimedDOMObserver();
+      this._timedDOMObserver.setIntervalInMs(DirectiveProcessor.DEFAULT_INTERVAL_MS);
+      return this._timedDOMObserver.onChange((function(_this) {
+        return function() {
+          return _this._applyDirectivesInDOM();
+        };
+      })(this));
+    };
+
+    DirectiveProcessor.prototype._listenToDOMReady = function() {
       return jQuery(document).ready((function(_this) {
         return function() {
           _this._applyDirectivesInDOM();
-          _this._timedDOMObserver.onChange(function() {
-            return _this._applyDirectivesInDOM();
-          });
           return _this._timedDOMObserver.observe();
         };
       })(this));
     };
 
-
-    /*
-    _setNewInterval: ->
-      @_lastIntervalId = setInterval =>
-        @_applyDirectivesInDOM()
-      , @_intervalTimeInMs
-     */
-
-    DirectiveProcessor.prototype._listenToDirectivesInDOM = function() {
-      return this._applyDirectivesOnDocumentReady();
-    };
-
     DirectiveProcessor._isApplyingDirectivesInDOM = false;
 
     DirectiveProcessor.prototype._applyDirectivesInDOM = function() {
-      var rootElement, rootObElement;
+      var rootDOMElement, rootElement;
       if (this._isApplyingDirectivesInDOM) {
         return;
       }
       this._isApplyingDirectivesInDOM = true;
       try {
-        rootElement = document.getElementsByTagName("body")[0];
-        rootObElement = new ObliqueNS.Element(rootElement);
-        return rootObElement.eachDescendant((function(_this) {
+        rootDOMElement = document.getElementsByTagName("body")[0];
+        rootElement = new ObliqueNS.Element(rootDOMElement);
+        return rootElement.eachDescendant((function(_this) {
           return function(DOMElement) {
             var cssExpr, directive, directiveName, obElement, _i, _len, _ref, _results;
             obElement = new ObliqueNS.Element(DOMElement);

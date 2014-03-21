@@ -101,10 +101,6 @@
   this.ObliqueNS = this.ObliqueNS || {};
 
   DirectiveProcessor = (function() {
-    var Element;
-
-    Element = ObliqueNS.Element;
-
     function DirectiveProcessor() {
       if (this === window) {
         return new DirectiveProcessor();
@@ -114,10 +110,15 @@
       }
       DirectiveProcessor._singletonInstance = this;
       this._throwErrorIfJQueryIsntLoaded();
-      this._intervalTimeInMs = DirectiveProcessor.DEFAULT_INTERVAL_MS;
-      this._lastIntervalId = void 0;
       this._directiveCollection = new ObliqueNS.DirectiveCollection();
-      this._listenToDirectivesInDOM();
+      this._timedDOMObserver = new ObliqueNS.TimedDOMObserver();
+      this._timedDOMObserver.setIntervalInMs(DirectiveProcessor.DEFAULT_INTERVAL_MS);
+      this._timedDOMObserver.onChange((function(_this) {
+        return function() {
+          return _this._applyDirectivesInDOM();
+        };
+      })(this));
+      this._listenToDOMReady();
     }
 
     DirectiveProcessor.DEFAULT_INTERVAL_MS = 500;
@@ -128,32 +129,23 @@
       }
     };
 
-    DirectiveProcessor.prototype._clearLastInterval = function() {
-      if (this._lastIntervalId !== void 0) {
-        return clearInterval(this._lastIntervalId);
-      }
-    };
-
-    DirectiveProcessor.prototype._applyDirectivesOnDocumentReady = function() {
-      return jQuery(document).ready((function(_this) {
+    DirectiveProcessor.prototype._setupTimedDOMObserver = function() {
+      this._timedDOMObserver = new ObliqueNS.TimedDOMObserver();
+      this._timedDOMObserver.setIntervalInMs(DirectiveProcessor.DEFAULT_INTERVAL_MS);
+      return this._timedDOMObserver.onChange((function(_this) {
         return function() {
           return _this._applyDirectivesInDOM();
         };
       })(this));
     };
 
-    DirectiveProcessor.prototype._setNewInterval = function() {
-      return this._lastIntervalId = setInterval((function(_this) {
+    DirectiveProcessor.prototype._listenToDOMReady = function() {
+      return jQuery(document).ready((function(_this) {
         return function() {
-          return _this._applyDirectivesInDOM();
+          _this._applyDirectivesInDOM();
+          return _this._timedDOMObserver.observe();
         };
-      })(this), this._intervalTimeInMs);
-    };
-
-    DirectiveProcessor.prototype._listenToDirectivesInDOM = function() {
-      this._clearLastInterval();
-      this._applyDirectivesOnDocumentReady();
-      return this._setNewInterval();
+      })(this));
     };
 
     DirectiveProcessor._isApplyingDirectivesInDOM = false;
@@ -203,15 +195,14 @@
     };
 
     DirectiveProcessor.prototype.getIntervalTimeInMs = function() {
-      return this._intervalTimeInMs;
+      return this._timedDOMObserver.getIntervalInMs();
     };
 
     DirectiveProcessor.prototype.setIntervalTimeInMs = function(newIntervalTimeInMs) {
       if (newIntervalTimeInMs <= 0) {
         throw new ObliqueNS.Error("IntervalTime must be a positive number");
       }
-      this._intervalTimeInMs = newIntervalTimeInMs;
-      return this._listenToDirectivesInDOM();
+      return this._timedDOMObserver.setIntervalInMs(newIntervalTimeInMs);
     };
 
     DirectiveProcessor.prototype.registerDirective = function(directiveConstructorFn) {
@@ -220,7 +211,7 @@
 
     DirectiveProcessor.prototype.destroy = function() {
       var e;
-      this._clearLastInterval();
+      this._timedDOMObserver.destroy();
       try {
         return delete DirectiveProcessor._singletonInstance;
       } catch (_error) {
@@ -353,8 +344,22 @@
       return this._callback = callback;
     };
 
+    TimedDOMObserver.prototype.getIntervalInMs = function() {
+      return this._intervalInMs;
+    };
+
     TimedDOMObserver.prototype.setIntervalInMs = function(newIntervalInMs) {
-      return this._intervalInMs = newIntervalInMs;
+      this._intervalInMs = newIntervalInMs;
+      if (this._isObserving()) {
+        return this.observe();
+      }
+    };
+
+    TimedDOMObserver.prototype._isObserving = function() {
+      if (this._intervalId !== void 0) {
+        return true;
+      }
+      return false;
     };
 
     TimedDOMObserver.prototype.observe = function() {
