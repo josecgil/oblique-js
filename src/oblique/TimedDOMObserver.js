@@ -5,10 +5,10 @@
   this.ObliqueNS = this.ObliqueNS || {};
 
   TimedDOMObserver = (function() {
-    function TimedDOMObserver() {
-      this._reset();
-      this._callback = void 0;
-      this._intervalInMs = 500;
+    function TimedDOMObserver(intervalInMs) {
+      this.intervalInMs = intervalInMs;
+      this._intervalId = void 0;
+      this._callback = function() {};
     }
 
     TimedDOMObserver.prototype.onChange = function(callback) {
@@ -16,44 +16,22 @@
     };
 
     TimedDOMObserver.prototype.getIntervalInMs = function() {
-      return this._intervalInMs;
-    };
-
-    TimedDOMObserver.prototype.setIntervalInMs = function(newIntervalInMs) {
-      this._intervalInMs = newIntervalInMs;
-      if (this._isObserving()) {
-        return this.observe();
-      }
-    };
-
-    TimedDOMObserver.prototype._isObserving = function() {
-      if (this._intervalId !== void 0) {
-        return true;
-      }
-      return false;
+      return this.intervalInMs;
     };
 
     TimedDOMObserver.prototype.observe = function() {
-      this.destroy();
-      if (!this._callback) {
-        return;
-      }
       return this._intervalId = setInterval((function(_this) {
         return function() {
           return _this._callback();
         };
-      })(this), this._intervalInMs);
-    };
-
-    TimedDOMObserver.prototype._reset = function() {
-      return this._intervalId = void 0;
+      })(this), this.intervalInMs);
     };
 
     TimedDOMObserver.prototype.destroy = function() {
       if (this._intervalId) {
         clearInterval(this._intervalId);
-        return this._reset();
       }
+      return this._intervalId = void 0;
     };
 
     return TimedDOMObserver;

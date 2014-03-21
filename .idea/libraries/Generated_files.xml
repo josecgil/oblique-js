@@ -36,7 +36,7 @@
       <root url="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
       <root url="file://$PROJECT_DIR$/spec/DirectiveCollectionSpec.js" />
       <root url="file://$PROJECT_DIR$/samples/1/directives/ClockDirective.js" />
-      <root url="file://$PROJECT_DIR$/spec/IntervalSpec.js" />
+      <root url="file://$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
     </CLASSES>
     <SOURCES />
   </library>

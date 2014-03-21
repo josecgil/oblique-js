@@ -12,29 +12,22 @@ class DirectiveProcessor
 
     @_directiveCollection = new ObliqueNS.DirectiveCollection()
 
-    @_timedDOMObserver=new ObliqueNS.TimedDOMObserver()
-    @_timedDOMObserver.setIntervalInMs DirectiveProcessor.DEFAULT_INTERVAL_MS
-    @_timedDOMObserver.onChange(=>
+    @_timedDOMObserver=@_createTimedDOMObserver(DirectiveProcessor.DEFAULT_INTERVAL_MS)
+    jQuery(document).ready =>
       @_applyDirectivesInDOM()
-    )
-    @_listenToDOMReady()
+      @_timedDOMObserver.observe()
 
   @DEFAULT_INTERVAL_MS = 500
 
   _throwErrorIfJQueryIsntLoaded: ->
     throw new Error("DirectiveProcessor needs jQuery to work") if not window.jQuery
 
-  _setupTimedDOMObserver:->
-    @_timedDOMObserver=new ObliqueNS.TimedDOMObserver()
-    @_timedDOMObserver.setIntervalInMs DirectiveProcessor.DEFAULT_INTERVAL_MS
-    @_timedDOMObserver.onChange(=>
+  _createTimedDOMObserver: (intervalInMs)->
+    observer=new ObliqueNS.TimedDOMObserver intervalInMs
+    observer.onChange(=>
       @_applyDirectivesInDOM()
     )
-
-  _listenToDOMReady: ->
-    jQuery(document).ready =>
-      @_applyDirectivesInDOM()
-      @_timedDOMObserver.observe()
+    observer
 
   @_isApplyingDirectivesInDOM = false
   _applyDirectivesInDOM: ->
@@ -64,7 +57,9 @@ class DirectiveProcessor
 
   setIntervalTimeInMs: (newIntervalTimeInMs) ->
     throw new ObliqueNS.Error("IntervalTime must be a positive number") if newIntervalTimeInMs <= 0
-    @_timedDOMObserver.setIntervalInMs newIntervalTimeInMs
+    @_timedDOMObserver.destroy()
+    @_timedDOMObserver=@_createTimedDOMObserver(newIntervalTimeInMs)
+    @_timedDOMObserver.observe()
 
   registerDirective: (directiveConstructorFn) ->
     @_directiveCollection.add directiveConstructorFn

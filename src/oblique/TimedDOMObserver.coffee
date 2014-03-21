@@ -2,39 +2,23 @@
 
 class TimedDOMObserver
 
-  constructor:->
-    @_reset()
-    @_callback=undefined
-    @_intervalInMs=500
+  constructor:(@intervalInMs)->
+    @_intervalId=undefined
+    @_callback=->
 
   onChange:(callback)->
     @_callback=callback
 
   getIntervalInMs: ->
-    @_intervalInMs
-
-  setIntervalInMs:(newIntervalInMs) ->
-    @_intervalInMs=newIntervalInMs
-
-    @observe() if @_isObserving()
-
-  _isObserving:->
-    return true if @_intervalId isnt undefined
-    false
+    @intervalInMs
 
   observe:->
-    @destroy()
-    return if not @_callback
     @_intervalId=setInterval(=>
       @_callback()
-    , @_intervalInMs)
-
-  _reset:->
-    @_intervalId=undefined
+    , @intervalInMs)
 
   destroy: ->
-    if @_intervalId
-      clearInterval @_intervalId
-      @_reset()
+    clearInterval @_intervalId if @_intervalId
+    @_intervalId=undefined
 
 ObliqueNS.TimedDOMObserver=TimedDOMObserver

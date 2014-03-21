@@ -144,7 +144,6 @@ describe "DirectiveProcessor", ->
         counter++
         if (counter is (DOM_ELEMENTS_COUNT*5))
           interval.stop()
-          console.log interval.timeInMs
           expect(interval.timeInMs).toBeLessThan 400
           done()
 

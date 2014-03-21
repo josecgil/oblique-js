@@ -9,25 +9,23 @@
     afterEach(function() {});
     it("should be called almost one time", function(done) {
       var observer;
-      observer = new TimedDOMObserver();
+      observer = new TimedDOMObserver(10);
       observer.onChange(function() {
         observer.destroy();
         return done();
       });
-      observer.setIntervalInMs(10);
       return observer.observe();
     });
     return it("should be called almost 10 times", function(done) {
       var count, observer;
       count = 0;
-      observer = new TimedDOMObserver();
+      observer = new TimedDOMObserver(1);
       observer.onChange(function() {
         count++;
         if (count === 10) {
           return observer.destroy();
         }
       });
-      observer.setIntervalInMs(1);
       setTimeout(function() {
         expect(count).toBe(10);
         return done();
