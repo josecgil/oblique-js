@@ -1,16 +1,32 @@
-Possible Changes - RoadMap
+Possible design decisions
 
--jasmine specRunner (karma?)
--source maps
+-Faster change detection in modern browsers that support DOM event change detection.
+Fallback to timeout if not.
+-Modular & testable. Framework code & app code should be easily testable.
+-The framework shouldnt inject his ideas in the app code that uses it
+-It should use and collaborate (if possible) with other common JS libraries (jQuery,
+ jQueryLite, mootools, underscore...) If this libraries are not present it should use
+ his owns mechanisms
+-It must not slow down or add innaceptable memory footprint to the app
+
+
+Possible next changes
+
+-Add jasmine specRunner (karma?)
+-Generate & use source maps
 -http module
 -Reduce dependency from jQuery to zero?
--Possiblity to create adapters for other js libraries
+-Possibility to create adapters for other js libraries
 (jquery, jquerylite, mootols, prototype...) and our own Default implementation
-(current needs: match an element to a CSSExpression, save/retrieve data on DOMElement)
+(current needs: match an element to a CSSExpression, save/retrieve data on DOMElement,
+detect DOM.ready...)
 
 -Add tests coverage tool
 -Rework samples to more beautiful presentation (bootstrap?)
 -Extract directives from current CMS
+
+-Add http://benchmarkjs.com/ test to ensure changes doesnt degrade performance
+below a certain threshold
 
 -Change timeout for DOMSubTreeChanged y MutationObserver when available
     http://stackoverflow.com/questions/2844565/is-there-a-jquery-dom-change-listener
@@ -27,8 +43,10 @@ Possible Changes - RoadMap
 -Add destroy (optional) method to directives to call when DOMElements are removed
     (to clearTimeouts, cancel current operations, free resources...)
 
--Change CSSExpression to mustApply(). A method/function is more expressive
+-Change CSSExpression to mustApply(). A method/function is more capable
 
--
+-Document with doku + github pages (jasmine docs style)
 
--Document api with doku + github pages (jasmine docs style)
+-¿Add common needs?
+    -http module: sync, async, html, json, url parsing...
+    -templating
