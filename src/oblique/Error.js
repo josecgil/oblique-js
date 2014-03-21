@@ -7,10 +7,10 @@
   Error = (function() {
     function Error(message) {
       this.message = message;
-      this.name = "Oblique.Error";
       if (this === window) {
         return new Error(this.message);
       }
+      this.name = "Oblique.Error";
     }
 
     return Error;

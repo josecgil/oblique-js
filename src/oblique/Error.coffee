@@ -2,7 +2,7 @@
 
 class Error
   constructor: (@message) ->
-    @name = "Oblique.Error"
     return new Error(@message) if @ is window
+    @name = "Oblique.Error"
 
 ObliqueNS.Error=Error
