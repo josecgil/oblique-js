@@ -1,8 +1,9 @@
 Possible design decisions
+--------------------------
 
 -Faster change detection in modern browsers that support DOM event change detection.
 Fallback to timeout if not.
--Modular & testable. Framework code & app code should be easily testable.
+-Modular & testable. Framework & app code should be easily testable.
 -The framework shouldnt inject his ideas in the app code that uses it
 -It should use and collaborate (if possible) with other common JS libraries (jQuery,
  jQueryLite, mootools, underscore...) If this libraries are not present it should use
@@ -11,6 +12,7 @@ Fallback to timeout if not.
 
 
 Possible next changes
+--------------------------
 
 -Add jasmine specRunner (karma?)
 -Generate & use source maps
