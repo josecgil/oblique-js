@@ -151,15 +151,15 @@
     DirectiveProcessor._isApplyingDirectivesInDOM = false;
 
     DirectiveProcessor.prototype._applyDirectivesInDOM = function() {
-      var rootElement, rootObElement;
+      var rootDOMElement, rootElement;
       if (this._isApplyingDirectivesInDOM) {
         return;
       }
       this._isApplyingDirectivesInDOM = true;
       try {
-        rootElement = document.getElementsByTagName("body")[0];
-        rootObElement = new ObliqueNS.Element(rootElement);
-        return rootObElement.eachDescendant((function(_this) {
+        rootDOMElement = document.getElementsByTagName("body")[0];
+        rootElement = new ObliqueNS.Element(rootDOMElement);
+        return rootElement.eachDescendant((function(_this) {
           return function(DOMElement) {
             var cssExpr, directive, directiveName, obElement, _i, _len, _ref, _results;
             obElement = new ObliqueNS.Element(DOMElement);
