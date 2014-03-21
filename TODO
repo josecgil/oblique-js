@@ -1,15 +1,34 @@
+Possible Changes - RoadMap
+
 -jasmine specRunner (karma?)
 -source maps
 -http module
--jQuery lite or jQuery
--Reduce dependency from jQuery
+-Reduce dependency from jQuery to zero?
+-Possiblity to create adapters for other js libraries
+(jquery, jquerylite, mootols, prototype...) and our own Default implementation
+(current needs: match an element to a CSSExpression, save/retrieve data on DOMElement)
+
 -Add tests coverage tool
 -Rework samples to more beautiful presentation (bootstrap?)
 -Extract directives from current CMS
 
 -Change timeout for DOMSubTreeChanged y MutationObserver when available
     http://stackoverflow.com/questions/2844565/is-there-a-jquery-dom-change-listener
+    http://help.dottoro.com/ljrmcldi.php
     TimedDOMObserver
     DOMChangeObserver
     MutationObserver
     (previous refactor, extract to TimedDOMObserver)
+
+-¿Expose current internal APIs as public?
+
+-Possibility to create POO style or Functional style directives
+
+-Add destroy (optional) method to directives to call when DOMElements are removed
+    (to clearTimeouts, cancel current operations, free resources...)
+
+-Change CSSExpression to mustApply(). A method/function is more expressive
+
+-
+
+-Document api with doku + github pages (jasmine docs style)
