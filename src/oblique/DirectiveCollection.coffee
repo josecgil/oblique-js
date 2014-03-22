@@ -4,7 +4,6 @@ class DirectiveCollection
 
   constructor:()->
     @directives=[]
-    #pre-calc this when adding a Directive for fast access
     @_cssExpressions=[]
 
   count:() ->
@@ -25,6 +24,8 @@ class DirectiveCollection
   add:(directive) ->
     @_throwErrorIfDirectiveIsNotValid(directive)
     @directives.push directive
+
+    #pre-calc this when adding a Directive for fast access
     @_buildCSSExpressions()
 
   at:(index)->
