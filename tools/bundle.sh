@@ -8,13 +8,14 @@ SRC_DIR="src/oblique"
 
 function addFileTo {
     echo "adding $1 to $NOT_MINIFIED_COFFEE_DEST_FILE..."
+    addBlankLineTo $2
 	echo "# $1" >> $2
+    addBlankLineTo $2
 	cat "$1" >> $2
 }
 
 function addBlankLineTo {
-    echo "adding blank line to $1..."
-    echo > $1
+    echo >> $1
 }
 
 function generateJSWithSourceMaps {
@@ -32,11 +33,12 @@ function deleteFile {
     rm $1
 }
 
+function getSourceCoffeeFiles {
+    result=`ls $1/*.coffee`
+}
 
-addBlankLineTo $NOT_MINIFIED_COFFEE_DEST_FILE
-
-sourceCoffeeFiles=`ls $SRC_DIR/*.coffee`
-for file in $sourceCoffeeFiles; do
+getSourceCoffeeFiles $SRC_DIR
+for file in $result; do
     addFileTo $file $NOT_MINIFIED_COFFEE_DEST_FILE
 done
 

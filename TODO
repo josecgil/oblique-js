@@ -15,6 +15,7 @@ Fallback to timeout if not.
 Possible next changes
 --------------------------
 
+-Change project name?
 -¿Refactor tests & code: better naming, SOLID... or full scale rewrite?
 -Add jasmine specRunner (karma?)
 -Generate & use source maps

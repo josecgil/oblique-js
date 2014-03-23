@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/spec/DirectiveCollectionSpec.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/spec/DirectiveProcessorSpec.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/spec/ElementSpec.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/spec/helpers/FixtureHelper.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/spec/helpers/Interval.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/spec/helpers/IntervalSpec.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/DirectiveProcessor.coffee" afterPath="$PROJECT_DIR$/src/oblique/DirectiveProcessor.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/DirectiveProcessor.js" afterPath="$PROJECT_DIR$/src/oblique/DirectiveProcessor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/Error.coffee" afterPath="$PROJECT_DIR$/src/oblique/Error.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/Error.js" afterPath="$PROJECT_DIR$/src/oblique/Error.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/samples/1/directives/ClockDirective.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/samples/1/directives/MenuDirective.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TODO" afterPath="$PROJECT_DIR$/TODO" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/oblique/TimedDOMObserver.js" afterPath="$PROJECT_DIR$/src/oblique/TimedDOMObserver.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/bundle.sh" afterPath="$PROJECT_DIR$/tools/bundle.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.js" afterPath="$PROJECT_DIR$/dist/oblique.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.min.js" afterPath="$PROJECT_DIR$/dist/oblique.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -43,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="bundle.sh" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tools/bundle.sh">
+      <file leaf-file-name="TODO" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TODO">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8786517" vertical-offset="423" max-vertical-offset="1100">
-              <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.8657407" vertical-offset="0" max-vertical-offset="1650">
+              <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -66,7 +52,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/directives/calendardirective.js" />
         <option value="$PROJECT_DIR$/oblique/Oblique.coffee" />
         <option value="$PROJECT_DIR$/directives/menudirective_old.js" />
         <option value="$PROJECT_DIR$/directives/MenuDirective.coffee" />
@@ -92,9 +77,7 @@
         <option value="$PROJECT_DIR$/src/oblique/ObliqueDOMElement.coffee" />
         <option value="$PROJECT_DIR$/spec/ObliqueDOMElementSpec.coffee" />
         <option value="$PROJECT_DIR$/src/oblique/ObliqueError.coffee" />
-        <option value="$PROJECT_DIR$/samples/1/directives/MenuDirective.coffee" />
         <option value="$PROJECT_DIR$/samples/1/directives/calendardirective.js" />
-        <option value="$PROJECT_DIR$/samples/1/directives/ClockDirective.coffee" />
         <option value="$PROJECT_DIR$/samples/1/directives/fastimagedirective.js" />
         <option value="$PROJECT_DIR$/samples/1/sampledemo.html" />
         <option value="$PROJECT_DIR$/samples/1/directives/dropdownmenudirective.js" />
@@ -115,8 +98,11 @@
         <option value="$PROJECT_DIR$/spec/helpers/FixtureHelper.coffee" />
         <option value="$PROJECT_DIR$/spec/helpers/Interval.coffee" />
         <option value="$PROJECT_DIR$/spec/helpers/IntervalSpec.coffee" />
-        <option value="$PROJECT_DIR$/TODO" />
+        <option value="$PROJECT_DIR$/dist/oblique.coffee" />
         <option value="$PROJECT_DIR$/tools/bundle.sh" />
+        <option value="$PROJECT_DIR$/samples/1/directives/MenuDirective.coffee" />
+        <option value="$PROJECT_DIR$/samples/1/directives/ClockDirective.coffee" />
+        <option value="$PROJECT_DIR$/TODO" />
       </list>
     </option>
   </component>
@@ -170,6 +156,17 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Tests" />
+        <subPane subId="Changed Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -248,19 +245,30 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dist" />
+              <option name="myItemId" value="samples" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="directives" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Tests" />
-        <subPane subId="Changed Files">
           <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oblique-js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oblique-js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dist" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -312,14 +320,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -328,6 +328,31 @@
       <option name="saveOutputToFile" value="false" />
       <option name="showConsoleOnStdErr" value="false" />
       <option name="showConsoleOnStdOut" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
+      <setting name="configLocationType" value="CONFIG_FILE" />
+      <setting name="settingsFile" value="" />
+      <setting name="serverType" value="INTERNAL" />
+      <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" />
+      <option name="executablePath" />
+      <option name="filePath" />
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -339,23 +364,6 @@
       <module name="oblique-js" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
-      <option name="cucumberJsArguments" />
-      <option name="executablePath" />
-      <option name="filePath" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
-      <setting name="configLocationType" value="CONFIG_FILE" />
-      <setting name="settingsFile" value="" />
-      <setting name="serverType" value="INTERNAL" />
-      <setting name="preferredDebugBrowser" value="Chrome" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -607,7 +615,15 @@
       <created>1395519975522</created>
       <updated>1395519975523</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="More ideas to TODO&#10;Rework bundle &amp; minifiy proccess">
+      <created>1395582668364</created>
+      <updated>1395582668364</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Refactor bundle &amp; minify proccess to use functions">
+      <created>1395613965063</created>
+      <updated>1395613965064</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -627,11 +643,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -651,7 +667,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="optimize code for performance" />
     <MESSAGE value="Added tests for DirectiveCollection (future Class)" />
     <MESSAGE value="Implemented first version of DirectiveCollection" />
     <MESSAGE value="better performance applying directives if they have common CSS_EXPRESSIONS" />
@@ -676,24 +691,17 @@
     <MESSAGE value="Add design ideas to TODO" />
     <MESSAGE value="More ideas to TODO" />
     <MESSAGE value="More ideas to TODO&#10;Rework bundle &amp; minifiy proccess" />
-    <option name="LAST_COMMIT_MESSAGE" value="More ideas to TODO&#10;Rework bundle &amp; minifiy proccess" />
+    <MESSAGE value="Refactor bundle &amp; minify proccess to use functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor bundle &amp; minify proccess to use functions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.coffee">
+    <entry file="file://$PROJECT_DIR$/TODO">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="352">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/helpers/Interval.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="242" max-vertical-offset="374">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="1628">
+          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -702,7 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="110" max-vertical-offset="660">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -710,7 +717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
           <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -718,7 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
           <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -726,7 +731,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
           <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -863,13 +867,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="528">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/jasmine-2.0.0/boot.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15277778" vertical-offset="0" max-vertical-offset="4114">
@@ -884,13 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samples/1/directives/ClockDirective.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="572">
-          <caret line="20" column="7" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/samples/1/directives/fastimagedirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4874446" vertical-offset="0" max-vertical-offset="677">
@@ -902,13 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29246676" vertical-offset="0" max-vertical-offset="677">
           <caret line="9" column="7" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19497785" vertical-offset="0" max-vertical-offset="677">
-          <caret line="6" column="7" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -982,7 +965,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38630807" vertical-offset="18" max-vertical-offset="2354">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -990,54 +972,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4400">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="constructor: ()-&gt;&#10;        DirectiveProcessor().destroy()&#10;        done()..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="constructor: ()-&gt;&#10;        counter++..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="constructor: (DOMElement)-&gt;&#10;        expect($(DOMElement).is(&quot;test[data-test]&quot;)).toBeTruthy()&#10;        DirectiveProcessor().destroy()&#10;        done()..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="constructor: ()-&gt;&#10;        counter++&#10;        if (counter is (DOM_ELEMENTS_COUNT))&#10;          interval.stop()&#10;          expect(interval.timeInMs).toBeLessThan 200&#10;          done()..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="constructor: ()-&gt;&#10;        counter++..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="constructor: ()-&gt;&#10;        counter++..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="constructor: ()-&gt;&#10;        counter++..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="constructor: ()-&gt;&#10;        counter++..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="constructor: ()-&gt;&#10;        counter++&#10;        if (counter is (DOM_ELEMENTS_COUNT*5))&#10;          interval.stop()&#10;          expect(interval.timeInMs).toBeLessThan 400&#10;          done()..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="constructor: ()-&gt;&#10;        counter++..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="constructor: ()-&gt;&#10;        counter++..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="constructor: ()-&gt;&#10;        counter++..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="constructor: ()-&gt;&#10;        counter++&#10;        done() if (counter is DOM_ELEMENTS_COUNT)..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524057000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1045,21 +979,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2046">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <marker date="1395524066000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524066000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524066000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524066000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524066000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524066000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524066000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524066000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524066000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524066000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524066000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524066000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1395524066000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1067,7 +986,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="115" max-vertical-offset="814">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1075,7 +993,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49438202" vertical-offset="0" max-vertical-offset="445">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1083,7 +1000,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5438202" vertical-offset="0" max-vertical-offset="445">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1091,15 +1007,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6426966" vertical-offset="0" max-vertical-offset="660">
           <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TODO">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3765281" vertical-offset="0" max-vertical-offset="1628">
-          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1107,14 +1014,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.52380955" vertical-offset="88" max-vertical-offset="1298">
           <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/oblique.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9402" max-vertical-offset="15114">
+          <caret line="437" column="0" selection-start-line="437" selection-start-column="0" selection-end-line="437" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/oblique.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tools/bundle.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8786517" vertical-offset="423" max-vertical-offset="1100">
-          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.64254063" vertical-offset="467" max-vertical-offset="1144">
+          <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="264">
+          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samples/1/directives/ClockDirective.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35745937" vertical-offset="0" max-vertical-offset="677">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TODO">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8657407" vertical-offset="0" max-vertical-offset="1650">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
           <folding />
         </state>
       </provider>
