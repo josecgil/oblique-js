@@ -41,3 +41,5 @@
   ObliqueNS.TimedDOMObserver = TimedDOMObserver;
 
 }).call(this);
+
+//# sourceMappingURL=TimedDOMObserver.map

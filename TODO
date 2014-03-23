@@ -1,7 +1,7 @@
 Possible design decisions
 --------------------------
 
--API design should be guided by the principle of least astonishment
+-Framework design should be guided by the principle of least astonishment
 -Faster change detection in modern browsers that support DOM event change detection.
 Fallback to timeout if not.
 -Modular & testable. Framework & app code should be easily testable.
@@ -15,20 +15,20 @@ Fallback to timeout if not.
 Possible next changes
 --------------------------
 
--Refactor tests & code: better naming, SOLID...
+-¿Refactor tests & code: better naming, SOLID... or full scale rewrite?
 -Add jasmine specRunner (karma?)
 -Generate & use source maps
 -Reduce / isolate dependency from jQuery
 -Possibility to create adapters for other js libraries
 (jquery, jquerylite, mootols, prototype...) and our own Default implementation
 (current needs: match an element to a CSSExpression, save/retrieve data on DOMElement,
-detect DOM.ready...)
+detect DOM.ready, detect DOM changes ...)
 
 -Add tests coverage tool
 -Rework samples to more beautiful presentation (bootstrap?)
 -Extract real directives from current CMS
 
--Add http://benchmarkjs.com/ test to ensure changes doesnt degrade performance
+-Add http://benchmarkjs.com/ test to ensure changes does'nt degrade performance
 below a certain threshold
 
 -Multibrowser / OS testing
@@ -41,10 +41,11 @@ below a certain threshold
     MutationObserver
     (previous refactor, extract timeout related code to TimedDOMObserver)
 
--Change detection currently occurs at all the DOM level. Improve change to know
-what elements changed from previous state.
+-Change detection currently only know that DOM changes, but not what elements
+Improve to know what elements changed from previous state and only process those.
 
--¿Expose current internal APIs as public? ¿Do as jQuery an only expose 1 facade object?
+-¿Expose current internal APIs as public?
+¿Do as jQuery an only expose one large facade object?
 
 -Possibility to create POO style or Functional style directives.
 The Framework must not impose programming style/paradigm
@@ -52,7 +53,7 @@ The Framework must not impose programming style/paradigm
 -Add destroy (optional) method to directives to call when DOMElements are removed
     (to clearTimeouts, cancel current operations, free resources...)
 
--Change CSSExpression to mustApply(). A method/function is more capable
+-Change CSSExpression to mustApply(). A method/function is more flexible
 
 -Document with doku + github pages (jasmine docs style)
 

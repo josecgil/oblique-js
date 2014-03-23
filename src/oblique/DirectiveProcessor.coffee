@@ -52,6 +52,8 @@ class DirectiveProcessor
     finally
       @_isApplyingDirectivesInDOM = false
 
+
+
   getIntervalTimeInMs: ->
     @_timedDOMObserver.getIntervalInMs()
 

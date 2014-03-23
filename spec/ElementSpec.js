@@ -101,3 +101,5 @@
   });
 
 }).call(this);
+
+//# sourceMappingURL=ElementSpec.map

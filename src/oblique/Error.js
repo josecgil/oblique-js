@@ -20,3 +20,5 @@
   ObliqueNS.Error = Error;
 
 }).call(this);
+
+//# sourceMappingURL=Error.map
