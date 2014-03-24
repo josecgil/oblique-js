@@ -26,8 +26,8 @@
       <root url="file://$PROJECT_DIR$/src/oblique/Namespace.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/Namespace.js" />
       <root url="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js" />
-      <root url="file://$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
-      <root url="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
+      <root url="file://$PROJECT_DIR$/spec/temp/IntervalSpec.js" />
+      <root url="file://$PROJECT_DIR$/spec/temp/FixtureHelper.js" />
       <root url="file://$PROJECT_DIR$/samples/1/directives/ClockDirective.js" />
       <root url="file://$PROJECT_DIR$/spec/helpers/Interval.js" />
       <root url="file://$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" />
