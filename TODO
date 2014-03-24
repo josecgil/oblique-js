@@ -15,6 +15,7 @@ Fallback to timeout if not.
 Possible next changes
 --------------------------
 
+-Change licence to MIT or BSD, to allow propietary software to use this
 -Change project name?
 -¿Refactor tests & code: better naming, SOLID... or full scale rewrite?
 -Add jasmine specRunner (karma?)
@@ -44,6 +45,8 @@ below a certain threshold
 
 -Change detection currently only know that DOM changes, but not what elements
 Improve to know what elements changed from previous state and only process those.
+    ¿Use md5 to know what content change?
+    http://stackoverflow.com/questions/1655769/fastest-md5-implementation-in-javascript
 
 -¿Expose current internal APIs as public?
 ¿Do as jQuery an only expose one large facade object?
@@ -64,6 +67,8 @@ The Framework must not impose programming style/paradigm
     -instrumentation
     -logging
     -common extensions to base objects, String.trim(), Array.Contains(),
-    Object.shallowClone(), Object.DeepClone(), ...
+    Array.sort(), Object.shallowClone(), Object.DeepClone(), ...
     -methods / properties to be compatible on multiple browsers / versions
     of ECMAScript...
+    -cookies
+    -
