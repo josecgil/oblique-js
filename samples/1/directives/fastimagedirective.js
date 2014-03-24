@@ -11,6 +11,6 @@ FastImageDirective.prototype._random = function (min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-FastImageDirective.CSS_EXPRESSION = "img";
+FastImageDirective.CSS_EXPRESSION = "img[data-vc-yes=1]";
 
 Oblique().registerDirective(FastImageDirective);

@@ -5,7 +5,10 @@ Possible design decisions
 * Faster change detection in modern browsers that support DOM event change detection.
 Fallback to timeout if not.
 * Modular & testable. Framework & app code should be easily testable.
+
 * The framework shouldn't inject his ideas in the app code that uses it
+(initially could be opinionated)
+
 * It should use and collaborate (if possible) with other common JS libraries (jQuery,
  jQueryLite, mootools, yui, underscore...) If this libraries are not present,
  or choosed bu user, it should use it's own mechanisms
