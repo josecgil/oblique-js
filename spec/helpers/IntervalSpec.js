@@ -30,4 +30,4 @@
 
 }).call(this);
 
-//# sourceMappingURL=IntervalNewSpec.map
+//# sourceMappingURL=IntervalSpec.map

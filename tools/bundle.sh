@@ -2,7 +2,7 @@
 #Bundle & Minify ObliqueJS
 
 function appendContentFromFileTo {
-    echo "adding $1 to $2 ..."
+    echo "adding $1 to $2"
     addBlankLineTo $2
 	echo "# $1" >> $2
     addBlankLineTo $2
@@ -14,18 +14,20 @@ function addBlankLineTo {
 }
 
 function generateJSWithSourceMaps {
-    echo "generating JS with source maps from $1 ..."
+    echo "generating JS with source maps from $1"
     coffee --map -c $1
 }
 
 function generateMinifiedJS {
-    echo "minifing $1 to $2 ..."
+    echo "minifing $1 to $2"
     uglifyjs $1 -c -o $2
 }
 
-function deleteFile {
-    echo "deleting $1 ..."
-    rm $1
+function deleteFileIfPresent {
+    echo "deleting $1"
+    if [ -f $1 ]; then
+        rm $1
+    fi
 }
 
 function getSourceCoffeeFiles {
@@ -41,14 +43,26 @@ function showInfo {
     echo
 }
 
-NOT_MINIFIED_COFFEE_DEST_FILE="../dist/oblique.coffee"
-NOT_MINIFIED_JS_DEST_FILE="../dist/oblique.js"
-MINIFIED_JS_DEST_FILE="../dist/oblique.min.js"
+function createFileIfNotPresent() {
+    echo "creating file $1"
+    touch $1
+}
+
+createDirectoryIfNotPresent() {
+    echo "creating directory $1"
+    mkdir -p $1
+}
+DEST_DIR="../dist"
+NOT_MINIFIED_COFFEE_DEST_FILE="$DEST_DIR/oblique.coffee"
+NOT_MINIFIED_JS_DEST_FILE="$DEST_DIR/oblique.js"
+MINIFIED_JS_DEST_FILE="$DEST_DIR/oblique.min.js"
 COFFEE_SRC_DIR="../src/oblique"
 
 showInfo
-deleteFile $NOT_MINIFIED_COFFEE_DEST_FILE
-deleteFile $MINIFIED_JS_DEST_FILE
+deleteFileIfPresent $NOT_MINIFIED_COFFEE_DEST_FILE
+deleteFileIfPresent $MINIFIED_JS_DEST_FILE
+createDirectoryIfNotPresent $DEST_DIR
+createFileIfNotPresent $NOT_MINIFIED_COFFEE_DEST_FILE
 getSourceCoffeeFiles $COFFEE_SRC_DIR
 for file in $result; do
     appendContentFromFileTo $file $NOT_MINIFIED_COFFEE_DEST_FILE
