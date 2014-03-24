@@ -16,6 +16,8 @@
       return this.timeInMs = endDate - this._startDate;
     };
 
+    Interval.prototype.test = function() {};
+
     return Interval;
 
   })();
