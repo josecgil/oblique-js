@@ -29,8 +29,8 @@
       <file leaf-file-name="TODO.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TODO.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.257329" vertical-offset="0" max-vertical-offset="1760">
-              <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.92833877" vertical-offset="992" max-vertical-offset="1694">
+              <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -606,7 +606,11 @@
       <created>1395675512758</created>
       <updated>1395675512758</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="change - to lists md format">
+      <created>1395675575159</created>
+      <updated>1395675575160</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -650,7 +654,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Namespaces en todas las clase de Oblique.&#10;Ahora sólo se expone la fn Oblique en window" />
     <MESSAGE value="Create TimedDOMObserver and asociated tests" />
     <MESSAGE value="created TimedDOMObserver &amp; tests" />
     <MESSAGE value="created FixtureHelp&#10;" />
@@ -675,7 +678,8 @@
     <MESSAGE value="improve directory &amp; file deletion &amp; creation on bundle script" />
     <MESSAGE value="Merge remote branch 'origin/master'&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;&#9;tools/bundle.sh&#10;" />
     <MESSAGE value="change TODO to markdown format" />
-    <option name="LAST_COMMIT_MESSAGE" value="change TODO to markdown format" />
+    <MESSAGE value="change - to lists md format" />
+    <option name="LAST_COMMIT_MESSAGE" value="change - to lists md format" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -983,8 +987,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TODO.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.257329" vertical-offset="0" max-vertical-offset="1760">
-          <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.92833877" vertical-offset="992" max-vertical-offset="1694">
+          <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
           <folding />
         </state>
       </provider>

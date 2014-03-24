@@ -1,5 +1,5 @@
 Possible design decisions
-* -------------------------
+--------------------------
 
 * Framework design should be guided by the principle of least astonishment
 * Faster change detection in modern browsers that support DOM event change detection.
@@ -12,8 +12,8 @@ Fallback to timeout if not.
 * It must not slow down or add unacceptable memory footprint to the app
 
 
-Possible next changes
-* -------------------------
+Possible next steps
+----------------------
 
 * Change licence to MIT or BSD, to allow propietary software to use this
 * Change project name?
@@ -21,10 +21,11 @@ Possible next changes
 * Add jasmine specRunner (karma?)
 * Generate & use source maps
 * Reduce / isolate dependency from jQuery
-* Possibility to create adapters for other js libraries
-(jquery, jquerylite, mootols, prototype...) and our own Default implementation
-(current needs: match an element to a CSSExpression, save/retrieve data on DOMElement,
-detect DOM.ready, detect DOM changes ...)
+* Possibility to create adapters for other js libraries (jquery, jquerylite, mootols, prototype...) and our own Default implementation. Current needs:
+    * match an element to a CSSExpression
+    * save/retrieve data on DOMElement,
+    * detect DOM.ready
+    * detect DOM changes ...
 
 * Add tests coverage tool
 * Rework samples to more beautiful presentation (bootstrap?)
@@ -48,27 +49,24 @@ Improve to know what elements changed from previous state and only process those
     ¿Use md5 to know what content change?
     http://stackoverflow.com/questions/1655769/fastest-md5-implementation-in-javascript
 
-* ¿Expose current internal APIs as public?
-¿Do as jQuery an only expose one large facade object?
+* ¿Expose current internal APIs as public? ¿Do as jQuery an only expose one large facade object?
 
 * Possibility to create POO style or Functional style directives.
 The Framework must not impose programming style/paradigm
 
-* Add destroy (optional) method to directives to call when DOMElements are removed
-    (to clearTimeouts, cancel current operations, free resources...)
+* Add destroy (optional) method to directives to call when DOMElements are removed (to clearTimeouts, cancel current operations, free resources...)
 
 * Change CSSExpression to mustApply(). A method/function is more flexible
 
 * Document with doku + github pages (jasmine docs style)
 
 * ¿Add common needs?
-    -http module: sync, async, html, json, url parsing...
-    -html templating
-    -instrumentation
-    -logging
-    -common extensions to base objects, String.trim(), Array.Contains(),
+    * http module: sync, async, html, json, url parsing...
+    * html templating
+    * instrumentation
+    * logging
+    * common extensions to base objects, String.trim(), Array.Contains(),
     Array.sort(), Object.shallowClone(), Object.DeepClone(), ...
-    -methods / properties to be compatible on multiple browsers / versions
+    * methods / properties to be compatible on multiple browsers / versions
     of ECMAScript...
-    -cookies
-    -
+    * cookies
