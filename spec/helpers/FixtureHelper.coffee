@@ -1,4 +1,4 @@
-class @FixtureBuilder
+class @FixtureHelper
 
   @clear : ->
     fixtureJQuery = $("#fixture")
