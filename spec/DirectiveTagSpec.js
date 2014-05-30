@@ -151,4 +151,13 @@
         expect(function () { new DirectiveTag($("a"), "data-vc-popup") }).toThrow(new DirectiveTagError("invalid param 'data-vc-popup -> :120px hasn't key'"));
     });
 
+    //TODO: separar en clases diferentes los estilos diferentes de paso de parámetros
+    //
+    //var params = new NamedParams("width:110px;height:500px",";").params --> {width:"110px", height:"500px"}
+    //var params = new ListParams("#id; .class", ";").params --> ["#id",".class"]
+
+    //TODO: hacer estas clases disponibles como métodos de Oblique()
+    //Oblique().parseNamedParams("width:110px;height:500px",";")
+    //Oblique().parseListParams("#id; .class", ";")
+
 });
