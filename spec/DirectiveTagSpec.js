@@ -21,13 +21,13 @@
         expect(tag.intAttr("width")).toBe(2);
     });
 
-    it("Can return a jQueryElement respresenting itself when initialized as jQuery Element", function () {
+    it("Can return a jQueryElement representing itself when initialized as jQuery Element", function () {
         FixtureHelper.appendHTML('<img data-vc-popup id="UniqueId"/>');
         var tag = new DirectiveTag($("img"), "data-vc-popup");
         expect(tag.jQueryElement.attr("id")).toBe("UniqueId");
     });
 
-    it("Can return a jQueryElement respresenting itself when initialized a normal DOMElement", function () {
+    it("Can return a jQueryElement representing itself when initialized a normal DOMElement", function () {
         FixtureHelper.appendHTML('<img data-vc-popup id="UniqueId"/>');
         var tag = new DirectiveTag(document.getElementById("UniqueId"), "data-vc-popup");
         expect(tag.jQueryElement.attr("id")).toBe("UniqueId");
