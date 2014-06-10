@@ -1,1 +1,0 @@
-type < ../src/oblique/*.coffee > ../dist/oblique.coffee

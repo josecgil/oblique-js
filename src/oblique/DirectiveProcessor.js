@@ -56,7 +56,7 @@
         rootElement = new ObliqueNS.Element(rootDOMElement);
         return rootElement.eachDescendant((function(_this) {
           return function(DOMElement) {
-            var cssExpr, directive, directiveName, obElement, _i, _len, _ref, _results;
+            var cssExpr, directive, directiveHashCode, obElement, _i, _len, _ref, _results;
             obElement = new ObliqueNS.Element(DOMElement);
             _ref = _this._directiveCollection.getCSSExpressions();
             _results = [];
@@ -71,11 +71,11 @@
                 _results1 = [];
                 for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
                   directive = _ref1[_j];
-                  directiveName = directive.name;
-                  if (obElement.hasFlag(directiveName)) {
+                  directiveHashCode = directive.hashCode;
+                  if (obElement.hasFlag(directiveHashCode)) {
                     continue;
                   }
-                  obElement.setFlag(directiveName);
+                  obElement.setFlag(directiveHashCode);
                   _results1.push(new directive(DOMElement));
                 }
                 return _results1;

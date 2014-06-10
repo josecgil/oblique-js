@@ -1,11 +1,3 @@
-if typeof Object.getPrototypeOf isnt "function"
-  if typeof "test".__proto__ is "object"
-    Object.getPrototypeOf = (object) ->
-      object.__proto__
-  else
-    Object.getPrototypeOf = (object) ->
-      # May break if the constructor has been tampered with
-      object.constructor::
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveCollection
@@ -29,10 +21,26 @@ class DirectiveCollection
     if not directive.CSS_EXPRESSION
       throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.DOESNT_HAVE_PROPERTY_CSS_EXPR_MESSAGE)
 
+  _hashCode: (str) ->
+    hash = 0
+    i = undefined
+    chr = undefined
+    len = undefined
+    return hash if str.length is 0
+    i = 0
+    len = str.length
+
+    while i < len
+      chr = str.charCodeAt(i)
+      hash = ((hash << 5) - hash) + chr
+      hash |= 0
+      i++
+    hash
+
   add:(directive) ->
     @_throwErrorIfDirectiveIsNotValid(directive)
 
-    directive.name=Object.getPrototypeOf(directive).constructor.name
+    directive.hashCode=@_hashCode(directive.toString()+directive.CSS_EXPRESSION)
 
     @directives.push directive
 
@@ -112,14 +120,13 @@ class DirectiveProcessor
           for cssExpr in @_directiveCollection.getCSSExpressions()
             continue if not obElement.matchCSSExpression cssExpr
             for directive in @_directiveCollection.getDirectivesByCSSExpression cssExpr
-              directiveName = directive.name
-              continue if obElement.hasFlag directiveName
-              obElement.setFlag directiveName
+              directiveHashCode = directive.hashCode
+              continue if obElement.hasFlag directiveHashCode
+              obElement.setFlag directiveHashCode
               new directive DOMElement
       )
     finally
       @_isApplyingDirectivesInDOM = false
-
 
 
   getIntervalTimeInMs: ->

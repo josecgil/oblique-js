@@ -31,9 +31,29 @@
       }
     };
 
+    DirectiveCollection.prototype._hashCode = function(str) {
+      var chr, hash, i, len;
+      hash = 0;
+      i = void 0;
+      chr = void 0;
+      len = void 0;
+      if (str.length === 0) {
+        return hash;
+      }
+      i = 0;
+      len = str.length;
+      while (i < len) {
+        chr = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + chr;
+        hash |= 0;
+        i++;
+      }
+      return hash;
+    };
+
     DirectiveCollection.prototype.add = function(directive) {
       this._throwErrorIfDirectiveIsNotValid(directive);
-      directive.name = Object.getPrototypeOf(directive).constructor.name;
+      directive.hashCode = this._hashCode(directive.toString() + directive.CSS_EXPRESSION);
       this.directives.push(directive);
       return this._buildCSSExpressions();
     };

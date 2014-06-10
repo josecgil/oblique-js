@@ -2,18 +2,6 @@
 (function() {
   var DirectiveCollection, DirectiveProcessor, DirectiveTagError, Element, Error, NamedParams, Param, TimedDOMObserver;
 
-  if (typeof Object.getPrototypeOf !== "function") {
-    if (typeof "test".__proto__ === "object") {
-      Object.getPrototypeOf = function(object) {
-        return object.__proto__;
-      };
-    } else {
-      Object.getPrototypeOf = function(object) {
-        return object.constructor.prototype;
-      };
-    }
-  }
-
   this.ObliqueNS = this.ObliqueNS || {};
 
   DirectiveCollection = (function() {
@@ -43,9 +31,29 @@
       }
     };
 
+    DirectiveCollection.prototype._hashCode = function(str) {
+      var chr, hash, i, len;
+      hash = 0;
+      i = void 0;
+      chr = void 0;
+      len = void 0;
+      if (str.length === 0) {
+        return hash;
+      }
+      i = 0;
+      len = str.length;
+      while (i < len) {
+        chr = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + chr;
+        hash |= 0;
+        i++;
+      }
+      return hash;
+    };
+
     DirectiveCollection.prototype.add = function(directive) {
       this._throwErrorIfDirectiveIsNotValid(directive);
-      directive.name = Object.getPrototypeOf(directive).constructor.name;
+      directive.hashCode = this._hashCode(directive.toString() + directive.CSS_EXPRESSION);
       this.directives.push(directive);
       return this._buildCSSExpressions();
     };
@@ -160,7 +168,7 @@
         rootElement = new ObliqueNS.Element(rootDOMElement);
         return rootElement.eachDescendant((function(_this) {
           return function(DOMElement) {
-            var cssExpr, directive, directiveName, obElement, _i, _len, _ref, _results;
+            var cssExpr, directive, directiveHashCode, obElement, _i, _len, _ref, _results;
             obElement = new ObliqueNS.Element(DOMElement);
             _ref = _this._directiveCollection.getCSSExpressions();
             _results = [];
@@ -175,11 +183,11 @@
                 _results1 = [];
                 for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
                   directive = _ref1[_j];
-                  directiveName = directive.name;
-                  if (obElement.hasFlag(directiveName)) {
+                  directiveHashCode = directive.hashCode;
+                  if (obElement.hasFlag(directiveHashCode)) {
                     continue;
                   }
-                  obElement.setFlag(directiveName);
+                  obElement.setFlag(directiveHashCode);
                   _results1.push(new directive(DOMElement));
                 }
                 return _results1;

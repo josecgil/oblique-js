@@ -109,7 +109,7 @@ describe "DirectiveProcessor", ->
           DirectiveProcessor().destroy()
           done()
 
-      @CSS_EXPRESSION = "*[data-show-onclick]"
+      @CSS_EXPRESSION = "*[data-hide-onclick]"
 
     class ShowOnClickDirective
       constructor: ()->
@@ -118,7 +118,7 @@ describe "DirectiveProcessor", ->
           DirectiveProcessor().destroy()
           done()
 
-      @CSS_EXPRESSION = "*[data-hide-onclick]"
+      @CSS_EXPRESSION = "*[data-show-onclick]"
 
 
     DirectiveProcessor().registerDirective ShowOnClickDirective
@@ -126,6 +126,57 @@ describe "DirectiveProcessor", ->
     FixtureHelper.appendHTML "<test id='test' data-hide-onclick data-show-onclick></test>"
     FixtureHelper.appendHTML "<test id='test' data-hide-onclick data-show-onclick></test>"
 
+  it "CMS Bug", (done)->
+    calls={};
+    calls.HideOnClickDirective=0
+    calls.ShowOnClickDirective=0
+
+    class HideOnClickDirective
+      constructor: ()->
+        calls["HideOnClickDirective"]++;
+        if (calls.HideOnClickDirective is 4) and (calls.ShowOnClickDirective is 4)
+          DirectiveProcessor().destroy()
+          done()
+
+      @CSS_EXPRESSION = "*[data-hide-onclick]"
+
+    class ShowOnClickDirective
+      constructor: ()->
+        calls["ShowOnClickDirective"]++;
+        if (calls.HideOnClickDirective is 4) and (calls.ShowOnClickDirective is 4)
+          DirectiveProcessor().destroy()
+          done()
+
+      @CSS_EXPRESSION = "*[data-show-onclick]"
+
+    html=
+      """
+        <p>
+          <span class="form-inline">
+            <label>
+              <input type="radio" value="Castellano" name="IdLanguage" id="IdLanguage" data-show-onclick="*[data-castellano]" data-hide-onclick="*[data-english]" checked="checked"> Castellano
+            </label>
+            <label>
+              <input type="radio" value="Ingles" name="IdLanguage" id="IdLanguage" data-show-onclick="*[data-english]" data-hide-onclick="*[data-castellano]"> Inglés
+            </label>
+          </span>
+        </p>
+
+        <p>
+          <span class="form-inline">
+            <label>
+              <input type="radio" value="Castellano" name="IdLanguage" id="IdLanguage" data-show-onclick="*[data-castellano]" data-hide-onclick="*[data-english]" checked="checked"> Castellano
+            </label>
+            <label>
+              <input type="radio" value="Ingles" name="IdLanguage" id="IdLanguage" data-show-onclick="*[data-english]" data-hide-onclick="*[data-castellano]"> Inglés
+            </label>
+          </span>
+        </p>
+
+      """
+    DirectiveProcessor().registerDirective ShowOnClickDirective
+    DirectiveProcessor().registerDirective HideOnClickDirective
+    FixtureHelper.appendHTML html
 
   it "If I register a Directive without CSS_EXPRESSION it throws an Error", ()->
     class TestDirective

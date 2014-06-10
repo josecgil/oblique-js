@@ -44,14 +44,13 @@ class DirectiveProcessor
           for cssExpr in @_directiveCollection.getCSSExpressions()
             continue if not obElement.matchCSSExpression cssExpr
             for directive in @_directiveCollection.getDirectivesByCSSExpression cssExpr
-              directiveName = directive.name
-              continue if obElement.hasFlag directiveName
-              obElement.setFlag directiveName
+              directiveHashCode = directive.hashCode
+              continue if obElement.hasFlag directiveHashCode
+              obElement.setFlag directiveHashCode
               new directive DOMElement
       )
     finally
       @_isApplyingDirectivesInDOM = false
-
 
 
   getIntervalTimeInMs: ->
