@@ -3,6 +3,7 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/src/oblique/Param.js" />
+        <item url="file://$PROJECT_DIR$/src/oblique/TimedDOMObserver.js" />
         <item url="file://$PROJECT_DIR$/dist/oblique.js" />
         <item url="file://$PROJECT_DIR$/src/oblique/NamedParams.js" />
         <item url="file://$PROJECT_DIR$/src/oblique/TimedDOMObserver.js" />
@@ -35,6 +36,7 @@
       <root url="file://$PROJECT_DIR$/src/oblique/ObliqueDOMElement.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/Param.js" />
       <root url="file://$PROJECT_DIR$/dist/oblique.js" />
+      <root url="file://$PROJECT_DIR$/src/oblique/TimedDOMObserver.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/NamedParams.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/TimedDOMObserver.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/Error.js" />

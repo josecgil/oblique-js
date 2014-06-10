@@ -85,6 +85,41 @@
       DirectiveProcessor().registerDirective(TestDirective);
       return FixtureHelper.appendHTML("<test data-test></test>");
     });
+    it("must call 2 directives if there are in the same tag", function(done) {
+      var TestDirective1, TestDirective2, calls;
+      calls = {};
+      TestDirective1 = (function() {
+        function TestDirective1() {
+          calls["TestDirective1"] = true;
+          if (calls.TestDirective1 && calls.TestDirective2) {
+            DirectiveProcessor().destroy();
+            done();
+          }
+        }
+
+        TestDirective1.CSS_EXPRESSION = "*[data-test1]";
+
+        return TestDirective1;
+
+      })();
+      TestDirective2 = (function() {
+        function TestDirective2() {
+          calls["TestDirective2"] = true;
+          if (calls.TestDirective1 && calls.TestDirective2) {
+            DirectiveProcessor().destroy();
+            done();
+          }
+        }
+
+        TestDirective2.CSS_EXPRESSION = "*[data-test2]";
+
+        return TestDirective2;
+
+      })();
+      DirectiveProcessor().registerDirective(TestDirective1);
+      DirectiveProcessor().registerDirective(TestDirective2);
+      return FixtureHelper.appendHTML("<test data-test1 data-test2></test>");
+    });
     it("If I register a Directive without CSS_EXPRESSION it throws an Error", function() {
       var TestDirective;
       TestDirective = (function() {

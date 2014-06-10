@@ -73,6 +73,32 @@ describe "DirectiveProcessor", ->
     DirectiveProcessor().registerDirective TestDirective
     FixtureHelper.appendHTML "<test data-test></test>"
 
+  it "must call 2 directives if there are in the same tag", (done)->
+    calls={};
+    class TestDirective1
+      constructor: ()->
+        calls["TestDirective1"]=true;
+        if (calls.TestDirective1 && calls.TestDirective2)
+          DirectiveProcessor().destroy()
+          done()
+
+      @CSS_EXPRESSION = "*[data-test1]"
+
+    class TestDirective2
+      constructor: ()->
+        calls["TestDirective2"]=true;
+        if (calls.TestDirective1 && calls.TestDirective2)
+          DirectiveProcessor().destroy()
+          done()
+
+      @CSS_EXPRESSION = "*[data-test2]"
+
+
+    DirectiveProcessor().registerDirective TestDirective1
+    DirectiveProcessor().registerDirective TestDirective2
+    FixtureHelper.appendHTML "<test data-test1 data-test2></test>"
+
+
   it "If I register a Directive without CSS_EXPRESSION it throws an Error", ()->
     class TestDirective
     expect(->
