@@ -1,6 +1,11 @@
-
-# ../src/oblique/DirectiveCollection.coffee
-
+if typeof Object.getPrototypeOf isnt "function"
+  if typeof "test".__proto__ is "object"
+    Object.getPrototypeOf = (object) ->
+      object.__proto__
+  else
+    Object.getPrototypeOf = (object) ->
+      # May break if the constructor has been tampered with
+      object.constructor::
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveCollection
@@ -26,6 +31,9 @@ class DirectiveCollection
 
   add:(directive) ->
     @_throwErrorIfDirectiveIsNotValid(directive)
+
+    directive.name=Object.getPrototypeOf(directive).constructor.name
+
     @directives.push directive
 
     #pre-calc this when adding a Directive for fast access
@@ -58,8 +66,6 @@ class DirectiveCollection
     directivesWithCSSExpr
 
 ObliqueNS.DirectiveCollection=DirectiveCollection
-# ../src/oblique/DirectiveProcessor.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveProcessor
@@ -106,7 +112,7 @@ class DirectiveProcessor
           for cssExpr in @_directiveCollection.getCSSExpressions()
             continue if not obElement.matchCSSExpression cssExpr
             for directive in @_directiveCollection.getDirectivesByCSSExpression cssExpr
-              directiveName = directive.constructor.name
+              directiveName = directive.name
               continue if obElement.hasFlag directiveName
               obElement.setFlag directiveName
               new directive DOMElement
@@ -137,8 +143,7 @@ class DirectiveProcessor
 
 ObliqueNS.DirectiveProcessor=DirectiveProcessor
 @.Oblique=DirectiveProcessor
-# ../src/oblique/Element.coffee
-
+class DirectiveTagError
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Element
@@ -182,8 +187,6 @@ class Element
           callbackOnDOMElement child
 
 ObliqueNS.Element=Element
-# ../src/oblique/Error.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Error
@@ -193,9 +196,36 @@ class Error
 
 ObliqueNS.Error=Error
 
+@.ObliqueNS=@.ObliqueNS or {}
 
-# ../src/oblique/TimedDOMObserver.coffee
+Param=ObliqueNS.Param
 
+class NamedParams
+
+  constructor : (params, paramSeparator=";", valueSeparator=":") ->
+    @params=[]
+    for param in params.split paramSeparator
+      @params.push new Param param, valueSeparator
+
+  getParam : (paramName) ->
+    for param in @params
+      return param if param.name is paramName
+    null
+
+ObliqueNS.NamedParams=NamedParams
+@.ObliqueNS=@.ObliqueNS or {}
+
+class Param
+
+  constructor:(param, valueSeparator=":")->
+    paramAndValue=param.split valueSeparator
+    @name=paramAndValue[0].trim()
+    @value=paramAndValue[1].trim()
+
+  valueAsInt: ->
+    parseInt @value, 10
+
+ObliqueNS.Param=Param
 @.ObliqueNS=@.ObliqueNS or {}
 
 class TimedDOMObserver

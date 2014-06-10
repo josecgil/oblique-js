@@ -23,6 +23,9 @@ class DirectiveCollection
 
   add:(directive) ->
     @_throwErrorIfDirectiveIsNotValid(directive)
+
+    directive.name=Object.getPrototypeOf(directive).constructor.name
+
     @directives.push directive
 
     #pre-calc this when adding a Directive for fast access

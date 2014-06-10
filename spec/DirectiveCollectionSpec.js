@@ -26,6 +26,20 @@
       expect(directives.count()).toBe(1);
       return expect(directives.at(0)).toBe(TestDirective);
     });
+    it("must add property 'name' to added directive", function() {
+      var TestDirective, directives;
+      TestDirective = (function() {
+        function TestDirective() {}
+
+        TestDirective.CSS_EXPRESSION = ".test";
+
+        return TestDirective;
+
+      })();
+      directives = new DirectiveCollection();
+      directives.add(TestDirective);
+      return expect(TestDirective.name).toBe("TestDirective");
+    });
     it("must return 2 CSSExpressions when I added 2 Directive with different CSSExpressions", function() {
       var TestDirective, TestDirective2, cssExpressions, directives;
       TestDirective = (function() {

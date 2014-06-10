@@ -33,6 +33,7 @@
 
     DirectiveCollection.prototype.add = function(directive) {
       this._throwErrorIfDirectiveIsNotValid(directive);
+      directive.name = Object.getPrototypeOf(directive).constructor.name;
       this.directives.push(directive);
       return this._buildCSSExpressions();
     };

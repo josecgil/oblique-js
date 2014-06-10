@@ -21,6 +21,16 @@ describe "DirectiveCollection", ->
     expect(directives.count()).toBe 1
     expect(directives.at(0)).toBe(TestDirective)
 
+  it "must add property 'name' to added directive", () ->
+    class TestDirective
+      constructor: ()->
+
+      @CSS_EXPRESSION = ".test"
+
+    directives=new DirectiveCollection()
+    directives.add TestDirective
+    expect(TestDirective.name).toBe("TestDirective")
+
   it "must return 2 CSSExpressions when I added 2 Directive with different CSSExpressions", () ->
     class TestDirective
       constructor: ()->
