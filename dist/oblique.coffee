@@ -106,7 +106,7 @@ class DirectiveProcessor
           for cssExpr in @_directiveCollection.getCSSExpressions()
             continue if not obElement.matchCSSExpression cssExpr
             for directive in @_directiveCollection.getDirectivesByCSSExpression cssExpr
-              directiveName = directive.name
+              directiveName = directive.constructor.name
               continue if obElement.hasFlag directiveName
               obElement.setFlag directiveName
               new directive DOMElement

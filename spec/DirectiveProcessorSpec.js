@@ -86,10 +86,10 @@
       return FixtureHelper.appendHTML("<test data-test></test>");
     });
     it("must call 2 directives if there are in the same tag", function(done) {
-      var TestDirective1, TestDirective2, calls;
+      var HideOnClickDirective, ShowOnClickDirective, calls;
       calls = {};
-      TestDirective1 = (function() {
-        function TestDirective1() {
+      HideOnClickDirective = (function() {
+        function HideOnClickDirective() {
           calls["TestDirective1"] = true;
           if (calls.TestDirective1 && calls.TestDirective2) {
             DirectiveProcessor().destroy();
@@ -97,13 +97,13 @@
           }
         }
 
-        TestDirective1.CSS_EXPRESSION = "*[data-test1]";
+        HideOnClickDirective.CSS_EXPRESSION = "*[data-show-onclick]";
 
-        return TestDirective1;
+        return HideOnClickDirective;
 
       })();
-      TestDirective2 = (function() {
-        function TestDirective2() {
+      ShowOnClickDirective = (function() {
+        function ShowOnClickDirective() {
           calls["TestDirective2"] = true;
           if (calls.TestDirective1 && calls.TestDirective2) {
             DirectiveProcessor().destroy();
@@ -111,14 +111,52 @@
           }
         }
 
-        TestDirective2.CSS_EXPRESSION = "*[data-test2]";
+        ShowOnClickDirective.CSS_EXPRESSION = "*[data-hide-onclick]";
 
-        return TestDirective2;
+        return ShowOnClickDirective;
 
       })();
-      DirectiveProcessor().registerDirective(TestDirective1);
-      DirectiveProcessor().registerDirective(TestDirective2);
-      return FixtureHelper.appendHTML("<test data-test1 data-test2></test>");
+      DirectiveProcessor().registerDirective(ShowOnClickDirective);
+      DirectiveProcessor().registerDirective(HideOnClickDirective);
+      return FixtureHelper.appendHTML("<test data-hide-onclick data-show-onclick></test>");
+    });
+    it("must call 2 directives if there are in the same tag (2 instances of same tag)", function(done) {
+      var HideOnClickDirective, ShowOnClickDirective, calls;
+      calls = {};
+      calls.TestDirective1 = 0;
+      calls.TestDirective2 = 0;
+      HideOnClickDirective = (function() {
+        function HideOnClickDirective() {
+          calls["TestDirective1"]++;
+          if ((calls.TestDirective1 === 2) && (calls.TestDirective2 === 2)) {
+            DirectiveProcessor().destroy();
+            done();
+          }
+        }
+
+        HideOnClickDirective.CSS_EXPRESSION = "*[data-show-onclick]";
+
+        return HideOnClickDirective;
+
+      })();
+      ShowOnClickDirective = (function() {
+        function ShowOnClickDirective() {
+          calls["TestDirective2"]++;
+          if ((calls.TestDirective1 === 2) && (calls.TestDirective2 === 2)) {
+            DirectiveProcessor().destroy();
+            done();
+          }
+        }
+
+        ShowOnClickDirective.CSS_EXPRESSION = "*[data-hide-onclick]";
+
+        return ShowOnClickDirective;
+
+      })();
+      DirectiveProcessor().registerDirective(ShowOnClickDirective);
+      DirectiveProcessor().registerDirective(HideOnClickDirective);
+      FixtureHelper.appendHTML("<test id='test' data-hide-onclick data-show-onclick></test>");
+      return FixtureHelper.appendHTML("<test id='test' data-hide-onclick data-show-onclick></test>");
     });
     it("If I register a Directive without CSS_EXPRESSION it throws an Error", function() {
       var TestDirective;

@@ -71,7 +71,7 @@
                 _results1 = [];
                 for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
                   directive = _ref1[_j];
-                  directiveName = directive.name;
+                  directiveName = directive.constructor.name;
                   if (obElement.hasFlag(directiveName)) {
                     continue;
                   }

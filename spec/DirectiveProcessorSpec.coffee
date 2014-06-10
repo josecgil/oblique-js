@@ -75,28 +75,56 @@ describe "DirectiveProcessor", ->
 
   it "must call 2 directives if there are in the same tag", (done)->
     calls={};
-    class TestDirective1
+    class HideOnClickDirective
       constructor: ()->
         calls["TestDirective1"]=true;
         if (calls.TestDirective1 && calls.TestDirective2)
           DirectiveProcessor().destroy()
           done()
 
-      @CSS_EXPRESSION = "*[data-test1]"
+      @CSS_EXPRESSION = "*[data-show-onclick]"
 
-    class TestDirective2
+    class ShowOnClickDirective
       constructor: ()->
         calls["TestDirective2"]=true;
         if (calls.TestDirective1 && calls.TestDirective2)
           DirectiveProcessor().destroy()
           done()
 
-      @CSS_EXPRESSION = "*[data-test2]"
+      @CSS_EXPRESSION = "*[data-hide-onclick]"
 
 
-    DirectiveProcessor().registerDirective TestDirective1
-    DirectiveProcessor().registerDirective TestDirective2
-    FixtureHelper.appendHTML "<test data-test1 data-test2></test>"
+    DirectiveProcessor().registerDirective ShowOnClickDirective
+    DirectiveProcessor().registerDirective HideOnClickDirective
+    FixtureHelper.appendHTML "<test data-hide-onclick data-show-onclick></test>"
+
+  it "must call 2 directives if there are in the same tag (2 instances of same tag)", (done)->
+    calls={};
+    calls.TestDirective1=0
+    calls.TestDirective2=0
+    class HideOnClickDirective
+      constructor: ()->
+        calls["TestDirective1"]++;
+        if (calls.TestDirective1 is 2) and (calls.TestDirective2 is 2)
+          DirectiveProcessor().destroy()
+          done()
+
+      @CSS_EXPRESSION = "*[data-show-onclick]"
+
+    class ShowOnClickDirective
+      constructor: ()->
+        calls["TestDirective2"]++;
+        if (calls.TestDirective1 is 2) and (calls.TestDirective2 is 2)
+          DirectiveProcessor().destroy()
+          done()
+
+      @CSS_EXPRESSION = "*[data-hide-onclick]"
+
+
+    DirectiveProcessor().registerDirective ShowOnClickDirective
+    DirectiveProcessor().registerDirective HideOnClickDirective
+    FixtureHelper.appendHTML "<test id='test' data-hide-onclick data-show-onclick></test>"
+    FixtureHelper.appendHTML "<test id='test' data-hide-onclick data-show-onclick></test>"
 
 
   it "If I register a Directive without CSS_EXPRESSION it throws an Error", ()->
