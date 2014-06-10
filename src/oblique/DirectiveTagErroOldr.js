@@ -1,3 +1,3 @@
-﻿function DirectiveTagError(message) {
+﻿﻿function DirectiveTagError(message) {
     this.message = message;
 }

@@ -2,24 +2,21 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/src/oblique/Param.js" />
-        <item url="file://$PROJECT_DIR$/dist/oblique.js" />
+        <item url="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js" />
         <item url="file://$PROJECT_DIR$/src/oblique/TimedDOMObserver.js" />
-        <item url="file://$PROJECT_DIR$/src/oblique/NamedParams.js" />
-        <item url="file://$PROJECT_DIR$/spec/NamedParamsSpec.js" />
+        <item url="file://$PROJECT_DIR$/samples/1/directives/ClockDirective.js" />
         <item url="file://$PROJECT_DIR$/src/oblique/Error.js" />
+        <item url="file://$PROJECT_DIR$/dist/oblique.js" />
+        <item url="file://$PROJECT_DIR$/spec/ElementSpec.js" />
+        <item url="file://$PROJECT_DIR$/dist/oblique.js" />
+        <item url="file://$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" />
+        <item url="file://$PROJECT_DIR$/spec/DirectiveCollectionSpec.js" />
+        <item url="file://$PROJECT_DIR$/spec/DirectiveProcessorSpec.js" />
         <item url="file://$PROJECT_DIR$/src/oblique/DirectiveProcessor.js" />
-        <item url="file://$PROJECT_DIR$/src/oblique/DirectiveCollection.js" />
-        <item url="file://$PROJECT_DIR$/src/oblique/Element.js" />
         <item url="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
         <item url="file://$PROJECT_DIR$/spec/helpers/Interval.js" />
-        <item url="file://$PROJECT_DIR$/spec/DirectiveProcessorSpec.js" />
-        <item url="file://$PROJECT_DIR$/samples/1/directives/ClockDirective.js" />
-        <item url="file://$PROJECT_DIR$/spec/DirectiveCollectionSpec.js" />
-        <item url="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js" />
-        <item url="file://$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" />
-        <item url="file://$PROJECT_DIR$/src/oblique/0_GetPrototypeOf.js" />
-        <item url="file://$PROJECT_DIR$/spec/ElementSpec.js" />
+        <item url="file://$PROJECT_DIR$/src/oblique/Element.js" />
+        <item url="file://$PROJECT_DIR$/src/oblique/DirectiveCollection.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
@@ -35,24 +32,25 @@
       <root url="file://$PROJECT_DIR$/spec/ObliqueDOMElementSpec.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/ObliqueDOMElement.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/Param.js" />
-      <root url="file://$PROJECT_DIR$/src/oblique/TimedDOMObserver.js" />
-      <root url="file://$PROJECT_DIR$/dist/oblique.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/NamedParams.js" />
-      <root url="file://$PROJECT_DIR$/src/oblique/Error.js" />
       <root url="file://$PROJECT_DIR$/spec/NamedParamsSpec.js" />
-      <root url="file://$PROJECT_DIR$/src/oblique/DirectiveProcessor.js" />
-      <root url="file://$PROJECT_DIR$/src/oblique/DirectiveCollection.js" />
-      <root url="file://$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
-      <root url="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
-      <root url="file://$PROJECT_DIR$/src/oblique/Element.js" />
-      <root url="file://$PROJECT_DIR$/spec/helpers/Interval.js" />
-      <root url="file://$PROJECT_DIR$/spec/DirectiveProcessorSpec.js" />
-      <root url="file://$PROJECT_DIR$/spec/DirectiveCollectionSpec.js" />
-      <root url="file://$PROJECT_DIR$/samples/1/directives/ClockDirective.js" />
-      <root url="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js" />
-      <root url="file://$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" />
-      <root url="file://$PROJECT_DIR$/spec/ElementSpec.js" />
       <root url="file://$PROJECT_DIR$/src/oblique/0_GetPrototypeOf.js" />
+      <root url="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js" />
+      <root url="file://$PROJECT_DIR$/src/oblique/TimedDOMObserver.js" />
+      <root url="file://$PROJECT_DIR$/src/oblique/Error.js" />
+      <root url="file://$PROJECT_DIR$/samples/1/directives/ClockDirective.js" />
+      <root url="file://$PROJECT_DIR$/dist/oblique.js" />
+      <root url="file://$PROJECT_DIR$/spec/ElementSpec.js" />
+      <root url="file://$PROJECT_DIR$/dist/oblique.js" />
+      <root url="file://$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" />
+      <root url="file://$PROJECT_DIR$/spec/DirectiveCollectionSpec.js" />
+      <root url="file://$PROJECT_DIR$/spec/DirectiveProcessorSpec.js" />
+      <root url="file://$PROJECT_DIR$/src/oblique/DirectiveProcessor.js" />
+      <root url="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
+      <root url="file://$PROJECT_DIR$/spec/helpers/Interval.js" />
+      <root url="file://$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
+      <root url="file://$PROJECT_DIR$/src/oblique/Element.js" />
+      <root url="file://$PROJECT_DIR$/src/oblique/DirectiveCollection.js" />
     </CLASSES>
     <SOURCES />
   </library>

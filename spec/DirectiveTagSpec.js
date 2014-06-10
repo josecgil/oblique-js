@@ -1,4 +1,4 @@
-﻿describe("DirectiveTag Testing", function () {
+﻿﻿describe("DirectiveTag Testing", function () {
 
     beforeEach(function () {
         FixtureHelper.clear();

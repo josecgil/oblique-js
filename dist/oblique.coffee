@@ -1,3 +1,6 @@
+
+# ../src/oblique/0_GetPrototypeOf.coffee
+
 if typeof Object.getPrototypeOf isnt "function"
   if typeof "test".__proto__ is "object"
     Object.getPrototypeOf = (object) ->
@@ -6,6 +9,8 @@ if typeof Object.getPrototypeOf isnt "function"
     Object.getPrototypeOf = (object) ->
       # May break if the constructor has been tampered with
       object.constructor::
+# ../src/oblique/DirectiveCollection.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveCollection
@@ -66,6 +71,8 @@ class DirectiveCollection
     directivesWithCSSExpr
 
 ObliqueNS.DirectiveCollection=DirectiveCollection
+# ../src/oblique/DirectiveProcessor.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveProcessor
@@ -143,7 +150,11 @@ class DirectiveProcessor
 
 ObliqueNS.DirectiveProcessor=DirectiveProcessor
 @.Oblique=DirectiveProcessor
+# ../src/oblique/DirectiveTagError.coffee
+
 class DirectiveTagError
+# ../src/oblique/Element.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Element
@@ -187,6 +198,8 @@ class Element
           callbackOnDOMElement child
 
 ObliqueNS.Element=Element
+# ../src/oblique/Error.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Error
@@ -195,6 +208,9 @@ class Error
     @name = "Oblique.Error"
 
 ObliqueNS.Error=Error
+
+
+# ../src/oblique/NamedParams.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -213,6 +229,8 @@ class NamedParams
     null
 
 ObliqueNS.NamedParams=NamedParams
+# ../src/oblique/Param.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Param
@@ -226,6 +244,8 @@ class Param
     parseInt @value, 10
 
 ObliqueNS.Param=Param
+# ../src/oblique/TimedDOMObserver.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class TimedDOMObserver
