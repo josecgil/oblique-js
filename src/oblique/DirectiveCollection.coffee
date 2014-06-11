@@ -40,7 +40,7 @@ class DirectiveCollection
   add:(directive) ->
     @_throwErrorIfDirectiveIsNotValid(directive)
 
-    directive.hashCode=@_hashCode(directive.toString()+directive.CSS_EXPRESSION)
+    directive.hashCode=@_hashCode(directive.toString()+directive.CSS_EXPRESSION).toString()
 
     @directives.push directive
 

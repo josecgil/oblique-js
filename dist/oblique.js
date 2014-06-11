@@ -53,7 +53,7 @@
 
     DirectiveCollection.prototype.add = function(directive) {
       this._throwErrorIfDirectiveIsNotValid(directive);
-      directive.hashCode = this._hashCode(directive.toString() + directive.CSS_EXPRESSION);
+      directive.hashCode = this._hashCode(directive.toString() + directive.CSS_EXPRESSION).toString();
       this.directives.push(directive);
       return this._buildCSSExpressions();
     };
