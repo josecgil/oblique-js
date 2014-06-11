@@ -158,44 +158,6 @@
       FixtureHelper.appendHTML("<test id='test' data-hide-onclick data-show-onclick></test>");
       return FixtureHelper.appendHTML("<test id='test' data-hide-onclick data-show-onclick></test>");
     });
-    it("CMS Bug", function(done) {
-      var HideOnClickDirective, ShowOnClickDirective, calls, html;
-      calls = {};
-      calls.HideOnClickDirective = 0;
-      calls.ShowOnClickDirective = 0;
-      HideOnClickDirective = (function() {
-        function HideOnClickDirective() {
-          calls["HideOnClickDirective"]++;
-          if ((calls.HideOnClickDirective === 4) && (calls.ShowOnClickDirective === 4)) {
-            DirectiveProcessor().destroy();
-            done();
-          }
-        }
-
-        HideOnClickDirective.CSS_EXPRESSION = "*[data-hide-onclick]";
-
-        return HideOnClickDirective;
-
-      })();
-      ShowOnClickDirective = (function() {
-        function ShowOnClickDirective() {
-          calls["ShowOnClickDirective"]++;
-          if ((calls.HideOnClickDirective === 4) && (calls.ShowOnClickDirective === 4)) {
-            DirectiveProcessor().destroy();
-            done();
-          }
-        }
-
-        ShowOnClickDirective.CSS_EXPRESSION = "*[data-show-onclick]";
-
-        return ShowOnClickDirective;
-
-      })();
-      html = "<p>\n  <span class=\"form-inline\">\n    <label>\n      <input type=\"radio\" value=\"Castellano\" name=\"IdLanguage\" id=\"IdLanguage\" data-show-onclick=\"*[data-castellano]\" data-hide-onclick=\"*[data-english]\" checked=\"checked\"> Castellano\n    </label>\n    <label>\n      <input type=\"radio\" value=\"Ingles\" name=\"IdLanguage\" id=\"IdLanguage\" data-show-onclick=\"*[data-english]\" data-hide-onclick=\"*[data-castellano]\"> Inglés\n    </label>\n  </span>\n</p>\n\n<p>\n  <span class=\"form-inline\">\n    <label>\n      <input type=\"radio\" value=\"Castellano\" name=\"IdLanguage\" id=\"IdLanguage\" data-show-onclick=\"*[data-castellano]\" data-hide-onclick=\"*[data-english]\" checked=\"checked\"> Castellano\n    </label>\n    <label>\n      <input type=\"radio\" value=\"Ingles\" name=\"IdLanguage\" id=\"IdLanguage\" data-show-onclick=\"*[data-english]\" data-hide-onclick=\"*[data-castellano]\"> Inglés\n    </label>\n  </span>\n</p>\n";
-      DirectiveProcessor().registerDirective(ShowOnClickDirective);
-      DirectiveProcessor().registerDirective(HideOnClickDirective);
-      return FixtureHelper.appendHTML(html);
-    });
     it("If I register a Directive without CSS_EXPRESSION it throws an Error", function() {
       var TestDirective;
       TestDirective = (function() {

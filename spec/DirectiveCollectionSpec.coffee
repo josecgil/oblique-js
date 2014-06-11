@@ -21,7 +21,7 @@ describe "DirectiveCollection", ->
     expect(directives.count()).toBe 1
     expect(directives.at(0)).toBe(TestDirective)
 
-  it "must add property 'name' to added directive", () ->
+  it "must add property 'hashCode' to added directive", () ->
     class TestDirective
       constructor: ()->
 
@@ -29,7 +29,7 @@ describe "DirectiveCollection", ->
 
     directives=new DirectiveCollection()
     directives.add TestDirective
-    expect(TestDirective.name).toBe("TestDirective")
+    expect(TestDirective.hashCode).toBe("1688887988")
 
   it "must return 2 CSSExpressions when I added 2 Directive with different CSSExpressions", () ->
     class TestDirective
