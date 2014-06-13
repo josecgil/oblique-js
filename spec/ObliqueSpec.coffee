@@ -153,7 +153,7 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
 
 
-  it "must store model", ()->
+  it "must store and retrieve model", ()->
     Oblique().setModel "test"
 
     expect(Oblique().getModel()).toBe "test"
@@ -186,7 +186,7 @@ describe "Oblique", ->
 
     FixtureHelper.appendHTML "<div data-test></div>"
 
-  it "A directive must receive only the part of the model that data-model especifies", (done)->
+  it "A directive must receive only the part of the model that data-model specifies", (done)->
     modelToTest =
       name : "Carlos",
       content : "content"
@@ -205,3 +205,52 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
 
     FixtureHelper.appendHTML "<div data-test data-model='name'></div>"
+
+  it "data-model must work with complex models, simple resuls", (done)->
+    modelToTest =
+      name : "Carlos"
+      content : "content"
+      address:
+        street: "Gran Via"
+        number: 42
+
+    class TestDirective
+      constructor: (domElement, model)->
+        expect(model).toBe "Gran Via"
+        Oblique().destroy()
+        done()
+
+      @CSS_EXPRESSION = "*[data-test]"
+
+    Oblique().setModel modelToTest
+
+    Oblique().registerDirective TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    FixtureHelper.appendHTML "<div data-test data-model='address.street'></div>"
+
+
+  it "data-model must work with complex models, complex results", (done)->
+    modelToTest =
+      name : "Carlos"
+      content : "content"
+      address:
+        street:
+          name: "Gran Via"
+          number: 42
+
+    class TestDirective
+      constructor: (domElement, model)->
+        expect(model.name).toBe "Gran Via"
+        expect(model.number).toBe 42
+        Oblique().destroy()
+        done()
+
+      @CSS_EXPRESSION = "*[data-test]"
+
+    Oblique().setModel modelToTest
+
+    Oblique().registerDirective TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    FixtureHelper.appendHTML "<div data-test data-model='address.street'></div>"

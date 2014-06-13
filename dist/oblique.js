@@ -203,7 +203,7 @@
     };
 
     DirectiveProcessor.prototype._getModel = function(obElement) {
-      var dataModelValue, model;
+      var dataModelExpr, model, results;
       if (!Oblique().hasModel()) {
         return void 0;
       }
@@ -211,8 +211,11 @@
       if (!obElement.hasAttribute("data-model")) {
         return model;
       }
-      dataModelValue = obElement.getAttributeValue("data-model");
-      return model[dataModelValue];
+      dataModelExpr = obElement.getAttributeValue("data-model");
+      results = jsonPath(model, dataModelExpr);
+      if (results.length === 1) {
+        return results[0];
+      }
     };
 
     DirectiveProcessor.prototype.getIntervalTimeInMs = function() {
