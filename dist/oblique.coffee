@@ -138,8 +138,9 @@ class DirectiveProcessor
     return undefined if not Oblique().hasModel()
     model=Oblique().getModel()
     return model if not obElement.hasAttribute("data-model")
-    dataModelValue=obElement.getAttributeValue("data-model")
-    model[dataModelValue]
+    dataModelExpr=obElement.getAttributeValue("data-model")
+    results=jsonPath(model, dataModelExpr)
+    results[0] if results.length is 1
 
   getIntervalTimeInMs: ->
     @_timedDOMObserver.getIntervalInMs()
@@ -225,8 +226,6 @@ class Error
     @name = "Oblique.Error"
 
 ObliqueNS.Error=Error
-
-
 # ../src/oblique/NamedParams.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
