@@ -7,7 +7,9 @@
       $("#fixture").html("");
       return done();
     });
-    afterEach(function() {});
+    afterEach(function() {
+      return $("#fixture").html("");
+    });
     it("Can traverse a simple DOM", function(done) {
       var count, rootElement, testHTML;
       testHTML = "<div>A simple DOM</div>";
@@ -88,7 +90,7 @@
       hasVisitedFlag = bqElement2.hasFlag(FLAG_NAME);
       return expect(hasVisitedFlag).toBeTruthy();
     });
-    return it("If a unset a flag, flag is not present", function() {
+    it("If a unset a flag, flag is not present", function() {
       var FLAG_NAME, bqElement, fixture;
       fixture = $("#fixture");
       bqElement = new Element(fixture.get(0));
@@ -97,6 +99,24 @@
       expect(bqElement.hasFlag(FLAG_NAME)).toBeTruthy();
       bqElement.unsetFlag(FLAG_NAME);
       return expect(bqElement.hasFlag(FLAG_NAME)).toBeFalsy();
+    });
+    it("must know if an attribute is present", function() {
+      var bqElement;
+      FixtureHelper.appendHTML("<div id='data-model-test1' data-model='name'></div>");
+      bqElement = new Element($("#data-model-test1"));
+      return expect(bqElement.hasAttribute("data-model")).toBeTruthy();
+    });
+    it("must know if an attribute is present", function() {
+      var bqElement;
+      FixtureHelper.appendHTML("<div id='data-model-test2'></div>");
+      bqElement = new Element($("#data-model-test2"));
+      return expect(bqElement.hasAttribute("data-model")).toBeFalsy();
+    });
+    return it("must know an attribute value", function() {
+      var bqElement;
+      FixtureHelper.appendHTML("<div id='data-model-test3' data-model='name'></div>");
+      bqElement = new Element($("#data-model-test3"));
+      return expect(bqElement.getAttributeValue("data-model")).toBe("name");
     });
   });
 

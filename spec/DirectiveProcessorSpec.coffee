@@ -46,6 +46,7 @@ describe "DirectiveProcessor", ->
       constructor: ()->
         counter++
 
+
       @CSS_EXPRESSION = "*[data-test]"
 
     DirectiveProcessor().registerDirective TestDirective

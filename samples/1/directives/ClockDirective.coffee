@@ -9,7 +9,6 @@ class @ClockDirective
       clockElement.html("Current time:#{hours}:#{minutes}:#{seconds}")
     ,500
 
-
   pad: (number, digits=2) ->
     number=number.toString()
     while (number.length<digits)

@@ -30,6 +30,19 @@
       return this._jQueryElement.data(flagName);
     };
 
+    Element.prototype.hasAttribute = function(attributeName) {
+      var attrValue;
+      attrValue = this.getAttributeValue(attributeName);
+      if (attrValue === void 0) {
+        return false;
+      }
+      return true;
+    };
+
+    Element.prototype.getAttributeValue = function(attributeName) {
+      return this._jQueryElement.attr(attributeName);
+    };
+
     Element.prototype.eachDescendant = function(callbackOnDOMElement) {
       return Element._traverse(this._DOMElement, callbackOnDOMElement);
     };

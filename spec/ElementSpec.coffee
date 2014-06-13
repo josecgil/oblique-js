@@ -7,6 +7,7 @@ describe "Element", ->
     done()
 
   afterEach ->
+    $("#fixture").html ""
 
   it "Can traverse a simple DOM", (done) ->
     testHTML="<div>A simple DOM</div>"
@@ -85,3 +86,18 @@ describe "Element", ->
     expect(bqElement.hasFlag FLAG_NAME).toBeTruthy()
     bqElement.unsetFlag FLAG_NAME
     expect(bqElement.hasFlag FLAG_NAME).toBeFalsy()
+
+  it "must know if an attribute is present", () ->
+    FixtureHelper.appendHTML "<div id='data-model-test1' data-model='name'></div>"
+    bqElement=new Element $("#data-model-test1")
+    expect(bqElement.hasAttribute("data-model")).toBeTruthy()
+
+  it "must know if an attribute is present", () ->
+    FixtureHelper.appendHTML "<div id='data-model-test2'></div>"
+    bqElement=new Element $("#data-model-test2")
+    expect(bqElement.hasAttribute("data-model")).toBeFalsy()
+
+  it "must know an attribute value", () ->
+    FixtureHelper.appendHTML "<div id='data-model-test3' data-model='name'></div>"
+    bqElement=new Element $("#data-model-test3")
+    expect(bqElement.getAttributeValue("data-model")).toBe "name"
