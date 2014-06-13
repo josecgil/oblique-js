@@ -53,11 +53,6 @@ createDirectoryIfNotPresent() {
     mkdir -p $1
 }
 
-DEST_DIR="../dist"
-NOT_MINIFIED_COFFEE_DEST_FILE="$DEST_DIR/oblique.coffee"
-NOT_MINIFIED_JS_DEST_FILE="$DEST_DIR/oblique.js"
-MINIFIED_JS_DEST_FILE="$DEST_DIR/oblique.min.js"
-COFFEE_SRC_DIR="../src/oblique"
 
 function createOneBigCoffeeFile() {
     createFileIfNotPresent $NOT_MINIFIED_COFFEE_DEST_FILE
@@ -77,6 +72,13 @@ function ResetDestinationDirectory() {
     deleteFileIfPresent $MINIFIED_JS_DEST_FILE
     createDirectoryIfNotPresent $DEST_DIR
 }
+
+
+DEST_DIR="../dist"
+NOT_MINIFIED_COFFEE_DEST_FILE="$DEST_DIR/oblique.coffee"
+NOT_MINIFIED_JS_DEST_FILE="$DEST_DIR/oblique.js"
+MINIFIED_JS_DEST_FILE="$DEST_DIR/oblique.min.js"
+COFFEE_SRC_DIR="../src"
 
 showInfo
 ResetDestinationDirectory

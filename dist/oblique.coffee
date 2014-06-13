@@ -1,5 +1,5 @@
 
-# ../src/oblique/DirectiveCollection.coffee
+# ../src/DirectiveCollection.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -77,7 +77,7 @@ class DirectiveCollection
     directivesWithCSSExpr
 
 ObliqueNS.DirectiveCollection=DirectiveCollection
-# ../src/oblique/DirectiveProcessor.coffee
+# ../src/DirectiveProcessor.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -163,7 +163,7 @@ class DirectiveProcessor
 
 ObliqueNS.DirectiveProcessor=DirectiveProcessor
 @.Oblique=DirectiveProcessor
-# ../src/oblique/Element.coffee
+# ../src/Element.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -216,7 +216,7 @@ class Element
           callbackOnDOMElement child
 
 ObliqueNS.Element=Element
-# ../src/oblique/Error.coffee
+# ../src/Error.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -226,7 +226,7 @@ class Error
     @name = "Oblique.Error"
 
 ObliqueNS.Error=Error
-# ../src/oblique/NamedParams.coffee
+# ../src/NamedParams.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -245,7 +245,7 @@ class NamedParams
     null
 
 ObliqueNS.NamedParams=NamedParams
-# ../src/oblique/Oblique.coffee
+# ../src/Oblique.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -288,7 +288,7 @@ class Oblique
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
-# ../src/oblique/Param.coffee
+# ../src/Param.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -303,7 +303,7 @@ class Param
     parseInt @value, 10
 
 ObliqueNS.Param=Param
-# ../src/oblique/TimedDOMObserver.coffee
+# ../src/TimedDOMObserver.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
