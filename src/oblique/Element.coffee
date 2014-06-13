@@ -21,6 +21,14 @@ class Element
   hasFlag: (flagName) ->
     @_jQueryElement.data(flagName)
 
+  hasAttribute: (attributeName) ->
+    attrValue=@getAttributeValue attributeName
+    return false if attrValue is undefined
+    true
+
+  getAttributeValue: (attributeName) ->
+    @_jQueryElement.attr attributeName
+
   eachDescendant: (callbackOnDOMElement) ->
     Element._traverse(@_DOMElement, callbackOnDOMElement)
 

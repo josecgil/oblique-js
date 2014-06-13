@@ -1,3 +1,6 @@
+
+# ../src/oblique/DirectiveCollection.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveCollection
@@ -74,6 +77,8 @@ class DirectiveCollection
     directivesWithCSSExpr
 
 ObliqueNS.DirectiveCollection=DirectiveCollection
+# ../src/oblique/DirectiveProcessor.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveProcessor
@@ -123,11 +128,18 @@ class DirectiveProcessor
               directiveHashCode = directive.hashCode
               continue if obElement.hasFlag directiveHashCode
               obElement.setFlag directiveHashCode
-              new directive DOMElement
+              model=@_getModel obElement
+              new directive DOMElement, model
       )
     finally
       @_isApplyingDirectivesInDOM = false
 
+  _getModel : (obElement) ->
+    return undefined if not Oblique().hasModel()
+    model=Oblique().getModel()
+    return model if not obElement.hasAttribute("data-model")
+    dataModelValue=obElement.getAttributeValue("data-model")
+    model[dataModelValue]
 
   getIntervalTimeInMs: ->
     @_timedDOMObserver.getIntervalInMs()
@@ -150,7 +162,8 @@ class DirectiveProcessor
 
 ObliqueNS.DirectiveProcessor=DirectiveProcessor
 @.Oblique=DirectiveProcessor
-class DirectiveTagError
+# ../src/oblique/Element.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Element
@@ -174,6 +187,14 @@ class Element
   hasFlag: (flagName) ->
     @_jQueryElement.data(flagName)
 
+  hasAttribute: (attributeName) ->
+    attrValue=@getAttributeValue attributeName
+    return false if attrValue is undefined
+    true
+
+  getAttributeValue: (attributeName) ->
+    @_jQueryElement.attr attributeName
+
   eachDescendant: (callbackOnDOMElement) ->
     Element._traverse(@_DOMElement, callbackOnDOMElement)
 
@@ -194,6 +215,8 @@ class Element
           callbackOnDOMElement child
 
 ObliqueNS.Element=Element
+# ../src/oblique/Error.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Error
@@ -202,6 +225,9 @@ class Error
     @name = "Oblique.Error"
 
 ObliqueNS.Error=Error
+
+
+# ../src/oblique/NamedParams.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -220,6 +246,51 @@ class NamedParams
     null
 
 ObliqueNS.NamedParams=NamedParams
+# ../src/oblique/Oblique.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class Oblique
+
+  constructor: ->
+    return new Oblique() if @ is window
+
+    return Oblique._singletonInstance  if Oblique._singletonInstance
+    Oblique._singletonInstance = @
+
+    @directiveProcessor=new ObliqueNS.DirectiveProcessor();
+
+  @DEFAULT_INTERVAL_MS = 500
+
+  getIntervalTimeInMs: ->
+    @directiveProcessor.getIntervalTimeInMs()
+
+  setIntervalTimeInMs: (newIntervalTimeInMs) ->
+    @directiveProcessor.setIntervalTimeInMs(newIntervalTimeInMs)
+
+  registerDirective: (directiveConstructorFn) ->
+    @directiveProcessor.registerDirective(directiveConstructorFn)
+
+  destroy: ->
+    @directiveProcessor.destroy()
+    try
+      delete Oblique._singletonInstance
+    catch e
+      Oblique._singletonInstance = undefined
+
+  setModel: (@_model) ->
+
+  getModel: ->
+    @_model
+
+  hasModel: ->
+    return true if @_model
+    false
+
+ObliqueNS.Oblique=Oblique
+@.Oblique=Oblique
+# ../src/oblique/Param.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Param
@@ -233,6 +304,8 @@ class Param
     parseInt @value, 10
 
 ObliqueNS.Param=Param
+# ../src/oblique/TimedDOMObserver.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class TimedDOMObserver

@@ -47,11 +47,18 @@ class DirectiveProcessor
               directiveHashCode = directive.hashCode
               continue if obElement.hasFlag directiveHashCode
               obElement.setFlag directiveHashCode
-              new directive DOMElement
+              model=@_getModel obElement
+              new directive DOMElement, model
       )
     finally
       @_isApplyingDirectivesInDOM = false
 
+  _getModel : (obElement) ->
+    return undefined if not Oblique().hasModel()
+    model=Oblique().getModel()
+    return model if not obElement.hasAttribute("data-model")
+    dataModelValue=obElement.getAttributeValue("data-model")
+    model[dataModelValue]
 
   getIntervalTimeInMs: ->
     @_timedDOMObserver.getIntervalInMs()

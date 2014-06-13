@@ -20,7 +20,7 @@ describe "Oblique", ->
   it "Can't change default interval time to invalid value", ->
     expect(->
       Oblique().setIntervalTimeInMs -1
-    ).toThrow(new ObliqueError("IntervalTime must be a positive number"))
+    ).toThrow(new ObliqueNS.Error("IntervalTime must be a positive number"))
 
   it "If I register a Directive it calls its constructor when expression is in DOM", (done)->
     class TestDirective
@@ -71,12 +71,12 @@ describe "Oblique", ->
     class TestDirective
     expect(->
       Oblique().registerDirective TestDirective
-    ).toThrow(new ObliqueError("directive must has an static CSS_EXPRESSION property"))
+    ).toThrow(new ObliqueNS.Error("directive must has an static CSS_EXPRESSION property"))
 
   it "If I register an object that no is a Directive it throws an Error", ()->
     expect(->
       Oblique().registerDirective {}
-    ).toThrow(new ObliqueError("registerDirective must be called with a Directive 'Constructor/Class'"))
+    ).toThrow(new ObliqueNS.Error("registerDirective must be called with a Directive 'Constructor/Class'"))
 
   it "must execute 1 directive in a 10000 elements DOM in <200ms", (done)->
 
@@ -151,3 +151,57 @@ describe "Oblique", ->
     Oblique().registerDirective(TestDirective4)
     Oblique().registerDirective(TestDirective5)
     Oblique().setIntervalTimeInMs 10
+
+
+  it "must store model", ()->
+    Oblique().setModel "test"
+
+    expect(Oblique().getModel()).toBe "test"
+
+  it "must inform if it has a model", ()->
+    Oblique().setModel "test"
+    expect(Oblique().hasModel()).toBeTruthy()
+
+  it "must inform if it has a model", ()->
+    expect(Oblique().hasModel()).toBeFalsy()
+
+
+  it "If I register a Directive and a model, directive receives model as second param", (done)->
+    modelToTest =
+      name : "name",
+      content : "content"
+
+    class TestDirective
+      constructor: (domElement, model)->
+        expect(model).toBe modelToTest
+        Oblique().destroy()
+        done()
+
+      @CSS_EXPRESSION = "*[data-test]"
+
+    Oblique().setModel modelToTest
+
+    Oblique().registerDirective TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    FixtureHelper.appendHTML "<div data-test></div>"
+
+  it "A directive must receive only the part of the model that data-model especifies", (done)->
+    modelToTest =
+      name : "Carlos",
+      content : "content"
+
+    class TestDirective
+      constructor: (domElement, model)->
+        expect(model).toBe "Carlos"
+        Oblique().destroy()
+        done()
+
+      @CSS_EXPRESSION = "*[data-test]"
+
+    Oblique().setModel modelToTest
+
+    Oblique().registerDirective TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    FixtureHelper.appendHTML "<div data-test data-model='name'></div>"

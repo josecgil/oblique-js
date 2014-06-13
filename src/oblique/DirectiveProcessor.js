@@ -56,7 +56,7 @@
         rootElement = new ObliqueNS.Element(rootDOMElement);
         return rootElement.eachDescendant((function(_this) {
           return function(DOMElement) {
-            var cssExpr, directive, directiveHashCode, obElement, _i, _len, _ref, _results;
+            var cssExpr, directive, directiveHashCode, model, obElement, _i, _len, _ref, _results;
             obElement = new ObliqueNS.Element(DOMElement);
             _ref = _this._directiveCollection.getCSSExpressions();
             _results = [];
@@ -76,7 +76,8 @@
                     continue;
                   }
                   obElement.setFlag(directiveHashCode);
-                  _results1.push(new directive(DOMElement));
+                  model = this._getModel(obElement);
+                  _results1.push(new directive(DOMElement, model));
                 }
                 return _results1;
               }).call(_this));
@@ -87,6 +88,19 @@
       } finally {
         this._isApplyingDirectivesInDOM = false;
       }
+    };
+
+    DirectiveProcessor.prototype._getModel = function(obElement) {
+      var dataModelValue, model;
+      if (!Oblique().hasModel()) {
+        return void 0;
+      }
+      model = Oblique().getModel();
+      if (!obElement.hasAttribute("data-model")) {
+        return model;
+      }
+      dataModelValue = obElement.getAttributeValue("data-model");
+      return model[dataModelValue];
     };
 
     DirectiveProcessor.prototype.getIntervalTimeInMs = function() {
