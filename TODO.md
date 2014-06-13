@@ -11,7 +11,7 @@ Fallback to timeout if not.
 
 * It should use and collaborate (if possible) with other common JS libraries (jQuery,
  jQueryLite, mootools, yui, underscore...) If this libraries are not present,
- or choosed bu user, it should use it's own mechanisms
+ or choosed by the user, it should use it's own mechanisms
 * It must not slow down or add unacceptable memory footprint to the app
 
 
@@ -19,10 +19,8 @@ Possible next steps
 ----------------------
 
 * Change licence to MIT or BSD, to allow propietary software to use this
-* Change project name?
 * ¿Refactor tests & code: better naming, SOLID... or full scale rewrite?
 * Add jasmine specRunner (karma?)
-* Generate & use source maps
 * Reduce / isolate dependency from jQuery
 * Possibility to create adapters for other js libraries (jquery, jquerylite, mootols, prototype...) and our own Default implementation. Current needs:
     * match an element to a CSSExpression
@@ -34,7 +32,7 @@ Possible next steps
 * Rework samples to more beautiful presentation (bootstrap?)
 * Extract real directives from current CMS
 
-* Add http://benchmarkjs.com/ test to ensure changes does'nt degrade performance
+* Add http://benchmarkjs.com/ test to ensure changes doesn't degrade performance
 below a certain threshold
 
 * Multibrowser / OS testing

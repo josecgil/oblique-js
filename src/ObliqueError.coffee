@@ -1,8 +1,8 @@
 @.ObliqueNS=@.ObliqueNS or {}
 
-class Error
+class ObliqueError extends Error
   constructor: (@message) ->
     return new Error(@message) if @ is window
-    @name = "Oblique.Error"
+    @name = "ObliqueNS.ObliqueError"
 
-ObliqueNS.Error=Error
+ObliqueNS.Error=ObliqueError

@@ -53,7 +53,7 @@
       <root url="file://$PROJECT_DIR$/src/DirectiveProcessor.js" />
       <root url="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
       <root url="file://$PROJECT_DIR$/src/TimedDOMObserver.js" />
-      <root url="file://$PROJECT_DIR$/src/Error.js" />
+      <root url="file://$PROJECT_DIR$/src/ObliqueError.js" />
       <root url="file://$PROJECT_DIR$/spec/helpers/Interval.js" />
       <root url="file://$PROJECT_DIR$/spec/DirectiveProcessorSpec.js" />
       <root url="file://$PROJECT_DIR$/samples/1/directives/MenuDirective.js" />
