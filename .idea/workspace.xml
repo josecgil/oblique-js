@@ -38,8 +38,8 @@
       <file leaf-file-name="DirectiveProcessor.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DirectiveProcessor.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5339806" vertical-offset="1078" max-vertical-offset="2134">
-              <caret line="64" column="42" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.9611651" vertical-offset="1122" max-vertical-offset="2134">
+              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -808,7 +808,11 @@
       <created>1402782703260</created>
       <updated>1402782703260</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Test data-models errors&#10;Better Error messages for data-model errors">
+      <created>1402782903649</created>
+      <updated>1402782903649</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1271,8 +1275,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DirectiveProcessor.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5339806" vertical-offset="1078" max-vertical-offset="2134">
-          <caret line="64" column="42" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.9611651" vertical-offset="1122" max-vertical-offset="2134">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
           <folding />
         </state>
       </provider>
