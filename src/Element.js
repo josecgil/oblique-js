@@ -6,9 +6,12 @@
 
   Element = (function() {
     function Element(DOMElement) {
-      this._DOMElement = DOMElement;
       this._jQueryElement = jQuery(DOMElement);
     }
+
+    Element.prototype._getDOMElement = function() {
+      return this._jQueryElement.get(0);
+    };
 
     Element.prototype.isTag = function() {
       return Element._isTag(this._DOMElement);
@@ -44,7 +47,7 @@
     };
 
     Element.prototype.eachDescendant = function(callbackOnDOMElement) {
-      return Element._traverse(this._DOMElement, callbackOnDOMElement);
+      return Element._traverse(this._getDOMElement(), callbackOnDOMElement);
     };
 
     Element._isTag = function(DOMElement) {
@@ -80,6 +83,10 @@
       return _results;
     };
 
+    Element.prototype.getHtml = function() {
+      return this._getDOMElement().outerHTML;
+    };
+
     return Element;
 
   })();
@@ -87,5 +94,3 @@
   ObliqueNS.Element = Element;
 
 }).call(this);
-
-//# sourceMappingURL=Element.map

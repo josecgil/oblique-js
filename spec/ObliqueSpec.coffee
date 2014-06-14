@@ -166,14 +166,14 @@ describe "Oblique", ->
     expect(Oblique().hasModel()).toBeFalsy()
 
 
-  it "If I register a Directive and a model, directive receives model as second param", (done)->
+  it "If I register a Directive and a model, directive doesn't receives model as second param", (done)->
     modelToTest =
       name : "name",
       content : "content"
 
     class TestDirective
       constructor: (domElement, model)->
-        expect(model).toBe modelToTest
+        expect(model).toBeUndefined()
         Oblique().destroy()
         done()
 
@@ -281,3 +281,50 @@ describe "Oblique", ->
     )
 
     FixtureHelper.appendHTML "<div data-test data-model='address.num'></div>"
+
+  it "data-model must throw an exception if property returns more than one object", (done)->
+    modelToTest =
+      name : "Carlos"
+      content : "content"
+      address:
+        street:
+          name: "Gran Via"
+          number: 42
+
+    class TestDirective
+      constructor: ->
+
+      @CSS_EXPRESSION = "*[data-test]"
+
+    Oblique().setModel modelToTest
+
+    Oblique().registerDirective TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    Oblique().onError( (error) ->
+      expect(error.name).toBe "ObliqueNS.Error"
+      done()
+    )
+
+    FixtureHelper.appendHTML "<div data-test data-model='$..name'></div>"
+
+
+  it "data-model must receive all model if value is 'this'", (done)->
+    modelToTest =
+      name : "name",
+      content : "content"
+
+    class TestDirective
+      constructor: (domElement, model)->
+        expect(model).toBe modelToTest
+        Oblique().destroy()
+        done()
+
+      @CSS_EXPRESSION = "*[data-test]"
+
+    Oblique().setModel modelToTest
+
+    Oblique().registerDirective TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    FixtureHelper.appendHTML "<div data-test data-model='this'></div>"

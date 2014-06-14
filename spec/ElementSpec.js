@@ -112,14 +112,18 @@
       bqElement = new Element($("#data-model-test2"));
       return expect(bqElement.hasAttribute("data-model")).toBeFalsy();
     });
-    return it("must know an attribute value", function() {
+    it("must know an attribute value", function() {
       var bqElement;
       FixtureHelper.appendHTML("<div id='data-model-test3' data-model='name'></div>");
       bqElement = new Element($("#data-model-test3"));
       return expect(bqElement.getAttributeValue("data-model")).toBe("name");
     });
+    return it("must returns element html", function() {
+      var bqElement;
+      FixtureHelper.appendHTML('<div id="elementHtml" data-test="element html"></div>');
+      bqElement = new Element($("#elementHtml"));
+      return expect(bqElement.getHtml()).toBe('<div id="elementHtml" data-test="element html"></div>');
+    });
   });
 
 }).call(this);
-
-//# sourceMappingURL=ElementSpec.map

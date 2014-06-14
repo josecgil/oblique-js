@@ -3,8 +3,10 @@
 class Element
 
   constructor:(DOMElement)->
-    @_DOMElement=DOMElement
     @_jQueryElement=jQuery(DOMElement)
+
+  _getDOMElement:->
+    @_jQueryElement.get 0
 
   isTag: ->
     Element._isTag(@_DOMElement)
@@ -30,7 +32,7 @@ class Element
     @_jQueryElement.attr attributeName
 
   eachDescendant: (callbackOnDOMElement) ->
-    Element._traverse(@_DOMElement, callbackOnDOMElement)
+    Element._traverse(@_getDOMElement(), callbackOnDOMElement)
 
   @_isTag: (DOMElement) ->
     DOMElement.nodeType is 1
@@ -47,5 +49,9 @@ class Element
         if Element._isTag child
           elementsToTraverse.push child
           callbackOnDOMElement child
+
+
+  getHtml:->
+    @_getDOMElement().outerHTML
 
 ObliqueNS.Element=Element

@@ -101,3 +101,8 @@ describe "Element", ->
     FixtureHelper.appendHTML "<div id='data-model-test3' data-model='name'></div>"
     bqElement=new Element $("#data-model-test3")
     expect(bqElement.getAttributeValue("data-model")).toBe "name"
+
+  it "must returns element html", () ->
+    FixtureHelper.appendHTML '<div id="elementHtml" data-test="element html"></div>'
+    bqElement=new Element $("#elementHtml")
+    expect(bqElement.getHtml()).toBe '<div id="elementHtml" data-test="element html"></div>'

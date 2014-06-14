@@ -56,14 +56,17 @@ class DirectiveProcessor
   _getModel : (obElement) ->
     return undefined if not Oblique().hasModel()
     model=Oblique().getModel()
-    return model if not obElement.hasAttribute("data-model")
+    return undefined if not obElement.hasAttribute("data-model")
     dataModelExpr=obElement.getAttributeValue("data-model")
+    return model if dataModelExpr is "this"
     results=jsonPath(model, dataModelExpr)
-    @throwError() if not results
-    results[0] if results.length is 1
 
-  throwError: ->
-    Oblique().triggerOnError(new ObliqueNS.Error("data-model doesn't match any data"))
+    @_throwError(obElement.getHtml() + ": data-model doesn't match any data in model") if not results
+    @_throwError(obElement.getHtml() + ": data-model match many data in model") if results.length > 1
+    results[0]
+
+  _throwError: (errorMessage) ->
+    Oblique().triggerOnError(new ObliqueNS.Error(errorMessage))
 
   getIntervalTimeInMs: ->
     @_timedDOMObserver.getIntervalInMs()

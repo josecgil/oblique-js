@@ -97,20 +97,24 @@
       }
       model = Oblique().getModel();
       if (!obElement.hasAttribute("data-model")) {
-        return model;
+        return void 0;
       }
       dataModelExpr = obElement.getAttributeValue("data-model");
+      if (dataModelExpr === "this") {
+        return model;
+      }
       results = jsonPath(model, dataModelExpr);
       if (!results) {
-        this.throwError();
+        this._throwError(obElement.getHtml() + ": data-model doesn't match any data in model");
       }
-      if (results.length === 1) {
-        return results[0];
+      if (results.length > 1) {
+        this._throwError(obElement.getHtml() + ": data-model match many data in model");
       }
+      return results[0];
     };
 
-    DirectiveProcessor.prototype.throwError = function() {
-      return Oblique().triggerOnError(new ObliqueNS.Error("data-model doesn't match any data"));
+    DirectiveProcessor.prototype._throwError = function(errorMessage) {
+      return Oblique().triggerOnError(new ObliqueNS.Error(errorMessage));
     };
 
     DirectiveProcessor.prototype.getIntervalTimeInMs = function() {
