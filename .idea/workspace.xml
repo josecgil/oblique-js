@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DirectiveProcessor.coffee" afterPath="$PROJECT_DIR$/src/DirectiveProcessor.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DirectiveProcessor.js" afterPath="$PROJECT_DIR$/src/DirectiveProcessor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Element.coffee" afterPath="$PROJECT_DIR$/src/Element.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Element.js" afterPath="$PROJECT_DIR$/src/Element.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ElementSpec.coffee" afterPath="$PROJECT_DIR$/spec/ElementSpec.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ElementSpec.js" afterPath="$PROJECT_DIR$/spec/ElementSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -811,7 +804,11 @@
       <created>1402776825295</created>
       <updated>1402776825295</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Test data-models errors&#10;Better Error messages for data-model errors">
+      <created>1402782703260</created>
+      <updated>1402782703260</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -855,7 +852,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Refactor bundle &amp; minify proccess to use functions" />
     <MESSAGE value="Refactor bundle &amp; minify proccess to better naming &amp; help info" />
     <MESSAGE value="Add FixtureHelper to repo&#10;More ideas in TODO" />
     <MESSAGE value="helpers dir to lowercase" />
@@ -880,7 +876,8 @@
     <MESSAGE value="Move src out of Oblique dir" />
     <MESSAGE value="Change in ObliqueError to work properly in safari" />
     <MESSAGE value="Throws error if data-model contains not valid selection" />
-    <option name="LAST_COMMIT_MESSAGE" value="Throws error if data-model contains not valid selection" />
+    <MESSAGE value="Test data-models errors&#10;Better Error messages for data-model errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test data-models errors&#10;Better Error messages for data-model errors" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
