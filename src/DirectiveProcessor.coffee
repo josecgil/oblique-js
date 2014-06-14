@@ -59,7 +59,11 @@ class DirectiveProcessor
     return model if not obElement.hasAttribute("data-model")
     dataModelExpr=obElement.getAttributeValue("data-model")
     results=jsonPath(model, dataModelExpr)
+    @throwError() if not results
     results[0] if results.length is 1
+
+  throwError: ->
+    Oblique().triggerOnError(new ObliqueNS.Error("data-model doesn't match any data"))
 
   getIntervalTimeInMs: ->
     @_timedDOMObserver.getIntervalInMs()
@@ -79,6 +83,7 @@ class DirectiveProcessor
       delete DirectiveProcessor._singletonInstance
     catch e
       DirectiveProcessor._singletonInstance = undefined
+
 
 ObliqueNS.DirectiveProcessor=DirectiveProcessor
 @.Oblique=DirectiveProcessor

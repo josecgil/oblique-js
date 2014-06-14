@@ -254,3 +254,30 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
 
     FixtureHelper.appendHTML "<div data-test data-model='address.street'></div>"
+
+
+  it "data-model must throw an exception if property doesn't exists", (done)->
+    modelToTest =
+      name : "Carlos"
+      content : "content"
+      address:
+        street:
+          name: "Gran Via"
+          number: 42
+
+    class TestDirective
+      constructor: ->
+
+      @CSS_EXPRESSION = "*[data-test]"
+
+    Oblique().setModel modelToTest
+
+    Oblique().registerDirective TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    Oblique().onError( (error) ->
+      expect(error.name).toBe "ObliqueNS.Error"
+      done()
+    )
+
+    FixtureHelper.appendHTML "<div data-test data-model='address.num'></div>"

@@ -14,7 +14,7 @@
       if (this === window) {
         return new Error(this.message);
       }
-      this.name = "ObliqueNS.ObliqueError";
+      this.name = "ObliqueNS.Error";
     }
 
     return ObliqueError;

@@ -37,5 +37,11 @@ class Oblique
     return true if @_model
     false
 
+  onError:(@_onErrorCallback)->
+
+  triggerOnError:(error)->
+    @_onErrorCallback(error)
+    throw error
+
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique

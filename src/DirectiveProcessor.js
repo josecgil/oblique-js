@@ -101,9 +101,16 @@
       }
       dataModelExpr = obElement.getAttributeValue("data-model");
       results = jsonPath(model, dataModelExpr);
+      if (!results) {
+        this.throwError();
+      }
       if (results.length === 1) {
         return results[0];
       }
+    };
+
+    DirectiveProcessor.prototype.throwError = function() {
+      return Oblique().triggerOnError(new ObliqueNS.Error("data-model doesn't match any data"));
     };
 
     DirectiveProcessor.prototype.getIntervalTimeInMs = function() {
@@ -143,5 +150,3 @@
   this.Oblique = DirectiveProcessor;
 
 }).call(this);
-
-//# sourceMappingURL=DirectiveProcessor.map
