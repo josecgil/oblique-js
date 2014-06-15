@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DirectiveProcessor.coffee" afterPath="$PROJECT_DIR$/src/DirectiveProcessor.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DirectiveProcessor.js" afterPath="$PROJECT_DIR$/src/DirectiveProcessor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -38,8 +40,8 @@
       <file leaf-file-name="DirectiveProcessor.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DirectiveProcessor.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9611651" vertical-offset="1122" max-vertical-offset="2134">
-              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.17799352" vertical-offset="1166" max-vertical-offset="2134">
+              <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -812,7 +814,11 @@
       <created>1402782903649</created>
       <updated>1402782903649</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="Test data-models errors&#10;Better Error messages for data-model errors">
+      <created>1402783150987</created>
+      <updated>1402783150987</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1275,8 +1281,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DirectiveProcessor.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9611651" vertical-offset="1122" max-vertical-offset="2134">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.17799352" vertical-offset="1166" max-vertical-offset="2134">
+          <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
           <folding />
         </state>
       </provider>

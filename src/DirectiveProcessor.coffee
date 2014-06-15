@@ -54,9 +54,9 @@ class DirectiveProcessor
       @_isApplyingDirectivesInDOM = false
 
   _getModel : (obElement) ->
-    return undefined if not Oblique().hasModel()
-    model=Oblique().getModel()
     return undefined if not obElement.hasAttribute("data-model")
+    model=Oblique().getModel()
+    return undefined if not model
     dataModelExpr=obElement.getAttributeValue("data-model")
     return model if dataModelExpr is "this"
     results=jsonPath(model, dataModelExpr)
