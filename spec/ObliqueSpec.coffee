@@ -138,7 +138,6 @@ describe "Oblique", ->
         counter++
         if (counter is (DOM_ELEMENTS_COUNT*5))
           interval.stop()
-          console.log interval.timeInMs
           expect(interval.timeInMs).toBeLessThan 400
           done()
 
@@ -281,33 +280,6 @@ describe "Oblique", ->
     )
 
     FixtureHelper.appendHTML "<div data-test data-model='address.num'></div>"
-
-  it "data-model must throw an exception if property returns more than one object", (done)->
-    modelToTest =
-      name : "Carlos"
-      content : "content"
-      address:
-        street:
-          name: "Gran Via"
-          number: 42
-
-    class TestDirective
-      constructor: ->
-
-      @CSS_EXPRESSION = "*[data-test]"
-
-    Oblique().setModel modelToTest
-
-    Oblique().registerDirective TestDirective
-    Oblique().setIntervalTimeInMs 10
-
-    Oblique().onError( (error) ->
-      expect(error.name).toBe "ObliqueNS.Error"
-      done()
-    )
-
-    FixtureHelper.appendHTML "<div data-test data-model='$..name'></div>"
-
 
   it "data-model must receive all model if value is 'this'", (done)->
     modelToTest =

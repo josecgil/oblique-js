@@ -91,7 +91,7 @@
     };
 
     DirectiveProcessor.prototype._getModel = function(obElement) {
-      var dataModelExpr, model, results;
+      var dataModelExpr, model;
       if (!obElement.hasAttribute("data-model")) {
         return void 0;
       }
@@ -103,14 +103,18 @@
       if (dataModelExpr === "this") {
         return model;
       }
-      results = jsonPath(model, dataModelExpr);
-      if (!results) {
-        this._throwError(obElement.getHtml() + ": data-model doesn't match any data in model");
+      try {
+        return new ObliqueNS.JSON(model).getPathValue(dataModelExpr);
+      } catch (_error) {
+        return this._throwError(obElement.getHtml() + ": data-model doesn't match any data in model");
       }
-      if (results.length > 1) {
-        this._throwError(obElement.getHtml() + ": data-model match many data in model");
-      }
-      return results[0];
+
+      /*
+      results=jsonPath(model, dataModelExpr)
+      @_throwError(obElement.getHtml() + ": data-model doesn't match any data in model") if not results
+      @_throwError(obElement.getHtml() + ": data-model match many data in model") if results.length > 1
+      results[0]
+       */
     };
 
     DirectiveProcessor.prototype._throwError = function(errorMessage) {

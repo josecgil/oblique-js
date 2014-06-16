@@ -9,6 +9,7 @@ class Oblique
     Oblique._singletonInstance = @
 
     @directiveProcessor=new ObliqueNS.DirectiveProcessor();
+    @_onErrorCallback=->
 
   @DEFAULT_INTERVAL_MS = 500
 
