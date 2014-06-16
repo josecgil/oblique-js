@@ -135,12 +135,26 @@ class DirectiveProcessor
       @_isApplyingDirectivesInDOM = false
 
   _getModel : (obElement) ->
-    return undefined if not Oblique().hasModel()
+    return undefined if not obElement.hasAttribute("data-model")
     model=Oblique().getModel()
-    return model if not obElement.hasAttribute("data-model")
+    return undefined if not model
     dataModelExpr=obElement.getAttributeValue("data-model")
+    return model if dataModelExpr is "this"
+
+    try
+      return new ObliqueNS.JSON(model).getPathValue(dataModelExpr)
+    catch
+      @_throwError(obElement.getHtml() + ": data-model doesn't match any data in model")
+
+    ###
     results=jsonPath(model, dataModelExpr)
-    results[0] if results.length is 1
+    @_throwError(obElement.getHtml() + ": data-model doesn't match any data in model") if not results
+    @_throwError(obElement.getHtml() + ": data-model match many data in model") if results.length > 1
+    results[0]
+    ###
+
+  _throwError: (errorMessage) ->
+    Oblique().triggerOnError(new ObliqueNS.Error(errorMessage))
 
   getIntervalTimeInMs: ->
     @_timedDOMObserver.getIntervalInMs()
@@ -161,6 +175,7 @@ class DirectiveProcessor
     catch e
       DirectiveProcessor._singletonInstance = undefined
 
+
 ObliqueNS.DirectiveProcessor=DirectiveProcessor
 @.Oblique=DirectiveProcessor
 # ../src/Element.coffee
@@ -170,8 +185,10 @@ ObliqueNS.DirectiveProcessor=DirectiveProcessor
 class Element
 
   constructor:(DOMElement)->
-    @_DOMElement=DOMElement
     @_jQueryElement=jQuery(DOMElement)
+
+  _getDOMElement:->
+    @_jQueryElement.get 0
 
   isTag: ->
     Element._isTag(@_DOMElement)
@@ -197,7 +214,7 @@ class Element
     @_jQueryElement.attr attributeName
 
   eachDescendant: (callbackOnDOMElement) ->
-    Element._traverse(@_DOMElement, callbackOnDOMElement)
+    Element._traverse(@_getDOMElement(), callbackOnDOMElement)
 
   @_isTag: (DOMElement) ->
     DOMElement.nodeType is 1
@@ -215,6 +232,10 @@ class Element
           elementsToTraverse.push child
           callbackOnDOMElement child
 
+
+  getHtml:->
+    @_getDOMElement().outerHTML
+
 ObliqueNS.Element=Element
 # ../src/Error.coffee
 
@@ -226,6 +247,24 @@ class Error
     @name = "Oblique.Error"
 
 ObliqueNS.Error=Error
+# ../src/JSON.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class JSON
+
+  constructor:(@value)->
+
+  getPathValue:(path)->
+    parts=path.split "."
+    value=@value
+    for part in parts
+      throw new ObliqueNS.Error("'"+path+"' not found in JSON Object") if not value.hasOwnProperty(part)
+      value=value[part]
+    value
+
+ObliqueNS.JSON=JSON
+
 # ../src/NamedParams.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -258,6 +297,7 @@ class Oblique
     Oblique._singletonInstance = @
 
     @directiveProcessor=new ObliqueNS.DirectiveProcessor();
+    @_onErrorCallback=->
 
   @DEFAULT_INTERVAL_MS = 500
 
@@ -286,8 +326,24 @@ class Oblique
     return true if @_model
     false
 
+  onError:(@_onErrorCallback)->
+
+  triggerOnError:(error)->
+    @_onErrorCallback(error)
+    throw error
+
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
+# ../src/ObliqueError.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class ObliqueError extends Error
+  constructor: (@message) ->
+    return new Error(@message) if @ is window
+    @name = "ObliqueNS.Error"
+
+ObliqueNS.Error=ObliqueError
 # ../src/Param.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
