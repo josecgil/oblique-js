@@ -48,7 +48,7 @@ describe "JSON", ->
     expect(new JSON(json).getPathValue("address.number")).toBeUndefined()
 
 
-  it "must perform", ()->
+  it "must perform better than JSONPath", ()->
     json=
       name: "Carlos"
       content: "content"
@@ -75,3 +75,23 @@ describe "JSON", ->
     console.log "ObliqueJSON #{jsonPathObliqueTime}ms vs JSONPath #{jsonPathTime}ms"
 
     expect(jsonPathObliqueTime).toBeLessThan jsonPathTime
+
+  it "must retrieve array correctly", ()->
+    json =
+        title: "example glossary"
+        id: "SGML"
+        sortAs: "SGML"
+        term: "Standard Generalized Markup Language"
+        acronym: "SGML"
+        definition:
+          para: "A meta-markup language, used to create markup languages such as DocBook."
+          seeAlso: [
+            "GML"
+            "XML"
+          ]
+        see: "markup"
+    extractedJSON = new JSON(json).getPathValue("definition.seeAlso")
+    expect(extractedJSON[0]).toBe "GML"
+    expect(extractedJSON[1]).toBe "XML"
+
+
