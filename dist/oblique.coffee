@@ -135,10 +135,10 @@ class DirectiveProcessor
       @_isApplyingDirectivesInDOM = false
 
   _getModel : (obElement) ->
-    return undefined if not obElement.hasAttribute("data-model")
     model=Oblique().getModel()
     return undefined if not model
     dataModelExpr=obElement.getAttributeValue("data-model")
+    return undefined if dataModelExpr is undefined
     return model if dataModelExpr is "this"
 
     try
@@ -359,6 +359,21 @@ class Param
     parseInt @value, 10
 
 ObliqueNS.Param=Param
+# ../src/Template.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class Template
+
+  constructor:()->
+
+  setContent:(@templateContent) ->
+    @compiledTemplate = Handlebars.compile(@templateContent)
+
+  parse:(model) ->
+    @compiledTemplate(model)
+
+ObliqueNS.Template=Template
 # ../src/TimedDOMObserver.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
