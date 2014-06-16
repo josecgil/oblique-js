@@ -112,6 +112,12 @@
       bqElement = new Element($("#data-model-test2"));
       return expect(bqElement.hasAttribute("data-model")).toBeFalsy();
     });
+    it("must return undefined if an attribute isn't present", function() {
+      var bqElement;
+      FixtureHelper.appendHTML("<div id='data-model-test2'></div>");
+      bqElement = new Element($("#data-model-test2"));
+      return expect(bqElement.getAttributeValue("data-model")).toBeUndefined();
+    });
     it("must know an attribute value", function() {
       var bqElement;
       FixtureHelper.appendHTML("<div id='data-model-test3' data-model='name'></div>");

@@ -198,6 +198,7 @@ describe "DirectiveProcessor", ->
         counter++
         if (counter is (DOM_ELEMENTS_COUNT*5))
           interval.stop()
+          console.log "Processed 5 directives in a 10000 elements DOM in #{interval.timeInMs}ms"
           expect(interval.timeInMs).toBeLessThan 400
           done()
 

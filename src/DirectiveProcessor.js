@@ -92,14 +92,14 @@
 
     DirectiveProcessor.prototype._getModel = function(obElement) {
       var dataModelExpr, model;
-      if (!obElement.hasAttribute("data-model")) {
-        return void 0;
-      }
       model = Oblique().getModel();
       if (!model) {
         return void 0;
       }
       dataModelExpr = obElement.getAttributeValue("data-model");
+      if (dataModelExpr === void 0) {
+        return void 0;
+      }
       if (dataModelExpr === "this") {
         return model;
       }

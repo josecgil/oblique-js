@@ -97,6 +97,11 @@ describe "Element", ->
     bqElement=new Element $("#data-model-test2")
     expect(bqElement.hasAttribute("data-model")).toBeFalsy()
 
+  it "must return undefined if an attribute isn't present", () ->
+    FixtureHelper.appendHTML "<div id='data-model-test2'></div>"
+    bqElement=new Element $("#data-model-test2")
+    expect(bqElement.getAttributeValue("data-model")).toBeUndefined()
+
   it "must know an attribute value", () ->
     FixtureHelper.appendHTML "<div id='data-model-test3' data-model='name'></div>"
     bqElement=new Element $("#data-model-test3")
