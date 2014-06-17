@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Demo MVD</title>
+    <script type="text/javascript" src="../../lib/jquery-2.1.0/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="../../dist/oblique.js"></script>
+
+    <script>
+        var model={
+            colors:[
+            {
+                name: "rojo",
+                sizes: ["M","L","XL"]
+            } ,
+            {
+              name: "green",
+              sizes: ["M","L","XL","XXL"]
+            },
+            {
+                name: "blue",
+                sizes: ["S","M"]
+            }
+          ]
+        };
+        Oblique().setModel(model);
+
+        var ColorDirective = function (element, colors) {
+            console.log("Hola!")
+        };
+
+        ColorDirective.CSS_EXPRESSION = "*[data-colors]";
+
+        Oblique().registerDirective(ColorDirective);
+
+    </script>
+</head>
+<body>
+
+    <section data-colors data-model="colors">
+        <button style="color:red">Rojo</button>
+        <button style="color:green">Verde</button>
+        <button style="color:blue">Azul</button>
+    </section>
+
+</body>
+</html>

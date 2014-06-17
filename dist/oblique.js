@@ -222,13 +222,6 @@
       } catch (_error) {
         return this._throwError(obElement.getHtml() + ": data-model doesn't match any data in model");
       }
-
-      /*
-      results=jsonPath(model, dataModelExpr)
-      @_throwError(obElement.getHtml() + ": data-model doesn't match any data in model") if not results
-      @_throwError(obElement.getHtml() + ": data-model match many data in model") if results.length > 1
-      results[0]
-       */
     };
 
     DirectiveProcessor.prototype._throwError = function(errorMessage) {
@@ -457,6 +450,7 @@
       }
       Oblique._singletonInstance = this;
       this.directiveProcessor = new ObliqueNS.DirectiveProcessor();
+      this.templateFactory = new ObliqueNS.TemplateFactory();
       this._onErrorCallback = function() {};
     }
 
@@ -498,6 +492,12 @@
         return true;
       }
       return false;
+    };
+
+    Oblique.prototype.renderHtml = function(url, model) {
+      var template;
+      template = this.templateFactory.createFromUrl(url);
+      return template.renderHTML(model);
     };
 
     Oblique.prototype.onError = function(_onErrorCallback) {
@@ -591,6 +591,34 @@
       return this.createFromString($(element).html());
     };
 
+    TemplateFactory.prototype.createFromUrl = function(url) {
+      var errorMessage, errorStatusCode, template, templateContent;
+      templateContent = void 0;
+      errorStatusCode = 200;
+      errorMessage = void 0;
+      jQuery.ajax({
+        url: url,
+        success: (function(_this) {
+          return function(data) {
+            return templateContent = data;
+          };
+        })(this),
+        error: function(e) {
+          errorStatusCode = e.status;
+          return errorMessage = e.statusCode;
+        },
+        async: false
+      });
+      switch (errorStatusCode) {
+        case 404:
+          throw new ObliqueNS.Error("template '" + url + "' not found");
+          break;
+        case !200:
+          throw new ObliqueNS.Error(errorMessage);
+      }
+      return template = this.createFromString(templateContent);
+    };
+
     return TemplateFactory;
 
   })();
@@ -636,3 +664,5 @@
   ObliqueNS.TimedDOMObserver = TimedDOMObserver;
 
 }).call(this);
+
+//# sourceMappingURL=oblique.map

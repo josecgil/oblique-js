@@ -77,6 +77,8 @@ class DirectiveCollection
     directivesWithCSSExpr
 
 ObliqueNS.DirectiveCollection=DirectiveCollection
+
+
 # ../src/DirectiveProcessor.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -146,13 +148,6 @@ class DirectiveProcessor
     catch
       @_throwError(obElement.getHtml() + ": data-model doesn't match any data in model")
 
-    ###
-    results=jsonPath(model, dataModelExpr)
-    @_throwError(obElement.getHtml() + ": data-model doesn't match any data in model") if not results
-    @_throwError(obElement.getHtml() + ": data-model match many data in model") if results.length > 1
-    results[0]
-    ###
-
   _throwError: (errorMessage) ->
     Oblique().triggerOnError(new ObliqueNS.Error(errorMessage))
 
@@ -178,6 +173,7 @@ class DirectiveProcessor
 
 ObliqueNS.DirectiveProcessor=DirectiveProcessor
 @.Oblique=DirectiveProcessor
+
 # ../src/Element.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -237,6 +233,7 @@ class Element
     @_getDOMElement().outerHTML
 
 ObliqueNS.Element=Element
+
 # ../src/Error.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -247,6 +244,8 @@ class Error
     @name = "Oblique.Error"
 
 ObliqueNS.Error=Error
+
+
 # ../src/JSON.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -264,6 +263,8 @@ class JSON
     value
 
 ObliqueNS.JSON=JSON
+
+
 
 # ../src/NamedParams.coffee
 
@@ -284,6 +285,8 @@ class NamedParams
     null
 
 ObliqueNS.NamedParams=NamedParams
+
+
 # ../src/Oblique.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -297,6 +300,7 @@ class Oblique
     Oblique._singletonInstance = @
 
     @directiveProcessor=new ObliqueNS.DirectiveProcessor();
+    @templateFactory=new ObliqueNS.TemplateFactory()
     @_onErrorCallback=->
 
   @DEFAULT_INTERVAL_MS = 500
@@ -326,6 +330,10 @@ class Oblique
     return true if @_model
     false
 
+  renderHtml: (url, model) ->
+    template=@templateFactory.createFromUrl url
+    template.renderHTML model
+
   onError:(@_onErrorCallback)->
 
   triggerOnError:(error)->
@@ -334,6 +342,8 @@ class Oblique
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
+
+
 # ../src/ObliqueError.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -344,6 +354,8 @@ class ObliqueError extends Error
     @name = "ObliqueNS.Error"
 
 ObliqueNS.Error=ObliqueError
+
+
 # ../src/Param.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -359,6 +371,8 @@ class Param
     parseInt @value, 10
 
 ObliqueNS.Param=Param
+
+
 # ../src/Template.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -372,6 +386,8 @@ class Template
     @compiledTemplate(model)
 
 ObliqueNS.Template=Template
+
+
 # ../src/TemplateFactory.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -386,7 +402,27 @@ class TemplateFactory
   createFromDOMElement:(element) ->
     @createFromString $(element).html()
 
+  createFromUrl:(url) ->
+    templateContent=undefined
+    errorStatusCode=200
+    errorMessage=undefined
+    jQuery.ajax(
+      url: url
+      success: (data) =>
+        templateContent=data
+      error: (e) ->
+        errorStatusCode=e.status
+        errorMessage=e.statusCode
+      async: false
+    )
+    switch errorStatusCode
+      when 404 then throw new ObliqueNS.Error("template '#{url}' not found")
+      when not 200 then throw new ObliqueNS.Error(errorMessage)
+    template=@createFromString(templateContent)
+
 ObliqueNS.TemplateFactory=TemplateFactory
+
+
 # ../src/TimedDOMObserver.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -413,3 +449,4 @@ class TimedDOMObserver
     @_intervalId=undefined
 
 ObliqueNS.TimedDOMObserver=TimedDOMObserver
+

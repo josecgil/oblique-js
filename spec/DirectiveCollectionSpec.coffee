@@ -104,7 +104,7 @@ describe "DirectiveCollection", ->
       directivesCollection.add TestDirective
     ).toThrow(new ObError("directive must has an static CSS_EXPRESSION property"))
 
-  it "If I add an object that no is a Directive it throws an Error", ()->
+  it "If I add an object that not is a Directive it throws an Error", ()->
     directivesCollection=new DirectiveCollection()
     expect(->
       directivesCollection.add {}
