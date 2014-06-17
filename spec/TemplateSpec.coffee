@@ -6,23 +6,20 @@ describe "Template", ->
 
   afterEach ->
 
-  it "must parse a simple template with a simple model", ->
-    template=new Template()
-    template.setContent "Hello {{this}}!"
+  it "must renderHTML a simple template with a simple model", ->
+    template=new Template("Hello {{this}}!")
     model="world"
-    expect(template.parse model).toBe "Hello world!"
+    expect(template.renderHTML model).toBe "Hello world!"
 
-  it "must parse a simple template with a normal model", ->
-    template=new Template()
-    template.setContent "{{greeting}} {{person}}!"
+  it "must renderHTML a simple template with a normal model", ->
+    template=new Template("{{greeting}} {{person}}!")
     model=
       greeting: "Hello"
       person: "world"
 
-    expect(template.parse model).toBe "Hello world!"
+    expect(template.renderHTML model).toBe "Hello world!"
 
-  it "must parse a template with loop", ->
-    template=new Template()
+  it "must renderHTML a template with loop", ->
 
     templateContent="""
       <p>{{count}} comentarios</p>
@@ -30,6 +27,7 @@ describe "Template", ->
         {{#comments}}<li><a href="/posts/comments/{{id}}">{{title}}</a></li>{{/comments}}
       </ul>
     """
+    template=new Template(templateContent)
 
     html="""
       <p>2 comentarios</p>
@@ -38,7 +36,6 @@ describe "Template", ->
       </ul>
     """
 
-    template.setContent(templateContent)
     model= {
       count: "2",
       comments: [
@@ -53,4 +50,4 @@ describe "Template", ->
       ]
     }
 
-    expect(template.parse(model)).toBe html
+    expect(template.renderHTML(model)).toBe html

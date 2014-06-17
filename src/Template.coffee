@@ -2,12 +2,10 @@
 
 class Template
 
-  constructor:()->
+  constructor:(templateContent)->
+    @compiledTemplate = Handlebars.compile(templateContent)
 
-  setContent:(@templateContent) ->
-    @compiledTemplate = Handlebars.compile(@templateContent)
-
-  parse:(model) ->
+  renderHTML:(model) ->
     @compiledTemplate(model)
 
 ObliqueNS.Template=Template

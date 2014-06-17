@@ -365,15 +365,28 @@ ObliqueNS.Param=Param
 
 class Template
 
-  constructor:()->
+  constructor:(templateContent)->
+    @compiledTemplate = Handlebars.compile(templateContent)
 
-  setContent:(@templateContent) ->
-    @compiledTemplate = Handlebars.compile(@templateContent)
-
-  parse:(model) ->
+  renderHTML:(model) ->
     @compiledTemplate(model)
 
 ObliqueNS.Template=Template
+# ../src/TemplateFactory.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class TemplateFactory
+
+  Template=ObliqueNS.Template
+
+  createFromString:(templateStr)->
+    new Template templateStr
+
+  createFromDOMElement:(element) ->
+    @createFromString $(element).html()
+
+ObliqueNS.TemplateFactory=TemplateFactory
 # ../src/TimedDOMObserver.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
