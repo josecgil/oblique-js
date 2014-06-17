@@ -27,7 +27,6 @@ describe "Template", ->
         {{#comments}}<li><a href="/posts/comments/{{id}}">{{title}}</a></li>{{/comments}}
       </ul>
     """
-    template=new Template(templateContent)
 
     html="""
       <p>2 comentarios</p>
@@ -50,4 +49,5 @@ describe "Template", ->
       ]
     }
 
+    template=new Template(templateContent)
     expect(template.renderHTML(model)).toBe html

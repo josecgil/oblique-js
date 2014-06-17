@@ -9,6 +9,7 @@ class Oblique
     Oblique._singletonInstance = @
 
     @directiveProcessor=new ObliqueNS.DirectiveProcessor();
+    @templateFactory=new ObliqueNS.TemplateFactory()
     @_onErrorCallback=->
 
   @DEFAULT_INTERVAL_MS = 500
@@ -38,6 +39,10 @@ class Oblique
     return true if @_model
     false
 
+  renderHtml: (url, model) ->
+    template=@templateFactory.createFromUrl url
+    template.renderHTML model
+
   onError:(@_onErrorCallback)->
 
   triggerOnError:(error)->
@@ -46,3 +51,4 @@ class Oblique
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
+

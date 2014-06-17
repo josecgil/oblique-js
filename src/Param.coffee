@@ -11,3 +11,4 @@ class Param
     parseInt @value, 10
 
 ObliqueNS.Param=Param
+

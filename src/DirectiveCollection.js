@@ -115,5 +115,3 @@
   ObliqueNS.DirectiveCollection = DirectiveCollection;
 
 }).call(this);
-
-//# sourceMappingURL=DirectiveCollection.map

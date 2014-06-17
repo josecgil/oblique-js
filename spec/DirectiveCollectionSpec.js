@@ -147,5 +147,3 @@
   });
 
 }).call(this);
-
-//# sourceMappingURL=DirectiveCollectionSpec.map

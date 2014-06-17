@@ -38,3 +38,4 @@ describe "NamedParams", ->
     namedParams=new NamedParams "width=1;height=2", ";", "="
     expect(namedParams.getParam("width").valueAsInt()).toBe 1
     expect(namedParams.getParam("height").valueAsInt()).toBe 2
+

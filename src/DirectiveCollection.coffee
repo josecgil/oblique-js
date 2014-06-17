@@ -74,3 +74,4 @@ class DirectiveCollection
     directivesWithCSSExpr
 
 ObliqueNS.DirectiveCollection=DirectiveCollection
+

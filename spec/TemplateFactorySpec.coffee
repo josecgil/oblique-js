@@ -20,3 +20,20 @@ describe "TemplateFactory", ->
     templateFactory=new TemplateFactory()
     template=templateFactory.createFromDOMElement $("#hello")
     expect(template.renderHTML("world")).toBe "Hello world!"
+
+  it "must create a template from Url", ->
+    model=
+      title: "titulo"
+      body: "cuerpo"
+
+    html="<h1>titulo</h1><div>cuerpo</div>"
+
+    templateFactory=new TemplateFactory()
+    template=templateFactory.createFromUrl "/oblique-js/spec/templates/test_ok.hbs"
+    expect(template.renderHTML(model)).toBe html
+
+  it "must throw an error if template is not found", ->
+    expect(->
+      new TemplateFactory().createFromUrl "/patata.hbs"
+    ).toThrow(new ObliqueNS.Error("template '/patata.hbs' not found"))
+

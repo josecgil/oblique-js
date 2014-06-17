@@ -22,3 +22,4 @@ class TimedDOMObserver
     @_intervalId=undefined
 
 ObliqueNS.TimedDOMObserver=TimedDOMObserver
+

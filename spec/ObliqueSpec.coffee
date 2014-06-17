@@ -183,7 +183,7 @@ describe "Oblique", ->
     Oblique().registerDirective TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    FixtureHelper.appendHTML "<div data-test></div>"
+    FixtureHelper.appendHTML "<div data-test ></div>"
 
   it "A directive must receive only the part of the model that data-model specifies", (done)->
     modelToTest =
@@ -300,3 +300,22 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
 
     FixtureHelper.appendHTML "<div data-test data-model='this'></div>"
+
+  it "must render template", ()->
+    modelToTest =
+      title : "titulo",
+      body : "cuerpo"
+
+    expectedHtml="<h1>titulo</h1><div>cuerpo</div>"
+
+    currentHtml=Oblique().renderHtml "/oblique-js/spec/templates/test_ok.hbs", modelToTest
+    expect(currentHtml).toBe expectedHtml
+
+  it "must throw an error if template is not found", ->
+    modelToTest =
+      title : "titulo",
+      body : "cuerpo"
+
+    expect(->
+      Oblique().renderHtml "/patata.hbs", modelToTest
+    ).toThrow(new ObliqueNS.Error("template '/patata.hbs' not found"))
