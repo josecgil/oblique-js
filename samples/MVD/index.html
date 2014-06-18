@@ -4,58 +4,23 @@
     <meta charset="UTF-8">
     <title>Demo MVD</title>
     <script type="text/javascript" src="../../lib/jquery-2.1.0/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="../../lib/handlebars-1.3.0/handlebars-v1.3.0.js"></script>
     <script type="text/javascript" src="../../dist/oblique.js"></script>
 
-    <script>
-        var model={
-            colors:[
-            {
-                name: "Red",
-                sizes: ["M","L","XL"]
-            } ,
-            {
-              name: "Green",
-              sizes: ["M","L","XL","XXL"]
-            },
-            {
-                name: "Blue",
-                sizes: ["S","M"]
-            }
-          ]
-        };
-        Oblique().setModel(model);
+    <script type="text/javascript" src="InjectModel.js"></script>
+    <script type="text/javascript" src="ColorDirective.js"></script>
 
-        var ColorDirective = function (element, colors) {
-            var jqElement=$(element);
-            jqElement.click(function(event){
-                event.preventDefault();
-                var colorName=jqElement.html();
-                var sizes=findSizes(colorName, colors);
-                Oblique.renderHtml("/samples/MVD/sizes.hbs",sizes);
-            });
-        };
-
-        ColorDirective.prototype.findSizes=function(colorName, colors) {
-              for(var i=0;i<colors.length;i++) {
-                  var color=colors[i];
-                  if (color.name==colorName) {
-                      return color.sizes;
-                  }
-              }
-        };
-
-        ColorDirective.CSS_EXPRESSION = "*[data-colors]";
-
-        Oblique().registerDirective(ColorDirective);
-
-    </script>
 </head>
 <body>
 
-    <section data-colors data-model="colors">
-        <button style="color:red">Red</button>
-        <button style="color:green">Green</button>
-        <button style="color:blue">Blue</button>
+    <section>
+        <button style="color:red" data-colors data-model="colors">Red</button>
+        <button style="color:green" data-colors data-model="colors">Green</button>
+        <button style="color:blue" data-colors data-model="colors">Blue</button>
+    </section>
+
+    <section id="sizes">
+        No hay tallas
     </section>
 
 </body>
