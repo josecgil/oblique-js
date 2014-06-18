@@ -10,15 +10,15 @@
         var model={
             colors:[
             {
-                name: "rojo",
+                name: "Red",
                 sizes: ["M","L","XL"]
             } ,
             {
-              name: "green",
+              name: "Green",
               sizes: ["M","L","XL","XXL"]
             },
             {
-                name: "blue",
+                name: "Blue",
                 sizes: ["S","M"]
             }
           ]
@@ -26,7 +26,22 @@
         Oblique().setModel(model);
 
         var ColorDirective = function (element, colors) {
-            console.log("Hola!")
+            var jqElement=$(element);
+            jqElement.click(function(event){
+                event.preventDefault();
+                var colorName=jqElement.html();
+                var sizes=findSizes(colorName, colors);
+                Oblique.renderHtml("/samples/MVD/sizes.hbs",sizes);
+            });
+        };
+
+        ColorDirective.prototype.findSizes=function(colorName, colors) {
+              for(var i=0;i<colors.length;i++) {
+                  var color=colors[i];
+                  if (color.name==colorName) {
+                      return color.sizes;
+                  }
+              }
         };
 
         ColorDirective.CSS_EXPRESSION = "*[data-colors]";
@@ -38,9 +53,9 @@
 <body>
 
     <section data-colors data-model="colors">
-        <button style="color:red">Rojo</button>
-        <button style="color:green">Verde</button>
-        <button style="color:blue">Azul</button>
+        <button style="color:red">Red</button>
+        <button style="color:green">Green</button>
+        <button style="color:blue">Blue</button>
     </section>
 
 </body>

@@ -137,7 +137,7 @@
         return directivesCollection.add(TestDirective);
       }).toThrow(new ObError("directive must has an static CSS_EXPRESSION property"));
     });
-    return it("If I add an object that no is a Directive it throws an Error", function() {
+    return it("If I add an object that not is a Directive it throws an Error", function() {
       var directivesCollection;
       directivesCollection = new DirectiveCollection();
       return expect(function() {
