@@ -40,6 +40,7 @@ class Oblique
     false
 
   renderHtml: (url, model) ->
+    throw new ObliqueNS.Error("Oblique().renderHtml() needs handlebarsjs loaded to work") if window.Handlebars is undefined
     template=@templateFactory.createFromUrl url
     template.renderHTML model
 

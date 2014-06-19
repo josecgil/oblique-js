@@ -14,5 +14,3 @@
   Oblique().registerDirective(MenuDirective);
 
 }).call(this);
-
-//# sourceMappingURL=MenuDirective.map

@@ -36,5 +36,3 @@
   Oblique().registerDirective(ClockDirective);
 
 }).call(this);
-
-//# sourceMappingURL=ClockDirective.map

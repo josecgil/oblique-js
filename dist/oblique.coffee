@@ -1,6 +1,3 @@
-
-# ../src/DirectiveCollection.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveCollection
@@ -77,9 +74,6 @@ class DirectiveCollection
     directivesWithCSSExpr
 
 ObliqueNS.DirectiveCollection=DirectiveCollection
-
-
-# ../src/DirectiveProcessor.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -173,9 +167,6 @@ class DirectiveProcessor
 
 ObliqueNS.DirectiveProcessor=DirectiveProcessor
 @.Oblique=DirectiveProcessor
-
-# ../src/Element.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Element
@@ -233,9 +224,6 @@ class Element
     @_getDOMElement().outerHTML
 
 ObliqueNS.Element=Element
-
-# ../src/Error.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Error
@@ -244,9 +232,6 @@ class Error
     @name = "Oblique.Error"
 
 ObliqueNS.Error=Error
-
-
-# ../src/JSON.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -265,9 +250,6 @@ class JSON
 ObliqueNS.JSON=JSON
 
 
-
-# ../src/NamedParams.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 Param=ObliqueNS.Param
@@ -285,9 +267,6 @@ class NamedParams
     null
 
 ObliqueNS.NamedParams=NamedParams
-
-
-# ../src/Oblique.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -331,6 +310,7 @@ class Oblique
     false
 
   renderHtml: (url, model) ->
+    throw new ObliqueNS.Error("Oblique().renderHtml() needs handlebarsjs loaded to work") if window.Handlebars is undefined
     template=@templateFactory.createFromUrl url
     template.renderHTML model
 
@@ -343,9 +323,6 @@ class Oblique
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
 
-
-# ../src/ObliqueError.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class ObliqueError extends Error
@@ -354,9 +331,6 @@ class ObliqueError extends Error
     @name = "ObliqueNS.Error"
 
 ObliqueNS.Error=ObliqueError
-
-
-# ../src/Param.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -372,9 +346,6 @@ class Param
 
 ObliqueNS.Param=Param
 
-
-# ../src/Template.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Template
@@ -386,9 +357,6 @@ class Template
     @compiledTemplate(model)
 
 ObliqueNS.Template=Template
-
-
-# ../src/TemplateFactory.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -421,9 +389,6 @@ class TemplateFactory
     template=@createFromString(templateContent)
 
 ObliqueNS.TemplateFactory=TemplateFactory
-
-
-# ../src/TimedDOMObserver.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 

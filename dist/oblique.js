@@ -496,6 +496,9 @@
 
     Oblique.prototype.renderHtml = function(url, model) {
       var template;
+      if (window.Handlebars === void 0) {
+        throw new ObliqueNS.Error("Oblique().renderHtml() needs handlebarsjs loaded to work");
+      }
       template = this.templateFactory.createFromUrl(url);
       return template.renderHTML(model);
     };

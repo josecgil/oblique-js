@@ -319,3 +319,13 @@ describe "Oblique", ->
     expect(->
       Oblique().renderHtml "/patata.hbs", modelToTest
     ).toThrow(new ObliqueNS.Error("template '/patata.hbs' not found"))
+
+  it "must throw an error if handlebars is not loaded", ->
+    HandlebarsCopy=window.Handlebars
+    window.Handlebars=undefined
+    try
+      expect(->
+        Oblique().renderHtml()
+      ).toThrow(new ObliqueNS.Error("Oblique().renderHtml() needs handlebarsjs loaded to work"))
+    finally
+      window.Handlebars=HandlebarsCopy
