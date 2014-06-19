@@ -1,12 +1,12 @@
-var ColorDirective = function (element, colors) {
-    var jqElement=$(element);
+var ColorDirective = function (button, colors) {
+    var jqButton=$(button);
     var self=this;
-    jqElement.click(function(event){
+    jqButton.click(function(event){
         event.preventDefault();
         var colorName=$(event.target).html();
         var sizes=self.findSizes(colorName, colors);
-        var html=Oblique().renderHtml("/oblique-js/samples/MVD/sizes.hbs",sizes);
-        $("#sizes").html(html);
+        var htmlSizes=Oblique().renderHtml("templates/sizes.hbs",sizes);
+        $("#sizes").html(htmlSizes);
     });
 };
 
