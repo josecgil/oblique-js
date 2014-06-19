@@ -3,7 +3,7 @@ var ColorDirective = function (element, colors) {
     var self=this;
     jqElement.click(function(event){
         event.preventDefault();
-        var colorName=jqElement.html();
+        var colorName=$(event.target).html();
         var sizes=self.findSizes(colorName, colors);
         var html=Oblique().renderHtml("/oblique-js/samples/MVD/sizes.hbs",sizes);
         $("#sizes").html(html);
