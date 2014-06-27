@@ -301,6 +301,11 @@ describe "Oblique", ->
 
     FixtureHelper.appendHTML "<div data-test data-model='this'></div>"
 
+  it "must throw an error if Handlebars isn't loaded", ()->
+    #expect(->
+    Oblique().renderHtml()
+    #).toThrow(new ObliqueNS.Error("Oblique needs handlebarsjs loaded to render templates"))
+
   it "must render template", ()->
     modelToTest =
       title : "titulo",
