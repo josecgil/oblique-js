@@ -19,6 +19,6 @@ ColorDirective.prototype.findSizes=function(colorName, colors) {
     }
 };
 
-ColorDirective.CSS_EXPRESSION = "*[data-colors]";
+ColorDirective.CSS_EXPRESSION = "*[data-color]";
 
 Oblique().registerDirective(ColorDirective);

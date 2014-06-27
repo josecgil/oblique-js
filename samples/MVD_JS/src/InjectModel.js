@@ -1,4 +1,6 @@
 var model={
+    reference: "1C0004567",
+    description: "Este modelo mola",
     colors:[
         {
             name: "Red",
