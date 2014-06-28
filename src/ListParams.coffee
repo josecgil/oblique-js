@@ -5,7 +5,7 @@ class ListParams
   constructor:(values, separator=",")->
     @_values=values.split(separator);
 
-  valuesAsString: ->
+  toStringArray: ->
     @_values
 
   _valueToInt: (value) ->
@@ -13,7 +13,7 @@ class ListParams
     return 0 if isNaN number
     number
 
-  valuesAsInt: ->
+  toIntArray: ->
     @_valueToInt value for value in @_values
 
 
