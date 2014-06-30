@@ -436,7 +436,7 @@
 
   })();
 
-  ObliqueNS.NamedParams = NamedParams;
+  ObliqueNS.StringHash = NamedParams;
 
   this.ObliqueNS = this.ObliqueNS || {};
 

@@ -1,6 +1,6 @@
 @.ObliqueNS=@.ObliqueNS or {}
 
-class ListParams
+class StringList
 
   constructor:(values, separator=",")->
     @_values=values.split(separator);
@@ -17,4 +17,5 @@ class ListParams
     @_valueToInt value for value in @_values
 
 
-ObliqueNS.ListParams=ListParams
+
+ObliqueNS.StringList=StringList

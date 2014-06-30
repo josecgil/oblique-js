@@ -266,7 +266,7 @@ class NamedParams
       return param if param.name is paramName
     null
 
-ObliqueNS.NamedParams=NamedParams
+ObliqueNS.StringHash=NamedParams
 
 @.ObliqueNS=@.ObliqueNS or {}
 

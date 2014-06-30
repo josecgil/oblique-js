@@ -1,6 +1,6 @@
-describe "NamedParams", ->
+describe "StringHash", ->
 
-  NamedParams=ObliqueNS.NamedParams
+  NamedParams=ObliqueNS.StringHash
 
   beforeEach ->
 
