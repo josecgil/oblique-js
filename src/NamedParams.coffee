@@ -15,4 +15,3 @@ class NamedParams
     null
 
 ObliqueNS.NamedParams=NamedParams
-

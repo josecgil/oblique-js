@@ -109,3 +109,4 @@ describe "DirectiveCollection", ->
     expect(->
       directivesCollection.add {}
     ).toThrow(new ObError("registerDirective must be called with a Directive 'Constructor/Class'"))
+

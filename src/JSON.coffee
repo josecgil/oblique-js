@@ -13,5 +13,3 @@ class JSON
     value
 
 ObliqueNS.JSON=JSON
-
-

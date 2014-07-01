@@ -6,4 +6,3 @@ class Error
     @name = "Oblique.Error"
 
 ObliqueNS.Error=Error
-
