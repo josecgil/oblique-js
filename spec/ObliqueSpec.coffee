@@ -301,11 +301,6 @@ describe "Oblique", ->
 
     FixtureHelper.appendHTML "<div data-test data-model='this'></div>"
 
-  it "must throw an error if Handlebars isn't loaded", ()->
-    #expect(->
-    Oblique().renderHtml()
-    #).toThrow(new ObliqueNS.Error("Oblique needs handlebarsjs loaded to render templates"))
-
   it "must render template", ()->
     modelToTest =
       title : "titulo",
@@ -326,27 +321,11 @@ describe "Oblique", ->
     ).toThrow(new ObliqueNS.Error("template '/patata.hbs' not found"))
 
   it "must throw an error if handlebars is not loaded", ->
-    HandlebarsCopy=window.Handlebars
+    handlebarsCopy=window.Handlebars
     window.Handlebars=undefined
     try
       expect(->
         Oblique().renderHtml()
       ).toThrow(new ObliqueNS.Error("Oblique().renderHtml() needs handlebarsjs loaded to work"))
     finally
-      window.Handlebars=HandlebarsCopy
-
-  it "must parse a list of params as string", ->
-    list=Oblique().parseList("1,2,3,4").toStringArray()
-    expect(list[0]).toBe "1"
-    expect(list[1]).toBe "2"
-    expect(list[2]).toBe "3"
-    expect(list[3]).toBe "4"
-
-  it "must parse a list of params as int", ->
-    list=Oblique().parseList("1,2,3,4").toIntArray()
-    expect(list[0]).toBe 1
-    expect(list[1]).toBe 2
-    expect(list[2]).toBe 3
-    expect(list[3]).toBe 4
-
-
+      window.Handlebars=handlebarsCopy

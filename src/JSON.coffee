@@ -12,4 +12,7 @@ class JSON
       value=value[part]
     value
 
+  @parseString:(jsonString)->
+    new JSON(jQuery.parseJSON jsonString)
+
 ObliqueNS.JSON=JSON
