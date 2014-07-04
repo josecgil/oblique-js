@@ -21,16 +21,6 @@ describe "DirectiveCollection", ->
     expect(directives.count()).toBe 1
     expect(directives.at(0)).toBe(TestDirective)
 
-  it "must add property 'hashCode' to added directive", () ->
-    class TestDirective
-      constructor: ()->
-
-      @CSS_EXPRESSION = ".test"
-
-    directives=new DirectiveCollection()
-    directives.add TestDirective
-    expect(TestDirective.hashCode).toBe("1688887988")
-
   it "must return 2 CSSExpressions when I added 2 Directive with different CSSExpressions", () ->
     class TestDirective
       constructor: ()->
@@ -97,12 +87,14 @@ describe "DirectiveCollection", ->
     expect(directives.getDirectivesByCSSExpression(".test").length).toBe 2
     expect(directives.getDirectivesByCSSExpression(".test2").length).toBe 1
 
+  ###
   it "If I add a Directive without CSS_EXPRESSION it throws an Error", ()->
     class TestDirective
     directivesCollection=new DirectiveCollection()
     expect(->
       directivesCollection.add TestDirective
     ).toThrow(new ObError("directive must has an static CSS_EXPRESSION property"))
+  ###
 
   it "If I add an object that not is a Directive it throws an Error", ()->
     directivesCollection=new DirectiveCollection()
@@ -110,3 +102,16 @@ describe "DirectiveCollection", ->
       directivesCollection.add {}
     ).toThrow(new ObError("registerDirective must be called with a Directive 'Constructor/Class'"))
 
+  it "must return al directive by his name", () ->
+    class TestDirective
+      constructor: ()->
+
+    class TestDirective2
+      constructor: ()->
+
+
+    directives=new DirectiveCollection()
+    directives.add TestDirective
+    directives.add TestDirective2
+
+    expect(directives.getDirectiveByName("TestDirective")).toBe TestDirective

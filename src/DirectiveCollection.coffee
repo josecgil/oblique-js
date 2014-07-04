@@ -18,29 +18,9 @@ class DirectiveCollection
   _throwErrorIfDirectiveIsNotValid: (directive) ->
     if not @_isAFunction(directive)
       throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.NOT_A_FUNCTION_CLASS_ERROR_MESSAGE)
-    if not directive.CSS_EXPRESSION
-      throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.DOESNT_HAVE_PROPERTY_CSS_EXPR_MESSAGE)
-
-  _hashCode: (str) ->
-    hash = 0
-    i = undefined
-    chr = undefined
-    len = undefined
-    return hash if str.length is 0
-    i = 0
-    len = str.length
-
-    while i < len
-      chr = str.charCodeAt(i)
-      hash = ((hash << 5) - hash) + chr
-      hash |= 0
-      i++
-    hash
 
   add:(directive) ->
     @_throwErrorIfDirectiveIsNotValid(directive)
-
-    directive.hashCode=@_hashCode(directive.toString()+directive.CSS_EXPRESSION).toString()
 
     @directives.push directive
 
@@ -64,6 +44,14 @@ class DirectiveCollection
 
   getCSSExpressions : ->
     @_cssExpressions
+
+  stringStartsWith : (str, strBegin) ->
+    str.slice(0, strBegin.length) is strBegin
+
+  getDirectiveByName : (directiveName) ->
+    for directive in @directives
+      return directive if @stringStartsWith(directive.toString(), "function #{directiveName}(")
+    undefined
 
   getDirectivesByCSSExpression: (cssExpression) ->
     directivesWithCSSExpr=[]

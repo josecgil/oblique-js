@@ -26,34 +26,10 @@
       if (!this._isAFunction(directive)) {
         throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.NOT_A_FUNCTION_CLASS_ERROR_MESSAGE);
       }
-      if (!directive.CSS_EXPRESSION) {
-        throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.DOESNT_HAVE_PROPERTY_CSS_EXPR_MESSAGE);
-      }
-    };
-
-    DirectiveCollection.prototype._hashCode = function(str) {
-      var chr, hash, i, len;
-      hash = 0;
-      i = void 0;
-      chr = void 0;
-      len = void 0;
-      if (str.length === 0) {
-        return hash;
-      }
-      i = 0;
-      len = str.length;
-      while (i < len) {
-        chr = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + chr;
-        hash |= 0;
-        i++;
-      }
-      return hash;
     };
 
     DirectiveCollection.prototype.add = function(directive) {
       this._throwErrorIfDirectiveIsNotValid(directive);
-      directive.hashCode = this._hashCode(directive.toString() + directive.CSS_EXPRESSION).toString();
       this.directives.push(directive);
       return this._buildCSSExpressions();
     };
@@ -91,6 +67,22 @@
 
     DirectiveCollection.prototype.getCSSExpressions = function() {
       return this._cssExpressions;
+    };
+
+    DirectiveCollection.prototype.stringStartsWith = function(str, strBegin) {
+      return str.slice(0, strBegin.length) === strBegin;
+    };
+
+    DirectiveCollection.prototype.getDirectiveByName = function(directiveName) {
+      var directive, _i, _len, _ref;
+      _ref = this.directives;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        directive = _ref[_i];
+        if (this.stringStartsWith(directive.toString(), "function " + directiveName + "(")) {
+          return directive;
+        }
+      }
+      return void 0;
     };
 
     DirectiveCollection.prototype.getDirectivesByCSSExpression = function(cssExpression) {

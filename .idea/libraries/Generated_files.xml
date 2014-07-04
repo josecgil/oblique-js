@@ -2,14 +2,17 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/src/Param.js" />
         <item url="file://$PROJECT_DIR$/src/ListParams.js" />
+        <item url="file://$PROJECT_DIR$/src/Oblique.js" />
+        <item url="file://$PROJECT_DIR$/spec/ListParamsSpec.js" />
+        <item url="file://$PROJECT_DIR$/dist/oblique.js" />
+        <item url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
+        <item url="file://$PROJECT_DIR$/spec/DirectiveCollectionSpec.js" />
+        <item url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
+        <item url="file://$PROJECT_DIR$/src/Param.js" />
         <item url="file://$PROJECT_DIR$/src/Template.js" />
         <item url="file://$PROJECT_DIR$/src/NamedParams.js" />
-        <item url="file://$PROJECT_DIR$/src/Oblique.js" />
-        <item url="file://$PROJECT_DIR$/dist/oblique.js" />
         <item url="file://$PROJECT_DIR$/src/ObliqueError.js" />
-        <item url="file://$PROJECT_DIR$/spec/ListParamsSpec.js" />
         <item url="file://$PROJECT_DIR$/src/Error.js" />
         <item url="file://$PROJECT_DIR$/src/JSON.js" />
         <item url="file://$PROJECT_DIR$/src/DirectiveProcessor.js" />
@@ -20,10 +23,8 @@
         <item url="file://$PROJECT_DIR$/spec/TemplateSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/JSONSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/NamedParamsSpec.js" />
-        <item url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/DirectiveProcessorSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/ElementSpec.js" />
-        <item url="file://$PROJECT_DIR$/spec/DirectiveCollectionSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
         <item url="file://$PROJECT_DIR$/spec/helpers/Interval.js" />
@@ -48,11 +49,12 @@
       <root url="file://$PROJECT_DIR$/spec/ModelSpec.js" />
       <root url="file://$PROJECT_DIR$/src/ListParams.js" />
       <root url="file://$PROJECT_DIR$/src/Oblique.js" />
-      <root url="file://$PROJECT_DIR$/spec/ListParamsSpec.js" />
       <root url="file://$PROJECT_DIR$/dist/oblique.js" />
+      <root url="file://$PROJECT_DIR$/spec/ListParamsSpec.js" />
       <root url="file://$PROJECT_DIR$/samples/Directives/directives/ClockDirective.js" />
       <root url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/DirectiveCollectionSpec.js" />
+      <root url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
       <root url="file://$PROJECT_DIR$/src/Param.js" />
       <root url="file://$PROJECT_DIR$/src/Template.js" />
       <root url="file://$PROJECT_DIR$/src/NamedParams.js" />

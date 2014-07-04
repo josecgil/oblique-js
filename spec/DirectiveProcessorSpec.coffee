@@ -1,3 +1,5 @@
+
+
 describe "DirectiveProcessor", ->
 
   DirectiveProcessor=ObliqueNS.DirectiveProcessor
@@ -27,32 +29,27 @@ describe "DirectiveProcessor", ->
       DirectiveProcessor().setIntervalTimeInMs -1
     ).toThrow(new ObError("IntervalTime must be a positive number"))
 
-  it "If I register a Directive it calls its constructor when expression is in DOM", (done)->
+  it "If I register a Directive it calls its constructor when data-directive is in DOM", (done)->
     class TestDirective
       constructor: ()->
         DirectiveProcessor().destroy()
         done()
 
-      @CSS_EXPRESSION = "*[data-test]"
-
     DirectiveProcessor().registerDirective TestDirective
     DirectiveProcessor().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-test></div>"
+    $("#fixture").html "<div data-directive='TestDirective'></div>"
 
 
-  it "If I register a Directive it calls its constructor only one time when expression is in DOM", (done)->
+  it "If I register a Directive it calls its constructor only one time when data-directive is in DOM", (done)->
     counter=0
     class TestDirective
       constructor: ()->
         counter++
 
-
-      @CSS_EXPRESSION = "*[data-test]"
-
     DirectiveProcessor().registerDirective TestDirective
     DirectiveProcessor().setIntervalTimeInMs 10
 
-    FixtureHelper.appendHTML "<div data-test></div>"
+    FixtureHelper.appendHTML "<div data-directive='TestDirective'></div>"
 
     setTimeout ->
       DirectiveProcessor().destroy()
@@ -65,14 +62,12 @@ describe "DirectiveProcessor", ->
   it "If I register a Directive it calls its constructor with the correct DOM element", (done)->
     class TestDirective
       constructor: (DOMElement)->
-        expect($(DOMElement).is("test[data-test]")).toBeTruthy()
+        expect($(DOMElement).is("test[data-directive='TestDirective']")).toBeTruthy()
         DirectiveProcessor().destroy()
         done()
 
-      @CSS_EXPRESSION = "*[data-test]"
-
     DirectiveProcessor().registerDirective TestDirective
-    FixtureHelper.appendHTML "<test data-test></test>"
+    FixtureHelper.appendHTML "<test data-directive='TestDirective'></test>"
 
   it "must call 2 directives if there are in the same tag", (done)->
     calls={};
@@ -83,8 +78,6 @@ describe "DirectiveProcessor", ->
           DirectiveProcessor().destroy()
           done()
 
-      @CSS_EXPRESSION = "*[data-show-onclick]"
-
     class ShowOnClickDirective
       constructor: ()->
         calls["TestDirective2"]=true;
@@ -92,12 +85,10 @@ describe "DirectiveProcessor", ->
           DirectiveProcessor().destroy()
           done()
 
-      @CSS_EXPRESSION = "*[data-hide-onclick]"
-
 
     DirectiveProcessor().registerDirective ShowOnClickDirective
     DirectiveProcessor().registerDirective HideOnClickDirective
-    FixtureHelper.appendHTML "<test data-hide-onclick data-show-onclick></test>"
+    FixtureHelper.appendHTML "<test data-directive='ShowOnClickDirective, HideOnClickDirective'></test>"
 
   it "must call 2 directives if there are in the same tag (2 instances of same tag)", (done)->
     calls={};
@@ -110,8 +101,6 @@ describe "DirectiveProcessor", ->
           DirectiveProcessor().destroy()
           done()
 
-      @CSS_EXPRESSION = "*[data-hide-onclick]"
-
     class ShowOnClickDirective
       constructor: ()->
         calls["TestDirective2"]++;
@@ -119,19 +108,11 @@ describe "DirectiveProcessor", ->
           DirectiveProcessor().destroy()
           done()
 
-      @CSS_EXPRESSION = "*[data-show-onclick]"
-
 
     DirectiveProcessor().registerDirective ShowOnClickDirective
     DirectiveProcessor().registerDirective HideOnClickDirective
-    FixtureHelper.appendHTML "<test id='test' data-hide-onclick data-show-onclick></test>"
-    FixtureHelper.appendHTML "<test id='test' data-hide-onclick data-show-onclick></test>"
-
-  it "If I register a Directive without CSS_EXPRESSION it throws an Error", ()->
-    class TestDirective
-    expect(->
-      DirectiveProcessor().registerDirective TestDirective
-    ).toThrow(new ObError("directive must has an static CSS_EXPRESSION property"))
+    FixtureHelper.appendHTML "<test data-directive='ShowOnClickDirective, HideOnClickDirective'></test>"
+    FixtureHelper.appendHTML "<test data-directive='ShowOnClickDirective, HideOnClickDirective'></test>"
 
   it "If I register an object that no is a Directive it throws an Error", ()->
     expect(->
@@ -141,10 +122,10 @@ describe "DirectiveProcessor", ->
   it "must execute 1 directive in a 10000 elements DOM in <200ms", (done)->
 
     DOM_ELEMENTS_COUNT = 4*250
-    FixtureHelper.appendHTML "<p class='test'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<div class='test'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<span class='test'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<test class='test'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<p data-directive='TestDirective'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<div data-directive='TestDirective'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<span data-directive='TestDirective'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<test data-directive='TestDirective'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
 
     interval=new Interval()
     counter=0
@@ -156,8 +137,6 @@ describe "DirectiveProcessor", ->
           expect(interval.timeInMs).toBeLessThan 200
           done()
 
-      @CSS_EXPRESSION = ".test"
-
     interval.start()
     DirectiveProcessor().registerDirective(TestDirective)
     DirectiveProcessor().setIntervalTimeInMs 10
@@ -166,32 +145,28 @@ describe "DirectiveProcessor", ->
 
     #TODO: test with different expressions in each Directive
     DOM_ELEMENTS_COUNT = 4*250
-    FixtureHelper.appendHTML "<p class='test'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<div class='test'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<span class='test'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<test class='test'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<p data-directive='TestDirective,TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<div data-directive='TestDirective,TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<span data-directive='TestDirective,TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<test data-directive='TestDirective,TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
 
     interval=new Interval()
     counter=0
     class TestDirective
       constructor: ()->
         counter++
-      @CSS_EXPRESSION = ".test"
 
     class TestDirective2
       constructor: ()->
         counter++
-      @CSS_EXPRESSION = ".test"
 
     class TestDirective3
       constructor: ()->
         counter++
-      @CSS_EXPRESSION = ".test"
 
     class TestDirective4
       constructor: ()->
         counter++
-      @CSS_EXPRESSION = ".test"
 
     class TestDirective5
       constructor: ()->
@@ -201,8 +176,6 @@ describe "DirectiveProcessor", ->
           console.log "Processed 5 directives in a 10000 elements DOM in #{interval.timeInMs}ms"
           expect(interval.timeInMs).toBeLessThan 400
           done()
-
-      @CSS_EXPRESSION = ".test"
 
     interval.start()
     DirectiveProcessor().registerDirective(TestDirective)
@@ -215,32 +188,28 @@ describe "DirectiveProcessor", ->
   it "must execute 4 directives with different CSSExpressions", (done)->
 
     DOM_ELEMENTS_COUNT = 4*250
-    FixtureHelper.appendHTML "<p class='test1'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<div class='test2'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<span class='test3'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<test class='test4'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<p data-directive='TestDirective'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<div data-directive='TestDirective2'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<span data-directive='TestDirective3'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<test data-directive='TestDirective4'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
 
     counter=0
     class TestDirective
       constructor: ()->
         counter++
-      @CSS_EXPRESSION = ".test1"
 
     class TestDirective2
       constructor: ()->
         counter++
-      @CSS_EXPRESSION = ".test2"
 
     class TestDirective3
       constructor: ()->
         counter++
-      @CSS_EXPRESSION = ".test3"
 
     class TestDirective4
       constructor: ()->
         counter++
         done() if (counter is DOM_ELEMENTS_COUNT)
-      @CSS_EXPRESSION = ".test4"
 
     DirectiveProcessor().registerDirective(TestDirective)
     DirectiveProcessor().registerDirective(TestDirective2)

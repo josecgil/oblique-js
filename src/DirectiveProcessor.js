@@ -46,45 +46,54 @@
     DirectiveProcessor._isApplyingDirectivesInDOM = false;
 
     DirectiveProcessor.prototype._applyDirectivesInDOM = function() {
-      var rootDOMElement, rootElement;
       if (this._isApplyingDirectivesInDOM) {
         return;
       }
       this._isApplyingDirectivesInDOM = true;
       try {
-        rootDOMElement = document.getElementsByTagName("body")[0];
-        rootElement = new ObliqueNS.Element(rootDOMElement);
-        return rootElement.eachDescendant((function(_this) {
-          return function(DOMElement) {
-            var cssExpr, directive, directiveHashCode, model, obElement, _i, _len, _ref, _results;
+        return $("*[data-directive]").each((function(_this) {
+          return function(index, DOMElement) {
+            var directive, directiveAttrValue, directiveName, model, obElement, _i, _len, _ref, _results;
             obElement = new ObliqueNS.Element(DOMElement);
-            _ref = _this._directiveCollection.getCSSExpressions();
+            directiveAttrValue = obElement.getAttributeValue("data-directive");
+            _ref = directiveAttrValue.split(",");
             _results = [];
             for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-              cssExpr = _ref[_i];
-              if (!obElement.matchCSSExpression(cssExpr)) {
+              directiveName = _ref[_i];
+              directiveName = directiveName.trim();
+              if (obElement.hasFlag(directiveName)) {
                 continue;
               }
-              _results.push((function() {
-                var _j, _len1, _ref1, _results1;
-                _ref1 = this._directiveCollection.getDirectivesByCSSExpression(cssExpr);
-                _results1 = [];
-                for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-                  directive = _ref1[_j];
-                  directiveHashCode = directive.hashCode;
-                  if (obElement.hasFlag(directiveHashCode)) {
-                    continue;
-                  }
-                  obElement.setFlag(directiveHashCode);
-                  model = this._getModel(obElement);
-                  _results1.push(new directive(DOMElement, model));
-                }
-                return _results1;
-              }).call(_this));
+              directive = _this._directiveCollection.getDirectiveByName(directiveName);
+              if (!directive) {
+                throw new ObliqueNS.Error("There is no " + directiveName + " directive registered");
+              }
+              obElement.setFlag(directiveName);
+              model = _this._getModel(obElement);
+              _results.push(new directive(DOMElement, model));
             }
             return _results;
           };
         })(this));
+
+        /*
+         *TODO: change this to a more human readable loop
+        rootDOMElement = document.getElementsByTagName("body")[0]
+        rootElement=new ObliqueNS.Element rootDOMElement
+        
+        rootElement.eachDescendant(
+          (DOMElement) =>
+            obElement=new ObliqueNS.Element(DOMElement)
+            for cssExpr in @_directiveCollection.getCSSExpressions()
+              continue if not obElement.matchCSSExpression cssExpr
+              for directive in @_directiveCollection.getDirectivesByCSSExpression cssExpr
+                directiveHashCode = directive.hashCode
+                continue if obElement.hasFlag directiveHashCode
+                obElement.setFlag directiveHashCode
+                model=@_getModel obElement
+                new directive DOMElement, model
+        )
+         */
       } finally {
         this._isApplyingDirectivesInDOM = false;
       }
