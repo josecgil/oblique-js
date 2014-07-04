@@ -81,7 +81,7 @@ class DirectiveProcessor
     try
       return new ObliqueNS.JSON(model).getPathValue(dataModelExpr)
     catch
-      @_throwError(obElement.getHtml() + ": data-model doesn't match any data in model")
+      @_throwError("#{obElement.getHtml()}: data-model doesn't match any data in model")
 
   _throwError: (errorMessage) ->
     Oblique().triggerOnError(new ObliqueNS.Error(errorMessage))

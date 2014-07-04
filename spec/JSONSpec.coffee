@@ -94,5 +94,8 @@ describe "JSON", ->
     expect(extractedJSON[0]).toBe "GML"
     expect(extractedJSON[1]).toBe "XML"
 
-
-
+  it "must parse a JSONString", ()->
+    jsonString = '{"width":"100px","height":"200px"}'
+    json=JSON.parseString(jsonString).value
+    expect(json.width).toBe "100px"
+    expect(json.height).toBe "200px"

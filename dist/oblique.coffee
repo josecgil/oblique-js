@@ -1,3 +1,6 @@
+
+# ../src/DirectiveCollection.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveCollection
@@ -75,6 +78,9 @@ class DirectiveCollection
 
 ObliqueNS.DirectiveCollection=DirectiveCollection
 
+
+# ../src/DirectiveProcessor.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveProcessor
@@ -140,7 +146,7 @@ class DirectiveProcessor
     try
       return new ObliqueNS.JSON(model).getPathValue(dataModelExpr)
     catch
-      @_throwError(obElement.getHtml() + ": data-model doesn't match any data in model")
+      @_throwError("#{obElement.getHtml()}: data-model doesn't match any data in model")
 
   _throwError: (errorMessage) ->
     Oblique().triggerOnError(new ObliqueNS.Error(errorMessage))
@@ -167,6 +173,9 @@ class DirectiveProcessor
 
 ObliqueNS.DirectiveProcessor=DirectiveProcessor
 @.Oblique=DirectiveProcessor
+
+# ../src/Element.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Element
@@ -224,6 +233,9 @@ class Element
     @_getDOMElement().outerHTML
 
 ObliqueNS.Element=Element
+
+# ../src/Error.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Error
@@ -232,6 +244,7 @@ class Error
     @name = "Oblique.Error"
 
 ObliqueNS.Error=Error
+# ../src/JSON.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -247,26 +260,12 @@ class JSON
       value=value[part]
     value
 
+  @parseString:(jsonString)->
+    new JSON(jQuery.parseJSON jsonString)
+
 ObliqueNS.JSON=JSON
 
-
-@.ObliqueNS=@.ObliqueNS or {}
-
-Param=ObliqueNS.Param
-
-class NamedParams
-
-  constructor : (params, paramSeparator=";", valueSeparator=":") ->
-    @params=[]
-    for param in params.split paramSeparator
-      @params.push new Param param, valueSeparator
-
-  getParam : (paramName) ->
-    for param in @params
-      return param if param.name is paramName
-    null
-
-ObliqueNS.NamedParams=NamedParams
+# ../src/Oblique.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -310,7 +309,8 @@ class Oblique
     false
 
   renderHtml: (url, model) ->
-    throw new ObliqueNS.Error("Oblique().renderHtml() needs handlebarsjs loaded to work") if window.Handlebars is undefined
+    if Handlebars is undefined
+      throw new ObliqueNS.Error("Oblique().renderHtml() needs handlebarsjs loaded to work")
     template=@templateFactory.createFromUrl url
     template.renderHTML model
 
@@ -323,6 +323,9 @@ class Oblique
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
 
+
+# ../src/ObliqueError.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class ObliqueError extends Error
@@ -331,6 +334,7 @@ class ObliqueError extends Error
     @name = "ObliqueNS.Error"
 
 ObliqueNS.Error=ObliqueError
+# ../src/Param.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -345,6 +349,49 @@ class Param
     parseInt @value, 10
 
 ObliqueNS.Param=Param
+# ../src/StringHash.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+Param=ObliqueNS.Param
+
+class NamedParams
+
+  constructor : (params, paramSeparator=";", valueSeparator=":") ->
+    @params=[]
+    for param in params.split paramSeparator
+      @params.push new Param param, valueSeparator
+
+  getParam : (paramName) ->
+    for param in @params
+      return param if param.name is paramName
+    null
+
+ObliqueNS.NamedParams=NamedParams
+# ../src/StringList.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class StringList
+
+  constructor:(values, separator=",")->
+    @_values=values.split(separator);
+
+  toStringArray: ->
+    @_values
+
+  _valueToInt: (value) ->
+    number=parseInt value, 10
+    return 0 if isNaN number
+    number
+
+  toIntArray: ->
+    @_valueToInt value for value in @_values
+
+
+
+ObliqueNS.StringList=StringList
+# ../src/Template.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -357,6 +404,7 @@ class Template
     @compiledTemplate(model)
 
 ObliqueNS.Template=Template
+# ../src/TemplateFactory.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -389,6 +437,7 @@ class TemplateFactory
     template=@createFromString(templateContent)
 
 ObliqueNS.TemplateFactory=TemplateFactory
+# ../src/TimedDOMObserver.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -414,4 +463,3 @@ class TimedDOMObserver
     @_intervalId=undefined
 
 ObliqueNS.TimedDOMObserver=TimedDOMObserver
-

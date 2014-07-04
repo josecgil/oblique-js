@@ -115,7 +115,7 @@
       try {
         return new ObliqueNS.JSON(model).getPathValue(dataModelExpr);
       } catch (_error) {
-        return this._throwError(obElement.getHtml() + ": data-model doesn't match any data in model");
+        return this._throwError("" + (obElement.getHtml()) + ": data-model doesn't match any data in model");
       }
     };
 
