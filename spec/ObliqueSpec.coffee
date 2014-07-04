@@ -320,10 +320,14 @@ describe "Oblique", ->
     <div directive="ShowMoreDirective" params ="{[br, p]}"></div>
     ###
     class TestDirective
-      constructor: ()->
+      constructor: (obj)->
+        obj.Model
+
         Oblique().destroy()
         done()
 
     Oblique().setIntervalTimeInMs 10
     Oblique().registerDirective TestDirective
     $("#fixture").html "<div data-directive='TestDirective'></div>"
+
+

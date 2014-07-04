@@ -16,3 +16,4 @@ class JSON
     new JSON(jQuery.parseJSON jsonString)
 
 ObliqueNS.JSON=JSON
+

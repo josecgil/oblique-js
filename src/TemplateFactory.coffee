@@ -29,3 +29,4 @@ class TemplateFactory
     template=@createFromString(templateContent)
 
 ObliqueNS.TemplateFactory=TemplateFactory
+

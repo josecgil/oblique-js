@@ -99,3 +99,4 @@ describe "JSON", ->
     json=JSON.parseString(jsonString).value
     expect(json.width).toBe "100px"
     expect(json.height).toBe "200px"
+
