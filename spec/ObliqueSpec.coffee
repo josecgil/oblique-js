@@ -61,15 +61,6 @@ describe "Oblique", ->
     Oblique().registerDirective TestDirective
     $("#fixture").html "<test data-directive='TestDirective'></test>"
 
-  ###
-  it "If I register a Directive without CSS_EXPRESSION it throws an Error", ()->
-    class TestDirective
-    expect(->
-      Oblique().registerDirective TestDirective
-    ).toThrow(new ObliqueNS.Error("directive must has an static CSS_EXPRESSION property"))
-
-  ###
-
   it "If I register an object that no is a Directive it throws an Error", ()->
     expect(->
       Oblique().registerDirective {}
@@ -188,7 +179,7 @@ describe "Oblique", ->
     Oblique().registerDirective TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='name'></div>"
+    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model.name'></div>"
 
   it "data-model must work with complex models, simple resuls", (done)->
     modelToTest =
@@ -209,7 +200,7 @@ describe "Oblique", ->
     Oblique().registerDirective TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='address.street'></div>"
+    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model.address.street'></div>"
 
 
   it "data-model must work with complex models, complex results", (done)->
@@ -233,7 +224,7 @@ describe "Oblique", ->
     Oblique().registerDirective TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='address.street'></div>"
+    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model.address.street'></div>"
 
 
   it "data-model must throw an exception if property doesn't exists", (done)->
@@ -258,9 +249,9 @@ describe "Oblique", ->
       done()
     )
 
-    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='address.num'></div>"
+    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model.address.num'></div>"
 
-  it "data-model must receive all model if value is 'this'", (done)->
+  it "data-model must receive all model if value is 'Model'", (done)->
     modelToTest =
       name : "name",
       content : "content"
@@ -276,7 +267,7 @@ describe "Oblique", ->
     Oblique().registerDirective TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='this'></div>"
+    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model'></div>"
 
   it "must throw an error if Handlebars isn't loaded", ()->
     #expect(->
@@ -314,11 +305,6 @@ describe "Oblique", ->
 
 
   it "must execute selected directive when data-directive is found", (done)->
-    ###
-    <div directive="ColorDirective" model="ColorModel(Color)"></div>
-    <div directive="PopupDirective" params ="{width:200px;height:100px}"></div>
-    <div directive="ShowMoreDirective" params ="{[br, p]}"></div>
-    ###
     class TestDirective
       constructor: (obj)->
         obj.Model
@@ -331,3 +317,64 @@ describe "Oblique", ->
     $("#fixture").html "<div data-directive='TestDirective'></div>"
 
 
+  it "must send to directive the correct data model", (done)->
+    model=
+      name: "Carlos"
+      address:
+        street: "Gran Via"
+        number: 32
+    Oblique().setModel model
+
+    class TestDirective
+      constructor: (domElement, directiveModel)->
+        expect(directiveModel.name).toBe "Carlos"
+        expect(directiveModel.address.street).toBe "Gran Via"
+        expect(directiveModel.address.number).toBe 32
+        Oblique().destroy()
+        done()
+
+    Oblique().registerDirective(TestDirective)
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-directive='TestDirective' data-model='Model'>nice DOM</div>"
+
+  it "must send to directive the correct data model array", (done)->
+    model=
+      name: "Azul"
+      sizes:[
+        "XS"
+        "S"
+        "M"
+        "L"
+        "XL"
+      ]
+    Oblique().setModel model
+
+    class TestDirective
+      constructor: (domElement, directiveModel)->
+        expect(directiveModel).toBe "S"
+        Oblique().destroy()
+        done()
+
+    Oblique().registerDirective(TestDirective)
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-directive='TestDirective' data-model='Model.sizes[1]'>nice DOM</div>"
+
+  it "must create an instance of the selected model-data class", (done)->
+    class TestDirective
+      constructor: (domElement, settings)->
+        expect(settings instanceof Settings).toBeTruthy()
+        expect(settings.brand).toBe "VC"
+        expect(settings.country).toBe "ES"
+        Oblique().destroy()
+        done()
+
+    class Settings
+      constructor:()->
+        @brand="VC"
+        @country="ES"
+
+    window.Settings=Settings
+    
+    Oblique().registerDirective(TestDirective)
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-directive='TestDirective' data-model='new Settings()'>nice DOM</div>"

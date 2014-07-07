@@ -50,38 +50,30 @@ class DirectiveProcessor
             model=@_getModel obElement
             new directive DOMElement, model
       )
-      ###
-      #TODO: change this to a more human readable loop
-      rootDOMElement = document.getElementsByTagName("body")[0]
-      rootElement=new ObliqueNS.Element rootDOMElement
-
-      rootElement.eachDescendant(
-        (DOMElement) =>
-          obElement=new ObliqueNS.Element(DOMElement)
-          for cssExpr in @_directiveCollection.getCSSExpressions()
-            continue if not obElement.matchCSSExpression cssExpr
-            for directive in @_directiveCollection.getDirectivesByCSSExpression cssExpr
-              directiveHashCode = directive.hashCode
-              continue if obElement.hasFlag directiveHashCode
-              obElement.setFlag directiveHashCode
-              model=@_getModel obElement
-              new directive DOMElement, model
-      )
-      ###
     finally
       @_isApplyingDirectivesInDOM = false
 
   _getModel : (obElement) ->
     model=Oblique().getModel()
-    return undefined if not model
     dataModelExpr=obElement.getAttributeValue("data-model")
     return undefined if dataModelExpr is undefined
-    return model if dataModelExpr is "this"
 
-    try
-      return new ObliqueNS.JSON(model).getPathValue(dataModelExpr)
-    catch
-      @_throwError("#{obElement.getHtml()}: data-model doesn't match any data in model")
+    dataModelDSL=new ObliqueNS.DataModelDSL dataModelExpr
+    return model if dataModelDSL.hasFullModel
+
+    if dataModelDSL.modelProperties
+      for property in dataModelDSL.modelProperties
+        if (not model.hasOwnProperty(property.name))
+          @_throwError("#{obElement.getHtml()}: data-model doesn't match any data in model")
+        model=model[property.name]
+        model=model[property.index] if property.hasIndex
+
+    className = dataModelDSL.className
+    if className
+      constructorFn=window[className]
+      model=new constructorFn(model)
+
+    model
 
   _throwError: (errorMessage) ->
     Oblique().triggerOnError(new ObliqueNS.Error(errorMessage))

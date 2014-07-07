@@ -75,48 +75,41 @@
             return _results;
           };
         })(this));
-
-        /*
-         *TODO: change this to a more human readable loop
-        rootDOMElement = document.getElementsByTagName("body")[0]
-        rootElement=new ObliqueNS.Element rootDOMElement
-        
-        rootElement.eachDescendant(
-          (DOMElement) =>
-            obElement=new ObliqueNS.Element(DOMElement)
-            for cssExpr in @_directiveCollection.getCSSExpressions()
-              continue if not obElement.matchCSSExpression cssExpr
-              for directive in @_directiveCollection.getDirectivesByCSSExpression cssExpr
-                directiveHashCode = directive.hashCode
-                continue if obElement.hasFlag directiveHashCode
-                obElement.setFlag directiveHashCode
-                model=@_getModel obElement
-                new directive DOMElement, model
-        )
-         */
       } finally {
         this._isApplyingDirectivesInDOM = false;
       }
     };
 
     DirectiveProcessor.prototype._getModel = function(obElement) {
-      var dataModelExpr, model;
+      var className, constructorFn, dataModelDSL, dataModelExpr, model, property, _i, _len, _ref;
       model = Oblique().getModel();
-      if (!model) {
-        return void 0;
-      }
       dataModelExpr = obElement.getAttributeValue("data-model");
       if (dataModelExpr === void 0) {
         return void 0;
       }
-      if (dataModelExpr === "this") {
+      dataModelDSL = new ObliqueNS.DataModelDSL(dataModelExpr);
+      if (dataModelDSL.hasFullModel) {
         return model;
       }
-      try {
-        return new ObliqueNS.JSON(model).getPathValue(dataModelExpr);
-      } catch (_error) {
-        return this._throwError("" + (obElement.getHtml()) + ": data-model doesn't match any data in model");
+      if (dataModelDSL.modelProperties) {
+        _ref = dataModelDSL.modelProperties;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          property = _ref[_i];
+          if (!model.hasOwnProperty(property.name)) {
+            this._throwError("" + (obElement.getHtml()) + ": data-model doesn't match any data in model");
+          }
+          model = model[property.name];
+          if (property.hasIndex) {
+            model = model[property.index];
+          }
+        }
       }
+      className = dataModelDSL.className;
+      if (className) {
+        constructorFn = window[className];
+        model = new constructorFn(model);
+      }
+      return model;
     };
 
     DirectiveProcessor.prototype._throwError = function(errorMessage) {
