@@ -1,4 +1,89 @@
 
+# ../src/DataModelDSL.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class ModelDSLPart
+  constructor:(part)->
+    @name=part
+    @hasIndex=false
+    @index=undefined
+    firstBracePosition = part.indexOf "["
+    if firstBracePosition isnt -1
+      @hasIndex= true
+      @name=part.substr 0, firstBracePosition
+      lastBracePosition = part.indexOf "]"
+      indexStr=part.slice firstBracePosition+1, lastBracePosition
+      @index=parseInt(indexStr, 10)
+
+class ModelDSL
+  constructor:(@_expression) ->
+    @hasFullModel=false
+    @_partsByDot = @_expression.split(".")
+    @_checkSyntax()
+    @_partsByDot.shift()
+
+    if @_partsByDot.length is 0
+      @hasFullModel=true
+      @properties=undefined
+      return
+
+    @properties=[]
+    for part in @_partsByDot
+      @properties.push new ModelDSLPart(part)
+
+  _checkSyntax:() ->
+    throw new ObliqueNS.Error("data-model must begins with 'Model or new'") if @_partsByDot[0] isnt "Model"
+    lastIndex = @_partsByDot.length - 1
+    throw new ObliqueNS.Error("data-model needs property after dot") if @_partsByDot[lastIndex] is ""
+
+class ClassDSL
+  constructor:(@_expression)->
+    classNameAndBrackets = @_expression.split(" ")[1]
+    openBracket = classNameAndBrackets.indexOf("(")
+    throw new ObliqueNS.Error("data-model needs open bracket after className") if openBracket is -1
+
+    closeBracket=classNameAndBrackets.indexOf(")", openBracket)
+    throw new ObliqueNS.Error("data-model needs close bracket after className") if closeBracket is -1
+    @name = classNameAndBrackets.slice(0, openBracket)
+
+
+class DataModelDSL
+  constructor:(@_expression) ->
+    @_checkIsNullOrEmpty()
+    @hasFullModel = false
+    @modelProperties=undefined
+    @className=undefined
+
+    @_hasClass = @_expression.split(" ")[0] is "new"
+    if (@_hasClass)
+      @className=(new ClassDSL @_expression).name
+
+    modelExpression=@_extractModelExpression()
+    if (modelExpression isnt "")
+      modelDSL = new ModelDSL modelExpression
+      @modelProperties=modelDSL.properties
+      @hasFullModel=modelDSL.hasFullModel
+
+  _extractModelExpression:()->
+    return @_expression if not @_hasClass
+    modelFirstPosition=@_expression.indexOf("(Model")
+    return "" if (modelFirstPosition is -1)
+    modelLastPosition=@_expression.indexOf(")")
+    return @_expression.slice(modelFirstPosition+1, modelLastPosition)
+
+  _checkIsNullOrEmpty:() ->
+    throw new ObliqueNS.Error("data-model can't be null or empty") if @_isNullOrEmpty()
+
+  _isNullOrEmpty:() ->
+    return true if @_expression is undefined
+    return true if @_expression is null
+    return true if @_expression is ""
+    false
+
+ObliqueNS.DataModelDSL=DataModelDSL
+
+
 # ../src/DirectiveCollection.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -21,29 +106,9 @@ class DirectiveCollection
   _throwErrorIfDirectiveIsNotValid: (directive) ->
     if not @_isAFunction(directive)
       throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.NOT_A_FUNCTION_CLASS_ERROR_MESSAGE)
-    if not directive.CSS_EXPRESSION
-      throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.DOESNT_HAVE_PROPERTY_CSS_EXPR_MESSAGE)
-
-  _hashCode: (str) ->
-    hash = 0
-    i = undefined
-    chr = undefined
-    len = undefined
-    return hash if str.length is 0
-    i = 0
-    len = str.length
-
-    while i < len
-      chr = str.charCodeAt(i)
-      hash = ((hash << 5) - hash) + chr
-      hash |= 0
-      i++
-    hash
 
   add:(directive) ->
     @_throwErrorIfDirectiveIsNotValid(directive)
-
-    directive.hashCode=@_hashCode(directive.toString()+directive.CSS_EXPRESSION).toString()
 
     @directives.push directive
 
@@ -67,6 +132,14 @@ class DirectiveCollection
 
   getCSSExpressions : ->
     @_cssExpressions
+
+  stringStartsWith : (str, strBegin) ->
+    str.slice(0, strBegin.length) is strBegin
+
+  getDirectiveByName : (directiveName) ->
+    for directive in @directives
+      return directive if @stringStartsWith(directive.toString(), "function #{directiveName}(")
+    undefined
 
   getDirectivesByCSSExpression: (cssExpression) ->
     directivesWithCSSExpr=[]
@@ -117,36 +190,46 @@ class DirectiveProcessor
     return if @_isApplyingDirectivesInDOM
     @_isApplyingDirectivesInDOM = true
     try
-      #TODO: change this to a more human readable loop
-      rootDOMElement = document.getElementsByTagName("body")[0]
-      rootElement=new ObliqueNS.Element rootDOMElement
 
-      rootElement.eachDescendant(
-        (DOMElement) =>
+      $("*[data-directive]").each(
+        (index, DOMElement) =>
           obElement=new ObliqueNS.Element(DOMElement)
-          for cssExpr in @_directiveCollection.getCSSExpressions()
-            continue if not obElement.matchCSSExpression cssExpr
-            for directive in @_directiveCollection.getDirectivesByCSSExpression cssExpr
-              directiveHashCode = directive.hashCode
-              continue if obElement.hasFlag directiveHashCode
-              obElement.setFlag directiveHashCode
-              model=@_getModel obElement
-              new directive DOMElement, model
+
+          directiveAttrValue=obElement.getAttributeValue "data-directive"
+          for directiveName in directiveAttrValue.split(",")
+            directiveName=directiveName.trim()
+            continue if obElement.hasFlag directiveName
+
+            directive=@_directiveCollection.getDirectiveByName(directiveName)
+            throw new ObliqueNS.Error("There is no #{directiveName} directive registered") if not directive
+            obElement.setFlag directiveName
+            model=@_getModel obElement
+            new directive DOMElement, model
       )
     finally
       @_isApplyingDirectivesInDOM = false
 
   _getModel : (obElement) ->
     model=Oblique().getModel()
-    return undefined if not model
     dataModelExpr=obElement.getAttributeValue("data-model")
     return undefined if dataModelExpr is undefined
-    return model if dataModelExpr is "this"
 
-    try
-      return new ObliqueNS.JSON(model).getPathValue(dataModelExpr)
-    catch
-      @_throwError("#{obElement.getHtml()}: data-model doesn't match any data in model")
+    dataModelDSL=new ObliqueNS.DataModelDSL dataModelExpr
+    return model if dataModelDSL.hasFullModel
+
+    if dataModelDSL.modelProperties
+      for property in dataModelDSL.modelProperties
+        if (not model.hasOwnProperty(property.name))
+          @_throwError("#{obElement.getHtml()}: data-model doesn't match any data in model")
+        model=model[property.name]
+        model=model[property.index] if property.hasIndex
+
+    className = dataModelDSL.className
+    if className
+      constructorFn=window[className]
+      model=new constructorFn(model)
+
+    model
 
   _throwError: (errorMessage) ->
     Oblique().triggerOnError(new ObliqueNS.Error(errorMessage))
@@ -244,26 +327,7 @@ class Error
     @name = "Oblique.Error"
 
 ObliqueNS.Error=Error
-# ../src/JSON.coffee
 
-@.ObliqueNS=@.ObliqueNS or {}
-
-class JSON
-
-  constructor:(@value)->
-
-  getPathValue:(path)->
-    parts=path.split "."
-    value=@value
-    for part in parts
-      throw new ObliqueNS.Error("'"+path+"' not found in JSON Object") if not value.hasOwnProperty(part)
-      value=value[part]
-    value
-
-  @parseString:(jsonString)->
-    new JSON(jQuery.parseJSON jsonString)
-
-ObliqueNS.JSON=JSON
 
 # ../src/Oblique.coffee
 
@@ -349,48 +413,8 @@ class Param
     parseInt @value, 10
 
 ObliqueNS.Param=Param
-# ../src/StringHash.coffee
-
-@.ObliqueNS=@.ObliqueNS or {}
-
-Param=ObliqueNS.Param
-
-class NamedParams
-
-  constructor : (params, paramSeparator=";", valueSeparator=":") ->
-    @params=[]
-    for param in params.split paramSeparator
-      @params.push new Param param, valueSeparator
-
-  getParam : (paramName) ->
-    for param in @params
-      return param if param.name is paramName
-    null
-
-ObliqueNS.NamedParams=NamedParams
-# ../src/StringList.coffee
-
-@.ObliqueNS=@.ObliqueNS or {}
-
-class StringList
-
-  constructor:(values, separator=",")->
-    @_values=values.split(separator);
-
-  toStringArray: ->
-    @_values
-
-  _valueToInt: (value) ->
-    number=parseInt value, 10
-    return 0 if isNaN number
-    number
-
-  toIntArray: ->
-    @_valueToInt value for value in @_values
 
 
-
-ObliqueNS.StringList=StringList
 # ../src/Template.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -404,6 +428,8 @@ class Template
     @compiledTemplate(model)
 
 ObliqueNS.Template=Template
+
+
 # ../src/TemplateFactory.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -437,6 +463,9 @@ class TemplateFactory
     template=@createFromString(templateContent)
 
 ObliqueNS.TemplateFactory=TemplateFactory
+
+
+
 # ../src/TimedDOMObserver.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}

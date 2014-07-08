@@ -70,6 +70,9 @@ class DirectiveProcessor
 
     className = dataModelDSL.className
     if className
+      if (not window.hasOwnProperty(className))
+        @_throwError("#{obElement.getHtml()}: '#{className}' isn't an existing class in data-model")
+
       constructorFn=window[className]
       model=new constructorFn(model)
 

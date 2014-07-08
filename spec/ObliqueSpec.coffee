@@ -378,3 +378,18 @@ describe "Oblique", ->
     Oblique().registerDirective(TestDirective)
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-directive='TestDirective' data-model='new Settings()'>nice DOM</div>"
+
+  it "must throw an error if class in data-model doesn't exists", (done)->
+    class TestDirective
+      constructor: ()->
+
+    Oblique().registerDirective(TestDirective)
+    Oblique().setIntervalTimeInMs 10
+    Oblique().onError( (error) ->
+      expect(error.name).toBe "ObliqueNS.Error"
+      expect(error.message).toBe "<div data-directive=\"TestDirective\" data-model=\"new Settings()\">nice DOM</div>: 'Settings' isn't an existing class in data-model"
+      Oblique().destroy()
+      done()
+    )
+
+    $("#fixture").html "<div data-directive='TestDirective' data-model='new Settings()'>nice DOM</div>"

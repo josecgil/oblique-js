@@ -38,3 +38,4 @@ describe "TemplateFactory", ->
     ).toThrow(new ObliqueNS.Error("template '/patata.hbs' not found"))
 
 
+

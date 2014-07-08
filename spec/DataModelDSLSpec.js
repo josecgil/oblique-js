@@ -6,25 +6,21 @@
     afterEach(function() {});
     DataModelDSL = ObliqueNS.DataModelDSL;
     it("must know if it's only a model", function() {
-      var dataModelParser;
-      return dataModelParser = new DataModelDSL("Model");
+      return new DataModelDSL("Model");
     });
     it("must know if it's not a model when empty string", function() {
       return expect(function() {
-        var dataModelParser;
-        return dataModelParser = new DataModelDSL("");
+        return new DataModelDSL("");
       }).toThrow(new ObliqueNS.Error("data-model can't be null or empty"));
     });
     it("must know if it's not a model when undefined", function() {
       return expect(function() {
-        var dataModelParser;
-        return dataModelParser = new DataModelDSL(void 0);
+        return new DataModelDSL(void 0);
       }).toThrow(new ObliqueNS.Error("data-model can't be null or empty"));
     });
     it("must know if it's not a model when null", function() {
       return expect(function() {
-        var dataModelParser;
-        return dataModelParser = new DataModelDSL(null);
+        return new DataModelDSL(null);
       }).toThrow(new ObliqueNS.Error("data-model can't be null or empty"));
     });
     it("must know if it's not a model when a string doesn't begins with 'Model or new'", function() {
@@ -141,10 +137,17 @@
         return new DataModelDSL("new ColorJSCollection(");
       }).toThrow(new ObliqueNS.Error("data-model needs close bracket after className"));
     });
-    return it("must know if end bracket are correct", function() {
+    it("must know if end bracket are correct", function() {
       return expect(function() {
         return new DataModelDSL("new ColorJSCollection)");
       }).toThrow(new ObliqueNS.Error("data-model needs open bracket after className"));
+    });
+    return it("must know className & model when it has extras espaces", function() {
+      var dataModelDSL;
+      dataModelDSL = new DataModelDSL("     new      ColorJSCollection   (  Model.Colors   )    ");
+      expect(dataModelDSL.className).toBe("ColorJSCollection");
+      expect(dataModelDSL.modelProperties[0].name).toBe("Colors");
+      return expect(dataModelDSL.modelProperties.length).toBe(1);
     });
   });
 

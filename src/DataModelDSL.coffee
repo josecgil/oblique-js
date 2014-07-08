@@ -48,6 +48,8 @@ class ClassDSL
 class DataModelDSL
   constructor:(@_expression) ->
     @_checkIsNullOrEmpty()
+    @_expression=@_removeExtraSpaces @_expression
+
     @hasFullModel = false
     @modelProperties=undefined
     @className=undefined
@@ -61,6 +63,16 @@ class DataModelDSL
       modelDSL = new ModelDSL modelExpression
       @modelProperties=modelDSL.properties
       @hasFullModel=modelDSL.hasFullModel
+
+  _removeExtraSpaces:(str)->
+    while str.indexOf("  ") isnt -1
+      str=str.replace("  ", " ")
+    str=str.trim()
+    str=str.replace " (", "("
+    str=str.replace " )", ")"
+    str=str.replace "( ", "("
+    str=str.replace ") ", ")"
+    str
 
   _extractModelExpression:()->
     return @_expression if not @_hasClass
@@ -79,3 +91,4 @@ class DataModelDSL
     false
 
 ObliqueNS.DataModelDSL=DataModelDSL
+

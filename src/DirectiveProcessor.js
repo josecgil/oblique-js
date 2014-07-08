@@ -106,6 +106,9 @@
       }
       className = dataModelDSL.className;
       if (className) {
+        if (!window.hasOwnProperty(className)) {
+          this._throwError("" + (obElement.getHtml()) + ": '" + className + "' isn't an existing class in data-model");
+        }
         constructorFn = window[className];
         model = new constructorFn(model);
       }

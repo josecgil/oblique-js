@@ -10,7 +10,7 @@ class Oblique
 
     @directiveProcessor=new ObliqueNS.DirectiveProcessor();
     @templateFactory=new ObliqueNS.TemplateFactory()
-    @_onErrorCallback=->
+    @_onErrorCallbacks=[]
 
   @DEFAULT_INTERVAL_MS = 500
 
@@ -45,13 +45,14 @@ class Oblique
     template=@templateFactory.createFromUrl url
     template.renderHTML model
 
-  onError:(@_onErrorCallback)->
+  onError:(onErrorCallback)->
+    @_onErrorCallbacks.push onErrorCallback
 
   triggerOnError:(error)->
-    @_onErrorCallback(error)
+    for callback in @_onErrorCallbacks
+      callback(error)
     throw error
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
-
 
