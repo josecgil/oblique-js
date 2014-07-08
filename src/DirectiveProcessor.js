@@ -137,14 +137,8 @@
     };
 
     DirectiveProcessor.prototype.destroy = function() {
-      var e;
       this._timedDOMObserver.destroy();
-      try {
-        return delete DirectiveProcessor._singletonInstance;
-      } catch (_error) {
-        e = _error;
-        return DirectiveProcessor._singletonInstance = void 0;
-      }
+      return DirectiveProcessor._singletonInstance = void 0;
     };
 
     return DirectiveProcessor;

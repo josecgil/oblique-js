@@ -365,6 +365,7 @@ describe "Oblique", ->
         expect(settings instanceof Settings).toBeTruthy()
         expect(settings.brand).toBe "VC"
         expect(settings.country).toBe "ES"
+        delete window.Settings
         Oblique().destroy()
         done()
 
@@ -387,9 +388,9 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     Oblique().onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
-      expect(error.message).toBe "<div data-directive=\"TestDirective\" data-model=\"new Settings()\">nice DOM</div>: 'Settings' isn't an existing class in data-model"
+      expect(error.message).toBe "<div data-directive=\"TestDirective\" data-model=\"new InventedClass()\">nice DOM</div>: 'InventedClass' isn't an existing class in data-model"
       Oblique().destroy()
       done()
     )
 
-    $("#fixture").html "<div data-directive='TestDirective' data-model='new Settings()'>nice DOM</div>"
+    $("#fixture").html "<div data-directive='TestDirective' data-model='new InventedClass()'>nice DOM</div>"

@@ -95,11 +95,7 @@ class DirectiveProcessor
 
   destroy: ->
     @_timedDOMObserver.destroy()
-    try
-      delete DirectiveProcessor._singletonInstance
-    catch e
-      DirectiveProcessor._singletonInstance = undefined
-
+    DirectiveProcessor._singletonInstance=undefined
 
 ObliqueNS.DirectiveProcessor=DirectiveProcessor
 @.Oblique=DirectiveProcessor
