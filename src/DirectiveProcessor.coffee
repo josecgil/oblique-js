@@ -34,24 +34,37 @@ class DirectiveProcessor
     return if @_isApplyingDirectivesInDOM
     @_isApplyingDirectivesInDOM = true
     try
-
+      ###
       $("*[data-directive]").each(
         (index, DOMElement) =>
-          obElement=new ObliqueNS.Element(DOMElement)
-
-          directiveAttrValue=obElement.getAttributeValue "data-directive"
-          for directiveName in directiveAttrValue.split(",")
-            directiveName=directiveName.trim()
-            continue if obElement.hasFlag directiveName
-
-            directive=@_directiveCollection.getDirectiveByName(directiveName)
-            throw new ObliqueNS.Error("There is no #{directiveName} directive registered") if not directive
-            obElement.setFlag directiveName
-            model=@_getModel obElement
-            new directive DOMElement, model
+          obElement=new ObliqueNS.Element DOMElement
+          @_processDirectiveElement obElement
       )
+      ###
+
+      body=document.getElementsByTagName("body")[0]
+      rootObElement=new ObliqueNS.Element body
+      rootObElement.eachDescendant(
+        (DOMElement)=>
+          obElement=new ObliqueNS.Element DOMElement
+          directiveAttrValue=obElement.getAttributeValue "data-directive"
+          @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
+      )
+
     finally
       @_isApplyingDirectivesInDOM = false
+
+  _processDirectiveElement:(obElement, directiveAttrValue) ->
+    for directiveName in directiveAttrValue.split(",")
+      directiveName=directiveName.trim()
+      continue if obElement.hasFlag directiveName
+
+      directive=@_directiveCollection.getDirectiveByName(directiveName)
+      throw new ObliqueNS.Error("There is no #{directiveName} directive registered") if not directive
+      obElement.setFlag directiveName
+      model=@_getModel obElement
+      new directive obElement.getDOMElement(), model
+
 
   _getModel : (obElement) ->
     model=Oblique().getModel()

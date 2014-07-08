@@ -401,7 +401,7 @@
       this._jQueryElement = jQuery(DOMElement);
     }
 
-    Element.prototype._getDOMElement = function() {
+    Element.prototype.getDOMElement = function() {
       return this._jQueryElement.get(0);
     };
 
@@ -439,7 +439,7 @@
     };
 
     Element.prototype.eachDescendant = function(callbackOnDOMElement) {
-      return Element._traverse(this._getDOMElement(), callbackOnDOMElement);
+      return Element._traverse(this.getDOMElement(), callbackOnDOMElement);
     };
 
     Element._isTag = function(DOMElement) {
@@ -476,7 +476,7 @@
     };
 
     Element.prototype.getHtml = function() {
-      return this._getDOMElement().outerHTML;
+      return this.getDOMElement().outerHTML;
     };
 
     return Element;

@@ -137,6 +137,8 @@ describe "DirectiveProcessor", ->
           expect(interval.timeInMs).toBeLessThan 200
           done()
 
+      @NAME="TestDirective"
+
     interval.start()
     DirectiveProcessor().registerDirective(TestDirective)
     DirectiveProcessor().setIntervalTimeInMs 10

@@ -266,7 +266,7 @@ class Element
   constructor:(DOMElement)->
     @_jQueryElement=jQuery(DOMElement)
 
-  _getDOMElement:->
+  getDOMElement:->
     @_jQueryElement.get 0
 
   isTag: ->
@@ -293,7 +293,7 @@ class Element
     @_jQueryElement.attr attributeName
 
   eachDescendant: (callbackOnDOMElement) ->
-    Element._traverse(@_getDOMElement(), callbackOnDOMElement)
+    Element._traverse(@getDOMElement(), callbackOnDOMElement)
 
   @_isTag: (DOMElement) ->
     DOMElement.nodeType is 1
@@ -313,7 +313,7 @@ class Element
 
 
   getHtml:->
-    @_getDOMElement().outerHTML
+    @getDOMElement().outerHTML
 
 ObliqueNS.Element=Element
 

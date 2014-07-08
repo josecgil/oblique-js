@@ -168,6 +168,8 @@
           }
         }
 
+        TestDirective.NAME = "TestDirective";
+
         return TestDirective;
 
       })();

@@ -46,38 +46,56 @@
     DirectiveProcessor._isApplyingDirectivesInDOM = false;
 
     DirectiveProcessor.prototype._applyDirectivesInDOM = function() {
+      var body, rootObElement;
       if (this._isApplyingDirectivesInDOM) {
         return;
       }
       this._isApplyingDirectivesInDOM = true;
       try {
-        return $("*[data-directive]").each((function(_this) {
-          return function(index, DOMElement) {
-            var directive, directiveAttrValue, directiveName, model, obElement, _i, _len, _ref, _results;
+
+        /*
+        $("*[data-directive]").each(
+          (index, DOMElement) =>
+            obElement=new ObliqueNS.Element DOMElement
+            @_processDirectiveElement obElement
+        )
+         */
+        body = document.getElementsByTagName("body")[0];
+        rootObElement = new ObliqueNS.Element(body);
+        return rootObElement.eachDescendant((function(_this) {
+          return function(DOMElement) {
+            var directiveAttrValue, obElement;
             obElement = new ObliqueNS.Element(DOMElement);
             directiveAttrValue = obElement.getAttributeValue("data-directive");
-            _ref = directiveAttrValue.split(",");
-            _results = [];
-            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-              directiveName = _ref[_i];
-              directiveName = directiveName.trim();
-              if (obElement.hasFlag(directiveName)) {
-                continue;
-              }
-              directive = _this._directiveCollection.getDirectiveByName(directiveName);
-              if (!directive) {
-                throw new ObliqueNS.Error("There is no " + directiveName + " directive registered");
-              }
-              obElement.setFlag(directiveName);
-              model = _this._getModel(obElement);
-              _results.push(new directive(DOMElement, model));
+            if (directiveAttrValue) {
+              return _this._processDirectiveElement(obElement, directiveAttrValue);
             }
-            return _results;
           };
         })(this));
       } finally {
         this._isApplyingDirectivesInDOM = false;
       }
+    };
+
+    DirectiveProcessor.prototype._processDirectiveElement = function(obElement, directiveAttrValue) {
+      var directive, directiveName, model, _i, _len, _ref, _results;
+      _ref = directiveAttrValue.split(",");
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        directiveName = _ref[_i];
+        directiveName = directiveName.trim();
+        if (obElement.hasFlag(directiveName)) {
+          continue;
+        }
+        directive = this._directiveCollection.getDirectiveByName(directiveName);
+        if (!directive) {
+          throw new ObliqueNS.Error("There is no " + directiveName + " directive registered");
+        }
+        obElement.setFlag(directiveName);
+        model = this._getModel(obElement);
+        _results.push(new directive(obElement.getDOMElement(), model));
+      }
+      return _results;
     };
 
     DirectiveProcessor.prototype._getModel = function(obElement) {
