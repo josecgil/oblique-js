@@ -64,7 +64,14 @@ class DirectiveProcessor
       obElement.setFlag directiveName
       model=@_getModel obElement
       params=@_getParams obElement
-      new directive obElement.getDOMElement(), model, params
+
+      directiveData=
+        domElement: obElement.getDOMElement()
+        jQueryElement: obElement.getjQueryElement()
+        model: model
+        params: params
+
+      new directive directiveData
 
   _getParams : (obElement) ->
     dataParamsExpr=obElement.getAttributeValue("data-params")

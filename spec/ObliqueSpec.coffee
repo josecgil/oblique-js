@@ -50,11 +50,10 @@ describe "Oblique", ->
     , 100
 
 
-
   it "If I register a Directive it calls its constructor with the correct DOM element", (done)->
     class TestDirective
-      constructor: (DOMElement)->
-        expect($(DOMElement).is("test[data-directive='TestDirective']")).toBeTruthy()
+      constructor: (data)->
+        expect($(data.domElement).is("test[data-directive='TestDirective']")).toBeTruthy()
         Oblique().destroy()
         done()
 
@@ -151,8 +150,8 @@ describe "Oblique", ->
       content : "content"
 
     class TestDirective
-      constructor: (domElement, model)->
-        expect(model).toBeUndefined()
+      constructor: (data)->
+        expect(data.model).toBeUndefined()
         Oblique().destroy()
         done()
 
@@ -169,8 +168,8 @@ describe "Oblique", ->
       content : "content"
 
     class TestDirective
-      constructor: (domElement, model)->
-        expect(model).toBe "Carlos"
+      constructor: (data)->
+        expect(data.model).toBe "Carlos"
         Oblique().destroy()
         done()
 
@@ -190,8 +189,8 @@ describe "Oblique", ->
         number: 42
 
     class TestDirective
-      constructor: (domElement, model)->
-        expect(model).toBe "Gran Via"
+      constructor: (data)->
+        expect(data.model).toBe "Gran Via"
         Oblique().destroy()
         done()
 
@@ -213,9 +212,9 @@ describe "Oblique", ->
           number: 42
 
     class TestDirective
-      constructor: (domElement, model)->
-        expect(model.name).toBe "Gran Via"
-        expect(model.number).toBe 42
+      constructor: (data)->
+        expect(data.model.name).toBe "Gran Via"
+        expect(data.model.number).toBe 42
         Oblique().destroy()
         done()
 
@@ -257,8 +256,8 @@ describe "Oblique", ->
       content : "content"
 
     class TestDirective
-      constructor: (domElement, model)->
-        expect(model).toBe modelToTest
+      constructor: (data)->
+        expect(data.model).toBe modelToTest
         Oblique().destroy()
         done()
 
@@ -306,9 +305,7 @@ describe "Oblique", ->
 
   it "must execute selected directive when data-directive is found", (done)->
     class TestDirective
-      constructor: (obj)->
-        obj.Model
-
+      constructor: ()->
         Oblique().destroy()
         done()
 
@@ -326,10 +323,10 @@ describe "Oblique", ->
     Oblique().setModel model
 
     class TestDirective
-      constructor: (domElement, directiveModel)->
-        expect(directiveModel.name).toBe "Carlos"
-        expect(directiveModel.address.street).toBe "Gran Via"
-        expect(directiveModel.address.number).toBe 32
+      constructor: (data)->
+        expect(data.model.name).toBe "Carlos"
+        expect(data.model.address.street).toBe "Gran Via"
+        expect(data.model.address.number).toBe 32
         Oblique().destroy()
         done()
 
@@ -350,8 +347,8 @@ describe "Oblique", ->
     Oblique().setModel model
 
     class TestDirective
-      constructor: (domElement, directiveModel)->
-        expect(directiveModel).toBe "S"
+      constructor: (data)->
+        expect(data.model).toBe "S"
         Oblique().destroy()
         done()
 
@@ -361,7 +358,8 @@ describe "Oblique", ->
 
   it "must create an instance of the selected model-data class", (done)->
     class TestDirective
-      constructor: (domElement, settings)->
+      constructor: (data)->
+        settings=data.model
         expect(settings instanceof Settings).toBeTruthy()
         expect(settings.brand).toBe "VC"
         expect(settings.country).toBe "ES"
@@ -398,8 +396,8 @@ describe "Oblique", ->
 
   it "must pass simple param to directive", (done)->
     class TestDirective
-      constructor: (domElement, model, params)->
-        expect(params.name).toBe "Carlos"
+      constructor: (data)->
+        expect(data.params.name).toBe "Carlos"
         Oblique().destroy()
         done()
 
@@ -410,10 +408,10 @@ describe "Oblique", ->
 
   it "must pass complex param to directive", (done)->
     class TestDirective
-      constructor: (domElement, model, params)->
-        expect(params.name).toBe "Carlos"
-        expect(params.address.street).toBe "Gran Via"
-        expect(params.address.number).toBe 42
+      constructor: (data)->
+        expect(data.params.name).toBe "Carlos"
+        expect(data.params.address.street).toBe "Gran Via"
+        expect(data.params.address.number).toBe 42
         Oblique().destroy()
         done()
 
@@ -436,3 +434,20 @@ describe "Oblique", ->
     )
 
     $("#fixture").html "<div data-directive='TestDirective' data-params='patata'>nice DOM</div>"
+
+  it "must catch data-directive, data-model & data-params in a single data param", (done)->
+    Oblique().setModel "my model"
+
+    class TestDirective
+      constructor: (directiveData)->
+        expect(directiveData.domElement.outerHTML).toBe "<div data-directive=\"TestDirective\" data-model=\"Model\" data-params=\"{&quot;simpleparam&quot;:&quot;simple param&quot;}\">nice DOM</div>"
+        expect(directiveData.jQueryElement.get(0).outerHTML).toBe directiveData.domElement.outerHTML
+        expect(directiveData.model).toBe "my model"
+        expect(directiveData.params.simpleparam).toBe "simple param"
+        Oblique().destroy()
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    $("#fixture").html "<div data-directive='TestDirective' data-model='Model' data-params='{\"simpleparam\":\"simple param\"}'>nice DOM</div>"

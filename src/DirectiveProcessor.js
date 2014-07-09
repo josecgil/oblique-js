@@ -78,7 +78,7 @@
     };
 
     DirectiveProcessor.prototype._processDirectiveElement = function(obElement, directiveAttrValue) {
-      var directive, directiveName, model, params, _i, _len, _ref, _results;
+      var directive, directiveData, directiveName, model, params, _i, _len, _ref, _results;
       _ref = directiveAttrValue.split(",");
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -94,7 +94,13 @@
         obElement.setFlag(directiveName);
         model = this._getModel(obElement);
         params = this._getParams(obElement);
-        _results.push(new directive(obElement.getDOMElement(), model, params));
+        directiveData = {
+          domElement: obElement.getDOMElement(),
+          jQueryElement: obElement.getjQueryElement(),
+          model: model,
+          params: params
+        };
+        _results.push(new directive(directiveData));
       }
       return _results;
     };
