@@ -451,3 +451,32 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
 
     $("#fixture").html "<div data-directive='TestDirective' data-model='Model' data-params='{\"simpleparam\":\"simple param\"}'>nice DOM</div>"
+
+
+  it "must set to undefined model if data-model is not present", (done)->
+    Oblique().setModel "my model"
+
+    class TestDirective
+      constructor: (directiveData)->
+        expect(directiveData.model).toBeUndefined()
+        Oblique().destroy()
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    $("#fixture").html "<div data-directive='TestDirective' data-params='{\"simpleparam\":\"simple param\"}'>nice DOM</div>"
+
+  it "must set to undefined params if data-params is not present", (done)->
+    Oblique().setModel "my model"
+
+    class TestDirective
+      constructor: (directiveData)->
+        expect(directiveData.params).toBeUndefined()
+        Oblique().destroy()
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    $("#fixture").html "<div data-directive='TestDirective' data-model='Model'>nice DOM</div>"
