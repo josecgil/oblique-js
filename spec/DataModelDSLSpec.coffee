@@ -136,3 +136,4 @@ describe "DataModelDSL", ->
     expect(dataModelDSL.className).toBe "ColorJSCollection"
     expect(dataModelDSL.modelProperties[0].name).toBe "Colors"
     expect(dataModelDSL.modelProperties.length).toBe 1
+

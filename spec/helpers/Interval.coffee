@@ -10,3 +10,4 @@ class @Interval
     endDate=new Date()
     @timeInMs=endDate-@_startDate
 
+

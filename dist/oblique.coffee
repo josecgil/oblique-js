@@ -1,6 +1,3 @@
-
-# ../src/DataModelDSL.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class ModelDSLPart
@@ -51,6 +48,8 @@ class ClassDSL
 class DataModelDSL
   constructor:(@_expression) ->
     @_checkIsNullOrEmpty()
+    @_expression=@_removeExtraSpaces @_expression
+
     @hasFullModel = false
     @modelProperties=undefined
     @className=undefined
@@ -64,6 +63,16 @@ class DataModelDSL
       modelDSL = new ModelDSL modelExpression
       @modelProperties=modelDSL.properties
       @hasFullModel=modelDSL.hasFullModel
+
+  _removeExtraSpaces:(str)->
+    while str.indexOf("  ") isnt -1
+      str=str.replace("  ", " ")
+    str=str.trim()
+    str=str.replace " (", "("
+    str=str.replace " )", ")"
+    str=str.replace "( ", "("
+    str=str.replace ") ", ")"
+    str
 
   _extractModelExpression:()->
     return @_expression if not @_hasClass
@@ -84,15 +93,13 @@ class DataModelDSL
 ObliqueNS.DataModelDSL=DataModelDSL
 
 
-# ../src/DirectiveCollection.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveCollection
 
   constructor:()->
     @directives=[]
-    @_cssExpressions=[]
+    @_directivesByName={}
 
   count:() ->
     @directives.length
@@ -101,7 +108,6 @@ class DirectiveCollection
     typeof (memberToTest) is "function"
 
   @NOT_A_FUNCTION_CLASS_ERROR_MESSAGE = "registerDirective must be called with a Directive 'Constructor/Class'"
-  @DOESNT_HAVE_PROPERTY_CSS_EXPR_MESSAGE = "directive must has an static CSS_EXPRESSION property"
 
   _throwErrorIfDirectiveIsNotValid: (directive) ->
     if not @_isAFunction(directive)
@@ -112,26 +118,9 @@ class DirectiveCollection
 
     @directives.push directive
 
-    #pre-calc this when adding a Directive for fast access
-    @_buildCSSExpressions()
 
   at:(index)->
     @directives[index]
-
-  _containsCssExpr: (exprToSearch, exprArray) ->
-    for expr in exprArray
-      return true if exprToSearch is expr
-    false
-
-  _buildCSSExpressions : ->
-    @_cssExpressions=[]
-    for directive in @directives
-      cssExpr = directive.CSS_EXPRESSION
-      continue if @_containsCssExpr cssExpr, @_cssExpressions
-      @_cssExpressions.push cssExpr
-
-  getCSSExpressions : ->
-    @_cssExpressions
 
   stringStartsWith : (str, strBegin) ->
     str.slice(0, strBegin.length) is strBegin
@@ -141,18 +130,9 @@ class DirectiveCollection
       return directive if @stringStartsWith(directive.toString(), "function #{directiveName}(")
     undefined
 
-  getDirectivesByCSSExpression: (cssExpression) ->
-    directivesWithCSSExpr=[]
-    for directive in @directives
-      cssExpr = directive.CSS_EXPRESSION
-      continue if cssExpr isnt cssExpression
-      directivesWithCSSExpr.push directive
-    directivesWithCSSExpr
+
 
 ObliqueNS.DirectiveCollection=DirectiveCollection
-
-
-# ../src/DirectiveProcessor.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -190,24 +170,45 @@ class DirectiveProcessor
     return if @_isApplyingDirectivesInDOM
     @_isApplyingDirectivesInDOM = true
     try
-
+      ###
       $("*[data-directive]").each(
         (index, DOMElement) =>
-          obElement=new ObliqueNS.Element(DOMElement)
-
-          directiveAttrValue=obElement.getAttributeValue "data-directive"
-          for directiveName in directiveAttrValue.split(",")
-            directiveName=directiveName.trim()
-            continue if obElement.hasFlag directiveName
-
-            directive=@_directiveCollection.getDirectiveByName(directiveName)
-            throw new ObliqueNS.Error("There is no #{directiveName} directive registered") if not directive
-            obElement.setFlag directiveName
-            model=@_getModel obElement
-            new directive DOMElement, model
+          obElement=new ObliqueNS.Element DOMElement
+          @_processDirectiveElement obElement
       )
+      ###
+
+      body=document.getElementsByTagName("body")[0]
+      rootObElement=new ObliqueNS.Element body
+      rootObElement.eachDescendant(
+        (DOMElement)=>
+          obElement=new ObliqueNS.Element DOMElement
+          directiveAttrValue=obElement.getAttributeValue "data-directive"
+          @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
+      )
+
     finally
       @_isApplyingDirectivesInDOM = false
+
+  _processDirectiveElement:(obElement, directiveAttrValue) ->
+    for directiveName in directiveAttrValue.split(",")
+      directiveName=directiveName.trim()
+      continue if obElement.hasFlag directiveName
+
+      directive=@_directiveCollection.getDirectiveByName(directiveName)
+      throw new ObliqueNS.Error("There is no #{directiveName} directive registered") if not directive
+      obElement.setFlag directiveName
+      model=@_getModel obElement
+      params=@_getParams obElement
+      new directive obElement.getDOMElement(), model, params
+
+  _getParams : (obElement) ->
+    dataParamsExpr=obElement.getAttributeValue("data-params")
+    return undefined if not dataParamsExpr
+    try
+      jQuery.parseJSON(dataParamsExpr)
+    catch e
+      @_throwError("#{obElement.getHtml()}: data-params parse error: #{e.message}")
 
   _getModel : (obElement) ->
     model=Oblique().getModel()
@@ -226,6 +227,9 @@ class DirectiveProcessor
 
     className = dataModelDSL.className
     if className
+      if (not window.hasOwnProperty(className))
+        @_throwError("#{obElement.getHtml()}: '#{className}' isn't an existing class in data-model")
+
       constructorFn=window[className]
       model=new constructorFn(model)
 
@@ -248,17 +252,10 @@ class DirectiveProcessor
 
   destroy: ->
     @_timedDOMObserver.destroy()
-    try
-      delete DirectiveProcessor._singletonInstance
-    catch e
-      DirectiveProcessor._singletonInstance = undefined
-
+    DirectiveProcessor._singletonInstance=undefined
 
 ObliqueNS.DirectiveProcessor=DirectiveProcessor
 @.Oblique=DirectiveProcessor
-
-# ../src/Element.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Element
@@ -316,9 +313,6 @@ class Element
     @getDOMElement().outerHTML
 
 ObliqueNS.Element=Element
-
-# ../src/Error.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Error
@@ -328,8 +322,6 @@ class Error
 
 ObliqueNS.Error=Error
 
-
-# ../src/Oblique.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -343,7 +335,7 @@ class Oblique
 
     @directiveProcessor=new ObliqueNS.DirectiveProcessor();
     @templateFactory=new ObliqueNS.TemplateFactory()
-    @_onErrorCallback=->
+    @_onErrorCallbacks=[]
 
   @DEFAULT_INTERVAL_MS = 500
 
@@ -378,17 +370,17 @@ class Oblique
     template=@templateFactory.createFromUrl url
     template.renderHTML model
 
-  onError:(@_onErrorCallback)->
+  onError:(onErrorCallback)->
+    @_onErrorCallbacks.push onErrorCallback
 
   triggerOnError:(error)->
-    @_onErrorCallback(error)
+    for callback in @_onErrorCallbacks
+      callback(error)
     throw error
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
 
-
-# ../src/ObliqueError.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -398,25 +390,6 @@ class ObliqueError extends Error
     @name = "ObliqueNS.Error"
 
 ObliqueNS.Error=ObliqueError
-# ../src/Param.coffee
-
-@.ObliqueNS=@.ObliqueNS or {}
-
-class Param
-
-  constructor:(param, valueSeparator=":")->
-    paramAndValue=param.split valueSeparator
-    @name=paramAndValue[0].trim()
-    @value=paramAndValue[1].trim()
-
-  valueAsInt: ->
-    parseInt @value, 10
-
-ObliqueNS.Param=Param
-
-
-# ../src/Template.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Template
@@ -429,8 +402,6 @@ class Template
 
 ObliqueNS.Template=Template
 
-
-# ../src/TemplateFactory.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -465,8 +436,6 @@ class TemplateFactory
 ObliqueNS.TemplateFactory=TemplateFactory
 
 
-
-# ../src/TimedDOMObserver.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
