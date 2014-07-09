@@ -8,6 +8,9 @@ class Element
   getDOMElement:->
     @_jQueryElement.get 0
 
+  getjQueryElement:->
+    @_jQueryElement
+
   isTag: ->
     Element._isTag(@_DOMElement)
 
@@ -49,7 +52,6 @@ class Element
         if Element._isTag child
           elementsToTraverse.push child
           callbackOnDOMElement child
-
 
   getHtml:->
     @getDOMElement().outerHTML

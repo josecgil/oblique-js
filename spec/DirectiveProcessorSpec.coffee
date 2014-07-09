@@ -61,8 +61,8 @@ describe "DirectiveProcessor", ->
 
   it "If I register a Directive it calls its constructor with the correct DOM element", (done)->
     class TestDirective
-      constructor: (DOMElement)->
-        expect($(DOMElement).is("test[data-directive='TestDirective']")).toBeTruthy()
+      constructor: (data)->
+        expect($(data.domElement).is("test[data-directive='TestDirective']")).toBeTruthy()
         DirectiveProcessor().destroy()
         done()
 

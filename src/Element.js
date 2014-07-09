@@ -13,6 +13,10 @@
       return this._jQueryElement.get(0);
     };
 
+    Element.prototype.getjQueryElement = function() {
+      return this._jQueryElement;
+    };
+
     Element.prototype.isTag = function() {
       return Element._isTag(this._DOMElement);
     };

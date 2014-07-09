@@ -124,11 +124,23 @@
       bqElement = new Element($("#data-model-test3"));
       return expect(bqElement.getAttributeValue("data-model")).toBe("name");
     });
-    return it("must returns element html", function() {
+    it("must returns element html", function() {
       var bqElement;
       FixtureHelper.appendHTML('<div id="elementHtml" data-test="element html"></div>');
       bqElement = new Element($("#elementHtml"));
       return expect(bqElement.getHtml()).toBe('<div id="elementHtml" data-test="element html"></div>');
+    });
+    it("must returns DOMElement", function() {
+      var bqElement;
+      FixtureHelper.appendHTML('<div id="elementHtml" data-test="element html"></div>');
+      bqElement = new Element($("#elementHtml"));
+      return expect(bqElement.getDOMElement().outerHTML).toBe('<div id="elementHtml" data-test="element html"></div>');
+    });
+    return it("must returns jQueryElement", function() {
+      var bqElement;
+      FixtureHelper.appendHTML('<div id="elementHtml" data-test="element html"></div>');
+      bqElement = new Element($("#elementHtml"));
+      return expect(bqElement.getjQueryElement().get(0).outerHTML).toBe('<div id="elementHtml" data-test="element html"></div>');
     });
   });
 

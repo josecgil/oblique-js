@@ -67,8 +67,8 @@
     it("If I register a Directive it calls its constructor with the correct DOM element", function(done) {
       var TestDirective;
       TestDirective = (function() {
-        function TestDirective(DOMElement) {
-          expect($(DOMElement).is("test[data-directive='TestDirective']")).toBeTruthy();
+        function TestDirective(data) {
+          expect($(data.domElement).is("test[data-directive='TestDirective']")).toBeTruthy();
           DirectiveProcessor().destroy();
           done();
         }

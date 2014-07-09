@@ -195,7 +195,14 @@ class DirectiveProcessor
       obElement.setFlag directiveName
       model=@_getModel obElement
       params=@_getParams obElement
-      new directive obElement.getDOMElement(), model, params
+
+      directiveData=
+        domElement: obElement.getDOMElement()
+        jQueryElement: obElement.getjQueryElement()
+        model: model
+        params: params
+
+      new directive directiveData
 
   _getParams : (obElement) ->
     dataParamsExpr=obElement.getAttributeValue("data-params")
@@ -260,6 +267,9 @@ class Element
   getDOMElement:->
     @_jQueryElement.get 0
 
+  getjQueryElement:->
+    @_jQueryElement
+
   isTag: ->
     Element._isTag(@_DOMElement)
 
@@ -301,7 +311,6 @@ class Element
         if Element._isTag child
           elementsToTraverse.push child
           callbackOnDOMElement child
-
 
   getHtml:->
     @getDOMElement().outerHTML
