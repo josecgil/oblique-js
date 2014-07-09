@@ -29,7 +29,7 @@
         return DirectiveProcessor().setIntervalTimeInMs(-1);
       }).toThrow(new ObError("IntervalTime must be a positive number"));
     });
-    it("If I register a Directive it calls its constructor when data-directive is in DOM", function(done) {
+    it("If I register a Directive it calls its constructor when data-ob-directive is in DOM", function(done) {
       var TestDirective;
       TestDirective = (function() {
         function TestDirective() {
@@ -42,9 +42,9 @@
       })();
       DirectiveProcessor().registerDirective("TestDirective", TestDirective);
       DirectiveProcessor().setIntervalTimeInMs(10);
-      return $("#fixture").html("<div data-directive='TestDirective'></div>");
+      return $("#fixture").html("<div data-ob-directive='TestDirective'></div>");
     });
-    it("If I register a Directive it calls its constructor only one time when data-directive is in DOM", function(done) {
+    it("If I register a Directive it calls its constructor only one time when data-ob-directive is in DOM", function(done) {
       var TestDirective, counter;
       counter = 0;
       TestDirective = (function() {
@@ -57,7 +57,7 @@
       })();
       DirectiveProcessor().registerDirective("TestDirective", TestDirective);
       DirectiveProcessor().setIntervalTimeInMs(10);
-      FixtureHelper.appendHTML("<div data-directive='TestDirective'></div>");
+      FixtureHelper.appendHTML("<div data-ob-directive='TestDirective'></div>");
       return setTimeout(function() {
         DirectiveProcessor().destroy();
         expect(counter).toBe(1);
@@ -68,7 +68,7 @@
       var TestDirective;
       TestDirective = (function() {
         function TestDirective(data) {
-          expect($(data.domElement).is("test[data-directive='TestDirective']")).toBeTruthy();
+          expect($(data.domElement).is("test[data-ob-directive='TestDirective']")).toBeTruthy();
           DirectiveProcessor().destroy();
           done();
         }
@@ -77,7 +77,7 @@
 
       })();
       DirectiveProcessor().registerDirective("TestDirective", TestDirective);
-      return FixtureHelper.appendHTML("<test data-directive='TestDirective'></test>");
+      return FixtureHelper.appendHTML("<test data-ob-directive='TestDirective'></test>");
     });
     it("must call 2 directives if there are in the same tag", function(done) {
       var HideOnClickDirective, ShowOnClickDirective, calls;
@@ -108,7 +108,7 @@
       })();
       DirectiveProcessor().registerDirective("ShowOnClickDirective", ShowOnClickDirective);
       DirectiveProcessor().registerDirective("HideOnClickDirective", HideOnClickDirective);
-      return FixtureHelper.appendHTML("<test data-directive='ShowOnClickDirective, HideOnClickDirective'></test>");
+      return FixtureHelper.appendHTML("<test data-ob-directive='ShowOnClickDirective, HideOnClickDirective'></test>");
     });
     it("must call 2 directives if there are in the same tag (2 instances of same tag)", function(done) {
       var HideOnClickDirective, ShowOnClickDirective, calls;
@@ -141,8 +141,8 @@
       })();
       DirectiveProcessor().registerDirective("ShowOnClickDirective", ShowOnClickDirective);
       DirectiveProcessor().registerDirective("HideOnClickDirective", HideOnClickDirective);
-      FixtureHelper.appendHTML("<test data-directive='ShowOnClickDirective, HideOnClickDirective'></test>");
-      return FixtureHelper.appendHTML("<test data-directive='ShowOnClickDirective, HideOnClickDirective'></test>");
+      FixtureHelper.appendHTML("<test data-ob-directive='ShowOnClickDirective, HideOnClickDirective'></test>");
+      return FixtureHelper.appendHTML("<test data-ob-directive='ShowOnClickDirective, HideOnClickDirective'></test>");
     });
     it("If I register an object that no is a Directive it throws an Error", function() {
       return expect(function() {
@@ -152,10 +152,10 @@
     it("must execute 1 directive in a 10000 elements DOM in <200ms", function(done) {
       var DOM_ELEMENTS_COUNT, TestDirective, counter, interval;
       DOM_ELEMENTS_COUNT = 4 * 250;
-      FixtureHelper.appendHTML("<p data-directive='TestDirective'>nice DOM</p>", DOM_ELEMENTS_COUNT / 4);
-      FixtureHelper.appendHTML("<div data-directive='TestDirective'>nice DOM</div>", DOM_ELEMENTS_COUNT / 4);
-      FixtureHelper.appendHTML("<span data-directive='TestDirective'>nice DOM</span>", DOM_ELEMENTS_COUNT / 4);
-      FixtureHelper.appendHTML("<test data-directive='TestDirective'>nice DOM</test>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<p data-ob-directive='TestDirective'>nice DOM</p>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<div data-ob-directive='TestDirective'>nice DOM</div>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<span data-ob-directive='TestDirective'>nice DOM</span>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<test data-ob-directive='TestDirective'>nice DOM</test>", DOM_ELEMENTS_COUNT / 4);
       interval = new Interval();
       counter = 0;
       TestDirective = (function() {
@@ -178,10 +178,10 @@
     it("must execute 5 directives in a 10000 elements DOM in <400ms", function(done) {
       var DOM_ELEMENTS_COUNT, TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5, counter, interval;
       DOM_ELEMENTS_COUNT = 4 * 250;
-      FixtureHelper.appendHTML("<p data-directive='TestDirective,TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</p>", DOM_ELEMENTS_COUNT / 4);
-      FixtureHelper.appendHTML("<div data-directive='TestDirective,TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</div>", DOM_ELEMENTS_COUNT / 4);
-      FixtureHelper.appendHTML("<span data-directive='TestDirective,TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</span>", DOM_ELEMENTS_COUNT / 4);
-      FixtureHelper.appendHTML("<test data-directive='TestDirective,TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</test>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<p data-ob-directive='TestDirective,TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</p>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<div data-ob-directive='TestDirective,TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</div>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<span data-ob-directive='TestDirective,TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</span>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<test data-ob-directive='TestDirective,TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</test>", DOM_ELEMENTS_COUNT / 4);
       interval = new Interval();
       counter = 0;
       TestDirective = (function() {
@@ -241,10 +241,10 @@
     return it("must execute 4 directives with different CSSExpressions", function(done) {
       var DOM_ELEMENTS_COUNT, TestDirective, TestDirective2, TestDirective3, TestDirective4, counter;
       DOM_ELEMENTS_COUNT = 4 * 250;
-      FixtureHelper.appendHTML("<p data-directive='TestDirective'>nice DOM</p>", DOM_ELEMENTS_COUNT / 4);
-      FixtureHelper.appendHTML("<div data-directive='TestDirective2'>nice DOM</div>", DOM_ELEMENTS_COUNT / 4);
-      FixtureHelper.appendHTML("<span data-directive='TestDirective3'>nice DOM</span>", DOM_ELEMENTS_COUNT / 4);
-      FixtureHelper.appendHTML("<test data-directive='TestDirective4'>nice DOM</test>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<p data-ob-directive='TestDirective'>nice DOM</p>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<div data-ob-directive='TestDirective2'>nice DOM</div>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<span data-ob-directive='TestDirective3'>nice DOM</span>", DOM_ELEMENTS_COUNT / 4);
+      FixtureHelper.appendHTML("<test data-ob-directive='TestDirective4'>nice DOM</test>", DOM_ELEMENTS_COUNT / 4);
       counter = 0;
       TestDirective = (function() {
         function TestDirective() {

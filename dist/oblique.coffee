@@ -178,7 +178,7 @@ class DirectiveProcessor
       rootObElement.eachDescendant(
         (DOMElement)=>
           obElement=new ObliqueNS.Element DOMElement
-          directiveAttrValue=obElement.getAttributeValue "data-directive"
+          directiveAttrValue=obElement.getAttributeValue "data-ob-directive"
           @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
       )
 
@@ -205,16 +205,16 @@ class DirectiveProcessor
       new directive directiveData
 
   _getParams : (obElement) ->
-    dataParamsExpr=obElement.getAttributeValue("data-params")
+    dataParamsExpr=obElement.getAttributeValue("data-ob-params")
     return undefined if not dataParamsExpr
     try
       jQuery.parseJSON(dataParamsExpr)
     catch e
-      @_throwError("#{obElement.getHtml()}: data-params parse error: #{e.message}")
+      @_throwError("#{obElement.getHtml()}: data-ob-params parse error: #{e.message}")
 
   _getModel : (obElement) ->
     model=Oblique().getModel()
-    dataModelExpr=obElement.getAttributeValue("data-model")
+    dataModelExpr=obElement.getAttributeValue("data-ob-model")
     return undefined if dataModelExpr is undefined
 
     dataModelDSL=new ObliqueNS.DataModelDSL dataModelExpr
@@ -222,14 +222,14 @@ class DirectiveProcessor
       if dataModelDSL.modelProperties
         for property in dataModelDSL.modelProperties
           if (not model.hasOwnProperty(property.name))
-            @_throwError("#{obElement.getHtml()}: data-model doesn't match any data in model")
+            @_throwError("#{obElement.getHtml()}: data-ob-model doesn't match any data in model")
           model=model[property.name]
           model=model[property.index] if property.hasIndex
 
     className = dataModelDSL.className
     if className
       if (not window.hasOwnProperty(className))
-        @_throwError("#{obElement.getHtml()}: '#{className}' isn't an existing class in data-model")
+        @_throwError("#{obElement.getHtml()}: '#{className}' isn't an existing class in data-ob-model")
 
       constructorFn=window[className]
       model=new constructorFn(model)

@@ -30,7 +30,7 @@ describe "Oblique", ->
 
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-directive='TestDirective'></div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
 
 
   it "If I register a Directive it calls its constructor only one time when expression is in DOM", (done)->
@@ -41,7 +41,7 @@ describe "Oblique", ->
 
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-directive='TestDirective'></div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
 
     setTimeout ->
       Oblique().destroy()
@@ -53,12 +53,12 @@ describe "Oblique", ->
   it "If I register a Directive it calls its constructor with the correct DOM element", (done)->
     class TestDirective
       constructor: (data)->
-        expect($(data.domElement).is("test[data-directive='TestDirective']")).toBeTruthy()
+        expect($(data.domElement).is("test[data-ob-directive='TestDirective']")).toBeTruthy()
         Oblique().destroy()
         done()
 
     Oblique().registerDirective "TestDirective", TestDirective
-    $("#fixture").html "<test data-directive='TestDirective'></test>"
+    $("#fixture").html "<test data-ob-directive='TestDirective'></test>"
 
   it "If I register an object that no is a Directive it throws an Error", ()->
     expect(->
@@ -68,10 +68,10 @@ describe "Oblique", ->
   it "must execute 1 directive in a 10000 elements DOM in <200ms", (done)->
 
     DOM_ELEMENTS_COUNT = 4*250
-    FixtureHelper.appendHTML "<p data-directive='TestDirective'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<div data-directive='TestDirective'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<span data-directive='TestDirective'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<test data-directive='TestDirective'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<p data-ob-directive='TestDirective'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<span data-ob-directive='TestDirective'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<test data-ob-directive='TestDirective'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
 
     interval=new Interval()
     counter=0
@@ -89,12 +89,11 @@ describe "Oblique", ->
 
   it "must execute 5 directives in a 10000 elements DOM in <400ms", (done)->
 
-    #TODO: test with different expressions in each Directive
     DOM_ELEMENTS_COUNT = 4*250
-    FixtureHelper.appendHTML "<p data-directive='TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<div data-directive='TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<span data-directive='TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
-    FixtureHelper.appendHTML "<test data-directive='TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<p data-ob-directive='TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</div>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<span data-ob-directive='TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
+    FixtureHelper.appendHTML "<test data-ob-directive='TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
 
     interval=new Interval()
     counter=0
@@ -160,9 +159,9 @@ describe "Oblique", ->
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    FixtureHelper.appendHTML "<div data-directive='TestDirective'></div>"
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective'></div>"
 
-  it "A directive must receive only the part of the model that data-model specifies", (done)->
+  it "A directive must receive only the part of the model that data-ob-model specifies", (done)->
     modelToTest =
       name : "Carlos",
       content : "content"
@@ -178,9 +177,9 @@ describe "Oblique", ->
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model.name'></div>"
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='Model.name'></div>"
 
-  it "data-model must work with complex models, simple resuls", (done)->
+  it "data-ob-model must work with complex models, simple resuls", (done)->
     modelToTest =
       name : "Carlos"
       content : "content"
@@ -199,10 +198,10 @@ describe "Oblique", ->
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model.address.street'></div>"
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='Model.address.street'></div>"
 
 
-  it "data-model must work with complex models, complex results", (done)->
+  it "data-ob-model must work with complex models, complex results", (done)->
     modelToTest =
       name : "Carlos"
       content : "content"
@@ -223,10 +222,10 @@ describe "Oblique", ->
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model.address.street'></div>"
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='Model.address.street'></div>"
 
 
-  it "data-model must throw an exception if property doesn't exists", (done)->
+  it "data-ob-model must throw an exception if property doesn't exists", (done)->
     modelToTest =
       name : "Carlos"
       content : "content"
@@ -248,9 +247,9 @@ describe "Oblique", ->
       done()
     )
 
-    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model.address.num'></div>"
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='Model.address.num'></div>"
 
-  it "data-model must receive all model if value is 'Model'", (done)->
+  it "data-ob-model must receive all model if value is 'Model'", (done)->
     modelToTest =
       name : "name",
       content : "content"
@@ -266,12 +265,12 @@ describe "Oblique", ->
     Oblique().registerDirective "TestDirective",TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model'></div>"
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='Model'></div>"
 
   it "must throw an error if Handlebars isn't loaded", ()->
     #expect(->
     Oblique().renderHtml()
-    #).toThrow(new ObliqueNS.Error("Oblique needs handlebarsjs loaded to render templates"))
+  #).toThrow(new ObliqueNS.Error("Oblique needs handlebarsjs loaded to render templates"))
 
   it "must render template", ()->
     modelToTest =
@@ -303,7 +302,7 @@ describe "Oblique", ->
       window.Handlebars=HandlebarsCopy
 
 
-  it "must execute selected directive when data-directive is found", (done)->
+  it "must execute selected directive when data-ob-directive is found", (done)->
     class TestDirective
       constructor: ()->
         Oblique().destroy()
@@ -311,7 +310,7 @@ describe "Oblique", ->
 
     Oblique().setIntervalTimeInMs 10
     Oblique().registerDirective "TestDirective", TestDirective
-    $("#fixture").html "<div data-directive='TestDirective'></div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
 
 
   it "must send to directive the correct data model", (done)->
@@ -332,7 +331,7 @@ describe "Oblique", ->
 
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-directive='TestDirective' data-model='Model'>nice DOM</div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-model='Model'>nice DOM</div>"
 
   it "must send to directive the correct data model array", (done)->
     model=
@@ -354,7 +353,7 @@ describe "Oblique", ->
 
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-directive='TestDirective' data-model='Model.sizes[1]'>nice DOM</div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-model='Model.sizes[1]'>nice DOM</div>"
 
   it "must create an instance of the selected model-data class", (done)->
     class TestDirective
@@ -373,12 +372,12 @@ describe "Oblique", ->
         @country="ES"
 
     window.Settings=Settings
-    
+
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-directive='TestDirective' data-model='new Settings()'>nice DOM</div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-model='new Settings()'>nice DOM</div>"
 
-  it "must throw an error if class in data-model doesn't exists", (done)->
+  it "must throw an error if class in data-ob-model doesn't exists", (done)->
     class TestDirective
       constructor: ()->
 
@@ -386,12 +385,12 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     Oblique().onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
-      expect(error.message).toBe "<div data-directive=\"TestDirective\" data-model=\"new InventedClass()\">nice DOM</div>: 'InventedClass' isn't an existing class in data-model"
+      expect(error.message).toBe "<div data-ob-directive=\"TestDirective\" data-ob-model=\"new InventedClass()\">nice DOM</div>: 'InventedClass' isn't an existing class in data-ob-model"
       Oblique().destroy()
       done()
     )
 
-    $("#fixture").html "<div data-directive='TestDirective' data-model='new InventedClass()'>nice DOM</div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-model='new InventedClass()'>nice DOM</div>"
 
 
   it "must pass simple param to directive", (done)->
@@ -404,7 +403,7 @@ describe "Oblique", ->
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    $("#fixture").html "<div data-directive='TestDirective' data-params='{\"name\":\"Carlos\"}'>nice DOM</div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-params='{\"name\":\"Carlos\"}'>nice DOM</div>"
 
   it "must pass complex param to directive", (done)->
     class TestDirective
@@ -418,7 +417,7 @@ describe "Oblique", ->
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    $("#fixture").html "<div data-directive='TestDirective' data-params='{\"name\":\"Carlos\", \"address\":{\"street\":\"Gran Via\", \"number\":42}}'>nice DOM</div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-params='{\"name\":\"Carlos\", \"address\":{\"street\":\"Gran Via\", \"number\":42}}'>nice DOM</div>"
 
   it "must throw an error if param is not valid JSON", (done)->
     class TestDirective
@@ -428,19 +427,19 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     Oblique().onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
-      expect(error.message).toBe "<div data-directive=\"TestDirective\" data-params=\"patata\">nice DOM</div>: data-params parse error: Unexpected token p"
+      expect(error.message).toBe "<div data-ob-directive=\"TestDirective\" data-ob-params=\"patata\">nice DOM</div>: data-ob-params parse error: Unexpected token p"
       Oblique().destroy()
       done()
     )
 
-    $("#fixture").html "<div data-directive='TestDirective' data-params='patata'>nice DOM</div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-params='patata'>nice DOM</div>"
 
-  it "must catch data-directive, data-model & data-params in a single data param", (done)->
+  it "must catch data-ob-directive, data-ob-model & data-ob-params in a single data param", (done)->
     Oblique().setModel "my model"
 
     class TestDirective
       constructor: (directiveData)->
-        expect(directiveData.domElement.outerHTML).toBe "<div data-directive=\"TestDirective\" data-model=\"Model\" data-params=\"{&quot;simpleparam&quot;:&quot;simple param&quot;}\">nice DOM</div>"
+        expect(directiveData.domElement.outerHTML).toBe "<div data-ob-directive=\"TestDirective\" data-ob-model=\"Model\" data-ob-params=\"{&quot;simpleparam&quot;:&quot;simple param&quot;}\">nice DOM</div>"
         expect(directiveData.jQueryElement.get(0).outerHTML).toBe directiveData.domElement.outerHTML
         expect(directiveData.model).toBe "my model"
         expect(directiveData.params.simpleparam).toBe "simple param"
@@ -450,10 +449,10 @@ describe "Oblique", ->
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    $("#fixture").html "<div data-directive='TestDirective' data-model='Model' data-params='{\"simpleparam\":\"simple param\"}'>nice DOM</div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-model='Model' data-ob-params='{\"simpleparam\":\"simple param\"}'>nice DOM</div>"
 
 
-  it "must set to undefined model if data-model is not present", (done)->
+  it "must set to undefined model if data-ob-model is not present", (done)->
     Oblique().setModel "my model"
 
     class TestDirective
@@ -465,9 +464,9 @@ describe "Oblique", ->
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    $("#fixture").html "<div data-directive='TestDirective' data-params='{\"simpleparam\":\"simple param\"}'>nice DOM</div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-params='{\"simpleparam\":\"simple param\"}'>nice DOM</div>"
 
-  it "must set to undefined params if data-params is not present", (done)->
+  it "must set to undefined params if data-ob-params is not present", (done)->
     Oblique().setModel "my model"
 
     class TestDirective
@@ -479,4 +478,7 @@ describe "Oblique", ->
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    $("#fixture").html "<div data-directive='TestDirective' data-model='Model'>nice DOM</div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-model='Model'>nice DOM</div>"
+
+
+

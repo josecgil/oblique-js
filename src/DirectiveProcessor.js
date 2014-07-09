@@ -66,7 +66,7 @@
           return function(DOMElement) {
             var directiveAttrValue, obElement;
             obElement = new ObliqueNS.Element(DOMElement);
-            directiveAttrValue = obElement.getAttributeValue("data-directive");
+            directiveAttrValue = obElement.getAttributeValue("data-ob-directive");
             if (directiveAttrValue) {
               return _this._processDirectiveElement(obElement, directiveAttrValue);
             }
@@ -107,7 +107,7 @@
 
     DirectiveProcessor.prototype._getParams = function(obElement) {
       var dataParamsExpr, e;
-      dataParamsExpr = obElement.getAttributeValue("data-params");
+      dataParamsExpr = obElement.getAttributeValue("data-ob-params");
       if (!dataParamsExpr) {
         return void 0;
       }
@@ -115,14 +115,14 @@
         return jQuery.parseJSON(dataParamsExpr);
       } catch (_error) {
         e = _error;
-        return this._throwError("" + (obElement.getHtml()) + ": data-params parse error: " + e.message);
+        return this._throwError("" + (obElement.getHtml()) + ": data-ob-params parse error: " + e.message);
       }
     };
 
     DirectiveProcessor.prototype._getModel = function(obElement) {
       var className, constructorFn, dataModelDSL, dataModelExpr, model, property, _i, _len, _ref;
       model = Oblique().getModel();
-      dataModelExpr = obElement.getAttributeValue("data-model");
+      dataModelExpr = obElement.getAttributeValue("data-ob-model");
       if (dataModelExpr === void 0) {
         return void 0;
       }
@@ -133,7 +133,7 @@
           for (_i = 0, _len = _ref.length; _i < _len; _i++) {
             property = _ref[_i];
             if (!model.hasOwnProperty(property.name)) {
-              this._throwError("" + (obElement.getHtml()) + ": data-model doesn't match any data in model");
+              this._throwError("" + (obElement.getHtml()) + ": data-ob-model doesn't match any data in model");
             }
             model = model[property.name];
             if (property.hasIndex) {
@@ -145,7 +145,7 @@
       className = dataModelDSL.className;
       if (className) {
         if (!window.hasOwnProperty(className)) {
-          this._throwError("" + (obElement.getHtml()) + ": '" + className + "' isn't an existing class in data-model");
+          this._throwError("" + (obElement.getHtml()) + ": '" + className + "' isn't an existing class in data-ob-model");
         }
         constructorFn = window[className];
         model = new constructorFn(model);
