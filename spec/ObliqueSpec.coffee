@@ -394,3 +394,45 @@ describe "Oblique", ->
     )
 
     $("#fixture").html "<div data-directive='TestDirective' data-model='new InventedClass()'>nice DOM</div>"
+
+
+  it "must pass simple param to directive", (done)->
+    class TestDirective
+      constructor: (domElement, model, params)->
+        expect(params.name).toBe "Carlos"
+        Oblique().destroy()
+        done()
+
+    Oblique().registerDirective(TestDirective)
+    Oblique().setIntervalTimeInMs 10
+
+    $("#fixture").html "<div data-directive='TestDirective' data-params='{\"name\":\"Carlos\"}'>nice DOM</div>"
+
+  it "must pass complex param to directive", (done)->
+    class TestDirective
+      constructor: (domElement, model, params)->
+        expect(params.name).toBe "Carlos"
+        expect(params.address.street).toBe "Gran Via"
+        expect(params.address.number).toBe 42
+        Oblique().destroy()
+        done()
+
+    Oblique().registerDirective(TestDirective)
+    Oblique().setIntervalTimeInMs 10
+
+    $("#fixture").html "<div data-directive='TestDirective' data-params='{\"name\":\"Carlos\", \"address\":{\"street\":\"Gran Via\", \"number\":42}}'>nice DOM</div>"
+
+  it "must throw an error if param is not valid JSON", (done)->
+    class TestDirective
+      constructor: ()->
+
+    Oblique().registerDirective(TestDirective)
+    Oblique().setIntervalTimeInMs 10
+    Oblique().onError( (error) ->
+      expect(error.name).toBe "ObliqueNS.Error"
+      expect(error.message).toBe "<div data-directive=\"TestDirective\" data-params=\"patata\">nice DOM</div>: data-params parse error: Unexpected token p"
+      Oblique().destroy()
+      done()
+    )
+
+    $("#fixture").html "<div data-directive='TestDirective' data-params='patata'>nice DOM</div>"

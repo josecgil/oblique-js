@@ -78,7 +78,7 @@
     };
 
     DirectiveProcessor.prototype._processDirectiveElement = function(obElement, directiveAttrValue) {
-      var directive, directiveName, model, _i, _len, _ref, _results;
+      var directive, directiveName, model, params, _i, _len, _ref, _results;
       _ref = directiveAttrValue.split(",");
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -93,9 +93,24 @@
         }
         obElement.setFlag(directiveName);
         model = this._getModel(obElement);
-        _results.push(new directive(obElement.getDOMElement(), model));
+        params = this._getParams(obElement);
+        _results.push(new directive(obElement.getDOMElement(), model, params));
       }
       return _results;
+    };
+
+    DirectiveProcessor.prototype._getParams = function(obElement) {
+      var dataParamsExpr, e;
+      dataParamsExpr = obElement.getAttributeValue("data-params");
+      if (!dataParamsExpr) {
+        return void 0;
+      }
+      try {
+        return jQuery.parseJSON(dataParamsExpr);
+      } catch (_error) {
+        e = _error;
+        return this._throwError("" + (obElement.getHtml()) + ": data-params parse error: " + e.message);
+      }
     };
 
     DirectiveProcessor.prototype._getModel = function(obElement) {

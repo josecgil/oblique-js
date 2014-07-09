@@ -53,3 +53,4 @@ describe "Template", ->
     expect(template.renderHTML(model)).toBe html
 
 
+
