@@ -642,23 +642,20 @@
       errorMessage = void 0;
       jQuery.ajax({
         url: url,
-        success: (function(_this) {
-          return function(data) {
-            return templateContent = data;
-          };
-        })(this),
+        success: function(data) {
+          return templateContent = data;
+        },
         error: function(e) {
           errorStatusCode = e.status;
           return errorMessage = e.statusCode;
         },
         async: false
       });
-      switch (errorStatusCode) {
-        case 404:
-          throw new ObliqueNS.Error("template '" + url + "' not found");
-          break;
-        case !200:
-          throw new ObliqueNS.Error(errorMessage);
+      if (errorStatusCode === 404) {
+        throw new ObliqueNS.Error("template '" + url + "' not found");
+      }
+      if (errorStatusCode !== 200) {
+        throw new ObliqueNS.Error(errorMessage);
       }
       return template = this.createFromString(templateContent);
     };

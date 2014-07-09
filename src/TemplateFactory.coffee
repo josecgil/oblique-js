@@ -16,16 +16,15 @@ class TemplateFactory
     errorMessage=undefined
     jQuery.ajax(
       url: url
-      success: (data) =>
+      success: (data) ->
         templateContent=data
       error: (e) ->
         errorStatusCode=e.status
         errorMessage=e.statusCode
       async: false
     )
-    switch errorStatusCode
-      when 404 then throw new ObliqueNS.Error("template '#{url}' not found")
-      when not 200 then throw new ObliqueNS.Error(errorMessage)
+    throw new ObliqueNS.Error("template '#{url}' not found") if errorStatusCode is 404
+    throw new ObliqueNS.Error(errorMessage) if errorStatusCode isnt 200
     template=@createFromString(templateContent)
 
 ObliqueNS.TemplateFactory=TemplateFactory
