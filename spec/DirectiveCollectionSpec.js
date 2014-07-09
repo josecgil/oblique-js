@@ -20,7 +20,7 @@
 
       })();
       directives = new DirectiveCollection();
-      directives.add(TestDirective);
+      directives.add("TestDirective", TestDirective);
       expect(directives.count()).toBe(1);
       return expect(directives.at(0)).toBe(TestDirective);
     });
@@ -28,7 +28,7 @@
       var directivesCollection;
       directivesCollection = new DirectiveCollection();
       return expect(function() {
-        return directivesCollection.add({});
+        return directivesCollection.add("Test", {});
       }).toThrow(new ObError("registerDirective must be called with a Directive 'Constructor/Class'"));
     });
     return it("must return al directive by his name", function() {
@@ -46,8 +46,8 @@
 
       })();
       directives = new DirectiveCollection();
-      directives.add(TestDirective);
-      directives.add(TestDirective2);
+      directives.add("TestDirective", TestDirective);
+      directives.add("TestDirective2", TestDirective2);
       return expect(directives.getDirectiveByName("TestDirective")).toBe(TestDirective);
     });
   });

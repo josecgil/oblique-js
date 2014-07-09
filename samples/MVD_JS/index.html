@@ -8,13 +8,14 @@
     <script type="text/javascript" src="../../dist/oblique.js"></script>
 
 
+    <script type="text/javascript" src="src/Colors.js"></script>
     <script type="text/javascript" src="src/ColorDirective.js"></script>
 
 </head>
 <body>
 
     <script type="text/javascript" src="src/InjectModel.js"></script>
-    <section data-colors data-model="colors">
+    <section data-directive="ColorDirective" data-model="new Colors(Model.colors)">
         <button style="color:red">Red</button>
         <button style="color:green">Green</button>
         <button style="color:blue">Blue</button>

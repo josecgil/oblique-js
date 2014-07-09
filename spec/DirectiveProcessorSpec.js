@@ -40,7 +40,7 @@
         return TestDirective;
 
       })();
-      DirectiveProcessor().registerDirective(TestDirective);
+      DirectiveProcessor().registerDirective("TestDirective", TestDirective);
       DirectiveProcessor().setIntervalTimeInMs(10);
       return $("#fixture").html("<div data-directive='TestDirective'></div>");
     });
@@ -55,7 +55,7 @@
         return TestDirective;
 
       })();
-      DirectiveProcessor().registerDirective(TestDirective);
+      DirectiveProcessor().registerDirective("TestDirective", TestDirective);
       DirectiveProcessor().setIntervalTimeInMs(10);
       FixtureHelper.appendHTML("<div data-directive='TestDirective'></div>");
       return setTimeout(function() {
@@ -76,7 +76,7 @@
         return TestDirective;
 
       })();
-      DirectiveProcessor().registerDirective(TestDirective);
+      DirectiveProcessor().registerDirective("TestDirective", TestDirective);
       return FixtureHelper.appendHTML("<test data-directive='TestDirective'></test>");
     });
     it("must call 2 directives if there are in the same tag", function(done) {
@@ -106,8 +106,8 @@
         return ShowOnClickDirective;
 
       })();
-      DirectiveProcessor().registerDirective(ShowOnClickDirective);
-      DirectiveProcessor().registerDirective(HideOnClickDirective);
+      DirectiveProcessor().registerDirective("ShowOnClickDirective", ShowOnClickDirective);
+      DirectiveProcessor().registerDirective("HideOnClickDirective", HideOnClickDirective);
       return FixtureHelper.appendHTML("<test data-directive='ShowOnClickDirective, HideOnClickDirective'></test>");
     });
     it("must call 2 directives if there are in the same tag (2 instances of same tag)", function(done) {
@@ -139,14 +139,14 @@
         return ShowOnClickDirective;
 
       })();
-      DirectiveProcessor().registerDirective(ShowOnClickDirective);
-      DirectiveProcessor().registerDirective(HideOnClickDirective);
+      DirectiveProcessor().registerDirective("ShowOnClickDirective", ShowOnClickDirective);
+      DirectiveProcessor().registerDirective("HideOnClickDirective", HideOnClickDirective);
       FixtureHelper.appendHTML("<test data-directive='ShowOnClickDirective, HideOnClickDirective'></test>");
       return FixtureHelper.appendHTML("<test data-directive='ShowOnClickDirective, HideOnClickDirective'></test>");
     });
     it("If I register an object that no is a Directive it throws an Error", function() {
       return expect(function() {
-        return DirectiveProcessor().registerDirective({});
+        return DirectiveProcessor().registerDirective("test", {});
       }).toThrow(new ObError("registerDirective must be called with a Directive 'Constructor/Class'"));
     });
     it("must execute 1 directive in a 10000 elements DOM in <200ms", function(done) {
@@ -168,13 +168,11 @@
           }
         }
 
-        TestDirective.NAME = "TestDirective";
-
         return TestDirective;
 
       })();
       interval.start();
-      DirectiveProcessor().registerDirective(TestDirective);
+      DirectiveProcessor().registerDirective("TestDirective", TestDirective);
       return DirectiveProcessor().setIntervalTimeInMs(10);
     });
     it("must execute 5 directives in a 10000 elements DOM in <400ms", function(done) {
@@ -233,11 +231,11 @@
 
       })();
       interval.start();
-      DirectiveProcessor().registerDirective(TestDirective);
-      DirectiveProcessor().registerDirective(TestDirective2);
-      DirectiveProcessor().registerDirective(TestDirective3);
-      DirectiveProcessor().registerDirective(TestDirective4);
-      DirectiveProcessor().registerDirective(TestDirective5);
+      DirectiveProcessor().registerDirective("TestDirective", TestDirective);
+      DirectiveProcessor().registerDirective("TestDirective2", TestDirective2);
+      DirectiveProcessor().registerDirective("TestDirective3", TestDirective3);
+      DirectiveProcessor().registerDirective("TestDirective4", TestDirective4);
+      DirectiveProcessor().registerDirective("TestDirective5", TestDirective5);
       return DirectiveProcessor().setIntervalTimeInMs(10);
     });
     return it("must execute 4 directives with different CSSExpressions", function(done) {
@@ -283,10 +281,10 @@
         return TestDirective4;
 
       })();
-      DirectiveProcessor().registerDirective(TestDirective);
-      DirectiveProcessor().registerDirective(TestDirective2);
-      DirectiveProcessor().registerDirective(TestDirective3);
-      DirectiveProcessor().registerDirective(TestDirective4);
+      DirectiveProcessor().registerDirective("TestDirective", TestDirective);
+      DirectiveProcessor().registerDirective("TestDirective2", TestDirective2);
+      DirectiveProcessor().registerDirective("TestDirective3", TestDirective3);
+      DirectiveProcessor().registerDirective("TestDirective4", TestDirective4);
       return DirectiveProcessor().setIntervalTimeInMs(10);
     });
   });

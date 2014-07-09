@@ -28,7 +28,7 @@ describe "Oblique", ->
         Oblique().destroy()
         done()
 
-    Oblique().registerDirective TestDirective
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-directive='TestDirective'></div>"
 
@@ -39,7 +39,7 @@ describe "Oblique", ->
       constructor: ()->
         counter++
 
-    Oblique().registerDirective TestDirective
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-directive='TestDirective'></div>"
 
@@ -58,12 +58,12 @@ describe "Oblique", ->
         Oblique().destroy()
         done()
 
-    Oblique().registerDirective TestDirective
+    Oblique().registerDirective "TestDirective", TestDirective
     $("#fixture").html "<test data-directive='TestDirective'></test>"
 
   it "If I register an object that no is a Directive it throws an Error", ()->
     expect(->
-      Oblique().registerDirective {}
+      Oblique().registerDirective "test", {}
     ).toThrow(new ObliqueNS.Error("registerDirective must be called with a Directive 'Constructor/Class'"))
 
   it "must execute 1 directive in a 10000 elements DOM in <200ms", (done)->
@@ -85,7 +85,7 @@ describe "Oblique", ->
           done()
 
     interval.start()
-    Oblique().registerDirective(TestDirective)
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
   it "must execute 5 directives in a 10000 elements DOM in <400ms", (done)->
@@ -124,11 +124,11 @@ describe "Oblique", ->
           done()
 
     interval.start()
-    Oblique().registerDirective(TestDirective)
-    Oblique().registerDirective(TestDirective2)
-    Oblique().registerDirective(TestDirective3)
-    Oblique().registerDirective(TestDirective4)
-    Oblique().registerDirective(TestDirective5)
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().registerDirective "TestDirective2", TestDirective2
+    Oblique().registerDirective "TestDirective3", TestDirective3
+    Oblique().registerDirective "TestDirective4", TestDirective4
+    Oblique().registerDirective "TestDirective5", TestDirective5
     Oblique().setIntervalTimeInMs 10
 
 
@@ -158,7 +158,7 @@ describe "Oblique", ->
 
     Oblique().setModel modelToTest
 
-    Oblique().registerDirective TestDirective
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
     FixtureHelper.appendHTML "<div data-directive='TestDirective'></div>"
@@ -176,7 +176,7 @@ describe "Oblique", ->
 
     Oblique().setModel modelToTest
 
-    Oblique().registerDirective TestDirective
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
     FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model.name'></div>"
@@ -197,7 +197,7 @@ describe "Oblique", ->
 
     Oblique().setModel modelToTest
 
-    Oblique().registerDirective TestDirective
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
     FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model.address.street'></div>"
@@ -221,7 +221,7 @@ describe "Oblique", ->
 
     Oblique().setModel modelToTest
 
-    Oblique().registerDirective TestDirective
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
     FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model.address.street'></div>"
@@ -241,7 +241,7 @@ describe "Oblique", ->
 
     Oblique().setModel modelToTest
 
-    Oblique().registerDirective TestDirective
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
     Oblique().onError( (error) ->
@@ -264,7 +264,7 @@ describe "Oblique", ->
 
     Oblique().setModel modelToTest
 
-    Oblique().registerDirective TestDirective
+    Oblique().registerDirective "TestDirective",TestDirective
     Oblique().setIntervalTimeInMs 10
 
     FixtureHelper.appendHTML "<div data-directive='TestDirective' data-model='Model'></div>"
@@ -313,7 +313,7 @@ describe "Oblique", ->
         done()
 
     Oblique().setIntervalTimeInMs 10
-    Oblique().registerDirective TestDirective
+    Oblique().registerDirective "TestDirective", TestDirective
     $("#fixture").html "<div data-directive='TestDirective'></div>"
 
 
@@ -333,7 +333,7 @@ describe "Oblique", ->
         Oblique().destroy()
         done()
 
-    Oblique().registerDirective(TestDirective)
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-directive='TestDirective' data-model='Model'>nice DOM</div>"
 
@@ -355,7 +355,7 @@ describe "Oblique", ->
         Oblique().destroy()
         done()
 
-    Oblique().registerDirective(TestDirective)
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-directive='TestDirective' data-model='Model.sizes[1]'>nice DOM</div>"
 
@@ -376,7 +376,7 @@ describe "Oblique", ->
 
     window.Settings=Settings
     
-    Oblique().registerDirective(TestDirective)
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-directive='TestDirective' data-model='new Settings()'>nice DOM</div>"
 
@@ -384,7 +384,7 @@ describe "Oblique", ->
     class TestDirective
       constructor: ()->
 
-    Oblique().registerDirective(TestDirective)
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
     Oblique().onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
@@ -403,7 +403,7 @@ describe "Oblique", ->
         Oblique().destroy()
         done()
 
-    Oblique().registerDirective(TestDirective)
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
     $("#fixture").html "<div data-directive='TestDirective' data-params='{\"name\":\"Carlos\"}'>nice DOM</div>"
@@ -417,7 +417,7 @@ describe "Oblique", ->
         Oblique().destroy()
         done()
 
-    Oblique().registerDirective(TestDirective)
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
     $("#fixture").html "<div data-directive='TestDirective' data-params='{\"name\":\"Carlos\", \"address\":{\"street\":\"Gran Via\", \"number\":42}}'>nice DOM</div>"
@@ -426,7 +426,7 @@ describe "Oblique", ->
     class TestDirective
       constructor: ()->
 
-    Oblique().registerDirective(TestDirective)
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
     Oblique().onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"

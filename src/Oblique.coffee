@@ -20,8 +20,8 @@ class Oblique
   setIntervalTimeInMs: (newIntervalTimeInMs) ->
     @directiveProcessor.setIntervalTimeInMs(newIntervalTimeInMs)
 
-  registerDirective: (directiveConstructorFn) ->
-    @directiveProcessor.registerDirective(directiveConstructorFn)
+  registerDirective: (directiveName, directiveConstructorFn) ->
+    @directiveProcessor.registerDirective directiveName, directiveConstructorFn
 
   destroy: ->
     @directiveProcessor.destroy()

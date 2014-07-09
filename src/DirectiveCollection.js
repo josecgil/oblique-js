@@ -20,35 +20,27 @@
 
     DirectiveCollection.NOT_A_FUNCTION_CLASS_ERROR_MESSAGE = "registerDirective must be called with a Directive 'Constructor/Class'";
 
-    DirectiveCollection.prototype._throwErrorIfDirectiveIsNotValid = function(directive) {
+    DirectiveCollection.prototype._throwErrorIfDirectiveIsNotValid = function(directiveName, directive) {
+      if (!directiveName || typeof directiveName !== "string") {
+        throw new ObliqueNS.Error("registerDirective must be called with a string directiveName");
+      }
       if (!this._isAFunction(directive)) {
         throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.NOT_A_FUNCTION_CLASS_ERROR_MESSAGE);
       }
     };
 
-    DirectiveCollection.prototype.add = function(directive) {
-      this._throwErrorIfDirectiveIsNotValid(directive);
-      return this.directives.push(directive);
+    DirectiveCollection.prototype.add = function(directiveName, directiveFn) {
+      this._throwErrorIfDirectiveIsNotValid(directiveName, directiveFn);
+      this.directives.push(directiveFn);
+      return this._directivesByName[directiveName] = directiveFn;
     };
 
     DirectiveCollection.prototype.at = function(index) {
       return this.directives[index];
     };
 
-    DirectiveCollection.prototype.stringStartsWith = function(str, strBegin) {
-      return str.slice(0, strBegin.length) === strBegin;
-    };
-
     DirectiveCollection.prototype.getDirectiveByName = function(directiveName) {
-      var directive, _i, _len, _ref;
-      _ref = this.directives;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        directive = _ref[_i];
-        if (this.stringStartsWith(directive.toString(), "function " + directiveName + "(")) {
-          return directive;
-        }
-      }
-      return void 0;
+      return this._directivesByName[directiveName];
     };
 
     return DirectiveCollection;

@@ -121,19 +121,18 @@
         return void 0;
       }
       dataModelDSL = new ObliqueNS.DataModelDSL(dataModelExpr);
-      if (dataModelDSL.hasFullModel) {
-        return model;
-      }
-      if (dataModelDSL.modelProperties) {
-        _ref = dataModelDSL.modelProperties;
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          property = _ref[_i];
-          if (!model.hasOwnProperty(property.name)) {
-            this._throwError("" + (obElement.getHtml()) + ": data-model doesn't match any data in model");
-          }
-          model = model[property.name];
-          if (property.hasIndex) {
-            model = model[property.index];
+      if (!dataModelDSL.hasFullModel) {
+        if (dataModelDSL.modelProperties) {
+          _ref = dataModelDSL.modelProperties;
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            property = _ref[_i];
+            if (!model.hasOwnProperty(property.name)) {
+              this._throwError("" + (obElement.getHtml()) + ": data-model doesn't match any data in model");
+            }
+            model = model[property.name];
+            if (property.hasIndex) {
+              model = model[property.index];
+            }
           }
         }
       }
@@ -165,8 +164,8 @@
       return this._timedDOMObserver.observe();
     };
 
-    DirectiveProcessor.prototype.registerDirective = function(directiveConstructorFn) {
-      return this._directiveCollection.add(directiveConstructorFn);
+    DirectiveProcessor.prototype.registerDirective = function(directiveName, directiveConstructorFn) {
+      return this._directiveCollection.add(directiveName, directiveConstructorFn);
     };
 
     DirectiveProcessor.prototype.destroy = function() {

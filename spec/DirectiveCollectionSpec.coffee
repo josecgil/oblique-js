@@ -16,7 +16,7 @@ describe "DirectiveCollection", ->
       constructor: ()->
 
     directives=new DirectiveCollection()
-    directives.add TestDirective
+    directives.add "TestDirective", TestDirective
     expect(directives.count()).toBe 1
     expect(directives.at(0)).toBe(TestDirective)
 
@@ -24,7 +24,7 @@ describe "DirectiveCollection", ->
   it "If I add an object that not is a Directive it throws an Error", ()->
     directivesCollection=new DirectiveCollection()
     expect(->
-      directivesCollection.add {}
+      directivesCollection.add "Test", {}
     ).toThrow(new ObError("registerDirective must be called with a Directive 'Constructor/Class'"))
 
   it "must return al directive by his name", () ->
@@ -36,7 +36,7 @@ describe "DirectiveCollection", ->
 
 
     directives=new DirectiveCollection()
-    directives.add TestDirective
-    directives.add TestDirective2
+    directives.add "TestDirective", TestDirective
+    directives.add "TestDirective2", TestDirective2
 
     expect(directives.getDirectiveByName("TestDirective")).toBe TestDirective

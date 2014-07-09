@@ -80,14 +80,13 @@ class DirectiveProcessor
     return undefined if dataModelExpr is undefined
 
     dataModelDSL=new ObliqueNS.DataModelDSL dataModelExpr
-    return model if dataModelDSL.hasFullModel
-
-    if dataModelDSL.modelProperties
-      for property in dataModelDSL.modelProperties
-        if (not model.hasOwnProperty(property.name))
-          @_throwError("#{obElement.getHtml()}: data-model doesn't match any data in model")
-        model=model[property.name]
-        model=model[property.index] if property.hasIndex
+    if not dataModelDSL.hasFullModel
+      if dataModelDSL.modelProperties
+        for property in dataModelDSL.modelProperties
+          if (not model.hasOwnProperty(property.name))
+            @_throwError("#{obElement.getHtml()}: data-model doesn't match any data in model")
+          model=model[property.name]
+          model=model[property.index] if property.hasIndex
 
     className = dataModelDSL.className
     if className
@@ -111,8 +110,8 @@ class DirectiveProcessor
     @_timedDOMObserver=@_createTimedDOMObserver(newIntervalTimeInMs)
     @_timedDOMObserver.observe()
 
-  registerDirective: (directiveConstructorFn) ->
-    @_directiveCollection.add directiveConstructorFn
+  registerDirective: (directiveName, directiveConstructorFn) ->
+    @_directiveCollection.add directiveName, directiveConstructorFn
 
   destroy: ->
     @_timedDOMObserver.destroy()
