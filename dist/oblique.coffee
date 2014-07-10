@@ -193,7 +193,7 @@ class DirectiveProcessor
       directive=@_directiveCollection.getDirectiveByName(directiveName)
       throw new ObliqueNS.Error("There is no #{directiveName} directive registered") if not directive
       obElement.setFlag directiveName
-      model=@_getModel obElement
+      model=@_getDirectiveModel obElement
       params=@_getParams obElement
 
       directiveData=
@@ -212,7 +212,7 @@ class DirectiveProcessor
     catch e
       @_throwError("#{obElement.getHtml()}: data-ob-params parse error: #{e.message}")
 
-  _getModel : (obElement) ->
+  _getDirectiveModel : (obElement) ->
     model=Oblique().getModel()
     dataModelExpr=obElement.getAttributeValue("data-ob-model")
     return undefined if dataModelExpr is undefined

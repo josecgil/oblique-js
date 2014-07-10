@@ -62,14 +62,12 @@ class DirectiveProcessor
       directive=@_directiveCollection.getDirectiveByName(directiveName)
       throw new ObliqueNS.Error("There is no #{directiveName} directive registered") if not directive
       obElement.setFlag directiveName
-      model=@_getModel obElement
-      params=@_getParams obElement
 
       directiveData=
         domElement: obElement.getDOMElement()
         jQueryElement: obElement.getjQueryElement()
-        model: model
-        params: params
+        model: @_getDirectiveModel obElement
+        params: @_getParams obElement
 
       new directive directiveData
 
@@ -81,7 +79,34 @@ class DirectiveProcessor
     catch e
       @_throwError("#{obElement.getHtml()}: data-ob-params parse error: #{e.message}")
 
-  _getModel : (obElement) ->
+
+  _extractVarFrom: (dataModelExpression) ->
+    #var carlos=new Carlos()
+    return undefined if dataModelExpression.indexOf("=") is -1
+    parts=dataModelExpression.split("=")
+    variableName=(parts[0].replace("var ", "")).trim()
+    return undefined  if variableName is ""
+    variableName
+
+  _getDirectiveModel : (obElement) ->
+    Model=Oblique().getModel()
+    dataModelExpr=obElement.getAttributeValue("data-ob-model")
+    return undefined if dataModelExpr is undefined
+    try
+      directiveModel=eval(dataModelExpr)
+
+      variableName=@_extractVarFrom(dataModelExpr)
+      if (variableName)
+        directiveModel=eval(variableName)
+
+      if (not directiveModel)
+        @_throwError("#{obElement.getHtml()}: data-ob-model expression is undefined")
+      directiveModel
+    catch e
+      @_throwError("#{obElement.getHtml()}: data-ob-model expression error: #{e.message}")
+
+
+  _getDirectiveModel2 : (obElement) ->
     model=Oblique().getModel()
     dataModelExpr=obElement.getAttributeValue("data-ob-model")
     return undefined if dataModelExpr is undefined

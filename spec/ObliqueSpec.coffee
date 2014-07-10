@@ -244,6 +244,7 @@ describe "Oblique", ->
 
     Oblique().onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
+      expect(error.message).toBe '<div data-ob-directive="TestDirective" data-ob-model="Model.address.num"></div>: data-ob-model expression is undefined'
       done()
     )
 
@@ -269,8 +270,8 @@ describe "Oblique", ->
 
   it "must throw an error if Handlebars isn't loaded", ()->
     #expect(->
-    Oblique().renderHtml()
-  #).toThrow(new ObliqueNS.Error("Oblique needs handlebarsjs loaded to render templates"))
+      Oblique().renderHtml()
+    #).toThrow(new ObliqueNS.Error("Oblique needs handlebarsjs loaded to render templates"))
 
   it "must render template", ()->
     modelToTest =
@@ -385,7 +386,7 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     Oblique().onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
-      expect(error.message).toBe "<div data-ob-directive=\"TestDirective\" data-ob-model=\"new InventedClass()\">nice DOM</div>: 'InventedClass' isn't an existing class in data-ob-model"
+      expect(error.message).toBe '<div data-ob-directive="TestDirective" data-ob-model="new InventedClass()">nice DOM</div>: data-ob-model expression error: InventedClass is not defined'
       Oblique().destroy()
       done()
     )
@@ -481,4 +482,96 @@ describe "Oblique", ->
     $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-model='Model'>nice DOM</div>"
 
 
+  it "must eval JS expression in data-ob-model and send it to directive", (done)->
+    model=
+      name : "Carlos"
+      surname: "Gil"
 
+    Oblique().setModel model
+
+    class TestDirective
+      constructor: (data)->
+        user=data.model
+        expect(user instanceof User).toBeTruthy()
+        expect(user.name).toBe "Carlos"
+        delete window.User
+        Oblique().destroy()
+        done()
+
+    class User
+      constructor:(@name)->
+
+    window.User=User
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-model='var carlos=new User(Model.name)'>nice DOM</div>"
+
+  it "must eval JS expression in data-ob-model and send it to directive when variable is global", (done)->
+    model=
+      name : "Carlos"
+      surname: "Gil"
+
+    Oblique().setModel model
+
+    class TestDirective
+      constructor: (data)->
+        user=data.model
+        expect(user instanceof User).toBeTruthy()
+        expect(user.name).toBe "Carlos"
+        delete window.User
+        Oblique().destroy()
+        done()
+
+    class User
+      constructor:(@name)->
+
+    window.User=User
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-model='carlos=new User(Model.name)'>nice DOM</div>"
+
+  it "must eval JS expression in data-ob-model and send it to directive when variable name contains 'var' keyword", (done)->
+    model=
+      name : "Carlos"
+      surname: "Gil"
+
+    Oblique().setModel model
+
+    class TestDirective
+      constructor: (data)->
+        user=data.model
+        expect(user instanceof User).toBeTruthy()
+        expect(user.name).toBe "Carlos"
+        delete window.User
+        Oblique().destroy()
+        done()
+
+    class User
+      constructor:(@name)->
+
+    window.User=User
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-model='variable=new User(Model.name)'>nice DOM</div>"
+
+
+  it "must store a simple variable", ->
+    Oblique().setVariable "name", "Carlos"
+    expect(Oblique().getVariable("name")).toBe "Carlos"
+
+  it "must store a complex variable", ->
+    carlos=
+      name:"Carlos"
+      surname:"Gil"
+    Oblique().setVariable "name", carlos
+    data=Oblique().getVariable("name")
+    expect(data.name).toBe "Carlos"
+    expect(data.surname).toBe "Gil"
+
+  it "must throw an error when I get a not existent variable", ->
+    expect(->
+        Oblique().getVariable("patata")
+    ).toThrow(new ObliqueNS.Error("Oblique().getVariable(): 'patata' isn't an Oblique variable"))

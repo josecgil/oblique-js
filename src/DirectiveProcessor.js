@@ -78,7 +78,7 @@
     };
 
     DirectiveProcessor.prototype._processDirectiveElement = function(obElement, directiveAttrValue) {
-      var directive, directiveData, directiveName, model, params, _i, _len, _ref, _results;
+      var directive, directiveData, directiveName, _i, _len, _ref, _results;
       _ref = directiveAttrValue.split(",");
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -92,13 +92,11 @@
           throw new ObliqueNS.Error("There is no " + directiveName + " directive registered");
         }
         obElement.setFlag(directiveName);
-        model = this._getModel(obElement);
-        params = this._getParams(obElement);
         directiveData = {
           domElement: obElement.getDOMElement(),
           jQueryElement: obElement.getjQueryElement(),
-          model: model,
-          params: params
+          model: this._getDirectiveModel(obElement),
+          params: this._getParams(obElement)
         };
         _results.push(new directive(directiveData));
       }
@@ -119,7 +117,43 @@
       }
     };
 
-    DirectiveProcessor.prototype._getModel = function(obElement) {
+    DirectiveProcessor.prototype._extractVarFrom = function(dataModelExpression) {
+      var parts, variableName;
+      if (dataModelExpression.indexOf("=") === -1) {
+        return void 0;
+      }
+      parts = dataModelExpression.split("=");
+      variableName = (parts[0].replace("var ", "")).trim();
+      if (variableName === "") {
+        return void 0;
+      }
+      return variableName;
+    };
+
+    DirectiveProcessor.prototype._getDirectiveModel = function(obElement) {
+      var Model, dataModelExpr, directiveModel, e, variableName;
+      Model = Oblique().getModel();
+      dataModelExpr = obElement.getAttributeValue("data-ob-model");
+      if (dataModelExpr === void 0) {
+        return void 0;
+      }
+      try {
+        directiveModel = eval(dataModelExpr);
+        variableName = this._extractVarFrom(dataModelExpr);
+        if (variableName) {
+          directiveModel = eval(variableName);
+        }
+        if (!directiveModel) {
+          this._throwError("" + (obElement.getHtml()) + ": data-ob-model expression is undefined");
+        }
+        return directiveModel;
+      } catch (_error) {
+        e = _error;
+        return this._throwError("" + (obElement.getHtml()) + ": data-ob-model expression error: " + e.message);
+      }
+    };
+
+    DirectiveProcessor.prototype._getDirectiveModel2 = function(obElement) {
       var className, constructorFn, dataModelDSL, dataModelExpr, model, property, _i, _len, _ref;
       model = Oblique().getModel();
       dataModelExpr = obElement.getAttributeValue("data-ob-model");

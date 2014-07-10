@@ -290,7 +290,7 @@
           throw new ObliqueNS.Error("There is no " + directiveName + " directive registered");
         }
         obElement.setFlag(directiveName);
-        model = this._getModel(obElement);
+        model = this._getDirectiveModel(obElement);
         params = this._getParams(obElement);
         directiveData = {
           domElement: obElement.getDOMElement(),
@@ -317,7 +317,7 @@
       }
     };
 
-    DirectiveProcessor.prototype._getModel = function(obElement) {
+    DirectiveProcessor.prototype._getDirectiveModel = function(obElement) {
       var className, constructorFn, dataModelDSL, dataModelExpr, model, property, _i, _len, _ref;
       model = Oblique().getModel();
       dataModelExpr = obElement.getAttributeValue("data-ob-model");
