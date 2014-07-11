@@ -9,5 +9,3 @@ class Template
     @compiledTemplate(model)
 
 ObliqueNS.Template=Template
-
-

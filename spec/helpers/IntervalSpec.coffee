@@ -23,4 +23,3 @@ describe "Interval", ->
     interval=new Interval()
     interval.start()
     expect(interval.timeInMs).toBe -1
-

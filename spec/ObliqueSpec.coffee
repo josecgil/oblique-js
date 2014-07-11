@@ -598,3 +598,4 @@ describe "Oblique", ->
     FixtureHelper.clear()
     FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='var variable=32'>nice DOM</div>"
     FixtureHelper.appendHTML "<div data-ob-directive='TestDirective2' data-ob-model='variable'>nice DOM</div>"
+

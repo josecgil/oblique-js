@@ -33,4 +33,3 @@ class DirectiveCollection
     @_directivesByName[directiveName]
 
 ObliqueNS.DirectiveCollection=DirectiveCollection
-

@@ -127,6 +127,7 @@ describe "DirectiveProcessor", ->
     FixtureHelper.appendHTML "<span data-ob-directive='TestDirective'>nice DOM</span>", DOM_ELEMENTS_COUNT/4
     FixtureHelper.appendHTML "<test data-ob-directive='TestDirective'>nice DOM</test>", DOM_ELEMENTS_COUNT/4
 
+
     interval=new Interval()
     counter=0
     class TestDirective
