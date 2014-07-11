@@ -1,5 +1,7 @@
 @.ObliqueNS=@.ObliqueNS or {}
 
+DataModelVariable=ObliqueNS.DataModelVariable
+
 class DirectiveProcessor
 
   constructor: ->
@@ -80,24 +82,26 @@ class DirectiveProcessor
       @_throwError("#{obElement.getHtml()}: data-ob-params parse error: #{e.message}")
 
 
-  _extractVarFrom: (dataModelExpression) ->
-    #var carlos=new Carlos()
-    return undefined if dataModelExpression.indexOf("=") is -1
-    parts=dataModelExpression.split("=")
-    variableName=(parts[0].replace("var ", "")).trim()
-    return undefined  if variableName is ""
-    variableName
-
   _getDirectiveModel : (obElement) ->
     Model=Oblique().getModel()
     dataModelExpr=obElement.getAttributeValue("data-ob-model")
     return undefined if dataModelExpr is undefined
     try
+      #TODO: crear variables locales a partir de las variables del oblique
+      ###
+        var variablesScript=Oblique().createScriptForVariables();
+        eval(variablesScript)
+        esto creará las variables locales necesarias para que el
+        siguiente eval las encuentre
+        DANGER: cambiar nombres de las variables de este código para
+        evitar colisiones con las variables del oblique
+      ###
       directiveModel=eval(dataModelExpr)
-
-      variableName=@_extractVarFrom(dataModelExpr)
-      if (variableName)
-        directiveModel=eval(variableName)
+      dataModelVariable=new DataModelVariable(dataModelExpr)
+      if (dataModelVariable.isSet)
+        variableValue=eval(variableName)
+        Oblique().setVariable(dataModelVariable.name, variableValue)
+        directiveModel=variableValue
 
       if (not directiveModel)
         @_throwError("#{obElement.getHtml()}: data-ob-model expression is undefined")
