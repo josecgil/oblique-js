@@ -19,10 +19,10 @@ Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](h
 
 This example will instantiate a new SimpleDirective when `oblique.js` find the element with data-ob-directive passing data to its constructor with:
 
-+domElement: the HTMLElement that contains the data-ob-element attribute that triggers the execution
-+jQueryElement: the same as before, but the jQuery counterpart
-+params: any params that the tag has, in this case this is undefined, it works with the data-ob-params attribute
-+model: any data that you want to bind to this directive, in this case this is undefined, it works with the data-ob-model attribute
++ domElement: the HTMLElement that contains the data-ob-element attribute that triggers the execution
++ jQueryElement: the same as before, but the jQuery counterpart
++ params: any params that the tag has, in this case this is undefined, it works with the data-ob-params attribute
++ model: any data that you want to bind to this directive, in this case this is undefined, it works with the data-ob-model attribute
 
 
 ```
