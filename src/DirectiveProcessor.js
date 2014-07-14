@@ -18,6 +18,7 @@
       this._throwErrorIfJQueryIsntLoaded();
       this._directiveCollection = new ObliqueNS.DirectiveCollection();
       this._timedDOMObserver = this._createTimedDOMObserver(DirectiveProcessor.DEFAULT_INTERVAL_MS);
+      this._memory = new ObliqueNS.Memory();
       jQuery(document).ready((function(_this) {
         return function() {
           _this._applyDirectivesInDOM();
@@ -120,7 +121,7 @@
     };
 
     DirectiveProcessor.prototype._getDirectiveModel = function(obElement) {
-      var Model, dataModelExpr, dataModelVariable, directiveModel, e, variableValue;
+      var Model, dataModelExpr, dataModelVariable, directiveModel, e, variableName, variableValue;
       Model = Oblique().getModel();
       dataModelExpr = obElement.getAttributeValue("data-ob-model");
       if (dataModelExpr === void 0) {
@@ -136,11 +137,13 @@
           DANGER: cambiar nombres de las variables de este código para
           evitar colisiones con las variables del oblique
          */
+        eval(this._memory.localVarsScript());
         directiveModel = eval(dataModelExpr);
         dataModelVariable = new DataModelVariable(dataModelExpr);
         if (dataModelVariable.isSet) {
+          variableName = dataModelVariable.name;
           variableValue = eval(variableName);
-          Oblique().setVariable(dataModelVariable.name, variableValue);
+          this._memory.setVar(variableName, variableValue);
           directiveModel = variableValue;
         }
         if (!directiveModel) {
@@ -151,40 +154,6 @@
         e = _error;
         return this._throwError("" + (obElement.getHtml()) + ": data-ob-model expression error: " + e.message);
       }
-    };
-
-    DirectiveProcessor.prototype._getDirectiveModel2 = function(obElement) {
-      var className, constructorFn, dataModelDSL, dataModelExpr, model, property, _i, _len, _ref;
-      model = Oblique().getModel();
-      dataModelExpr = obElement.getAttributeValue("data-ob-model");
-      if (dataModelExpr === void 0) {
-        return void 0;
-      }
-      dataModelDSL = new ObliqueNS.DataModelDSL(dataModelExpr);
-      if (!dataModelDSL.hasFullModel) {
-        if (dataModelDSL.modelProperties) {
-          _ref = dataModelDSL.modelProperties;
-          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            property = _ref[_i];
-            if (!model.hasOwnProperty(property.name)) {
-              this._throwError("" + (obElement.getHtml()) + ": data-ob-model doesn't match any data in model");
-            }
-            model = model[property.name];
-            if (property.hasIndex) {
-              model = model[property.index];
-            }
-          }
-        }
-      }
-      className = dataModelDSL.className;
-      if (className) {
-        if (!window.hasOwnProperty(className)) {
-          this._throwError("" + (obElement.getHtml()) + ": '" + className + "' isn't an existing class in data-ob-model");
-        }
-        constructorFn = window[className];
-        model = new constructorFn(model);
-      }
-      return model;
     };
 
     DirectiveProcessor.prototype._throwError = function(errorMessage) {

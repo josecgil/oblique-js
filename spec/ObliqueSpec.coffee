@@ -558,26 +558,7 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-model='variable=new User(Model.name)'>nice DOM</div>"
 
-
-  it "must store a simple variable", ->
-    Oblique().setVariable "name", "Carlos"
-    expect(Oblique().getVariable("name")).toBe "Carlos"
-
-  it "must store a complex variable", ->
-    carlos=
-      name:"Carlos"
-      surname:"Gil"
-    Oblique().setVariable "user", carlos
-    data=Oblique().getVariable("user")
-    expect(data.name).toBe "Carlos"
-    expect(data.surname).toBe "Gil"
-
-  it "must throw an error when I get a not existent variable", ->
-    expect(->
-        Oblique().getVariable("patata")
-    ).toThrow(new ObliqueNS.Error("Oblique().getVariable(): 'patata' isn't an Oblique variable"))
-
-  it "must store & retrieve a variable in data-ob-model atttribute", (done)->
+  it "must store & retrieve a variable in data-ob-model attribute", (done)->
     count=0
     class TestDirective
       constructor: (data)->

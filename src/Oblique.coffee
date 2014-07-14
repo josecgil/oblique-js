@@ -11,7 +11,6 @@ class Oblique
     @directiveProcessor=new ObliqueNS.DirectiveProcessor();
     @templateFactory=new ObliqueNS.TemplateFactory()
     @_onErrorCallbacks=[]
-    @_variables={}
 
   @DEFAULT_INTERVAL_MS = 500
 
@@ -41,12 +40,7 @@ class Oblique
     false
 
   setVariable: (name, data) ->
-    @_variables[name]=data
 
-  getVariable: (name) ->
-    if not @_variables.hasOwnProperty(name)
-      throw new ObliqueNS.Error("Oblique().getVariable(): '#{name}' isn't an Oblique variable")
-    @_variables[name]
 
   renderHtml: (url, model) ->
     if Handlebars is undefined

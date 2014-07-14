@@ -15,6 +15,9 @@ class DirectiveProcessor
     @_directiveCollection = new ObliqueNS.DirectiveCollection()
 
     @_timedDOMObserver=@_createTimedDOMObserver(DirectiveProcessor.DEFAULT_INTERVAL_MS)
+
+    @_memory=new ObliqueNS.Memory()
+
     jQuery(document).ready =>
       @_applyDirectivesInDOM()
       @_timedDOMObserver.observe()
@@ -96,11 +99,14 @@ class DirectiveProcessor
         DANGER: cambiar nombres de las variables de este código para
         evitar colisiones con las variables del oblique
       ###
+      eval(@_memory.localVarsScript())
+
       directiveModel=eval(dataModelExpr)
       dataModelVariable=new DataModelVariable(dataModelExpr)
       if (dataModelVariable.isSet)
+        variableName=dataModelVariable.name
         variableValue=eval(variableName)
-        Oblique().setVariable(dataModelVariable.name, variableValue)
+        @_memory.setVar(variableName, variableValue)
         directiveModel=variableValue
 
       if (not directiveModel)
@@ -108,31 +114,6 @@ class DirectiveProcessor
       directiveModel
     catch e
       @_throwError("#{obElement.getHtml()}: data-ob-model expression error: #{e.message}")
-
-
-  _getDirectiveModel2 : (obElement) ->
-    model=Oblique().getModel()
-    dataModelExpr=obElement.getAttributeValue("data-ob-model")
-    return undefined if dataModelExpr is undefined
-
-    dataModelDSL=new ObliqueNS.DataModelDSL dataModelExpr
-    if not dataModelDSL.hasFullModel
-      if dataModelDSL.modelProperties
-        for property in dataModelDSL.modelProperties
-          if (not model.hasOwnProperty(property.name))
-            @_throwError("#{obElement.getHtml()}: data-ob-model doesn't match any data in model")
-          model=model[property.name]
-          model=model[property.index] if property.hasIndex
-
-    className = dataModelDSL.className
-    if className
-      if (not window.hasOwnProperty(className))
-        @_throwError("#{obElement.getHtml()}: '#{className}' isn't an existing class in data-ob-model")
-
-      constructorFn=window[className]
-      model=new constructorFn(model)
-
-    model
 
   _throwError: (errorMessage) ->
     Oblique().triggerOnError(new ObliqueNS.Error(errorMessage))
