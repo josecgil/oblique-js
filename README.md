@@ -17,7 +17,9 @@ Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](h
 
 ## A simple example
 
-This example will instantiate a new SimpleDirective when `oblique.js` find the element with data-ob-directive passing data to its constructor with:
+`oblique.js` constantly searchs the entire DOM tree for elements with data-ob-directive. When `oblique.js` finds the element it instantiate a new "class" with the constructor function (in this clase, `new SimpleDirective(data)`). 
+
+`data` is a params that contains several properties:
 
 + domElement: the HTMLElement that contains the data-ob-element attribute that triggers the execution
 + jQueryElement: the same as before, but the jQuery counterpart
