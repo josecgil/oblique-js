@@ -120,39 +120,38 @@
       }
     };
 
-    DirectiveProcessor.prototype._getDirectiveModel = function(obElement) {
-      var Model, dataModelExpr, dataModelVariable, directiveModel, e, variableName, variableValue;
+    DirectiveProcessor.prototype._getDirectiveModel = function(___obElement) {
+
+      /*
+        WARNING: all local variable names in this method
+        must be prefixed with three undercores ("___")
+        in order to not be in conflict with dynamic
+        local variables created by
+          eval(@_memory.localVarsScript())
+       */
+      var Model, e, ___dataModelExpr, ___dataModelVariable, ___directiveModel, ___variableName, ___variableValue;
       Model = Oblique().getModel();
-      dataModelExpr = obElement.getAttributeValue("data-ob-model");
-      if (dataModelExpr === void 0) {
+      ___dataModelExpr = ___obElement.getAttributeValue("data-ob-model");
+      if (___dataModelExpr === void 0) {
         return void 0;
       }
       try {
-
-        /*
-          var variablesScript=Oblique().createScriptForVariables();
-          eval(variablesScript)
-          esto creará las variables locales necesarias para que el
-          siguiente eval las encuentre
-          DANGER: cambiar nombres de las variables de este código para
-          evitar colisiones con las variables del oblique
-         */
         eval(this._memory.localVarsScript());
-        directiveModel = eval(dataModelExpr);
-        dataModelVariable = new DataModelVariable(dataModelExpr);
-        if (dataModelVariable.isSet) {
-          variableName = dataModelVariable.name;
-          variableValue = eval(variableName);
-          this._memory.setVar(variableName, variableValue);
-          directiveModel = variableValue;
+        ___directiveModel = eval(___dataModelExpr);
+        ___dataModelVariable = new DataModelVariable(___dataModelExpr);
+        if (___dataModelVariable.isSet) {
+          ___variableName = ___dataModelVariable.name;
+          ___variableValue = eval(___variableName);
+          this._memory.setVar(___variableName, ___variableValue);
+          ___directiveModel = ___variableValue;
         }
-        if (!directiveModel) {
-          this._throwError("" + (obElement.getHtml()) + ": data-ob-model expression is undefined");
+        if (!___directiveModel) {
+          this._throwError("" + (___obElement.getHtml()) + ": data-ob-model expression is undefined");
         }
-        return directiveModel;
+        return ___directiveModel;
       } catch (_error) {
         e = _error;
-        return this._throwError("" + (obElement.getHtml()) + ": data-ob-model expression error: " + e.message);
+        return this._throwError("" + (___obElement.getHtml()) + ": data-ob-model expression error: " + e.message);
       }
     };
 

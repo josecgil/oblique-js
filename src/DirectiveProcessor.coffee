@@ -85,35 +85,33 @@ class DirectiveProcessor
       @_throwError("#{obElement.getHtml()}: data-ob-params parse error: #{e.message}")
 
 
-  _getDirectiveModel : (obElement) ->
+  _getDirectiveModel : (___obElement) ->
+    ###
+      WARNING: all local variable names in this method
+      must be prefixed with three undercores ("___")
+      in order to not be in conflict with dynamic
+      local variables created by
+        eval(@_memory.localVarsScript())
+    ###
     Model=Oblique().getModel()
-    dataModelExpr=obElement.getAttributeValue("data-ob-model")
-    return undefined if dataModelExpr is undefined
+    ___dataModelExpr=___obElement.getAttributeValue("data-ob-model")
+    return undefined if ___dataModelExpr is undefined
     try
-      #TODO: crear variables locales a partir de las variables del oblique
-      ###
-        var variablesScript=Oblique().createScriptForVariables();
-        eval(variablesScript)
-        esto creará las variables locales necesarias para que el
-        siguiente eval las encuentre
-        DANGER: cambiar nombres de las variables de este código para
-        evitar colisiones con las variables del oblique
-      ###
       eval(@_memory.localVarsScript())
 
-      directiveModel=eval(dataModelExpr)
-      dataModelVariable=new DataModelVariable(dataModelExpr)
-      if (dataModelVariable.isSet)
-        variableName=dataModelVariable.name
-        variableValue=eval(variableName)
-        @_memory.setVar(variableName, variableValue)
-        directiveModel=variableValue
+      ___directiveModel=eval(___dataModelExpr)
+      ___dataModelVariable=new DataModelVariable(___dataModelExpr)
+      if (___dataModelVariable.isSet)
+        ___variableName=___dataModelVariable.name
+        ___variableValue=eval(___variableName)
+        @_memory.setVar(___variableName, ___variableValue)
+        ___directiveModel=___variableValue
 
-      if (not directiveModel)
-        @_throwError("#{obElement.getHtml()}: data-ob-model expression is undefined")
-      directiveModel
+      if (not ___directiveModel)
+        @_throwError("#{___obElement.getHtml()}: data-ob-model expression is undefined")
+      ___directiveModel
     catch e
-      @_throwError("#{obElement.getHtml()}: data-ob-model expression error: #{e.message}")
+      @_throwError("#{___obElement.getHtml()}: data-ob-model expression error: #{e.message}")
 
   _throwError: (errorMessage) ->
     Oblique().triggerOnError(new ObliqueNS.Error(errorMessage))

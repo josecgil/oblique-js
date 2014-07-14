@@ -38,3 +38,4 @@ describe "Memory", ->
     memory.setVar("name","Cristina")
     memory.setVar("surname","Cirera")
     expect(memory.localVarsScript()).toBe 'var name=this._memory.getVar(\"name\");var surname=this._memory.getVar(\"surname\");'
+

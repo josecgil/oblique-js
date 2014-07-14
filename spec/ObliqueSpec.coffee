@@ -558,7 +558,7 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-model='variable=new User(Model.name)'>nice DOM</div>"
 
-  it "must store & retrieve a variable in data-ob-model attribute", (done)->
+  it "must store & retrieve a simple variable in data-ob-model attribute", (done)->
     count=0
     class TestDirective
       constructor: (data)->
@@ -580,3 +580,47 @@ describe "Oblique", ->
     FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='var variable=32'>nice DOM</div>"
     FixtureHelper.appendHTML "<div data-ob-directive='TestDirective2' data-ob-model='variable'>nice DOM</div>"
 
+  it "must store & retrieve a complex variable in data-ob-model attribute", (done)->
+    count=0
+    class TestDirective
+      constructor: (data)->
+        colors=data.model
+        expect(colors.values[0]).toBe "Red"
+        expect(colors.values[1]).toBe "Green"
+        colors.values.push "Blue"
+        count++
+
+    class TestDirective2
+      constructor: (data)->
+        count++
+        expect(count).toBe 2
+        colors=data.model
+        expect(colors.values[0]).toBe "Red"
+        expect(colors.values[1]).toBe "Green"
+        expect(colors.values[2]).toBe "Blue"
+        Oblique().destroy()
+        done()
+
+    class Colors
+      constructor:(@values)->
+
+    window.Colors=Colors
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().registerDirective "TestDirective2", TestDirective2
+    Oblique().setIntervalTimeInMs 10
+    FixtureHelper.clear()
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='var colors=new Colors([\"Red\",\"Green\"])'>nice DOM</div>"
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective2' data-ob-model='colors'>nice DOM</div>"
+
+  it "must work when variable name in data-ob-model matchs local variable name", (done)->
+    class TestDirective
+      constructor: (data)->
+        expect(data.model).toBe 32
+        Oblique().destroy()
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    FixtureHelper.clear()
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='var dataModelExpr=32'>nice DOM</div>"

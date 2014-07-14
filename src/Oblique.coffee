@@ -39,9 +39,6 @@ class Oblique
     return true if @_model
     false
 
-  setVariable: (name, data) ->
-
-
   renderHtml: (url, model) ->
     if Handlebars is undefined
       throw new ObliqueNS.Error("Oblique().renderHtml() needs handlebarsjs loaded to work")
