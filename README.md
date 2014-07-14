@@ -16,5 +16,7 @@ var SimpleDirective=function(data) {
 
 Oblique().registerDirective("SimpleDirective", SimpleDirective);
 
+<p data-ob-directive="SimpleDirective">simple example<p>
+
 ```
 
