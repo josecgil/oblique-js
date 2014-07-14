@@ -17,14 +17,14 @@ Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](h
 
 ## A simple example
 
-`oblique.js` constantly searchs the entire DOM tree for elements with data-ob-directive. When `oblique.js` finds the element it instantiate a new "class" with the constructor function (in this clase, `new SimpleDirective(data)`). 
+`oblique.js` constantly searchs the entire DOM tree for elements with `data-ob-directive`. When `oblique.js` finds the element it instantiate a new "class" with the constructor function (in this case, `new SimpleDirective(data)`). 
 
 `data` is a params that contains several properties:
 
-+ domElement: the HTMLElement that contains the data-ob-element attribute that triggers the execution
-+ jQueryElement: the same as before, but the jQuery counterpart
-+ params: any params that the tag has, in this case this is undefined, it works with the data-ob-params attribute
-+ model: any data that you want to bind to this directive, in this case this is undefined, it works with the data-ob-model attribute
++ `domElement`: the HTMLElement that contains the `data-ob-element` attribute that triggers the execution
++ `jQueryElement`: the same as before, but the `jQuery` counterpart
++ `params`: any params that the tag has, in this case this is undefined, it works with the `data-ob-params` attribute
++ `model`: any data that you want to bind to this directive, in this case this is undefined, it works with the `data-ob-model` attribute
 
 
 ```
