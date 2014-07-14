@@ -1,98 +1,26 @@
 @.ObliqueNS=@.ObliqueNS or {}
 
-class ModelDSLPart
-  constructor:(part)->
-    @name=part
-    @hasIndex=false
-    @index=undefined
-    firstBracePosition = part.indexOf "["
-    if firstBracePosition isnt -1
-      @hasIndex= true
-      @name=part.substr 0, firstBracePosition
-      lastBracePosition = part.indexOf "]"
-      indexStr=part.slice firstBracePosition+1, lastBracePosition
-      @index=parseInt(indexStr, 10)
+class DataModelVariable
 
-class ModelDSL
-  constructor:(@_expression) ->
-    @hasFullModel=false
-    @_partsByDot = @_expression.split(".")
-    @_checkSyntax()
-    @_partsByDot.shift()
-
-    if @_partsByDot.length is 0
-      @hasFullModel=true
-      @properties=undefined
-      return
-
-    @properties=[]
-    for part in @_partsByDot
-      @properties.push new ModelDSLPart(part)
-
-  _checkSyntax:() ->
-    throw new ObliqueNS.Error("data-model must begins with 'Model or new'") if @_partsByDot[0] isnt "Model"
-    lastIndex = @_partsByDot.length - 1
-    throw new ObliqueNS.Error("data-model needs property after dot") if @_partsByDot[lastIndex] is ""
-
-class ClassDSL
   constructor:(@_expression)->
-    classNameAndBrackets = @_expression.split(" ")[1]
-    openBracket = classNameAndBrackets.indexOf("(")
-    throw new ObliqueNS.Error("data-model needs open bracket after className") if openBracket is -1
+    @_firstEqualPosition=@_expression.indexOf("=")
+    @name=@_getVariableName()
+    @isSet = @_isSet()
 
-    closeBracket=classNameAndBrackets.indexOf(")", openBracket)
-    throw new ObliqueNS.Error("data-model needs close bracket after className") if closeBracket is -1
-    @name = classNameAndBrackets.slice(0, openBracket)
+  _getVariableName: () ->
+    return @_expression if @_firstEqualPosition is -1
+    parts=@_expression.split("=")
+    variableName=(parts[0].replace("var ", "")).trim()
+    return undefined  if variableName is ""
+    variableName
 
+  _isSet:() ->
+    return false if @_firstEqualPosition is -1
+    nextChar=@_expression.substr(@_firstEqualPosition+1, 1)
+    return false if nextChar is "="
+    true
 
-class DataModelDSL
-  constructor:(@_expression) ->
-    @_checkIsNullOrEmpty()
-    @_expression=@_removeExtraSpaces @_expression
-
-    @hasFullModel = false
-    @modelProperties=undefined
-    @className=undefined
-
-    @_hasClass = @_expression.split(" ")[0] is "new"
-    if (@_hasClass)
-      @className=(new ClassDSL @_expression).name
-
-    modelExpression=@_extractModelExpression()
-    if (modelExpression isnt "")
-      modelDSL = new ModelDSL modelExpression
-      @modelProperties=modelDSL.properties
-      @hasFullModel=modelDSL.hasFullModel
-
-  _removeExtraSpaces:(str)->
-    while str.indexOf("  ") isnt -1
-      str=str.replace("  ", " ")
-    str=str.trim()
-    str=str.replace " (", "("
-    str=str.replace " )", ")"
-    str=str.replace "( ", "("
-    str=str.replace ") ", ")"
-    str
-
-  _extractModelExpression:()->
-    return @_expression if not @_hasClass
-    modelFirstPosition=@_expression.indexOf("(Model")
-    return "" if (modelFirstPosition is -1)
-    modelLastPosition=@_expression.indexOf(")")
-    return @_expression.slice(modelFirstPosition+1, modelLastPosition)
-
-  _checkIsNullOrEmpty:() ->
-    throw new ObliqueNS.Error("data-model can't be null or empty") if @_isNullOrEmpty()
-
-  _isNullOrEmpty:() ->
-    return true if @_expression is undefined
-    return true if @_expression is null
-    return true if @_expression is ""
-    false
-
-ObliqueNS.DataModelDSL=DataModelDSL
-
-
+ObliqueNS.DataModelVariable=DataModelVariable
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveCollection
@@ -128,8 +56,9 @@ class DirectiveCollection
     @_directivesByName[directiveName]
 
 ObliqueNS.DirectiveCollection=DirectiveCollection
-
 @.ObliqueNS=@.ObliqueNS or {}
+
+DataModelVariable=ObliqueNS.DataModelVariable
 
 class DirectiveProcessor
 
@@ -144,6 +73,9 @@ class DirectiveProcessor
     @_directiveCollection = new ObliqueNS.DirectiveCollection()
 
     @_timedDOMObserver=@_createTimedDOMObserver(DirectiveProcessor.DEFAULT_INTERVAL_MS)
+
+    @_memory=new ObliqueNS.Memory()
+
     jQuery(document).ready =>
       @_applyDirectivesInDOM()
       @_timedDOMObserver.observe()
@@ -193,14 +125,12 @@ class DirectiveProcessor
       directive=@_directiveCollection.getDirectiveByName(directiveName)
       throw new ObliqueNS.Error("There is no #{directiveName} directive registered") if not directive
       obElement.setFlag directiveName
-      model=@_getDirectiveModel obElement
-      params=@_getParams obElement
 
       directiveData=
         domElement: obElement.getDOMElement()
         jQueryElement: obElement.getjQueryElement()
-        model: model
-        params: params
+        model: @_getDirectiveModel obElement
+        params: @_getParams obElement
 
       new directive directiveData
 
@@ -212,29 +142,34 @@ class DirectiveProcessor
     catch e
       @_throwError("#{obElement.getHtml()}: data-ob-params parse error: #{e.message}")
 
-  _getDirectiveModel : (obElement) ->
-    model=Oblique().getModel()
-    dataModelExpr=obElement.getAttributeValue("data-ob-model")
-    return undefined if dataModelExpr is undefined
 
-    dataModelDSL=new ObliqueNS.DataModelDSL dataModelExpr
-    if not dataModelDSL.hasFullModel
-      if dataModelDSL.modelProperties
-        for property in dataModelDSL.modelProperties
-          if (not model.hasOwnProperty(property.name))
-            @_throwError("#{obElement.getHtml()}: data-ob-model doesn't match any data in model")
-          model=model[property.name]
-          model=model[property.index] if property.hasIndex
+  _getDirectiveModel : (___obElement) ->
+    ###
+      WARNING: all local variable names in this method
+      must be prefixed with three undercores ("___")
+      in order to not be in conflict with dynamic
+      local variables created by
+        eval(@_memory.localVarsScript())
+    ###
+    Model=Oblique().getModel()
+    ___dataModelExpr=___obElement.getAttributeValue("data-ob-model")
+    return undefined if ___dataModelExpr is undefined
+    try
+      eval(@_memory.localVarsScript())
 
-    className = dataModelDSL.className
-    if className
-      if (not window.hasOwnProperty(className))
-        @_throwError("#{obElement.getHtml()}: '#{className}' isn't an existing class in data-ob-model")
+      ___directiveModel=eval(___dataModelExpr)
+      ___dataModelVariable=new DataModelVariable(___dataModelExpr)
+      if (___dataModelVariable.isSet)
+        ___variableName=___dataModelVariable.name
+        ___variableValue=eval(___variableName)
+        @_memory.setVar(___variableName, ___variableValue)
+        ___directiveModel=___variableValue
 
-      constructorFn=window[className]
-      model=new constructorFn(model)
-
-    model
+      if (not ___directiveModel)
+        @_throwError("#{___obElement.getHtml()}: data-ob-model expression is undefined")
+      ___directiveModel
+    catch e
+      @_throwError("#{___obElement.getHtml()}: data-ob-model expression error: #{e.message}")
 
   _throwError: (errorMessage) ->
     Oblique().triggerOnError(new ObliqueNS.Error(errorMessage))
@@ -257,6 +192,7 @@ class DirectiveProcessor
 
 ObliqueNS.DirectiveProcessor=DirectiveProcessor
 @.Oblique=DirectiveProcessor
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Element
@@ -316,6 +252,7 @@ class Element
     @getDOMElement().outerHTML
 
 ObliqueNS.Element=Element
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Error
@@ -324,7 +261,27 @@ class Error
     @name = "Oblique.Error"
 
 ObliqueNS.Error=Error
+@.ObliqueNS=@.ObliqueNS or {}
+class Memory
 
+  constructor:()->
+    @_vars={}
+
+  setVar:(name, value)->
+    if name is "Model"
+      throw new ObliqueNS.Error("Can't create a variable named 'Model', is a reserved word")
+    @_vars[name]=value
+
+  getVar:(name)->
+    @_vars[name]
+
+  localVarsScript:->
+    script=""
+    for own variableName, variableValue of @_vars
+      script=script+"var #{variableName}=this._memory.getVar(\"#{variableName}\");"
+    script
+
+ObliqueNS.Memory=Memory
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -383,8 +340,6 @@ class Oblique
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
-
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class ObliqueError extends Error
@@ -393,6 +348,7 @@ class ObliqueError extends Error
     @name = "ObliqueNS.Error"
 
 ObliqueNS.Error=ObliqueError
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Template
@@ -404,8 +360,6 @@ class Template
     @compiledTemplate(model)
 
 ObliqueNS.Template=Template
-
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class TemplateFactory
@@ -436,8 +390,6 @@ class TemplateFactory
     template=@createFromString(templateContent)
 
 ObliqueNS.TemplateFactory=TemplateFactory
-
-
 
 @.ObliqueNS=@.ObliqueNS or {}
 
