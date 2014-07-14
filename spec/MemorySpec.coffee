@@ -39,3 +39,9 @@ describe "Memory", ->
     memory.setVar("surname","Cirera")
     expect(memory.localVarsScript()).toBe 'var name=this._memory.getVar(\"name\");var surname=this._memory.getVar(\"surname\");'
 
+  it "must throw an error if variable name is Model", () ->
+    memory=new Memory()
+    expect(->
+      memory.setVar("Model","value")
+    ).toThrow(new ObliqueNS.Error("Can't create a variable named 'Model', is a reserved word"))
+

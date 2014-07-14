@@ -5,6 +5,8 @@ class Memory
     @_vars={}
 
   setVar:(name, value)->
+    if name is "Model"
+      throw new ObliqueNS.Error("Can't create a variable named 'Model', is a reserved word")
     @_vars[name]=value
 
   getVar:(name)->

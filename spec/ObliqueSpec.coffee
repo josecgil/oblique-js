@@ -624,3 +624,19 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     FixtureHelper.clear()
     FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='var dataModelExpr=32'>nice DOM</div>"
+
+
+  it "must throw an error if a variable named Model is set in data-ob-model", (done)->
+    class TestDirective
+      constructor: ->
+
+    Oblique().onError( (error) ->
+      expect(error.message).toBe "<div data-ob-directive=\"TestDirective\" data-ob-model=\"var Model=32\">nice DOM</div>: data-ob-model expression error: Can't create a variable named 'Model', is a reserved word"
+      Oblique().destroy()
+      done()
+    )
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    FixtureHelper.clear()
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='var Model=32'>nice DOM</div>"
