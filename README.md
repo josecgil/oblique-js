@@ -15,6 +15,10 @@ Currently `oblique.js` needs  [jQuery](http://jquery.com/) to work properly. If 
 
 Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](http://jquery.com/) and (optionally) [handlebars](http://handlebarsjs.com/)
 
+```
+<script type="text/javascript" src="https://raw.githubusercontent.com/josecgil/oblique-js/master/dist/oblique.min.js"></script>
+```
+
 ## A simple example
 
 `oblique.js` constantly searchs the entire DOM tree for elements with `data-ob-directive`. When `oblique.js` finds the element it instantiate a new "class" with the constructor function (in this case, `new SimpleDirective(data)`). 
