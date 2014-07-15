@@ -5,7 +5,7 @@
 + **Directives** to organise & execute behaviours in page
 + **Model & model selection** to bind data in page with behaviours & DOM elements
 + **Params** to send config data to behaviours
-+ **Templates**, it uses [handlebars](http://handlebarsjs.com/) to render html
++ **Templates** to render html ([handlebars](http://handlebarsjs.com/))
 
 ## Requeriments
 
