@@ -21,7 +21,45 @@ Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](h
 
 ## A simple example
 
-`oblique.js` constantly searchs the entire DOM tree for elements with `data-ob-directive`. When `oblique.js` finds the element it instantiate a new "class" with the constructor function (in this case, `new SimpleDirective(data)`). 
+```
+<script type="text/javascript">
+    var HelloDirective=function() {
+        console.log("Hello world!");
+    };
+    
+    Oblique().registerDirective("HelloDirective", HelloDirective);
+</script>
+<p data-ob-directive="SimpleDirective">simple example</p>
+
+```
+
+`oblique.js` constantly searchs the entire DOM tree for elements with `data-ob-directive` attribute. When it finds the element it instantiate a new "class" with the constructor function (in this case, `new SimpleDirective()`). 
+
+The same example in a more concise way:
+
+```
+<script type="text/javascript">    
+    Oblique().registerDirective("HelloDirective", function() {
+        console.log("Hello world!");
+    });
+</script>
+<p data-ob-directive="SimpleDirective">simple example</p>
+
+```
+
+## Directives
+Directives are like an orchestra conductor. They are the core of the execution process.
+
+Execution lifecicle in `oblique.js` goes like this
+
++ `oblique.js` sets a timer to search the DOM every 400ms
++ on every execution
+   + it searchs for elements with the `data-ob-directive` attribute
+   + it extracts all the directives names declared in tag
+
+
+--- Work in progress ---
+### data constructor param
 
 `data` is a params that contains several properties:
 
@@ -29,17 +67,4 @@ Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](h
 + `jQueryElement`: the same as before, but the `jQuery` counterpart
 + `params`: any params that the tag has, in this case this is undefined, it works with the `data-ob-params` attribute
 + `model`: any data that you want to bind to this directive, in this case this is undefined, it works with the `data-ob-model` attribute
-
-
-```
-<script type="text/javascript">
-    var SimpleDirective=function(data) {
-        console.log(data.domElement);
-    };
-    
-    Oblique().registerDirective("SimpleDirective", SimpleDirective);
-</script>
-<p data-ob-directive="SimpleDirective">simple example<p>
-
-```
 
