@@ -19,6 +19,26 @@ Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](h
 <script type="text/javascript" src="https://raw.githubusercontent.com/josecgil/oblique-js/master/dist/oblique.min.js"></script>
 ```
 
+## An overview
+
+`oblique.js` constantly searchs the entire DOM tree for elements with the `data-ob-directive` attribute. When an element is found, it process it and marks the element as 'processed' so the next time does'nt find it.
+
+At the core of `oblique.js` the are a two elements: 
++ a DOM Element thats declares behaviours and data.
++ a javascript constructor function (or more than one) that will be called when oblique.js finds the element
+
+The most simple DOM element look like this:
+
+```
+    <p data-ob-directive="HelloDirective">simple example</p>
+
+```
+It has an important attribute `data-ob-directive`, that declares the name of the constructor function that oblique.js must call when it finds this element.
+
+When oblique.js finds the element it instantiate a new object with the constructor function (in this case, `new HelloDirective()`).
+
+
+
 ## A simple example
 
 ```
@@ -33,7 +53,7 @@ Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](h
 
 ```
 
-`oblique.js` constantly searchs the entire DOM tree for elements with `data-ob-directive` attribute. When it finds the element it instantiate a new "class" with the constructor function (in this case, `new SimpleDirective()`). 
+`oblique.js` constantly searchs the entire DOM tree for elements with `data-ob-directive` attribute.  
 
 The same example in a more concise way:
 
@@ -56,9 +76,9 @@ Execution lifecicle in `oblique.js` goes like this
 + on every execution
    + it searchs for elements with the `data-ob-directive` attribute
    + it extracts all the directives names declared in tag
+   + it parse the especial tag attributes (attributes beginning with data-ob) and builds a 'data' object
+   + it instantiate a new object with the constructor function named like the directive sending the 'data' object as the first param
 
-
---- Work in progress ---
 ### data constructor param
 
 `data` is a params that contains several properties:
