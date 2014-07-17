@@ -75,11 +75,11 @@ Execution lifecicle in `oblique.js` goes like this
 
 ### The data param
 
-All `Directives` receive a `data` param with info related to the context of the DOM element that triggers the directive and more data from the page (controlled by the `data-ob-model` & `data-ob-params` attributes). 
+All `Directives` receive a `data` param with info related to the context of the DOM element that triggers its excution and more data from the page (controlled by the `data-ob-model` & `data-ob-params` attributes). 
 
 `data` is a params that contains several properties:
 
-+ `domElement`: the HTMLElement that contains the `data-ob-element` attribute that triggers the execution
++ `domElement`: the HTMLElement that contains the `data-ob-element` attribute that triggers its execution
 + `jQueryElement`: the same as before, but the `jQuery` counterpart
 + `params`: any params that the tag has, in this case this is undefined, it works with the `data-ob-params` attribute
 + `model`: any data that you want to bind to this directive, in this case this is undefined, it works with the `data-ob-model` attribute
