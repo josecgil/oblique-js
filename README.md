@@ -85,11 +85,13 @@ The `data-ob-params` is a form to send config params to a directive. The format 
 
 In this example, the `PopupDirective` will receive a JSON object in the `data.params` property:
 
-```<script type="text/javascript">
+```
+<script type="text/javascript">
     var PopupDirective=function(data) {
         var params=data.params;
         //Popup code
     };
     
     Oblique().registerDirective("PopupDirective", PopupDirective);
-</script>```
+</script>
+```
