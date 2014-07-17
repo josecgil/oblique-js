@@ -33,13 +33,15 @@ It has an important attribute `data-ob-directive`, that declares the name of the
 
 Previously, `HelloDirective` must be registered as a function in `oblique.js`
 
-```<script type="text/javascript">
+```
+<script type="text/javascript">
     var HelloDirective=function() {
         console.log("Hello world!");
     };
     
     Oblique().registerDirective("HelloDirective", HelloDirective);
-</script>```
+</script>
+```
 
 The same example in a more concise way:
 
@@ -63,8 +65,6 @@ In `oblique.js` it goes like this:
    + it extracts all the directives names declared in element
    + it parse the attributes beginning with data-ob and builds a 'data' object
    + it instantiate a new object with the constructor function named like the directive and it sends a [data](#the-data-param) object as the first param
-
-
 
 ### The data param
 
