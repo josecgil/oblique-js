@@ -29,34 +29,27 @@ At the core of `oblique.js` the are a two elements:
 
 The most simple DOM element look like this:
 
-```
-    <p data-ob-directive="HelloDirective">simple example</p>
+```<p data-ob-directive="HelloDirective">simple example</p>```
 
-```
 It has an important attribute `data-ob-directive`, that declares the name of the constructor function that `oblique.js` must call when it finds this element. When it finds the element it instantiate a new object with the constructor function (in this case, `new HelloDirective()`).
 
 Previously, `HelloDirective` must be registered as a function in `oblique.js`
 
-```
-<script type="text/javascript">
+```<script type="text/javascript">
     var HelloDirective=function() {
         console.log("Hello world!");
     };
     
     Oblique().registerDirective("HelloDirective", HelloDirective);
-</script>
-```
+</script>```
 
 The same example in a more concise way:
 
-```
-<script type="text/javascript">    
+```<script type="text/javascript">    
     Oblique().registerDirective("HelloDirective", function() {
         console.log("Hello world!");
     });
-</script>
-
-```
+</script>```
 
 These functions are called `Directives` in `oblique.js` jargon. Hence the name of the function `HelloDirective`. Directives are like an orchestra conductor. They are the core of the execution process.
 
