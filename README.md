@@ -95,3 +95,11 @@ In this example, the `PopupDirective` will receive a JSON object in the `data.pa
     Oblique().registerDirective("PopupDirective", PopupDirective);
 </script>
 ```
+
+`data-params` value will be 
+```
+{
+    width:"200px",
+    height:"100px"
+}
+```
