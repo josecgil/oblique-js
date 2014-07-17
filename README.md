@@ -33,13 +33,9 @@ The most simple DOM element look like this:
     <p data-ob-directive="HelloDirective">simple example</p>
 
 ```
-It has an important attribute `data-ob-directive`, that declares the name of the constructor function that oblique.js must call when it finds this element.
+It has an important attribute `data-ob-directive`, that declares the name of the constructor function that `oblique.js` must call when it finds this element. When it finds the element it instantiate a new object with the constructor function (in this case, `new HelloDirective()`).
 
-When oblique.js finds the element it instantiate a new object with the constructor function (in this case, `new HelloDirective()`).
-
-
-
-## A simple example
+Previously, `HelloDirective` must be registered as a function in `oblique.js`
 
 ```
 <script type="text/javascript">
@@ -49,11 +45,7 @@ When oblique.js finds the element it instantiate a new object with the construct
     
     Oblique().registerDirective("HelloDirective", HelloDirective);
 </script>
-<p data-ob-directive="SimpleDirective">simple example</p>
-
 ```
-
-`oblique.js` constantly searchs the entire DOM tree for elements with `data-ob-directive` attribute.  
 
 The same example in a more concise way:
 
@@ -63,12 +55,14 @@ The same example in a more concise way:
         console.log("Hello world!");
     });
 </script>
-<p data-ob-directive="SimpleDirective">simple example</p>
 
 ```
 
+These functions are called `Directives` in `oblique.js` jargon. Hence the name of the function `HelloDirective`. Directives are like an orchestra conductor. They are the core of the execution process.
+
+Directives are registered through the Oblique() function, that is the function through which you can access all the functionality of `oblique.js`.
+
 ## Directives
-Directives are like an orchestra conductor. They are the core of the execution process.
 
 Execution lifecicle in `oblique.js` goes like this
 
