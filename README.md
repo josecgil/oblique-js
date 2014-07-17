@@ -24,7 +24,7 @@ Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](h
 `oblique.js` constantly searchs the entire DOM tree for elements with the `data-ob-directive` attribute. When an element is found, it process it and marks the element as 'processed' so the next time does'nt find it.
 
 At the core of `oblique.js` the are a two elements: 
-+ a DOM Element thats declares behaviours and data.
++ a DOM Element thats declares code to execute and data to be sent to the code.
 + a javascript constructor function (or more than one) that will be called when oblique.js finds the element
 
 The most simple DOM element look like this:
