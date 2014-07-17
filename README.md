@@ -5,19 +5,17 @@
 + **Directives** to organise & execute code in page
 + **Model & model selection** to bind data in page with code & DOM elements
 + **Params** to send config data to behaviours
-+ **Templates** to render html ([handlebars](http://handlebarsjs.com/))
++ **Templates** to render html (uses [handlebars](http://handlebarsjs.com/))
 
 ## Requeriments
 
-Currently `oblique.js` needs  [jQuery](http://jquery.com/) to work properly. If you want to use template system, you need to load also [handlebars](http://handlebarsjs.com/).
+Currently `oblique.js` needs  [jQuery](http://jquery.com/) to work properly. If you want to use the template system, you need to load also [handlebars](http://handlebarsjs.com/).
 
 ## Installation
 
 Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](http://jquery.com/) and (optionally) [handlebars](http://handlebarsjs.com/)
 
-```
-<script type="text/javascript" src="https://raw.githubusercontent.com/josecgil/oblique-js/master/dist/oblique.min.js"></script>
-```
+```<script type="text/javascript" src="https://raw.githubusercontent.com/josecgil/oblique-js/master/dist/oblique.min.js"></script>```
 
 ## An overview
 
@@ -31,7 +29,7 @@ The most simple DOM element look like this:
 
 ```<p data-ob-directive="HelloDirective">simple example</p>```
 
-It has an important attribute `data-ob-directive`, that declares the name of the constructor function that `oblique.js` must call when it finds this element. When it finds the element it instantiate a new object with the constructor function (in this case, `new HelloDirective()`).
+It has an important attribute `data-ob-directive`, that declares the name of the constructor function that `oblique.js` must call when it finds this element. When the element is found it instantiates a new object with the constructor function (in this case, `new HelloDirective()`).
 
 Previously, `HelloDirective` must be registered as a function in `oblique.js`
 
@@ -51,20 +49,22 @@ The same example in a more concise way:
     });
 </script>```
 
-These functions are called `Directives` in `oblique.js` jargon. Hence the name of the function `HelloDirective`. Directives are like an orchestra conductor. They are the core of the execution process.
+These functions are called `Directives` in `oblique.js` jargon. Hence the name of the function `HelloDirective`. Directives are like an orchestra conductor, they are the core of the execution process.
 
-Directives are registered through the Oblique() function, that is the function through which you can access all the functionality of `oblique.js`.
+Directives are registered through the `Oblique().registerDirective()` function, as you can see `Oblique()` is the function through which you can access all the functionality of `oblique.js`.
 
-## Directives
+## Execution lifecycle
 
-Execution lifecicle in `oblique.js` goes like this
+In `oblique.js` it goes like this:
 
 + `oblique.js` sets a timer to search the DOM every 400ms
 + on every execution
-   + it searchs for elements with the `data-ob-directive` attribute
+   + it searchs for elements with the `data-ob-directive` attribute not already processed
    + it extracts all the directives names declared in element
    + it parse the attributes beginning with data-ob and builds a 'data' object
-   + it instantiate a new object with the constructor function named like the directive sending the 'data' object as the first param
+   + it instantiate a new object with the constructor function named like the directive and it sends a [data](#the-data-param) object as the first param
+
+
 
 ### The data param
 
