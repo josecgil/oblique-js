@@ -69,11 +69,13 @@ Execution lifecicle in `oblique.js` goes like this
 + `oblique.js` sets a timer to search the DOM every 400ms
 + on every execution
    + it searchs for elements with the `data-ob-directive` attribute
-   + it extracts all the directives names declared in tag
-   + it parse the especial tag attributes (attributes beginning with data-ob) and builds a 'data' object
+   + it extracts all the directives names declared in element
+   + it parse the attributes beginning with data-ob and builds a 'data' object
    + it instantiate a new object with the constructor function named like the directive sending the 'data' object as the first param
 
-### data constructor param
+### The data param
+
+All `Directives` receive a `data` param with info related to the context of the DOM element that triggers the directive and more data from the page (controlled by the `data-ob-model` & `data-ob-params` attributes). 
 
 `data` is a params that contains several properties:
 
