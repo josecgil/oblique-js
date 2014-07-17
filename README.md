@@ -96,7 +96,7 @@ In this example, the `PopupDirective` will receive a JSON object in the `data.pa
 </script>
 ```
 
-`data-params` value will be 
+`data-params` value would be 
 ```
 {
     width:"200px",
