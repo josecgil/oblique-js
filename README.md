@@ -57,7 +57,7 @@ Directives are registered through the `Oblique().registerDirective()` function, 
 
 In `oblique.js` it goes like this:
 
-+ `oblique.js` sets a timer to search the DOM every 400ms
++ When `oblique.js` is loaded and the DOM is ready it sets a timer to search the DOM every 400ms
 + on every execution
    + it searchs for elements with the `data-ob-directive` attribute not already processed
    + it extracts all the directives names declared in element
@@ -74,6 +74,22 @@ All `Directives` receive a `data` param with info related to the context of the 
 
 + `domElement`: the HTMLElement that contains the `data-ob-element` attribute that triggers its execution
 + `jQueryElement`: the same as before, but the `jQuery` counterpart
-+ `params`: any params that the tag has, in this case this is undefined, it works with the `data-ob-params` attribute
++ `params`: any params that the DOM element has, in this case this is undefined, it works with the `data-ob-params` attribute
 + `model`: any data that you want to bind to this directive, in this case this is undefined, it works with the `data-ob-model` attribute
 
+### The data-ob-params attribute
+
+The `data-ob-params` is a form to send config params to a directive. The format of the params is JSON.
+
+```<p data-ob-directive="PopupDirective" data-ob-params="{\"width\":\"200px\", \"height\":\"100px\"}">Popup content</p>```
+
+In this example, the `PopupDirective` will receive a JSON object in the `data.params` property:
+
+```<script type="text/javascript">
+    var PopupDirective=function(data) {
+        var params=data.params;
+        //Popup code
+    };
+    
+    Oblique().registerDirective("PopupDirective", PopupDirective);
+</script>```
