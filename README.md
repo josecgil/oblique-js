@@ -232,7 +232,10 @@ Lets say you have a complex model:
 ```
 
 With `data-ob-model="Model"` you send all this data to the directive.
+
 With `data-ob-model="Model.user"` you send the user object (name, surname, address...).
+
 With `data-ob-model="Model.user.address.city"` you send "Barcelona" to the directive.
+
 With `data-ob-model="Model.products[0]"` you send the first product data to the directive.
 
