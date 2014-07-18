@@ -167,12 +167,13 @@ But, to show or hide the image you need the data of the current logged user. ¿H
 
 ```
 
-2. Select the part of the model you want to pass in `data-ob-model` attribute. If you use the reserved work `Model` it means all the data set previously in `Oblique.setModel()` will be sent to the directive.
+2. Select the part of the model you want to pass in `data-ob-model` attribute. If you use the reserved word `Model` it means all the data set previously in `Oblique.setModel()` will be sent to the directive.
 
 ```
-<img src="/images/premium_user.jpg" data-ob-directive="PremiumBadgeDirective" data-ob-Model="Model"/>
+<img src="/images/premium_user.jpg" data-ob-directive="PremiumBadgeDirective" data-ob-model="Model"/>
 ```
-This tag declares that will execute a function registered as "PremiumBadgeDirective" and that it will send all the Model data to it (that what the reserved word 'Model' means). 
+
+This tag declares the execution of a registered "PremiumBadgeDirective" function and sends all the Model data to it (that what the reserved word `Model` means). 
 
 The final javascript code looks like this:
 
@@ -195,3 +196,43 @@ The final javascript code looks like this:
 </script>
 
 ```
+
+### What can you do with the data-ob-model attribute
+
+1. Select a part of a model
+
+Lets say you have a complex model:
+
+```
+<script type="text/javascript">
+    var cart=
+    {
+        user:
+        {
+            name: "Carlos",
+            surname: "Gil",
+            address:
+            {
+                street: "Gran Via",
+                number: 32,
+                city: "Barcelona"
+            }
+        },
+        products:
+            [
+                { title:"Dune", price: 32, currency: "Euro"},
+                { title:"1984", price: 23, currency: "Euro"},
+                { title:"At the mountains of madness", price: 13, currency: "Euro"}
+            ],
+        promotionCode: "DUCKDAY"
+    };
+
+    Oblique().setModel(cart);
+</script>
+```
+
+With `data-ob-model="Model"` you send all this data to the directive.
+With `data-ob-model="Model.user"` you send the user object (name, surname, address...).
+With `data-ob-model="Model.user.address.city"` you send "Barcelona" to the directive.
+With `data-ob-model="Model.products[0]"` you send the first product data to the directive.
+
