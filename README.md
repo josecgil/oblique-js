@@ -125,34 +125,34 @@ Let's start with the `Oblique().setModel()` function. It inform `oblique.js` tha
 Let's say you have a data in you page refered to the current logged user:
 
 ```
-    <script type="text/javascript">
-        var loggedUser={ name: "josecgil", isPremium: true };
-    </script>
+<script type="text/javascript">
+    var loggedUser={ name: "josecgil", isPremium: true };
+</script>
 ```
 
 And an image in the html that you what to show only when the logger user is a premium user.
 
 ```
-    <img src="/images/premium_user.jpg" />
+<img src="/images/premium_user.jpg" />
 ```
 
 To code the behaviour of showing the image or not you need to write javascript. The place to do this in `oblique.js` is to create and register a `Directive`:
 
 ```
-    <script type="text/javascript">
-        var PremiumBadgeDirective=function() {
-            //code to show or hide premium image
-        };
-        
-        Oblique().registerDirective("PremiumBadgeDirective", PremiumBadgeDirective);
-    </script>
+<script type="text/javascript">
+    var PremiumBadgeDirective=function() {
+        //code to show or hide premium image
+    };
+    
+    Oblique().registerDirective("PremiumBadgeDirective", PremiumBadgeDirective);
+</script>
 
 ```
 
 To bind this `Directive` to the tag you need to set an attribute `data-ob-directive` with the name of the registered directive:
 
 ```
-    <img src="/images/premium_user.jpg" data-ob-directive="PremiumBadgeDirective" />
+<img src="/images/premium_user.jpg" data-ob-directive="PremiumBadgeDirective" />
 ```
 
 But, to show or hide the image you need the data of the current logged user. ¿How to send the needed data to the `PremiumBadgeDirective`?
@@ -160,38 +160,38 @@ But, to show or hide the image you need the data of the current logged user. ¿H
 1. Set the model in `oblique.js`
 
 ```
-    <script type="text/javascript">
-        var loggedUser={ name: "josecgil", isPremium: true };
-        Oblique().setModel(loggedUser);
-    </script>
+<script type="text/javascript">
+    var loggedUser={ name: "josecgil", isPremium: true };
+    Oblique().setModel(loggedUser);
+</script>
 
 ```
 
 2. Select the part of the model you want to pass in `data-ob-model` attribute. If you use the reserved work `Model` it means all the data set previously in `Oblique.setModel()` will be sent to the directive.
 
 ```
-    <img src="/images/premium_user.jpg" data-ob-directive="PremiumBadgeDirective" data-ob-Model="Model"/>
+<img src="/images/premium_user.jpg" data-ob-directive="PremiumBadgeDirective" data-ob-Model="Model"/>
 ```
 This tag declares that will execute a function registered as "PremiumBadgeDirective" and that it will send all the Model data to it (that what the reserved word 'Model' means). 
 
 The final javascript code looks like this:
 
 ```
-    <script type="text/javascript">
-        var PremiumBadgeDirective=function(data) {
-            isPremiumUser=data.Model.isPremium;
-            premiumImage=data.jQueryElement;
-            if (isPremiumUser) {
-                premiumImage.show();
-            } else {
-                premiumImage.hide();
-            }
-        };
-        
-        Oblique().registerDirective("PremiumBadgeDirective", PremiumBadgeDirective);
+<script type="text/javascript">
+    var PremiumBadgeDirective=function(data) {
+        isPremiumUser=data.Model.isPremium;
+        premiumImage=data.jQueryElement;
+        if (isPremiumUser) {
+            premiumImage.show();
+        } else {
+            premiumImage.hide();
+        }
+    };
     
-        var loggedUser={ name: "josecgil", isPremium: true };
-        Oblique().setModel(loggedUser);
-    </script>
+    Oblique().registerDirective("PremiumBadgeDirective", PremiumBadgeDirective);
+
+    var loggedUser={ name: "josecgil", isPremium: true };
+    Oblique().setModel(loggedUser);
+</script>
 
 ```
