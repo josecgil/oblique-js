@@ -114,7 +114,7 @@ In oblique.js the Model is the data needed by the page. There are three related 
 
 + The `Oblique.setModel()` function, that sets all the data for the page (as an object)
 + The `data-ob-model` attribute that selectes what data goes to the directive
-+ The 'Model' reserved word (used inside data-ob-model attribute)
++ The `Model` reserved word (used inside `data-ob-model` attribute)
 
 Let's start with the `Oblique().setModel()` function. It inform `oblique.js` that all directives in the page has the possibility to work with some kind of data.
 
