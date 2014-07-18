@@ -68,7 +68,7 @@ In `oblique.js` it goes like this:
    + it parse the attributes beginning with data-ob and builds a 'data' object
    + it instantiate a new object with the constructor function named like the directive and it sends a [data](#the-data-param) object as the first param
 
-### The data param
+## The data param
 
 All `Directives` receive a `data` param with info related to the context of the DOM element that triggers its excution and more data from the page (controlled by the `data-ob-model` & `data-ob-params` attributes). 
 
@@ -79,7 +79,7 @@ All `Directives` receive a `data` param with info related to the context of the 
 + `params`: any params that the DOM element has, in this case this is undefined, it works with the `data-ob-params` attribute
 + `model`: any data that you want to bind to this directive, in this case this is undefined, it works with the `data-ob-model` attribute
 
-### The data-ob-params attribute
+## The data-ob-params attribute
 
 The `data-ob-params` is a form to send config params to a directive. The format of the params is JSON.
 
@@ -108,7 +108,7 @@ In this example, the `PopupDirective` will receive a JSON object in the `data.pa
 }
 ```
 
-###The Model
+##The Model
 
 In oblique.js the Model is the data needed by the page. There are three related items that works with the model.
 
@@ -120,7 +120,7 @@ Let's start with the `Oblique().setModel()` function. It inform `oblique.js` tha
 
 `data-ob-model` then selects what part of the Model is send to a directive in a concrete case.
 
-A simple example:
+###A simple example
 
 Let's say you have a data in you page refered to the current logged user:
 
