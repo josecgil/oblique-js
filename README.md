@@ -109,3 +109,55 @@ In this example, the `PopupDirective` will receive a JSON object in the `data.pa
 ```
 
 ###The Model
+
+In oblique.js the Model is the data needed by the page. There are three related items that works with the model.
+
++ The `Oblique.setModel()` function, that sets all the data for the page (as an object)
++ The `data-ob-model` attribute that selectes what data goes to the directive
++ The 'Model' reserved word (used inside data-ob-model attribute)
+
+Let's start with the `Oblique().setModel()` function. It inform `oblique.js` that all directives in the page has the possibility to work with some kind of data.
+
+`data-ob-model` then selects what part of the Model is send to a directive in a concrete case.
+
+A simple example:
+
+Let's say you have a data in you page refered to the current logged user:
+
+```
+    <script type="text/javascript">
+        var loggedUser={ name: "josecgil", isPremium: true };
+    </script>
+```
+
+And an image in the html that you what to show only when the logger user is a premium user.
+
+```
+    <img src="/images/premium_user.jpg" />
+```
+
+
+
+
+In the html page you have an image:
+```
+    <img src="/images/premium_user.jpg" data-ob-directive="PremiumBadgeDirective" data-ob-Model="Model"/>
+```
+This tag declares that will execute a function registered as "PremiumBadgeDirective" and that it will send all the Model data to it (that what the reserved word 'Model' means). 
+
+```
+    <script type="text/javascript">
+        var PremiumBadgeDirective=function(data) {
+            isPremiumUser=data.Model.isPremium;
+            if (!isPremiumUser) return;
+            //show premium badge
+            data.jQueryElement.show();
+        };
+        
+        Oblique().registerDirective("PremiumBadgeDirective", PremiumBadgeDirective);
+    
+        var loggedUser={ name: "josecgil", isPremium: true };
+        Oblique().setModel(loggedUser);
+    </script>
+
+```
