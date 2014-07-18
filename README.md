@@ -45,11 +45,13 @@ Previously, `HelloDirective` must be registered as a function in `oblique.js`
 
 The same example in a more concise way:
 
-```<script type="text/javascript">    
+```
+<script type="text/javascript">    
     Oblique().registerDirective("HelloDirective", function() {
         console.log("Hello world!");
     });
-</script>```
+</script>
+```
 
 These functions are called `Directives` in `oblique.js` jargon. Hence the name of the function `HelloDirective`. Directives are like an orchestra conductor, they are the core of the execution process.
 
@@ -81,7 +83,9 @@ All `Directives` receive a `data` param with info related to the context of the 
 
 The `data-ob-params` is a form to send config params to a directive. The format of the params is JSON.
 
-```<p data-ob-directive="PopupDirective" data-ob-params="{\"width\":\"200px\", \"height\":\"100px\"}">Popup content</p>```
+```
+<p data-ob-directive="PopupDirective" data-ob-params="{\"width\":\"200px\", \"height\":\"100px\"}">Popup content</p>
+```
 
 In this example, the `PopupDirective` will receive a JSON object in the `data.params` property:
 
@@ -103,3 +107,5 @@ In this example, the `PopupDirective` will receive a JSON object in the `data.pa
     height:"100px"
 }
 ```
+
+###The Model
