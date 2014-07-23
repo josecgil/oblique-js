@@ -157,7 +157,7 @@ To bind this `Directive` to the tag you need to set an attribute `data-ob-direct
 
 But, to show or hide the image you need the data of the current logged user. ¿How to send the needed data to the `PremiumBadgeDirective`?
 
-1. Set the model in `oblique.js`
+A. Set the model in `oblique.js`
 
 ```
 <script type="text/javascript">
@@ -167,7 +167,7 @@ But, to show or hide the image you need the data of the current logged user. ¿H
 
 ```
 
-2. Select the part of the model you want to pass in `data-ob-model` attribute. If you use the reserved word `Model` it means all the data set previously in `Oblique.setModel()` will be sent to the directive.
+B. Select the part of the model you want to pass in `data-ob-model` attribute. If you use the reserved word `Model` it means all the data set previously in `Oblique.setModel()` will be sent to the directive.
 
 ```
 <img src="/images/premium_user.jpg" data-ob-directive="PremiumBadgeDirective" data-ob-model="Model"/>
@@ -199,7 +199,7 @@ The final javascript code looks like this:
 
 ### What can you do with the data-ob-model attribute
 
-1. Select a part of a model
+A. Select a part of a model
 
 Lets say you have a complex model:
 
@@ -239,7 +239,7 @@ With `data-ob-model="Model.user.address.city"` you send "Barcelona" to the direc
 
 With `data-ob-model="Model.products[0]"` you send the first product data to the directive.
 
-2. Execute a javascript expression 
+B. Execute a javascript expression 
 
 The result of the executed expression will be assigned to de model property in the data param received by the directive.
 
@@ -249,7 +249,7 @@ With `data-ob-model="format(new Date())"` you send the result of the global func
 
 With `data-ob-model="new Address(Model.address)"` you send an instance of Address that receives the address part of the model.
 
-3. Assign a variable and use it later
+C. Assign a variable and use it later
 
 if you execute code that creates a local variable, like this:
 
