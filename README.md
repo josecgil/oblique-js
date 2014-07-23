@@ -5,7 +5,7 @@
 + **Directives** to organise & execute code in page
 + **Model & model selection** to bind data in page with code & DOM elements
 + **Params** to send config data to code
-+ **Templates** to do big DOM manipulations (uses [handlebars](http://handlebarsjs.com/))
++ **Templates** to do big DOM manipulations (it uses [handlebars](http://handlebarsjs.com/))
 
 ## Requeriments
 
