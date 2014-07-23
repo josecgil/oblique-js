@@ -279,3 +279,6 @@ The second expression `data-ob-model="anAddress"` retrieves the `anAdress` varia
 
 ##Error handling
 
+##Interval to check for directive
+
+##A note on inserting new 'data-ob-directives' via DOM manipulation
