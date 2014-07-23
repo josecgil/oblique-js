@@ -276,3 +276,6 @@ The next html is valid in `oblique.js`:
 The second expression `data-ob-model="anAddress"` retrieves the `anAdress` variable from an especial oblique storage so `anAddress` is the same instance of the same object that the previous one `data-ob-model` attribute.
 
 ##Templates
+
+##Error handling
+
