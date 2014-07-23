@@ -239,3 +239,40 @@ With `data-ob-model="Model.user.address.city"` you send "Barcelona" to the direc
 
 With `data-ob-model="Model.products[0]"` you send the first product data to the directive.
 
+2. Execute a javascript expression 
+
+The result of the executed expression will be assigned to de model property in the data param received by the directive.
+
+With `data-ob-model="new Cart()"` you send an instance of Cart to the directive.
+
+With `data-ob-model="format(new Date())"` you send the result of the global function format.
+
+With `data-ob-model="new Address(Model.address)"` you send an instance of Address that receives the address part of the model.
+
+3. Assign a variable and use it later
+
+if you execute code that creates a local variable, like this:
+
+`data-ob-model="var anAddress=new Address(Model.address)"`
+
+In this case, `oblique.js` does two things:
+
+a. it assign the variable as the model of the directive when it finds it
+b. it remembers the name and value of the variable so other `data-ob-model` attributes can use it as an expression.
+
+The next html is valid in `oblique.js`:
+
+```
+    <div data-ob-model="var anAddress=new Address(Model.address)">
+        <!--some html-->
+    </div>
+
+    <p data-ob-model="anAddress">
+        <!--some html-->
+    </p>
+   
+```
+
+The second expression `data-ob-model="anAddress"` retrieves the `anAdress` variable from an especial oblique storage so `anAddress` is the same instance of the same object that the previous one `data-ob-model` attribute.
+
+##Templates
