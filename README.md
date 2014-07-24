@@ -3,9 +3,15 @@
 `oblique.js` is a framework that lets your structure web apps by providing:
 
 + **Directives** to organise & execute code in page
-+ **Model & model selection** to bind data in page with code & DOM elements
 + **Params** to send config data to code
++ **Model & model selection** to bind data in page with code & DOM elements
 + **Templates** to do big DOM manipulations (it uses [handlebars](http://handlebarsjs.com/))
+
+##Table of contents
+
+[Requeriments](#Requeriments)
+[Installation](#Installation)
+
 
 ## Requeriments
 
