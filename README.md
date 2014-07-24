@@ -146,7 +146,6 @@ To code the behaviour of showing the image or not you need to write javascript. 
     
     Oblique().registerDirective("PremiumBadgeDirective", PremiumBadgeDirective);
 </script>
-
 ```
 
 To bind this `Directive` to the tag you need to set an attribute `data-ob-directive` with the name of the registered directive:
@@ -164,7 +163,6 @@ A. Set the model in `oblique.js`
     var loggedUser={ name: "josecgil", isPremium: true };
     Oblique().setModel(loggedUser);
 </script>
-
 ```
 
 B. Select the part of the model you want to pass in `data-ob-model` attribute. If you use the reserved word `Model` it means all the data set previously in `Oblique.setModel()` will be sent to the directive.
@@ -194,7 +192,6 @@ The final javascript code looks like this:
     var loggedUser={ name: "josecgil", isPremium: true };
     Oblique().setModel(loggedUser);
 </script>
-
 ```
 
 ### What can you do with the data-ob-model attribute
@@ -263,9 +260,9 @@ b. it remembers the name and value of the variable so other `data-ob-model` attr
 The next html is valid in `oblique.js`:
 
 ```
-    <div data-ob-model="var anAddress=new Address(Model.address)">
-        <!--some html-->
-    </div>
+<div data-ob-model="var anAddress=new Address(Model.address)">
+    <!--some html-->
+</div>
 
     <p data-ob-model="anAddress">
         <!--some html-->
@@ -307,7 +304,7 @@ The javascript part will look like this:
 The template part (`/templates/hellouser.hbs` file) will be:
 
 ```
-    <p>Hello <strong>{{name}}</strong>{{surname}}</p>
+<p>Hello <strong>{{name}}</strong>{{surname}}</p>
 ```
 
 **Note**: `handlebars` must be loaded before the use of the `Oblique().renderHtml()` method.
@@ -319,12 +316,12 @@ For a complete reference of the template language check [handlebars website](htt
 `oblique.js` has an `onError` event where you can register a function to be called when an error is throw. Here is an example:
 
 ```
-    Oblique().onError(function(error) {
-        //Code to handle the error
+Oblique().onError(function(error) {
+    //Code to handle the error
 
-        //error.name is the name of the error
-        //error.message is the description of the error
-    });
+    //error.name is the name of the error
+    //error.message is the description of the error
+});
 ```
 
 `error` is the Error object, it has `name` and a `message` property.
