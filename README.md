@@ -277,6 +277,41 @@ The second expression `data-ob-model="anAddress"` retrieves the `anAdress` varia
 
 ##Templates
 
+`oblique.js` uses [handlebars](http://handlebarsjs.com/) as his template system, it exposes the `Oblique().renderHtml(pathToTemplate, object)` method to use `handlebars`. 
+
+The next example uses a simple object (name, surname) to render an html like this:
+
+```
+<div id="hellouser">
+    <p>Hello <strong>Edgar</strong>Allan</p>
+</div>
+```
+The javascript part will look like this:
+
+```
+<script type="text/javascript">
+    //this is the object 
+    var user=
+    {
+        name: "Edgar",
+        surName: "Allan"
+    }
+    
+    //builds an string from the template and the data from the model
+    var helloUserHtml=Oblique().renderHtml("/templates/hellouser.hbs", user);
+    //changes a DOM element with the html from the previous step
+    $("#hellouser").html(helloUserHtml);
+</script>
+```
+
+The template part (`/templates/hellouser.hbs` file) will be:
+
+```
+    <p>Hello <strong>{{name}}</strong>{{surname}}</p>
+```
+
+**Note**: `handlebars` must be loaded before the use of the `Oblique().renderHtml()` method.
+
 ##Error handling
 
 ##Interval to check for directives
