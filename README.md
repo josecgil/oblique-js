@@ -312,6 +312,8 @@ The template part (`/templates/hellouser.hbs` file) will be:
 
 **Note**: `handlebars` must be loaded before the use of the `Oblique().renderHtml()` method.
 
+For a complete reference of the template language check [handlebars website](http://handlebarsjs.com/)
+
 ##Error handling
 
 ##Interval to check for directives
