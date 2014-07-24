@@ -85,7 +85,7 @@ In `oblique.js` it goes like this:
 
 ## The data param
 
-All `Directives` receive a `data` param with info related to the context of the DOM element that triggers its excution and more data from the page (controlled by the `data-ob-model` & `data-ob-params` attributes). 
+All `Directives` receive a `data` param with info related to the context of the DOM element that triggers its execution and more data from the page (controlled by the `data-ob-model` & `data-ob-params` attributes). 
 
 `data` is a params that contains several properties:
 
