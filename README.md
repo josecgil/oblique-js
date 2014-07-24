@@ -11,6 +11,12 @@
 
 1. [Requeriments](#requeriments)
 2. [Installation](#installation)
+3. [An overview](#an-overview)
+4. [Execution lifecycle](#execution-lifecycle)
+5. [The data param](#the-data-param)
+6. [The data-ob-params attribute](#the-data-ob-params-attribute)
+7. [The model](#the-model)
+8. 
 
 
 ## Requeriments
@@ -200,7 +206,9 @@ The final javascript code looks like this:
 </script>
 ```
 
-### What can you do with the data-ob-model attribute
+### The data-ob-model attribute
+
+What can you do with the `data-ob-model` attribute?
 
 A. Select a part of a model
 
