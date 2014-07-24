@@ -319,3 +319,7 @@ For a complete reference of the template language check [handlebars website](htt
 ##Interval to check for directives
 
 ##A note on inserting new 'data-ob-directives' via DOM manipulation
+
+##More samples
+
+To learn more and see more complex examples check the [samples directory](http://github.com/josecgil/oblique-js/tree/master/samples)
