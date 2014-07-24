@@ -13,10 +13,13 @@
 2. [Installation](#installation)
 3. [An overview](#an-overview)
 4. [Execution lifecycle](#execution-lifecycle)
-5. [The data param](#the-data-param)
-6. [The data-ob-params attribute](#the-data-ob-params-attribute)
-7. [The model](#the-model)
-8. 
+5. [The `data param`](#the-data-param)
+6. [The `data-ob-params` attribute](#the-data-ob-params-attribute)
+7. [The Model](#the-model)
+8. [The `data-ob-model` attribute](#the-data-ob-model-attribute)
+9. [Templates](#templates)
+10. [Error handling](#error-handling)
+11. [Notes](#notes)
 
 
 ## Requeriments
@@ -342,11 +345,13 @@ For a complete reference of the template language check [handlebars website](htt
 
 `error` is the Error object, it has `name` and a `message` property.
 
-##A note on inserting new 'data-ob-directives' via DOM manipulation
+##Notes
+
+###On inserting new 'data-ob-directives' via DOM manipulation
 
 `oblique.js` checks the DOM on the moment the DOM is loaded, and then every 400ms to check for directives loaded dinamically (via DOM manipulation). So, if you use AJAX, your app is a Single Page Application (SPA) or do intensive DOM manipulation there is no problem to use `oblique.js`, it will find and execute dinamically loaded directives.
 
-##Interval to check for directives
+###Interval to check for directives
 
 By default, `oblique.js` checks the DOM every 400ms, but you can change this via the `Oblique().setIntervalTimeInMs()`. 
 
@@ -358,6 +363,6 @@ For example, if you want that `oblique.js` checks the DOM every second, you can 
 </script>
 ```
 
-##More samples
+###More samples
 
 To learn more and see more complex examples check the [samples directory](http://github.com/josecgil/oblique-js/tree/master/samples)
