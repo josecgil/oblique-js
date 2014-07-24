@@ -316,9 +316,22 @@ For a complete reference of the template language check [handlebars website](htt
 
 ##Error handling
 
-##Interval to check for directives
+`oblique.js` has an `onError` event where you can register a function to be called when an error is throw. Here is an example:
+
+```
+    Oblique().onError(function(error) {
+        //Code to handle the error
+
+        //error.name is the name of the error
+        //error.message is the description of the error
+    });
+```
+
+`error` is the Error object, it has `name` and a `message` property.
 
 ##A note on inserting new 'data-ob-directives' via DOM manipulation
+
+##Interval to check for directives
 
 ##More samples
 
