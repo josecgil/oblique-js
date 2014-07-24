@@ -316,19 +316,33 @@ For a complete reference of the template language check [handlebars website](htt
 `oblique.js` has an `onError` event where you can register a function to be called when an error is throw. Here is an example:
 
 ```
-Oblique().onError(function(error) {
-    //Code to handle the error
-
-    //error.name is the name of the error
-    //error.message is the description of the error
-});
+<script type="text/javascript">
+    Oblique().onError(function(error) {
+        //Code to handle the error
+    
+        //error.name is the name of the error
+        //error.message is the description of the error
+    });
+</script>
 ```
 
 `error` is the Error object, it has `name` and a `message` property.
 
 ##A note on inserting new 'data-ob-directives' via DOM manipulation
 
+`oblique.js` checks the DOM on the moment the DOM is loaded, and then every 400ms to check for directives loaded dinamically (via DOM manipulation). So, if you use AJAX, your app is a Single Page Application (SPA) or do intensive DOM manipulation there is no problem to use `oblique.js`, it will find and execute dinamically loaded directives.
+
 ##Interval to check for directives
+
+By default, `oblique.js` checks the DOM every 400ms, but you can change this via the `Oblique().setIntervalTimeInMs()`. 
+
+For example, if you want that `oblique.js` checks the DOM every second, you can do:
+
+```
+<script type="text/javascript">
+    Oblique().setIntervalTimeInMs(1000);
+</script>
+```
 
 ##More samples
 
