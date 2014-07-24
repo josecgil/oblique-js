@@ -91,8 +91,8 @@ All `Directives` receive a `data` param with info related to the context of the 
 
 + `domElement`: the HTMLElement that contains the `data-ob-element` attribute that triggers its execution
 + `jQueryElement`: the same as before, but the `jQuery` counterpart
-+ `params`: any params that the DOM element has, in this case this is undefined, it works with the `data-ob-params` attribute
-+ `model`: any data that you want to bind to this directive, in this case this is undefined, it works with the `data-ob-model` attribute
++ `params`: any params that the DOM element has, it works in conjuntion with the `data-ob-params` attribute
++ `model`: any data that you want to bind to this directive, it works in conjuntion with the `data-ob-model` attribute
 
 ## The data-ob-params attribute
 
