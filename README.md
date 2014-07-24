@@ -9,8 +9,8 @@
 
 ##Table of contents
 
-[Requeriments](#Requeriments)
-[Installation](#Installation)
+1. [Requeriments](#requeriments)
+2. [Installation](#installation)
 
 
 ## Requeriments
