@@ -1,6 +1,6 @@
 # `oblique.js`
 
-`oblique.js` is a framework that lets your structure web apps by providing:
+`oblique.js` is a framework that lets your create web apps providing:
 
 + **Directives** to organise & execute code in page
 + **Params** to send config data to code
@@ -38,7 +38,7 @@ Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](h
 
 At the core of `oblique.js` the are a two elements: 
 + a DOM Element thats declares code to execute and data to be sent to the code.
-+ a javascript constructor function (or more than one) that will be called when oblique.js finds the element
++ a javascript constructor function (or more than one) that will be called when `oblique.js` finds the element
 
 The most simple DOM element look like this:
 
@@ -125,7 +125,7 @@ In this example, the `PopupDirective` will receive a JSON object in the `data.pa
 
 ##The Model
 
-In oblique.js the Model is the data needed by the page. There are three related items that works with the model.
+In `oblique.js` the Model is the data needed by the page. There are three related items that works with the model.
 
 + The `Oblique.setModel()` function, that sets all the data for the page (as an object)
 + The `data-ob-model` attribute that selectes what data goes to the directive
