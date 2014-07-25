@@ -6,6 +6,7 @@ describe "Memory", ->
 
   Memory=ObliqueNS.Memory
 
+
   it "must return empty script when there is no variables", () ->
     memory=new Memory()
     expect(memory.localVarsScript()).toBe ""

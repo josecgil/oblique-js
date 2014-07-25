@@ -8,6 +8,7 @@ describe "DataModelVariable", ->
   # set?
   # lanzar exception si la es una keyword de Oblique (Model)
 
+
   DataModelVariable=ObliqueNS.DataModelVariable
 
   it "must know variable name when local variable is set", () ->

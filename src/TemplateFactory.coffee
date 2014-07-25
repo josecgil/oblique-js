@@ -23,9 +23,14 @@ class TemplateFactory
         errorMessage=e.statusCode
       async: false
     )
+
     throw new ObliqueNS.Error("template '#{url}' not found") if errorStatusCode is 404
     throw new ObliqueNS.Error(errorMessage) if errorStatusCode isnt 200
     template=@createFromString(templateContent)
 
+
+
 ObliqueNS.TemplateFactory=TemplateFactory
+
+
 
