@@ -2,6 +2,7 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/dist/oblique.js" />
         <item url="file://$PROJECT_DIR$/spec/helpers/Interval.js" />
         <item url="file://$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/DirectiveProcessorSpec.js" />
@@ -56,6 +57,7 @@
       <root url="file://$PROJECT_DIR$/src/Param.js" />
       <root url="file://$PROJECT_DIR$/spec/DataModelDSLSpec.js" />
       <root url="file://$PROJECT_DIR$/src/DataModelDSL.js" />
+      <root url="file://$PROJECT_DIR$/dist/oblique.js" />
       <root url="file://$PROJECT_DIR$/spec/helpers/Interval.js" />
       <root url="file://$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/DirectiveProcessorSpec.js" />

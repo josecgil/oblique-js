@@ -261,6 +261,7 @@ class Error
     @name = "Oblique.Error"
 
 ObliqueNS.Error=Error
+
 @.ObliqueNS=@.ObliqueNS or {}
 class Memory
 
@@ -282,7 +283,6 @@ class Memory
     script
 
 ObliqueNS.Memory=Memory
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Oblique
@@ -340,6 +340,7 @@ class Oblique
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class ObliqueError extends Error
@@ -385,11 +386,16 @@ class TemplateFactory
         errorMessage=e.statusCode
       async: false
     )
+
     throw new ObliqueNS.Error("template '#{url}' not found") if errorStatusCode is 404
     throw new ObliqueNS.Error(errorMessage) if errorStatusCode isnt 200
     template=@createFromString(templateContent)
 
+
+
 ObliqueNS.TemplateFactory=TemplateFactory
+
+
 
 @.ObliqueNS=@.ObliqueNS or {}
 
