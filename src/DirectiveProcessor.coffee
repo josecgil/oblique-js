@@ -39,14 +39,14 @@ class DirectiveProcessor
     return if @_isApplyingDirectivesInDOM
     @_isApplyingDirectivesInDOM = true
     try
-      ###
-      $("*[data-directive]").each(
+      $("*[data-ob-directive]").each(
         (index, DOMElement) =>
           obElement=new ObliqueNS.Element DOMElement
-          @_processDirectiveElement obElement
+          directiveAttrValue=obElement.getAttributeValue "data-ob-directive"
+          @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
       )
-      ###
 
+      ###
       body=document.getElementsByTagName("body")[0]
       rootObElement=new ObliqueNS.Element body
       rootObElement.eachDescendant(
@@ -55,6 +55,7 @@ class DirectiveProcessor
           directiveAttrValue=obElement.getAttributeValue "data-ob-directive"
           @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
       )
+      ###
 
     finally
       @_isApplyingDirectivesInDOM = false

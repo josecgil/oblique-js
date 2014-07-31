@@ -139,24 +139,13 @@
     DirectiveProcessor._isApplyingDirectivesInDOM = false;
 
     DirectiveProcessor.prototype._applyDirectivesInDOM = function() {
-      var body, rootObElement;
       if (this._isApplyingDirectivesInDOM) {
         return;
       }
       this._isApplyingDirectivesInDOM = true;
       try {
-
-        /*
-        $("*[data-directive]").each(
-          (index, DOMElement) =>
-            obElement=new ObliqueNS.Element DOMElement
-            @_processDirectiveElement obElement
-        )
-         */
-        body = document.getElementsByTagName("body")[0];
-        rootObElement = new ObliqueNS.Element(body);
-        return rootObElement.eachDescendant((function(_this) {
-          return function(DOMElement) {
+        return $("*[data-ob-directive]").each((function(_this) {
+          return function(index, DOMElement) {
             var directiveAttrValue, obElement;
             obElement = new ObliqueNS.Element(DOMElement);
             directiveAttrValue = obElement.getAttributeValue("data-ob-directive");
@@ -165,6 +154,17 @@
             }
           };
         })(this));
+
+        /*
+        body=document.getElementsByTagName("body")[0]
+        rootObElement=new ObliqueNS.Element body
+        rootObElement.eachDescendant(
+          (DOMElement)=>
+            obElement=new ObliqueNS.Element DOMElement
+            directiveAttrValue=obElement.getAttributeValue "data-ob-directive"
+            @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
+        )
+         */
       } finally {
         this._isApplyingDirectivesInDOM = false;
       }
