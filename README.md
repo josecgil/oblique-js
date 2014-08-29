@@ -40,15 +40,15 @@ Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](h
 
 At the core of `oblique.js` the are a two elements: 
 + a DOM Element thats declares code to execute and data to be sent to the code.
-+ a javascript constructor function (or more than one) that will be called when `oblique.js` finds the element
++ a javascript constructor function (or more than one) that will be called when `oblique.js` finds the element. Those functions are called `Directives`
 
 ## Directives
 
-The most simple DOM element look like this:
+The most simple DOM element that uses `oblique.js`look like this:
 
 ```<p data-ob-directive="HelloDirective">simple example</p>```
 
-It has an important attribute `data-ob-directive`, that declares the name of the constructor function that `oblique.js` must call when it finds this element. When the element is found it instantiates a new object with the constructor function (in this case, `new HelloDirective()`).
+It has an important attribute `data-ob-directive`, that declares the name of the directive that `oblique.js` must call when it finds this element. When the element is found it instantiates a new object with the constructor function that is passed in the `Oblique().registerDirective` method (in this case, `new HelloDirective()`, see the next example).
 
 Previously, `HelloDirective` must be registered as a function in `oblique.js`
 
@@ -78,7 +78,9 @@ Directives are registered through the `Oblique().registerDirective()` function, 
 
 ## The data-ob-directive attribute
 
-Ey
+The `data-ob-directive` attribute can declare multiple directives separated by commas:
+
+```<p data-ob-directive="HelloDirective, GoodbyeDirective">simple example</p>```
 
 ## Execution lifecycle
 
