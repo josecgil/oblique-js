@@ -12,14 +12,16 @@
 1. [Requeriments](#requeriments)
 2. [Installation](#installation)
 3. [An overview](#an-overview)
-4. [Execution lifecycle](#execution-lifecycle)
-5. [The `data param`](#the-data-param)
-6. [The `data-ob-params` attribute](#the-data-ob-params-attribute)
-7. [The Model](#the-model)
-8. [The `data-ob-model` attribute](#the-data-ob-model-attribute)
-9. [Templates](#templates)
-10. [Error handling](#error-handling)
-11. [Notes](#notes)
+4. [Directives](#directives)
+5. [The `data-ob-directive` attribute](#the-data-ob-directive-attribute)
+6. [Execution lifecycle](#execution-lifecycle)
+7. [The `data param` attribute](#the-data-param)
+8. [The `data-ob-params` attribute](#the-data-ob-params-attribute)
+9. [The Model](#the-model)
+10. [The `data-ob-model` attribute](#the-data-ob-model-attribute)
+11. [Templates](#templates)
+12. [Error handling](#error-handling)
+13. [Notes](#notes)
 
 
 ## Requeriments
@@ -39,6 +41,8 @@ Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](h
 At the core of `oblique.js` the are a two elements: 
 + a DOM Element thats declares code to execute and data to be sent to the code.
 + a javascript constructor function (or more than one) that will be called when `oblique.js` finds the element
+
+## Directives
 
 The most simple DOM element look like this:
 
@@ -71,6 +75,10 @@ The same example in a more concise way:
 These functions are called `Directives` in `oblique.js` jargon. Hence the name of the function `HelloDirective`. Directives are like an orchestra conductor, they are the core of the execution process.
 
 Directives are registered through the `Oblique().registerDirective()` function, as you can see `Oblique()` is the function through which you can access all the functionality of `oblique.js`.
+
+## The data-ob-directive attribute
+
+Ey
 
 ## Execution lifecycle
 
