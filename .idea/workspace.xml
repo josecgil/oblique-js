@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DirectiveProcessor.coffee" afterPath="$PROJECT_DIR$/src/DirectiveProcessor.coffee" />
+    <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="updated /dist files to last version">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/0_functions.coffee" />
+      <change type="MOVED" beforePath="C:\Users\josecarlos\Desktop\oblique-js\samples\Directives\directives\ClockDirective.coffee" afterPath="$PROJECT_DIR$/samples/Old/directives/ClockDirective.coffee" />
+      <change type="MOVED" beforePath="C:\Users\josecarlos\Desktop\oblique-js\samples\Directives\directives\ClockDirective.js" afterPath="$PROJECT_DIR$/samples/Old/directives/ClockDirective.js" />
+      <change type="MOVED" beforePath="C:\Users\josecarlos\Desktop\oblique-js\samples\Directives\directives\MenuDirective.coffee" afterPath="$PROJECT_DIR$/samples/Old/directives/MenuDirective.coffee" />
+      <change type="MOVED" beforePath="C:\Users\josecarlos\Desktop\oblique-js\samples\Directives\directives\MenuDirective.js" afterPath="$PROJECT_DIR$/samples/Old/directives/MenuDirective.js" />
+      <change type="MOVED" beforePath="C:\Users\josecarlos\Desktop\oblique-js\samples\Directives\directives\calendardirective.js" afterPath="$PROJECT_DIR$/samples/Old/directives/calendardirective.js" />
+      <change type="MOVED" beforePath="C:\Users\josecarlos\Desktop\oblique-js\samples\Directives\directives\dropdownmenudirective.js" afterPath="$PROJECT_DIR$/samples/Old/directives/dropdownmenudirective.js" />
+      <change type="MOVED" beforePath="C:\Users\josecarlos\Desktop\oblique-js\samples\Directives\directives\fastimagedirective.js" afterPath="$PROJECT_DIR$/samples/Old/directives/fastimagedirective.js" />
+      <change type="MOVED" beforePath="C:\Users\josecarlos\Desktop\oblique-js\samples\Directives\sampledemo.html" afterPath="$PROJECT_DIR$/samples/Old/sampledemo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DataModelVariable.js" afterPath="$PROJECT_DIR$/src/DataModelVariable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/DataModelVariableSpec.js" afterPath="$PROJECT_DIR$/spec/DataModelVariableSpec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DirectiveCollection.js" afterPath="$PROJECT_DIR$/src/DirectiveCollection.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/DirectiveCollectionSpec.js" afterPath="$PROJECT_DIR$/spec/DirectiveCollectionSpec.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DirectiveProcessor.js" afterPath="$PROJECT_DIR$/src/DirectiveProcessor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/DirectiveProcessorSpec.js" afterPath="$PROJECT_DIR$/spec/DirectiveProcessorSpec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Element.js" afterPath="$PROJECT_DIR$/src/Element.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ElementSpec.js" afterPath="$PROJECT_DIR$/spec/ElementSpec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Error.js" afterPath="$PROJECT_DIR$/src/Error.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/helpers/FixtureHelper.js" afterPath="$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/helpers/Interval.js" afterPath="$PROJECT_DIR$/spec/helpers/Interval.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/helpers/IntervalSpec.js" afterPath="$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Memory.js" afterPath="$PROJECT_DIR$/src/Memory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/MemorySpec.js" afterPath="$PROJECT_DIR$/spec/MemorySpec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Oblique.js" afterPath="$PROJECT_DIR$/src/Oblique.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ObliqueError.js" afterPath="$PROJECT_DIR$/src/ObliqueError.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.js" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Template.js" afterPath="$PROJECT_DIR$/src/Template.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TemplateFactory.js" afterPath="$PROJECT_DIR$/src/TemplateFactory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/TemplateFactorySpec.js" afterPath="$PROJECT_DIR$/spec/TemplateFactorySpec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/TemplateSpec.js" afterPath="$PROJECT_DIR$/spec/TemplateSpec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TimedDOMObserver.js" afterPath="$PROJECT_DIR$/src/TimedDOMObserver.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" afterPath="$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.coffee" afterPath="$PROJECT_DIR$/dist/oblique.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.js" afterPath="$PROJECT_DIR$/dist/oblique.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.min.js" afterPath="$PROJECT_DIR$/dist/oblique.min.js" />
@@ -29,78 +60,7 @@
     <favorites_list name="oblique-js" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="TemplateFactory.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TemplateFactory.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="103" max-vertical-offset="1050">
-              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchReposDirective.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/samples/github_repos/directives/SearchReposDirective.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="800">
-              <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Oblique.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Oblique.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1600">
-              <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DirectiveProcessor.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DirectiveProcessor.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="3600">
-              <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="oblique.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dist/oblique.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2750275" vertical-offset="0" max-vertical-offset="16075">
-              <caret line="10" column="37" selection-start-line="0" selection-start-column="0" selection-end-line="637" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Element.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Element.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1650">
-              <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/samples/github_repos/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="137" max-vertical-offset="1025">
-              <caret line="22" column="92" selection-start-line="22" selection-start-column="72" selection-end-line="22" selection-end-column="92" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -114,8 +74,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/oblique/Oblique.coffee" />
-        <option value="$PROJECT_DIR$/src/oblique/Element.coffee" />
         <option value="$PROJECT_DIR$/src/oblique/DirectiveProcessor.coffee" />
         <option value="$PROJECT_DIR$/src/oblique/Error.coffee" />
         <option value="$PROJECT_DIR$/tools/bundle.sh" />
@@ -165,6 +123,8 @@
         <option value="$PROJECT_DIR$/samples/github_repos/index.html" />
         <option value="$PROJECT_DIR$/src/TemplateFactory.coffee" />
         <option value="$PROJECT_DIR$/src/DirectiveProcessor.coffee" />
+        <option value="$PROJECT_DIR$/dist/oblique.js" />
+        <option value="$PROJECT_DIR$/src/0_functions.coffee" />
       </list>
     </option>
   </component>
@@ -174,8 +134,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1456" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -219,17 +179,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Tests" />
-        <subPane subId="Changed Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -244,7 +193,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js-github" />
+              <option name="myItemId" value="oblique-js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -254,7 +203,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js-github" />
+              <option name="myItemId" value="oblique-js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -268,7 +217,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js-github" />
+              <option name="myItemId" value="oblique-js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -282,25 +231,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js-github" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TemplateFactory.coffee" />
-              <option name="myItemType" value="com.intellij.plugins.watcher.projectView.NestingTreeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
               <option name="myItemId" value="oblique-js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js-github" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -314,39 +245,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js-github" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="samples" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MVD_JS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
               <option name="myItemId" value="oblique-js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js-github" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="samples" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js-github" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -360,7 +259,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js-github" />
+              <option name="myItemId" value="oblique-js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -370,6 +269,17 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="oblique.coffee" />
               <option name="myItemType" value="com.intellij.plugins.watcher.projectView.NestingTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Tests" />
+        <subPane subId="Changed Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -436,16 +346,6 @@
       <ConfigurationWrapper RunnerId="BashRunner" />
       <method />
     </configuration>
-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="name" value="Dart" />
-      <option name="saveOutputToFile" value="false" />
-      <option name="showConsoleOnStdErr" value="false" />
-      <option name="showConsoleOnStdOut" value="false" />
-      <method />
-    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -454,21 +354,14 @@
       <option name="testName" />
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
-      <setting name="configLocationType" value="CONFIG_FILE" />
-      <setting name="settingsFile" value="" />
-      <setting name="serverType" value="INTERNAL" />
-      <setting name="preferredDebugBrowser" value="Chrome" />
-      <method />
-    </configuration>
-    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
-      <option name="cucumberJsArguments" />
-      <option name="executablePath" />
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <option name="VMOptions" />
+      <option name="arguments" />
       <option name="filePath" />
+      <option name="name" value="Dart" />
+      <option name="saveOutputToFile" value="false" />
+      <option name="showConsoleOnStdErr" value="false" />
+      <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -480,6 +373,23 @@
       <module name="" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaScriptRunConfigurationType" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
+      <setting name="configLocationType" value="CONFIG_FILE" />
+      <setting name="settingsFile" value="" />
+      <setting name="serverType" value="INTERNAL" />
+      <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -1001,18 +911,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991204" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32748538" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23854166" sideWeight="0.4992908" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23819445" sideWeight="0.4992908" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20703125" sideWeight="0.50070924" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32403433" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3191824" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3190104" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.49960285" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1074,35 +984,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/samples/github_repos/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="137" max-vertical-offset="1025">
-          <caret line="22" column="92" selection-start-line="22" selection-start-column="72" selection-end-line="22" selection-end-column="92" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/ElementSpec.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2500" max-vertical-offset="2950">
-          <caret line="100" column="50" selection-start-line="100" selection-start-column="50" selection-end-line="100" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/TemplateSpec.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1000" max-vertical-offset="1475">
-          <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/TemplateFactorySpec.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="594" max-vertical-offset="990">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Oblique.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="1364">
@@ -1285,13 +1166,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tools/allcoffee.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="589">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/templates/test_ok.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="150">
@@ -1369,7 +1243,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samples/Directives/sampledemo.html">
+    <entry file="file://$PROJECT_DIR$/samples/Old/sampledemo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18903151" vertical-offset="0" max-vertical-offset="1593">
           <caret line="6" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
@@ -1393,7 +1267,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/github_repos/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="137" max-vertical-offset="1025">
+        <state vertical-scroll-proportion="0.3145743" vertical-offset="332" max-vertical-offset="1025">
           <caret line="22" column="92" selection-start-line="22" selection-start-column="72" selection-end-line="22" selection-end-column="92" />
           <folding />
         </state>
@@ -1409,7 +1283,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Element.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1650">
+        <state vertical-scroll-proportion="0.22297297" vertical-offset="910" max-vertical-offset="1650">
           <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
           <folding />
         </state>
@@ -1433,8 +1307,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/oblique.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2750275" vertical-offset="0" max-vertical-offset="16075">
-          <caret line="10" column="37" selection-start-line="0" selection-start-column="0" selection-end-line="637" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.20632738" vertical-offset="250" max-vertical-offset="16075">
+          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/0_functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="740">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/allcoffee.ps1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="740">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/allcoffee.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/0_functions.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13513513" vertical-offset="0" max-vertical-offset="740">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/oblique.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10850">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
