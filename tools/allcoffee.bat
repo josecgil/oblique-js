@@ -1,1 +1,1 @@
-powershell -file allcoffee.ps1
+powershell -ExecutionPolicy ByPass -file allcoffee.ps1
