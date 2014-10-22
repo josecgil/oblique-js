@@ -1,13 +1,26 @@
 describe "ParamCollection", ->
 
   ParamCollection=ObliqueNS.ParamCollection
-
-  ## quitar un param correcto de un array
-  # tests de length en paramCollection
+  ArrayParam=ObliqueNS.ArrayParam
+  RangeParam=ObliqueNS.RangeParam
+  SingleParam=ObliqueNS.SingleParam
 
   it "must return empty params when Hash is empty", () ->
     paramCollection=new ParamCollection("")
-    expect(paramCollection.length).toBe(0)
+    expect(paramCollection.count()).toBe(0)
+
+  it "must count only one when I add same name param", () ->
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new SingleParam("sortBy","descPrice"))
+    paramCollection.add(new SingleParam("sortBy","ascPrice"))
+    expect(paramCollection.count()).toBe(1)
+
+  it "must count each param as one", () ->
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new SingleParam("sortBy","descPrice"))
+    paramCollection.add(new RangeParam("price","10", "49"))
+    paramCollection.add(new ArrayParam("sizes",["M"]))
+    expect(paramCollection.count()).toBe(3)
 
   it "must setSingle a param", () ->
     paramCollection=new ParamCollection("")
@@ -70,102 +83,92 @@ describe "ParamCollection", ->
     sizesParam.remove("M")
     expect(sizesParam.length).toBe(1)
 
+  it "must remove an existent array param value", () ->
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new ArrayParam("sizes",["M","L"]))
+    sizesParam=paramCollection.getParam("sizes");
+    sizesParam.remove("M")
+    expect(sizesParam.length).toBe(1)
+
   it "must ignore remove an inexistent param name", () ->
-    hashParams=new ParamCollection("")
-    hashParams.add("colors","rojo")
-    hashParams.remove("sizes","M")
-    expect(hashParams.params.colors.length).toBe 1
-    expect(hashParams.params.sizes).toBeUndefined()
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new ArrayParam("colors",["rojo"]))
+
+    paramCollection.remove("sizes")
+
+    expect(paramCollection.count()).toBe 1
+    expect(paramCollection.getParam("colors")).toBeDefined()
+    expect(paramCollection.getParam("sizes")).toBeUndefined()
 
   it "must clear a param by name", () ->
-    hashParams=new ParamCollection("")
-    hashParams.add("sizes","XL")
-    hashParams.clear("sizes")
-    expect(hashParams.params.sizes).toBeUndefined()
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new ArrayParam("sizes",["XL"]))
+    paramCollection.remove("sizes")
+    expect(paramCollection.getParam("sizes")).toBeUndefined()
 
   it "must clear all params", () ->
-    hashParams=new ParamCollection("")
-    hashParams.setSingle("numItems","42")
-    hashParams.add("sizes","XL")
-    hashParams.clearAll()
-    expect(hashParams.isEmpty()).toBeTruthy()
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new ArrayParam("sizes",["XL"]))
+    paramCollection.add(new SingleParam("sort","desc"))
+    paramCollection.removeAll()
+    expect(paramCollection.count()).toBe(0)
+
+  it "must return location hash for single param", () ->
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new SingleParam("sort","desc"))
+    expect(paramCollection.getLocationHash()).toBe("#sort=desc")
+
+  it "must return location hash for range param", () ->
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new RangeParam("price","10","100"))
+    expect(paramCollection.getLocationHash()).toBe("#price=[10,100]")
+
+  it "must return location hash for array param", () ->
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new ArrayParam("sizes",["M","L","XL"]))
+    expect(paramCollection.getLocationHash()).toBe("#sizes=[M,L,XL]")
+
+  it "must return location hash for an array param of one", () ->
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new ArrayParam("sizes",["M"]))
+    expect(paramCollection.getLocationHash()).toBe("#sizes=[M]")
+
+  it "must return location hash for an array param of zero", () ->
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new ArrayParam("sizes",[]))
+    expect(paramCollection.getLocationHash()).toBe("")
+
+  it "must return location hash for 2 params", () ->
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new ArrayParam("sizes",["M","L"]))
+    paramCollection.add(new SingleParam("sort","desc"))
+    expect(paramCollection.getLocationHash()).toBe("#sizes=[M,L]&sort=desc")
+
+  it "must be undefined if I remove last array param value", () ->
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new ArrayParam("sizes",["M"]))
+
+    sizesParam = paramCollection.getParam("sizes")
+    sizesParam.remove("M")
+    expect(sizesParam.values).toBeUndefined()
+
+
+  it "must return location hash for 0 params", () ->
+    paramCollection=new ParamCollection("")
+    expect(paramCollection.getLocationHash()).toBe("")
 
 
 ###
 
   paramCollection=Params.createFromHash(window.location.hash)
 
-  paramCollection.values
-  paramCollection.add()
-  paramCollection.set("artPorPagina",42)
-  paramCollection.setRange("price",12,42)
 
   route = Oblique().getHashRoute()
   Oblique().setHashRoute(route);
-
-  new HashRoute(window.location.hash)
-
-  -route.add("color", colorName)
-  -route.remove("color", colorName)
-  -route.set("sort","descPrice")
-  -route.setRange("price",10,42)
-
-  -route.clear("sort")
-  -route.clearAll()
-
-  -var params=hashParams.buildRoute()
-
-  -params.color
-  -params.sort
-
   window.location.hash=route.getHash() #price=[1,10]&sort=desc
-
   Validar que los datos "seteados" sean strings?
 
+  paramCollection=createParamCollection(window.location.hash)
 
-paramCollection=new ParamCollection()
-paramCollection.add(new SimpleParam("sort","desc"))
-paramCollection.add(new RangeParam("price",12,42))
-paramCollection.add(new ArrayParam("color",["rojo","azul","amarillo"]))
-
-Oblique().getHashParams().remove("price")
-
-Oblique().getHashParams().removeAll()
-
-paramCollection=createParamCollection(window.location.hash)
-
-paramCollection=Oblique().getHashParams()
-colorParam=paramCollection.getParam("color")
-colorParam.remove("rojo")
-
-priceParam=paramCollection.getParam("price");
-priceParam.min=24;
-priceParam.max=100;
-
-  ###
-
-
-
-class SingleParam
-
-  constructor:(@name, @value)->
-
-class RangeParam
-
-  constructor:(@name, @min, @max)->
-
-class ArrayParam
-
-  constructor:(@name, @values)->
-    @length=@values.length
-
-  add:(value)->
-    @values.push value
-    @length=@values.length
-
-  remove:(value)->
-    index=@values.indexOf value
-    return if index is -1
-    @values.splice index, 1
-    @length=@values.length
-
+  paramCollection=Oblique().getHashParams()
+###

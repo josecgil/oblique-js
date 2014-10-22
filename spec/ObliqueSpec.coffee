@@ -1,4 +1,5 @@
 describe "Oblique", ->
+
   beforeEach (done) ->
     Oblique().destroy()
     Oblique().setIntervalTimeInMs
