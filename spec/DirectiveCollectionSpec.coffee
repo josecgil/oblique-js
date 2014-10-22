@@ -3,10 +3,6 @@ describe "DirectiveCollection", ->
   DirectiveCollection=ObliqueNS.DirectiveCollection
   ObError=ObliqueNS.Error
 
-  beforeEach () ->
-
-  afterEach ->
-
   it "must be empty when created", () ->
     directives=new DirectiveCollection()
     expect(directives.count()).toBe 0

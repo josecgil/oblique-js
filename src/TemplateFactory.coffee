@@ -32,5 +32,3 @@ class TemplateFactory
 
 ObliqueNS.TemplateFactory=TemplateFactory
 
-
-

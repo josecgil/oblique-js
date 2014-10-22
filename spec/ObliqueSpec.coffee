@@ -302,7 +302,6 @@ describe "Oblique", ->
     finally
       window.Handlebars=HandlebarsCopy
 
-
   it "must execute selected directive when data-ob-directive is found", (done)->
     class TestDirective
       constructor: ()->

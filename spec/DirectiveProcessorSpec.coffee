@@ -1,5 +1,3 @@
-
-
 describe "DirectiveProcessor", ->
 
   DirectiveProcessor=ObliqueNS.DirectiveProcessor

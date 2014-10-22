@@ -52,4 +52,3 @@ describe "Template", ->
     template=new Template(templateContent)
     expect(template.renderHTML(model)).toBe html
 
-
