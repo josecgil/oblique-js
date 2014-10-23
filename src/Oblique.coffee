@@ -24,6 +24,7 @@ class Oblique
     @directiveProcessor.registerDirective directiveName, directiveConstructorFn
 
   registerController: (controllerName, controllerConstructorFn) ->
+    @directiveProcessor.registerController controllerName, controllerConstructorFn
 
   destroy: ->
     @directiveProcessor.destroy()

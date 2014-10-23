@@ -17,6 +17,7 @@
       DirectiveProcessor._singletonInstance = this;
       this._throwErrorIfJQueryIsntLoaded();
       this._directiveCollection = new ObliqueNS.DirectiveCollection();
+      this._controllerCollection = new ObliqueNS.DirectiveCollection();
       this._timedDOMObserver = this._createTimedDOMObserver(DirectiveProcessor.DEFAULT_INTERVAL_MS);
       this._memory = new ObliqueNS.Memory();
       jQuery(document).ready((function(_this) {
@@ -54,6 +55,16 @@
       }
       this._isApplyingDirectivesInDOM = true;
       try {
+        $("*[data-ob-controller]").each((function(_this) {
+          return function(index, DOMElement) {
+            var controllerAttrValue, obElement;
+            obElement = new ObliqueNS.Element(DOMElement);
+            controllerAttrValue = obElement.getAttributeValue("data-ob-controller");
+            if (controllerAttrValue) {
+              return _this._processControllerElement(obElement, controllerAttrValue);
+            }
+          };
+        })(this));
         return $("*[data-ob-directive]").each((function(_this) {
           return function(index, DOMElement) {
             var directiveAttrValue, obElement;
@@ -102,6 +113,31 @@
           params: this._getParams(obElement)
         };
         _results.push(new directive(directiveData));
+      }
+      return _results;
+    };
+
+    DirectiveProcessor.prototype._processControllerElement = function(obElement, controllerAttrValue) {
+      var controller, controllerData, controllerName, _i, _len, _ref, _results;
+      _ref = controllerAttrValue.split(",");
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        controllerName = _ref[_i];
+        controllerName = controllerName.trim();
+        if (obElement.hasFlag(controllerName)) {
+          continue;
+        }
+        controller = this._controllerCollection.getDirectiveByName(controllerName);
+        if (!controller) {
+          throw new ObliqueNS.Error("There is no " + controllerName + " controller registered");
+        }
+        obElement.setFlag(controllerName);
+        controllerData = {
+          domElement: obElement.getDOMElement(),
+          jQueryElement: obElement.getjQueryElement(),
+          hashParams: Oblique().getHashParams()
+        };
+        _results.push(new controller(controllerData));
       }
       return _results;
     };
@@ -174,6 +210,10 @@
 
     DirectiveProcessor.prototype.registerDirective = function(directiveName, directiveConstructorFn) {
       return this._directiveCollection.add(directiveName, directiveConstructorFn);
+    };
+
+    DirectiveProcessor.prototype.registerController = function(controllerName, controllerConstructorFn) {
+      return this._controllerCollection.add(controllerName, controllerConstructorFn);
     };
 
     DirectiveProcessor.prototype.destroy = function() {

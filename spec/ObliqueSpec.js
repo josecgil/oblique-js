@@ -2,9 +2,13 @@
 (function() {
   describe("Oblique", function() {
     beforeEach(function(done) {
+      var hashParams;
       Oblique().destroy();
       Oblique().setIntervalTimeInMs;
       FixtureHelper.clear();
+      hashParams = Oblique().getHashParams();
+      hashParams.removeAll();
+      Oblique().setHashParams(hashParams);
       return done();
     });
     afterEach(function() {
@@ -840,10 +844,31 @@
       Oblique().setHashParams(paramsCollection);
       return expect(window.location.hash).toBe("#sizes=[104,105,XL]");
     });
-    return it("If I register a Controller it calls its constructor when expression is in DOM", function(done) {
+    it("If I register a Controller it calls its constructor when expression is in DOM", function(done) {
       var TestController;
       TestController = (function() {
         function TestController() {
+          Oblique().destroy();
+          done();
+        }
+
+        return TestController;
+
+      })();
+      Oblique().registerController("TestController", TestController);
+      Oblique().setIntervalTimeInMs(10);
+      return $("#fixture").html("<div data-ob-controller='TestController'></div>");
+    });
+    return it("mus call a controller with correct hashParams", function(done) {
+      var TestController, hashParams;
+      hashParams = Oblique().getHashParams();
+      hashParams.addSingleParam("sort", "desc");
+      Oblique().setHashParams(hashParams);
+      TestController = (function() {
+        function TestController(data) {
+          hashParams = data.hashParams;
+          expect(hashParams.count()).toBe(1);
+          expect(hashParams.getParam("sort").value).toBe("desc");
           Oblique().destroy();
           done();
         }

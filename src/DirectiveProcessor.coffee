@@ -13,6 +13,7 @@ class DirectiveProcessor
     @_throwErrorIfJQueryIsntLoaded()
 
     @_directiveCollection = new ObliqueNS.DirectiveCollection()
+    @_controllerCollection = new ObliqueNS.DirectiveCollection()
 
     @_timedDOMObserver=@_createTimedDOMObserver(DirectiveProcessor.DEFAULT_INTERVAL_MS)
 
@@ -39,12 +40,21 @@ class DirectiveProcessor
     return if @_isApplyingDirectivesInDOM
     @_isApplyingDirectivesInDOM = true
     try
+      $("*[data-ob-controller]").each(
+        (index, DOMElement) =>
+          obElement=new ObliqueNS.Element DOMElement
+          controllerAttrValue=obElement.getAttributeValue "data-ob-controller"
+          @_processControllerElement(obElement, controllerAttrValue) if controllerAttrValue
+      )
+
       $("*[data-ob-directive]").each(
         (index, DOMElement) =>
           obElement=new ObliqueNS.Element DOMElement
           directiveAttrValue=obElement.getAttributeValue "data-ob-directive"
           @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
       )
+
+
 
       ###
       body=document.getElementsByTagName("body")[0]
@@ -76,6 +86,23 @@ class DirectiveProcessor
         params: @_getParams obElement
 
       new directive directiveData
+
+  _processControllerElement:(obElement, controllerAttrValue) ->
+    for controllerName in controllerAttrValue.split(",")
+      controllerName=controllerName.trim()
+      continue if obElement.hasFlag controllerName
+
+      controller=@_controllerCollection.getDirectiveByName(controllerName)
+      throw new ObliqueNS.Error("There is no #{controllerName} controller registered") if not controller
+      obElement.setFlag controllerName
+
+      controllerData=
+        domElement: obElement.getDOMElement()
+        jQueryElement: obElement.getjQueryElement()
+        hashParams: Oblique().getHashParams()
+
+      new controller controllerData
+
 
   _getParams : (obElement) ->
     dataParamsExpr=obElement.getAttributeValue("data-ob-params")
@@ -128,6 +155,9 @@ class DirectiveProcessor
 
   registerDirective: (directiveName, directiveConstructorFn) ->
     @_directiveCollection.add directiveName, directiveConstructorFn
+
+  registerController: (controllerName, controllerConstructorFn) ->
+    @_controllerCollection.add controllerName, controllerConstructorFn
 
   destroy: ->
     @_timedDOMObserver.destroy()

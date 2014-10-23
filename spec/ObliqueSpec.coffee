@@ -4,6 +4,9 @@ describe "Oblique", ->
     Oblique().destroy()
     Oblique().setIntervalTimeInMs
     FixtureHelper.clear()
+    hashParams=Oblique().getHashParams()
+    hashParams.removeAll()
+    Oblique().setHashParams(hashParams)
     done()
 
   afterEach ->
@@ -688,6 +691,23 @@ describe "Oblique", ->
   it "If I register a Controller it calls its constructor when expression is in DOM", (done)->
     class TestController
       constructor: ()->
+        Oblique().destroy()
+        done()
+
+    Oblique().registerController "TestController", TestController
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-controller='TestController'></div>"
+
+  it "mus call a controller with correct hashParams", (done)->
+    hashParams=Oblique().getHashParams()
+    hashParams.addSingleParam("sort","desc")
+    Oblique().setHashParams(hashParams)
+
+    class TestController
+      constructor: (data)->
+        hashParams = data.hashParams
+        expect(hashParams.count()).toBe(1)
+        expect(hashParams.getParam("sort").value).toBe("desc")
         Oblique().destroy()
         done()
 
