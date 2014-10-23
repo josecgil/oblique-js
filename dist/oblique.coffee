@@ -30,11 +30,11 @@ ObliqueNS.DataModelVariable=DataModelVariable
 class DirectiveCollection
 
   constructor:()->
-    @directives=[]
-    @_directivesByName={}
+    @_callbacks=[]
+    @_callbacksByName={}
 
   count:() ->
-    @directives.length
+    @_callbacks.length
 
   _isAFunction: (memberToTest) ->
     typeof (memberToTest) is "function"
@@ -45,21 +45,21 @@ class DirectiveCollection
     if not directiveName or typeof directiveName isnt "string"
       throw new ObliqueNS.Error("registerDirective must be called with a string directiveName")
     if not @_isAFunction(directive)
-      throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.NOT_A_FUNCTION_CLASS_ERROR_MESSAGE)
+      throw new ObliqueNS.Error(ObliqueNS.CallbackCollection.NOT_A_FUNCTION_CLASS_ERROR_MESSAGE)
 
   add:(directiveName, directiveFn) ->
-    @_throwErrorIfDirectiveIsNotValid(directiveName, directiveFn)
+    @_throwErrorIfCallbackIsNotValid(directiveName, directiveFn)
 
-    @directives.push directiveFn
-    @_directivesByName[directiveName]=directiveFn
+    @_callbacks.push directiveFn
+    @_callbacksByName[directiveName]=directiveFn
 
   at:(index)->
-    @directives[index]
+    @_callbacks[index]
 
   getDirectiveByName : (directiveName) ->
-    @_directivesByName[directiveName]
+    @_callbacksByName[directiveName]
 
-ObliqueNS.DirectiveCollection=DirectiveCollection
+ObliqueNS.CallbackCollection=DirectiveCollection
 @.ObliqueNS=@.ObliqueNS or {}
 
 DataModelVariable=ObliqueNS.DataModelVariable
@@ -74,32 +74,32 @@ class DirectiveProcessor
 
     @_throwErrorIfJQueryIsntLoaded()
 
-    @_directiveCollection = new ObliqueNS.DirectiveCollection()
+    @_directiveCollection = new ObliqueNS.CallbackCollection()
 
     @_timedDOMObserver=@_createTimedDOMObserver(DirectiveProcessor.DEFAULT_INTERVAL_MS)
 
     @_memory=new ObliqueNS.Memory()
 
     jQuery(document).ready =>
-      @_applyDirectivesInDOM()
+      @_applyObliqueElementsInDOM()
       @_timedDOMObserver.observe()
 
   @DEFAULT_INTERVAL_MS = 500
 
   _throwErrorIfJQueryIsntLoaded: ->
-    throw new Error("DirectiveProcessor needs jQuery to work") if not window.jQuery
+    throw new Error("DOMProcessor needs jQuery to work") if not window.jQuery
 
   _createTimedDOMObserver: (intervalInMs)->
     observer=new ObliqueNS.TimedDOMObserver intervalInMs
     observer.onChange(=>
-      @_applyDirectivesInDOM()
+      @_applyObliqueElementsInDOM()
     )
     observer
 
-  @_isApplyingDirectivesInDOM = false
+  @_isApplyingObliqueElementsInDOM = false
   _applyDirectivesInDOM: ->
-    return if @_isApplyingDirectivesInDOM
-    @_isApplyingDirectivesInDOM = true
+    return if @_isApplyingObliqueElementsInDOM
+    @_isApplyingObliqueElementsInDOM = true
     try
       $("*[data-ob-directive]").each(
         (index, DOMElement) =>
@@ -120,14 +120,14 @@ class DirectiveProcessor
       ###
 
     finally
-      @_isApplyingDirectivesInDOM = false
+      @_isApplyingObliqueElementsInDOM = false
 
   _processDirectiveElement:(obElement, directiveAttrValue) ->
     for directiveName in directiveAttrValue.split(",")
       directiveName=directiveName.trim()
       continue if obElement.hasFlag directiveName
 
-      directive=@_directiveCollection.getDirectiveByName(directiveName)
+      directive=@_directiveCollection.getCallbackByName(directiveName)
       throw new ObliqueNS.Error("There is no #{directiveName} directive registered") if not directive
       obElement.setFlag directiveName
 
@@ -195,7 +195,7 @@ class DirectiveProcessor
     @_timedDOMObserver.destroy()
     DirectiveProcessor._singletonInstance=undefined
 
-ObliqueNS.DirectiveProcessor=DirectiveProcessor
+ObliqueNS.DOMProcessor=DirectiveProcessor
 @.Oblique=DirectiveProcessor
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -298,7 +298,7 @@ class Oblique
     return Oblique._singletonInstance  if Oblique._singletonInstance
     Oblique._singletonInstance = @
 
-    @directiveProcessor=new ObliqueNS.DirectiveProcessor();
+    @directiveProcessor=new ObliqueNS.DOMProcessor();
     @templateFactory=new ObliqueNS.TemplateFactory()
     @_onErrorCallbacks=[]
 

@@ -8,7 +8,7 @@ class Oblique
     return Oblique._singletonInstance  if Oblique._singletonInstance
     Oblique._singletonInstance = @
 
-    @directiveProcessor=new ObliqueNS.DirectiveProcessor();
+    @directiveProcessor=new ObliqueNS.DOMProcessor();
     @templateFactory=new ObliqueNS.TemplateFactory()
     @_onErrorCallbacks=[]
 

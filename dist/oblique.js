@@ -55,12 +55,12 @@
 
   DirectiveCollection = (function() {
     function DirectiveCollection() {
-      this.directives = [];
-      this._directivesByName = {};
+      this._callbacks = [];
+      this._callbacksByName = {};
     }
 
     DirectiveCollection.prototype.count = function() {
-      return this.directives.length;
+      return this._callbacks.length;
     };
 
     DirectiveCollection.prototype._isAFunction = function(memberToTest) {
@@ -74,29 +74,29 @@
         throw new ObliqueNS.Error("registerDirective must be called with a string directiveName");
       }
       if (!this._isAFunction(directive)) {
-        throw new ObliqueNS.Error(ObliqueNS.DirectiveCollection.NOT_A_FUNCTION_CLASS_ERROR_MESSAGE);
+        throw new ObliqueNS.Error(ObliqueNS.CallbackCollection.NOT_A_FUNCTION_CLASS_ERROR_MESSAGE);
       }
     };
 
     DirectiveCollection.prototype.add = function(directiveName, directiveFn) {
-      this._throwErrorIfDirectiveIsNotValid(directiveName, directiveFn);
-      this.directives.push(directiveFn);
-      return this._directivesByName[directiveName] = directiveFn;
+      this._throwErrorIfCallbackIsNotValid(directiveName, directiveFn);
+      this._callbacks.push(directiveFn);
+      return this._callbacksByName[directiveName] = directiveFn;
     };
 
     DirectiveCollection.prototype.at = function(index) {
-      return this.directives[index];
+      return this._callbacks[index];
     };
 
     DirectiveCollection.prototype.getDirectiveByName = function(directiveName) {
-      return this._directivesByName[directiveName];
+      return this._callbacksByName[directiveName];
     };
 
     return DirectiveCollection;
 
   })();
 
-  ObliqueNS.DirectiveCollection = DirectiveCollection;
+  ObliqueNS.CallbackCollection = DirectiveCollection;
 
   this.ObliqueNS = this.ObliqueNS || {};
 
@@ -112,12 +112,12 @@
       }
       DirectiveProcessor._singletonInstance = this;
       this._throwErrorIfJQueryIsntLoaded();
-      this._directiveCollection = new ObliqueNS.DirectiveCollection();
+      this._directiveCollection = new ObliqueNS.CallbackCollection();
       this._timedDOMObserver = this._createTimedDOMObserver(DirectiveProcessor.DEFAULT_INTERVAL_MS);
       this._memory = new ObliqueNS.Memory();
       jQuery(document).ready((function(_this) {
         return function() {
-          _this._applyDirectivesInDOM();
+          _this._applyObliqueElementsInDOM();
           return _this._timedDOMObserver.observe();
         };
       })(this));
@@ -127,7 +127,7 @@
 
     DirectiveProcessor.prototype._throwErrorIfJQueryIsntLoaded = function() {
       if (!window.jQuery) {
-        throw new Error("DirectiveProcessor needs jQuery to work");
+        throw new Error("DOMProcessor needs jQuery to work");
       }
     };
 
@@ -136,19 +136,19 @@
       observer = new ObliqueNS.TimedDOMObserver(intervalInMs);
       observer.onChange((function(_this) {
         return function() {
-          return _this._applyDirectivesInDOM();
+          return _this._applyObliqueElementsInDOM();
         };
       })(this));
       return observer;
     };
 
-    DirectiveProcessor._isApplyingDirectivesInDOM = false;
+    DirectiveProcessor._isApplyingObliqueElementsInDOM = false;
 
     DirectiveProcessor.prototype._applyDirectivesInDOM = function() {
-      if (this._isApplyingDirectivesInDOM) {
+      if (this._isApplyingObliqueElementsInDOM) {
         return;
       }
-      this._isApplyingDirectivesInDOM = true;
+      this._isApplyingObliqueElementsInDOM = true;
       try {
         return $("*[data-ob-directive]").each((function(_this) {
           return function(index, DOMElement) {
@@ -172,7 +172,7 @@
         )
          */
       } finally {
-        this._isApplyingDirectivesInDOM = false;
+        this._isApplyingObliqueElementsInDOM = false;
       }
     };
 
@@ -186,7 +186,7 @@
         if (obElement.hasFlag(directiveName)) {
           continue;
         }
-        directive = this._directiveCollection.getDirectiveByName(directiveName);
+        directive = this._directiveCollection.getCallbackByName(directiveName);
         if (!directive) {
           throw new ObliqueNS.Error("There is no " + directiveName + " directive registered");
         }
@@ -281,7 +281,7 @@
 
   })();
 
-  ObliqueNS.DirectiveProcessor = DirectiveProcessor;
+  ObliqueNS.DOMProcessor = DirectiveProcessor;
 
   this.Oblique = DirectiveProcessor;
 
@@ -444,7 +444,7 @@
         return Oblique._singletonInstance;
       }
       Oblique._singletonInstance = this;
-      this.directiveProcessor = new ObliqueNS.DirectiveProcessor();
+      this.directiveProcessor = new ObliqueNS.DOMProcessor();
       this.templateFactory = new ObliqueNS.TemplateFactory();
       this._onErrorCallbacks = [];
     }

@@ -91,7 +91,7 @@ describe "Oblique", ->
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
-  it "must execute 5 directives in a 10000 elements DOM in <400ms", (done)->
+  it "must execute 5 _callbacks in a 10000 elements DOM in <400ms", (done)->
 
     DOM_ELEMENTS_COUNT = 4*250
     FixtureHelper.appendHTML "<p data-ob-directive='TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</p>", DOM_ELEMENTS_COUNT/4

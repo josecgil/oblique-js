@@ -13,7 +13,7 @@
         return Oblique._singletonInstance;
       }
       Oblique._singletonInstance = this;
-      this.directiveProcessor = new ObliqueNS.DirectiveProcessor();
+      this.directiveProcessor = new ObliqueNS.DOMProcessor();
       this.templateFactory = new ObliqueNS.TemplateFactory();
       this._onErrorCallbacks = [];
     }

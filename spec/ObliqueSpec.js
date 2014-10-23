@@ -110,7 +110,7 @@
       Oblique().registerDirective("TestDirective", TestDirective);
       return Oblique().setIntervalTimeInMs(10);
     });
-    it("must execute 5 directives in a 10000 elements DOM in <400ms", function(done) {
+    it("must execute 5 _callbacks in a 10000 elements DOM in <400ms", function(done) {
       var DOM_ELEMENTS_COUNT, TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5, counter, interval;
       DOM_ELEMENTS_COUNT = 4 * 250;
       FixtureHelper.appendHTML("<p data-ob-directive='TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</p>", DOM_ELEMENTS_COUNT / 4);

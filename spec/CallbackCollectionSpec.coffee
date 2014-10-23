@@ -1,24 +1,24 @@
-describe "DirectiveCollection", ->
+describe "CallbackCollection", ->
 
-  DirectiveCollection=ObliqueNS.DirectiveCollection
+  CallbackCollection=ObliqueNS.CallbackCollection
   ObError=ObliqueNS.Error
 
   it "must be empty when created", () ->
-    directives=new DirectiveCollection()
+    directives=new CallbackCollection()
     expect(directives.count()).toBe 0
 
   it "must has 1 item when I added one Directive", () ->
     class TestDirective
       constructor: ()->
 
-    directives=new DirectiveCollection()
+    directives=new CallbackCollection()
     directives.add "TestDirective", TestDirective
     expect(directives.count()).toBe 1
     expect(directives.at(0)).toBe(TestDirective)
 
 
   it "If I add an object that not is a Directive it throws an Error", ()->
-    directivesCollection=new DirectiveCollection()
+    directivesCollection=new CallbackCollection()
     expect(->
       directivesCollection.add "Test", {}
     ).toThrow(new ObError("registerDirective must be called with a Directive 'Constructor/Class'"))
@@ -31,8 +31,8 @@ describe "DirectiveCollection", ->
       constructor: ()->
 
 
-    directives=new DirectiveCollection()
+    directives=new CallbackCollection()
     directives.add "TestDirective", TestDirective
     directives.add "TestDirective2", TestDirective2
 
-    expect(directives.getDirectiveByName("TestDirective")).toBe TestDirective
+    expect(directives.getCallbackByName("TestDirective")).toBe TestDirective

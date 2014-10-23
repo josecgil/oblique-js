@@ -2,43 +2,43 @@
 
 DataModelVariable=ObliqueNS.DataModelVariable
 
-class DirectiveProcessor
+class DOMProcessor
 
   constructor: ->
-    return new DirectiveProcessor() if @ is window
+    return new DOMProcessor() if @ is window
 
-    return DirectiveProcessor._singletonInstance  if DirectiveProcessor._singletonInstance
-    DirectiveProcessor._singletonInstance = @
+    return DOMProcessor._singletonInstance  if DOMProcessor._singletonInstance
+    DOMProcessor._singletonInstance = @
 
     @_throwErrorIfJQueryIsntLoaded()
 
-    @_directiveCollection = new ObliqueNS.DirectiveCollection()
-    @_controllerCollection = new ObliqueNS.DirectiveCollection()
+    @_directiveCollection = new ObliqueNS.CallbackCollection()
+    @_controllerCollection = new ObliqueNS.CallbackCollection()
 
-    @_timedDOMObserver=@_createTimedDOMObserver(DirectiveProcessor.DEFAULT_INTERVAL_MS)
+    @_timedDOMObserver=@_createTimedDOMObserver(DOMProcessor.DEFAULT_INTERVAL_MS)
 
     @_memory=new ObliqueNS.Memory()
 
     jQuery(document).ready =>
-      @_applyDirectivesInDOM()
+      @_applyObliqueElementsInDOM()
       @_timedDOMObserver.observe()
 
   @DEFAULT_INTERVAL_MS = 500
 
   _throwErrorIfJQueryIsntLoaded: ->
-    throw new Error("DirectiveProcessor needs jQuery to work") if not window.jQuery
+    throw new Error("DOMProcessor needs jQuery to work") if not window.jQuery
 
   _createTimedDOMObserver: (intervalInMs)->
     observer=new ObliqueNS.TimedDOMObserver intervalInMs
     observer.onChange(=>
-      @_applyDirectivesInDOM()
+      @_applyObliqueElementsInDOM()
     )
     observer
 
-  @_isApplyingDirectivesInDOM = false
-  _applyDirectivesInDOM: ->
-    return if @_isApplyingDirectivesInDOM
-    @_isApplyingDirectivesInDOM = true
+  @_isApplyingObliqueElementsInDOM = false
+  _applyObliqueElementsInDOM: ->
+    return if @_isApplyingObliqueElementsInDOM
+    @_isApplyingObliqueElementsInDOM = true
     try
       $("*[data-ob-controller]").each(
         (index, DOMElement) =>
@@ -68,14 +68,14 @@ class DirectiveProcessor
       ###
 
     finally
-      @_isApplyingDirectivesInDOM = false
+      @_isApplyingObliqueElementsInDOM = false
 
   _processDirectiveElement:(obElement, directiveAttrValue) ->
     for directiveName in directiveAttrValue.split(",")
       directiveName=directiveName.trim()
       continue if obElement.hasFlag directiveName
 
-      directive=@_directiveCollection.getDirectiveByName(directiveName)
+      directive=@_directiveCollection.getCallbackByName(directiveName)
       throw new ObliqueNS.Error("There is no #{directiveName} directive registered") if not directive
       obElement.setFlag directiveName
 
@@ -92,7 +92,7 @@ class DirectiveProcessor
       controllerName=controllerName.trim()
       continue if obElement.hasFlag controllerName
 
-      controller=@_controllerCollection.getDirectiveByName(controllerName)
+      controller=@_controllerCollection.getCallbackByName(controllerName)
       throw new ObliqueNS.Error("There is no #{controllerName} controller registered") if not controller
       obElement.setFlag controllerName
 
@@ -161,7 +161,7 @@ class DirectiveProcessor
 
   destroy: ->
     @_timedDOMObserver.destroy()
-    DirectiveProcessor._singletonInstance=undefined
+    DOMProcessor._singletonInstance=undefined
 
-ObliqueNS.DirectiveProcessor=DirectiveProcessor
-@.Oblique=DirectiveProcessor
+ObliqueNS.DOMProcessor=DOMProcessor
+@.Oblique=DOMProcessor
