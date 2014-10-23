@@ -81,6 +81,14 @@
       throw error;
     };
 
+    Oblique.prototype.getHashParams = function() {
+      return new ObliqueNS.ParamCollection(window.location.hash);
+    };
+
+    Oblique.prototype.setHashParams = function(paramCollection) {
+      return window.location.hash = paramCollection.getLocationHash();
+    };
+
     return Oblique;
 
   })();

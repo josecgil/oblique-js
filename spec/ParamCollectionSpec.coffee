@@ -257,20 +257,3 @@ describe "ParamCollection", ->
     expect(paramCollection.getParam("price").min).toBe("10")
     expect(paramCollection.getParam("price").max).toBe("20")
     expect(paramCollection.getParam("sort").value).toBe("desc")
-
-
-
-###
-
-  paramCollection=Params.createFromHash(window.location.hash)
-
-
-  route = Oblique().getHashRoute()
-  Oblique().setHashRoute(route);
-  window.location.hash=route.getHash() #price=[1,10]&sort=desc
-  Validar que los datos "seteados" sean strings?
-
-  paramCollection=createParamCollection(window.location.hash)
-
-  paramCollection=Oblique().getHashParams()
-###

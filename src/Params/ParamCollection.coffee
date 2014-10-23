@@ -30,6 +30,15 @@ class ParamCollection
   add:(param)->
     @_params[param.name]=param
 
+  addSingleParam:(name, value)->
+    @add new SingleParam(name, value)
+
+  addRangeParam:(name, min, max)->
+    @add new RangeParam(name, min, max)
+
+  addArrayParam:(name, values)->
+    @add new ArrayParam(name, values)
+
   remove:(paramName)->
     @_params[paramName]=undefined
 

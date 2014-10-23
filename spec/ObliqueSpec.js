@@ -774,7 +774,7 @@
       FixtureHelper.clear();
       return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='var dataModelExpr=32'>nice DOM</div>");
     });
-    return it("must throw an error if a variable named Model is set in data-ob-model", function(done) {
+    it("must throw an error if a variable named Model is set in data-ob-model", function(done) {
       var TestDirective;
       TestDirective = (function() {
         function TestDirective() {}
@@ -791,6 +791,44 @@
       Oblique().setIntervalTimeInMs(10);
       FixtureHelper.clear();
       return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='var Model=32'>nice DOM</div>");
+    });
+    it("must retrieve simple params from window.location.hash", function() {
+      var paramsCollection;
+      window.location.hash = "#sort=desc";
+      paramsCollection = Oblique().getHashParams();
+      expect(paramsCollection.count()).toBe(1);
+      return expect(paramsCollection.getParam("sort").value).toBe("desc");
+    });
+    it("must retrieve complex params from window.location.hash", function() {
+      var colorValues, paramsCollection;
+      window.location.hash = "#sort=desc&price=(10,30)&colors=[rojo,amarillo,verde]";
+      paramsCollection = Oblique().getHashParams();
+      expect(paramsCollection.count()).toBe(3);
+      expect(paramsCollection.getParam("sort").value).toBe("desc");
+      expect(paramsCollection.getParam("price").min).toBe("10");
+      expect(paramsCollection.getParam("price").max).toBe("30");
+      colorValues = paramsCollection.getParam("colors").values;
+      expect(colorValues[0]).toBe("rojo");
+      expect(colorValues[1]).toBe("amarillo");
+      return expect(colorValues[2]).toBe("verde");
+    });
+    it("must set window.location.hash from a simple paramCollection", function() {
+      var paramsCollection;
+      window.location.hash = "";
+      paramsCollection = Oblique().getHashParams();
+      paramsCollection.addSingleParam("sort", "asc");
+      Oblique().setHashParams(paramsCollection);
+      return expect(window.location.hash).toBe("#sort=asc");
+    });
+    return it("must set window.location.hash from a complex paramCollection", function() {
+      var paramsCollection;
+      window.location.hash = "";
+      paramsCollection = Oblique().getHashParams();
+      paramsCollection.addSingleParam("sort", "asc");
+      paramsCollection.addRangeParam("price", "10", "40");
+      paramsCollection.addArrayParam("sizes", ["101", "104", "105"]);
+      Oblique().setHashParams(paramsCollection);
+      return expect(window.location.hash).toBe("#sort=asc&price=(10,40)&sizes=[101,104,105]");
     });
   });
 

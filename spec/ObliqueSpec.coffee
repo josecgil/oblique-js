@@ -640,3 +640,38 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     FixtureHelper.clear()
     FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='var Model=32'>nice DOM</div>"
+
+
+  it "must retrieve simple params from window.location.hash", ()->
+    window.location.hash="#sort=desc"
+    paramsCollection=Oblique().getHashParams()
+    expect(paramsCollection.count()).toBe(1)
+    expect(paramsCollection.getParam("sort").value).toBe("desc")
+
+  it "must retrieve complex params from window.location.hash", ()->
+    window.location.hash="#sort=desc&price=(10,30)&colors=[rojo,amarillo,verde]"
+    paramsCollection=Oblique().getHashParams()
+    expect(paramsCollection.count()).toBe(3)
+    expect(paramsCollection.getParam("sort").value).toBe("desc")
+    expect(paramsCollection.getParam("price").min).toBe("10")
+    expect(paramsCollection.getParam("price").max).toBe("30")
+    colorValues = paramsCollection.getParam("colors").values
+    expect(colorValues[0]).toBe("rojo")
+    expect(colorValues[1]).toBe("amarillo")
+    expect(colorValues[2]).toBe("verde")
+
+  it "must set window.location.hash from a simple paramCollection", ()->
+    window.location.hash=""
+    paramsCollection=Oblique().getHashParams()
+    paramsCollection.addSingleParam("sort","asc")
+    Oblique().setHashParams(paramsCollection)
+    expect(window.location.hash).toBe("#sort=asc")
+
+  it "must set window.location.hash from a complex paramCollection", ()->
+    window.location.hash=""
+    paramsCollection=Oblique().getHashParams()
+    paramsCollection.addSingleParam("sort","asc")
+    paramsCollection.addRangeParam("price","10","40")
+    paramsCollection.addArrayParam("sizes",["101","104","105"])
+    Oblique().setHashParams(paramsCollection)
+    expect(window.location.hash).toBe("#sort=asc&price=(10,40)&sizes=[101,104,105]")

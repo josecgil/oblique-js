@@ -53,5 +53,11 @@ class Oblique
       callback(error)
     throw error
 
+  getHashParams:() ->
+    new ObliqueNS.ParamCollection(window.location.hash)
+
+  setHashParams:(paramCollection) ->
+    window.location.hash=paramCollection.getLocationHash()
+
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
