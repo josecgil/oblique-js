@@ -675,3 +675,22 @@ describe "Oblique", ->
     paramsCollection.addArrayParam("sizes",["101","104","105"])
     Oblique().setHashParams(paramsCollection)
     expect(window.location.hash).toBe("#sort=asc&price=(10,40)&sizes=[101,104,105]")
+
+  it "must set window.location.hash from a manipulated paramCollection", ()->
+    window.location.hash=""
+    paramsCollection=Oblique().getHashParams()
+    sizesParam=paramsCollection.addArrayParam("sizes",["101","104","105"])
+    sizesParam.remove("101")
+    sizesParam.add("XL")
+    Oblique().setHashParams(paramsCollection)
+    expect(window.location.hash).toBe("#sizes=[104,105,XL]")
+
+  it "If I register a Controller it calls its constructor when expression is in DOM", (done)->
+    class TestController
+      constructor: ()->
+        Oblique().destroy()
+        done()
+
+    Oblique().registerController "TestController", TestController
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-controller='TestController'></div>"

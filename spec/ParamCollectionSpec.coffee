@@ -257,3 +257,9 @@ describe "ParamCollection", ->
     expect(paramCollection.getParam("price").min).toBe("10")
     expect(paramCollection.getParam("price").max).toBe("20")
     expect(paramCollection.getParam("sort").value).toBe("desc")
+
+  it "must return added param object when add", () ->
+    paramCollection=new ParamCollection("")
+    arrayParam=paramCollection.add(new ArrayParam("sizes",["M"]))
+    expect(arrayParam.count()).toBe(1)
+    expect(arrayParam.values[0]).toBe("M")

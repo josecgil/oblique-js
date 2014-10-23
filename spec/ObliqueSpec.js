@@ -820,7 +820,7 @@
       Oblique().setHashParams(paramsCollection);
       return expect(window.location.hash).toBe("#sort=asc");
     });
-    return it("must set window.location.hash from a complex paramCollection", function() {
+    it("must set window.location.hash from a complex paramCollection", function() {
       var paramsCollection;
       window.location.hash = "";
       paramsCollection = Oblique().getHashParams();
@@ -829,6 +829,31 @@
       paramsCollection.addArrayParam("sizes", ["101", "104", "105"]);
       Oblique().setHashParams(paramsCollection);
       return expect(window.location.hash).toBe("#sort=asc&price=(10,40)&sizes=[101,104,105]");
+    });
+    it("must set window.location.hash from a manipulated paramCollection", function() {
+      var paramsCollection, sizesParam;
+      window.location.hash = "";
+      paramsCollection = Oblique().getHashParams();
+      sizesParam = paramsCollection.addArrayParam("sizes", ["101", "104", "105"]);
+      sizesParam.remove("101");
+      sizesParam.add("XL");
+      Oblique().setHashParams(paramsCollection);
+      return expect(window.location.hash).toBe("#sizes=[104,105,XL]");
+    });
+    return it("If I register a Controller it calls its constructor when expression is in DOM", function(done) {
+      var TestController;
+      TestController = (function() {
+        function TestController() {
+          Oblique().destroy();
+          done();
+        }
+
+        return TestController;
+
+      })();
+      Oblique().registerController("TestController", TestController);
+      Oblique().setIntervalTimeInMs(10);
+      return $("#fixture").html("<div data-ob-controller='TestController'></div>");
     });
   });
 

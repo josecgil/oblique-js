@@ -29,6 +29,7 @@ class ParamCollection
 
   add:(param)->
     @_params[param.name]=param
+    param
 
   addSingleParam:(name, value)->
     @add new SingleParam(name, value)
