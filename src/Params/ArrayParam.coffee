@@ -1,32 +1,57 @@
 @.ObliqueNS=@.ObliqueNS or {}
 
-class ArrayParam
+Param=ObliqueNS.Param
 
-  constructor:(@name, @values)->
-    @length=@values.length
+class ArrayParam extends ObliqueNS.Param
+
+  constructor:(@name, values)->
+    super(@name)
+    if not @_isArray(values)
+      throw new ObliqueNS.Error("Param constructor must be called with second param array")
+    @values=[]
+    for value in values
+      @add value
+
+  _isArray:(value)->
+    return true if Object.prototype.toString.call(value) is '[object Array]'
+    false
 
   add:(value)->
+    if (not @_isString(value))
+      throw new ObliqueNS.Error("Array param must be an string")
     @values.push value
-    @length=@values.length
 
   remove:(value)->
     index=@values.indexOf value
     return if index is -1
     @values.splice index, 1
-    @length=@values.length
-    @values=undefined if @length is 0
+    @values=undefined if @count() is 0
 
   isEmpty:() ->
     return true if @values is undefined
-    return true if @length is 0
+    return true if @count() is 0
     return false
 
   getLocationHash: ->
-    return "" if @length is 0
+    return "" if @count() is 0
     hash = "#{@name}=["
     for value in @values
       hash += "#{value},"
     hash = hash.substr(0,hash.length-1)
     hash += "]"
+
+  count:->
+    @values.length
+
+  @createFrom:(strHashParam)->
+    hashParam=Param.parse(strHashParam)
+    value=hashParam.value.replace("[","").replace("]","")
+    values=value.split(",")
+    trimmedValues=[]
+    for value in values
+      trimmedValues.push value.trim()
+
+    new ArrayParam(hashParam.name, trimmedValues)
+
 
 ObliqueNS.ArrayParam=ArrayParam

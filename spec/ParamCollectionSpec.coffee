@@ -4,6 +4,7 @@ describe "ParamCollection", ->
   ArrayParam=ObliqueNS.ArrayParam
   RangeParam=ObliqueNS.RangeParam
   SingleParam=ObliqueNS.SingleParam
+  ObError=ObliqueNS.Error
 
   it "must return empty params when Hash is empty", () ->
     paramCollection=new ParamCollection("")
@@ -57,7 +58,7 @@ describe "ParamCollection", ->
     paramCollection=new ParamCollection("")
     paramCollection.add(new ArrayParam("sizes",["M"]))
     sizesParam = paramCollection.getParam("sizes")
-    expect(sizesParam.values.length).toBe 1
+    expect(sizesParam.count()).toBe 1
     expect(sizesParam.values[0]).toBe "M"
 
   it "must add a value to an already existing array param", () ->
@@ -66,7 +67,7 @@ describe "ParamCollection", ->
     sizesParam = paramCollection.getParam("sizes")
     sizesParam.add("L")
 
-    expect(sizesParam.values.length).toBe 2
+    expect(sizesParam.count()).toBe 2
     expect(sizesParam.values[0]).toBe "M"
     expect(sizesParam.values[1]).toBe "L"
 
@@ -81,14 +82,14 @@ describe "ParamCollection", ->
     paramCollection.add(new ArrayParam("sizes",["L"]))
     sizesParam=paramCollection.getParam("sizes");
     sizesParam.remove("M")
-    expect(sizesParam.length).toBe(1)
+    expect(sizesParam.count()).toBe(1)
 
   it "must remove an existent array param value", () ->
     paramCollection=new ParamCollection("")
     paramCollection.add(new ArrayParam("sizes",["M","L"]))
     sizesParam=paramCollection.getParam("sizes");
     sizesParam.remove("M")
-    expect(sizesParam.length).toBe(1)
+    expect(sizesParam.count()).toBe(1)
 
   it "must ignore remove an inexistent param name", () ->
     paramCollection=new ParamCollection("")
@@ -121,7 +122,7 @@ describe "ParamCollection", ->
   it "must return location hash for range param", () ->
     paramCollection=new ParamCollection("")
     paramCollection.add(new RangeParam("price","10","100"))
-    expect(paramCollection.getLocationHash()).toBe("#price=[10,100]")
+    expect(paramCollection.getLocationHash()).toBe("#price=(10,100)")
 
   it "must return location hash for array param", () ->
     paramCollection=new ParamCollection("")
@@ -144,6 +145,13 @@ describe "ParamCollection", ->
     paramCollection.add(new SingleParam("sort","desc"))
     expect(paramCollection.getLocationHash()).toBe("#sizes=[M,L]&sort=desc")
 
+  it "must return location hash for 3 params", () ->
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new ArrayParam("sizes",["M","L"]))
+    paramCollection.add(new RangeParam("price","10","40"))
+    paramCollection.add(new SingleParam("sort","desc"))
+    expect(paramCollection.getLocationHash()).toBe("#sizes=[M,L]&price=(10,40)&sort=desc")
+
   it "must be undefined if I remove last array param value", () ->
     paramCollection=new ParamCollection("")
     paramCollection.add(new ArrayParam("sizes",["M"]))
@@ -152,10 +160,104 @@ describe "ParamCollection", ->
     sizesParam.remove("M")
     expect(sizesParam.values).toBeUndefined()
 
-
   it "must return location hash for 0 params", () ->
     paramCollection=new ParamCollection("")
     expect(paramCollection.getLocationHash()).toBe("")
+
+  it "must throw an error if array param value is not an array", () ->
+    expect(->
+      new ArrayParam("sizes","M")
+    ).toThrow(new ObError("Param constructor must be called with second param array"))
+
+  it "must throw an error if array param name is not an string", () ->
+    expect(->
+      new ArrayParam(1,["M"])
+    ).toThrow(new ObError("Param constructor must be called with first param string"))
+
+  it "must throw an error if single param name is not an string", () ->
+    expect(->
+      new SingleParam(1,"")
+    ).toThrow(new ObError("Param constructor must be called with first param string"))
+
+  it "must throw an error if range param name is not an string", () ->
+    expect(->
+      new RangeParam(1,"1","10")
+    ).toThrow(new ObError("Param constructor must be called with first param string"))
+
+  it "must throw an error if single param value is not an string", () ->
+    expect(->
+      new SingleParam("sort",1)
+    ).toThrow(new ObError("Param constructor must be called with second param string"))
+
+  it "must throw an error if range param min is not an string", () ->
+    expect(->
+      new RangeParam("price",10, "40")
+    ).toThrow(new ObError("Param constructor must be called with second param string"))
+
+  it "must throw an error if range param max is not an string", () ->
+    expect(->
+      new RangeParam("price","10", 40)
+    ).toThrow(new ObError("Param constructor must be called with third param string"))
+
+  it "must throw an error if array param values are not string", () ->
+    expect(->
+      new ArrayParam("sizes",[101,105])
+    ).toThrow(new ObError("Array param must be an string"))
+
+  it "must understand single param from location hash", () ->
+    paramCollection=new ParamCollection("#sort=desc")
+    expect(paramCollection.count()).toBe(1)
+    expect(paramCollection.getParam("sort").value).toBe("desc")
+
+  it "must understand 2 single params from location hash", () ->
+    paramCollection=new ParamCollection("#sort=desc&numItems=48")
+    expect(paramCollection.count()).toBe(2)
+    expect(paramCollection.getParam("sort").value).toBe("desc")
+    expect(paramCollection.getParam("numItems").value).toBe("48")
+
+  it "must understand 2 single params with whitespaces from location hash", () ->
+    paramCollection=new ParamCollection("# sort = desc & numItems = 48 ")
+    expect(paramCollection.count()).toBe(2)
+    expect(paramCollection.getParam("sort").value).toBe("desc")
+    expect(paramCollection.getParam("numItems").value).toBe("48")
+
+  it "must understand range param from location hash", () ->
+    paramCollection=new ParamCollection("#price=(10,20)")
+    expect(paramCollection.count()).toBe(1)
+    expect(paramCollection.getParam("price").min).toBe("10")
+    expect(paramCollection.getParam("price").max).toBe("20")
+
+  it "must understand array param from location hash", () ->
+    paramCollection=new ParamCollection("#colors=[rojo,azul]")
+    expect(paramCollection.count()).toBe(1)
+    colorsValues = paramCollection.getParam("colors").values
+    expect(colorsValues[0]).toBe("rojo")
+    expect(colorsValues[1]).toBe("azul")
+
+  it "must understand array param with whitespace values from location hash", () ->
+    paramCollection=new ParamCollection("#colors=[   rojo ,   azul ]")
+    expect(paramCollection.count()).toBe(1)
+    colorsValues = paramCollection.getParam("colors").values
+    expect(colorsValues[0]).toBe("rojo")
+    expect(colorsValues[1]).toBe("azul")
+
+  it "must understand range param with whitespace values from location hash", () ->
+    paramCollection=new ParamCollection("#price=(   10 , 20  )")
+    expect(paramCollection.count()).toBe(1)
+    expect(paramCollection.getParam("price").min).toBe("10")
+    expect(paramCollection.getParam("price").max).toBe("20")
+
+
+  it "must understand 3 different params from location hash", () ->
+    paramCollection=new ParamCollection("#colors=[rojo,azul]&price=(10,20)&sort=desc")
+    expect(paramCollection.count()).toBe(3)
+    colorsValues = paramCollection.getParam("colors").values
+    expect(colorsValues[0]).toBe("rojo")
+    expect(colorsValues[1]).toBe("azul")
+    expect(paramCollection.getParam("price").min).toBe("10")
+    expect(paramCollection.getParam("price").max).toBe("20")
+    expect(paramCollection.getParam("sort").value).toBe("desc")
+
 
 
 ###

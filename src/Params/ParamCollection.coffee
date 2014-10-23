@@ -1,9 +1,31 @@
 @.ObliqueNS=@.ObliqueNS or {}
 
+ArrayParam=ObliqueNS.ArrayParam
+RangeParam=ObliqueNS.RangeParam
+SingleParam=ObliqueNS.SingleParam
+
 class ParamCollection
 
-  constructor:() ->
+  constructor:(locationHash) ->
     @removeAll()
+    return if @_StringIsEmpty(locationHash)
+
+    locationHash=locationHash.replace("#","")
+
+    for hashParam in locationHash.split("&")
+      param=undefined
+      if (SingleParam.is(hashParam))
+        param=SingleParam.createFrom(hashParam)
+      else if (RangeParam.is(hashParam))
+        param=RangeParam.createFrom(hashParam)
+      else
+        param=ArrayParam.createFrom(hashParam)
+      @add(param)
+
+  _StringIsEmpty:(value)->
+    return true if value is undefined
+    return true if value.trim().length is 0
+    return false
 
   add:(param)->
     @_params[param.name]=param
