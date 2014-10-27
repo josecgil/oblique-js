@@ -23,4 +23,5 @@ var SearchReposDirective=function(data) {
     },1000);
 
 };
+
 Oblique().registerDirective("SearchReposDirective", SearchReposDirective);

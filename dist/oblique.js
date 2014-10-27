@@ -444,7 +444,7 @@
         return Oblique._singletonInstance;
       }
       Oblique._singletonInstance = this;
-      this.directiveProcessor = new ObliqueNS.DOMProcessor();
+      this.domProcessor = new ObliqueNS.DOMProcessor();
       this.templateFactory = new ObliqueNS.TemplateFactory();
       this._onErrorCallbacks = [];
     }
@@ -452,20 +452,20 @@
     Oblique.DEFAULT_INTERVAL_MS = 500;
 
     Oblique.prototype.getIntervalTimeInMs = function() {
-      return this.directiveProcessor.getIntervalTimeInMs();
+      return this.domProcessor.getIntervalTimeInMs();
     };
 
     Oblique.prototype.setIntervalTimeInMs = function(newIntervalTimeInMs) {
-      return this.directiveProcessor.setIntervalTimeInMs(newIntervalTimeInMs);
+      return this.domProcessor.setIntervalTimeInMs(newIntervalTimeInMs);
     };
 
     Oblique.prototype.registerDirective = function(directiveName, directiveConstructorFn) {
-      return this.directiveProcessor.registerDirective(directiveName, directiveConstructorFn);
+      return this.domProcessor.registerDirective(directiveName, directiveConstructorFn);
     };
 
     Oblique.prototype.destroy = function() {
       var e;
-      this.directiveProcessor.destroy();
+      this.domProcessor.destroy();
       try {
         return delete Oblique._singletonInstance;
       } catch (_error) {

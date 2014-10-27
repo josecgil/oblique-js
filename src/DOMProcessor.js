@@ -18,17 +18,42 @@
       this._throwErrorIfJQueryIsntLoaded();
       this._directiveCollection = new ObliqueNS.CallbackCollection();
       this._controllerCollection = new ObliqueNS.CallbackCollection();
+      this._controllerInstances = [];
       this._timedDOMObserver = this._createTimedDOMObserver(DOMProcessor.DEFAULT_INTERVAL_MS);
       this._memory = new ObliqueNS.Memory();
       jQuery(document).ready((function(_this) {
         return function() {
           _this._applyObliqueElementsInDOM();
-          return _this._timedDOMObserver.observe();
+          _this._timedDOMObserver.observe();
+          return _this._listenToHashRouteChanges();
         };
       })(this));
     }
 
     DOMProcessor.DEFAULT_INTERVAL_MS = 500;
+
+    DOMProcessor.prototype._listenToHashRouteChanges = function() {
+      return $(window).on("hashchange", (function(_this) {
+        return function() {
+          var controllerData, controllerInstance, _i, _len, _ref, _results;
+          console.log("Hash Cambiada");
+          _ref = _this._controllerInstances;
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            controllerInstance = _ref[_i];
+            controllerData = {
+              hashParams: Oblique().getHashParams()
+            };
+            _results.push(controllerInstance.onHashChange(controllerData));
+          }
+          return _results;
+        };
+      })(this));
+    };
+
+    DOMProcessor.prototype._ignoreHashRouteChanges = function() {
+      return $(window).off("hashchange");
+    };
 
     DOMProcessor.prototype._throwErrorIfJQueryIsntLoaded = function() {
       if (!window.jQuery) {
@@ -75,17 +100,6 @@
             }
           };
         })(this));
-
-        /*
-        body=document.getElementsByTagName("body")[0]
-        rootObElement=new ObliqueNS.Element body
-        rootObElement.eachDescendant(
-          (DOMElement)=>
-            obElement=new ObliqueNS.Element DOMElement
-            directiveAttrValue=obElement.getAttributeValue "data-ob-directive"
-            @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
-        )
-         */
       } finally {
         this._isApplyingObliqueElementsInDOM = false;
       }
@@ -137,7 +151,7 @@
           jQueryElement: obElement.getjQueryElement(),
           hashParams: Oblique().getHashParams()
         };
-        _results.push(new controller(controllerData));
+        _results.push(this._controllerInstances.push(new controller(controllerData)));
       }
       return _results;
     };
@@ -217,6 +231,7 @@
     };
 
     DOMProcessor.prototype.destroy = function() {
+      this._ignoreHashRouteChanges();
       this._timedDOMObserver.destroy();
       return DOMProcessor._singletonInstance = void 0;
     };

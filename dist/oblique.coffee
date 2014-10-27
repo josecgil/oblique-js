@@ -298,23 +298,23 @@ class Oblique
     return Oblique._singletonInstance  if Oblique._singletonInstance
     Oblique._singletonInstance = @
 
-    @directiveProcessor=new ObliqueNS.DOMProcessor();
+    @domProcessor=new ObliqueNS.DOMProcessor();
     @templateFactory=new ObliqueNS.TemplateFactory()
     @_onErrorCallbacks=[]
 
   @DEFAULT_INTERVAL_MS = 500
 
   getIntervalTimeInMs: ->
-    @directiveProcessor.getIntervalTimeInMs()
+    @domProcessor.getIntervalTimeInMs()
 
   setIntervalTimeInMs: (newIntervalTimeInMs) ->
-    @directiveProcessor.setIntervalTimeInMs(newIntervalTimeInMs)
+    @domProcessor.setIntervalTimeInMs(newIntervalTimeInMs)
 
   registerDirective: (directiveName, directiveConstructorFn) ->
-    @directiveProcessor.registerDirective directiveName, directiveConstructorFn
+    @domProcessor.registerDirective directiveName, directiveConstructorFn
 
   destroy: ->
-    @directiveProcessor.destroy()
+    @domProcessor.destroy()
     try
       delete Oblique._singletonInstance
     catch e

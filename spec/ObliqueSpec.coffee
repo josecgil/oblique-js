@@ -284,7 +284,7 @@ describe "Oblique", ->
 
     expectedHtml="<h1>titulo</h1><div>cuerpo</div>"
 
-    currentHtml=Oblique().renderHtml "/oblique-js/spec/templates/test_ok.hbs", modelToTest
+    currentHtml=Oblique().renderHtml "/oblique-js/spec/Templates/test_ok.hbs", modelToTest
     expect(currentHtml).toBe expectedHtml
 
   it "must throw an error if template is not found", ->
@@ -698,7 +698,7 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-ob-controller='TestController'></div>"
 
-  it "mus call a controller with correct hashParams", (done)->
+  it "must call a controller with correct hashParams", (done)->
     hashParams=Oblique().getHashParams()
     hashParams.addSingleParam("sort","desc")
     Oblique().setHashParams(hashParams)
@@ -714,3 +714,26 @@ describe "Oblique", ->
     Oblique().registerController "TestController", TestController
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-ob-controller='TestController'></div>"
+
+
+  it "must call a controller change() when location.hash change", (done)->
+    class TestController
+      constructor: (data)->
+        hashParams = data.hashParams
+        expect(hashParams.count()).toBe(0)
+
+        hashParams=Oblique().getHashParams()
+        hashParams.addSingleParam("sort","desc")
+        Oblique().setHashParams(hashParams)
+
+      onHashChange:(data)->
+        hashParams = data.hashParams
+        expect(hashParams.count()).toBe(1)
+        expect(hashParams.getParam("sort").value).toBe("desc")
+        Oblique().destroy()
+        done()
+
+    Oblique().registerController "TestController", TestController
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-controller='TestController'></div>"
+

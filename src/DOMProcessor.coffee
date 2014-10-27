@@ -15,6 +15,8 @@ class DOMProcessor
     @_directiveCollection = new ObliqueNS.CallbackCollection()
     @_controllerCollection = new ObliqueNS.CallbackCollection()
 
+    @_controllerInstances=[]
+
     @_timedDOMObserver=@_createTimedDOMObserver(DOMProcessor.DEFAULT_INTERVAL_MS)
 
     @_memory=new ObliqueNS.Memory()
@@ -22,8 +24,20 @@ class DOMProcessor
     jQuery(document).ready =>
       @_applyObliqueElementsInDOM()
       @_timedDOMObserver.observe()
+      @_listenToHashRouteChanges()
 
   @DEFAULT_INTERVAL_MS = 500
+
+  _listenToHashRouteChanges:->
+    $(window).on "hashchange", =>
+      console.log "Hash Cambiada"
+      for controllerInstance in @_controllerInstances
+        controllerData=
+          hashParams: Oblique().getHashParams()
+        controllerInstance.onHashChange(controllerData)
+
+  _ignoreHashRouteChanges:->
+    $(window).off "hashchange"
 
   _throwErrorIfJQueryIsntLoaded: ->
     throw new Error("DOMProcessor needs jQuery to work") if not window.jQuery
@@ -53,20 +67,6 @@ class DOMProcessor
           directiveAttrValue=obElement.getAttributeValue "data-ob-directive"
           @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
       )
-
-
-
-      ###
-      body=document.getElementsByTagName("body")[0]
-      rootObElement=new ObliqueNS.Element body
-      rootObElement.eachDescendant(
-        (DOMElement)=>
-          obElement=new ObliqueNS.Element DOMElement
-          directiveAttrValue=obElement.getAttributeValue "data-ob-directive"
-          @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
-      )
-      ###
-
     finally
       @_isApplyingObliqueElementsInDOM = false
 
@@ -101,7 +101,7 @@ class DOMProcessor
         jQueryElement: obElement.getjQueryElement()
         hashParams: Oblique().getHashParams()
 
-      new controller controllerData
+      @_controllerInstances.push(new controller controllerData)
 
 
   _getParams : (obElement) ->
@@ -160,6 +160,7 @@ class DOMProcessor
     @_controllerCollection.add controllerName, controllerConstructorFn
 
   destroy: ->
+    @_ignoreHashRouteChanges()
     @_timedDOMObserver.destroy()
     DOMProcessor._singletonInstance=undefined
 

@@ -337,7 +337,7 @@
         body: "cuerpo"
       };
       expectedHtml = "<h1>titulo</h1><div>cuerpo</div>";
-      currentHtml = Oblique().renderHtml("/oblique-js/spec/templates/test_ok.hbs", modelToTest);
+      currentHtml = Oblique().renderHtml("/oblique-js/spec/Templates/test_ok.hbs", modelToTest);
       return expect(currentHtml).toBe(expectedHtml);
     });
     it("must throw an error if template is not found", function() {
@@ -859,7 +859,7 @@
       Oblique().setIntervalTimeInMs(10);
       return $("#fixture").html("<div data-ob-controller='TestController'></div>");
     });
-    return it("mus call a controller with correct hashParams", function(done) {
+    it("must call a controller with correct hashParams", function(done) {
       var TestController, hashParams;
       hashParams = Oblique().getHashParams();
       hashParams.addSingleParam("sort", "desc");
@@ -872,6 +872,34 @@
           Oblique().destroy();
           done();
         }
+
+        return TestController;
+
+      })();
+      Oblique().registerController("TestController", TestController);
+      Oblique().setIntervalTimeInMs(10);
+      return $("#fixture").html("<div data-ob-controller='TestController'></div>");
+    });
+    return it("must call a controller change() when location.hash change", function(done) {
+      var TestController;
+      TestController = (function() {
+        function TestController(data) {
+          var hashParams;
+          hashParams = data.hashParams;
+          expect(hashParams.count()).toBe(0);
+          hashParams = Oblique().getHashParams();
+          hashParams.addSingleParam("sort", "desc");
+          Oblique().setHashParams(hashParams);
+        }
+
+        TestController.prototype.onHashChange = function(data) {
+          var hashParams;
+          hashParams = data.hashParams;
+          expect(hashParams.count()).toBe(1);
+          expect(hashParams.getParam("sort").value).toBe("desc");
+          Oblique().destroy();
+          return done();
+        };
 
         return TestController;
 
