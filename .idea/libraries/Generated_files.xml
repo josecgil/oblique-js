@@ -6,7 +6,6 @@
         <item url="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
         <item url="file://$PROJECT_DIR$/spec/Params/ParamCollectionSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/Templates/TemplateFactorySpec.js" />
-        <item url="file://$PROJECT_DIR$/src/Params/Param.js" />
         <item url="file://$PROJECT_DIR$/samples/Old/directives/MenuDirective.js" />
         <item url="file://$PROJECT_DIR$/samples/Old/directives/ClockDirective.js" />
         <item url="file://$PROJECT_DIR$/src/Memory.js" />
@@ -20,22 +19,21 @@
         <item url="file://$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
         <item url="file://$PROJECT_DIR$/src/ObliqueError.js" />
         <item url="file://$PROJECT_DIR$/src/Params/RangeParam.js" />
+        <item url="file://$PROJECT_DIR$/dist/oblique.js" />
         <item url="file://$PROJECT_DIR$/src/DOMProcessor.js" />
         <item url="file://$PROJECT_DIR$/src/Templates/Template.js" />
         <item url="file://$PROJECT_DIR$/src/Params/ArrayParam.js" />
-        <item url="file://$PROJECT_DIR$/src/Error.js" />
         <item url="file://$PROJECT_DIR$/src/Params/SingleParam.js" />
-        <item url="file://$PROJECT_DIR$/src/DOMProcessor.js" />
         <item url="file://$PROJECT_DIR$/src/DataModelVariable.js" />
         <item url="file://$PROJECT_DIR$/src/0_functions.js" />
         <item url="file://$PROJECT_DIR$/src/TimedDOMObserver.js" />
         <item url="file://$PROJECT_DIR$/spec/MemorySpec.js" />
         <item url="file://$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" />
+        <item url="file://$PROJECT_DIR$/src/Params/AA_Param.js" />
         <item url="file://$PROJECT_DIR$/spec/Templates/TemplateSpec.js" />
         <item url="file://$PROJECT_DIR$/src/Params/ParamCollection.js" />
         <item url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/ElementSpec.js" />
-        <item url="file://$PROJECT_DIR$/dist/oblique.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
@@ -65,11 +63,12 @@
       <root url="file://$PROJECT_DIR$/spec/DataModelDSLSpec.js" />
       <root url="file://$PROJECT_DIR$/src/DataModelDSL.js" />
       <root url="file://$PROJECT_DIR$/src/Error.js" />
+      <root url="file://$PROJECT_DIR$/src/Params/0_Param.js" />
+      <root url="file://$PROJECT_DIR$/src/Error.js" />
       <root url="file://$PROJECT_DIR$/spec/helpers/Interval.js" />
       <root url="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
       <root url="file://$PROJECT_DIR$/spec/Params/ParamCollectionSpec.js" />
-      <root url="file://$PROJECT_DIR$/spec/templates/TemplateFactorySpec.js" />
-      <root url="file://$PROJECT_DIR$/src/Params/Param.js" />
+      <root url="file://$PROJECT_DIR$/spec/Templates/TemplateFactorySpec.js" />
       <root url="file://$PROJECT_DIR$/samples/Old/directives/MenuDirective.js" />
       <root url="file://$PROJECT_DIR$/src/Memory.js" />
       <root url="file://$PROJECT_DIR$/samples/Old/directives/ClockDirective.js" />
@@ -82,23 +81,22 @@
       <root url="file://$PROJECT_DIR$/spec/DataModelVariableSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
       <root url="file://$PROJECT_DIR$/src/ObliqueError.js" />
+      <root url="file://$PROJECT_DIR$/dist/oblique.js" />
       <root url="file://$PROJECT_DIR$/src/Params/RangeParam.js" />
       <root url="file://$PROJECT_DIR$/src/Templates/Template.js" />
       <root url="file://$PROJECT_DIR$/src/DOMProcessor.js" />
       <root url="file://$PROJECT_DIR$/src/Params/ArrayParam.js" />
-      <root url="file://$PROJECT_DIR$/src/Error.js" />
       <root url="file://$PROJECT_DIR$/src/Params/SingleParam.js" />
-      <root url="file://$PROJECT_DIR$/src/DOMProcessor.js" />
       <root url="file://$PROJECT_DIR$/src/DataModelVariable.js" />
       <root url="file://$PROJECT_DIR$/src/0_functions.js" />
       <root url="file://$PROJECT_DIR$/src/TimedDOMObserver.js" />
       <root url="file://$PROJECT_DIR$/spec/MemorySpec.js" />
       <root url="file://$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" />
-      <root url="file://$PROJECT_DIR$/spec/templates/TemplateSpec.js" />
+      <root url="file://$PROJECT_DIR$/spec/Templates/TemplateSpec.js" />
+      <root url="file://$PROJECT_DIR$/src/Params/0_Param.js" />
       <root url="file://$PROJECT_DIR$/src/Params/ParamCollection.js" />
       <root url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/ElementSpec.js" />
-      <root url="file://$PROJECT_DIR$/dist/oblique.js" />
     </CLASSES>
     <SOURCES />
   </library>
