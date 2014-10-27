@@ -68,7 +68,7 @@
       <root url="file://$PROJECT_DIR$/spec/helpers/Interval.js" />
       <root url="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
       <root url="file://$PROJECT_DIR$/spec/Params/ParamCollectionSpec.js" />
-      <root url="file://$PROJECT_DIR$/spec/Templates/TemplateFactorySpec.js" />
+      <root url="file://$PROJECT_DIR$/spec/templates/TemplateFactorySpec.js" />
       <root url="file://$PROJECT_DIR$/src/Params/Param.js" />
       <root url="file://$PROJECT_DIR$/samples/Old/directives/MenuDirective.js" />
       <root url="file://$PROJECT_DIR$/src/Memory.js" />
@@ -94,7 +94,7 @@
       <root url="file://$PROJECT_DIR$/src/TimedDOMObserver.js" />
       <root url="file://$PROJECT_DIR$/spec/MemorySpec.js" />
       <root url="file://$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" />
-      <root url="file://$PROJECT_DIR$/spec/Templates/TemplateSpec.js" />
+      <root url="file://$PROJECT_DIR$/spec/templates/TemplateSpec.js" />
       <root url="file://$PROJECT_DIR$/src/Params/ParamCollection.js" />
       <root url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/ElementSpec.js" />
