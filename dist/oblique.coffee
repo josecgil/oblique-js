@@ -422,7 +422,7 @@ class DOMProcessor
 
       @_controllerInstancesData.push(controllerInstanceData)
 
-      controllerInstanceData.instance.onLoad @_createControllerData(controllerInstanceData)
+      controllerInstanceData.instance.onHashChange @_createControllerData(controllerInstanceData)
 
 
   _createControllerData:(controllerInstanceData)->

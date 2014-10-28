@@ -5,43 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/0_Param.js" afterPath="$PROJECT_DIR$/src/Params/0_Param.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/0_functions.js" afterPath="$PROJECT_DIR$/src/0_functions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/Filters/src/AlbumController.js" afterPath="$PROJECT_DIR$/samples/Filters/src/AlbumController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/ArrayParam.js" afterPath="$PROJECT_DIR$/src/Params/ArrayParam.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CallbackCollection.js" afterPath="$PROJECT_DIR$/src/CallbackCollection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/CallbackCollectionSpec.js" afterPath="$PROJECT_DIR$/spec/CallbackCollectionSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/Old/directives/ClockDirective.js" afterPath="$PROJECT_DIR$/samples/Old/directives/ClockDirective.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DOMProcessor.coffee" afterPath="$PROJECT_DIR$/src/DOMProcessor.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DOMProcessor.js" afterPath="$PROJECT_DIR$/src/DOMProcessor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/DOMProcessorSpec.js" afterPath="$PROJECT_DIR$/spec/DOMProcessorSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DataModelVariable.js" afterPath="$PROJECT_DIR$/src/DataModelVariable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/DataModelVariableSpec.js" afterPath="$PROJECT_DIR$/spec/DataModelVariableSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Element.js" afterPath="$PROJECT_DIR$/src/Element.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ElementSpec.js" afterPath="$PROJECT_DIR$/spec/ElementSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/helpers/FixtureHelper.js" afterPath="$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/helpers/Interval.js" afterPath="$PROJECT_DIR$/spec/helpers/Interval.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/helpers/IntervalSpec.js" afterPath="$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Memory.js" afterPath="$PROJECT_DIR$/src/Memory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/MemorySpec.js" afterPath="$PROJECT_DIR$/spec/MemorySpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/Old/directives/MenuDirective.js" afterPath="$PROJECT_DIR$/samples/Old/directives/MenuDirective.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Oblique.js" afterPath="$PROJECT_DIR$/src/Oblique.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ObliqueError.js" afterPath="$PROJECT_DIR$/src/ObliqueError.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.js" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/ParamCollection.js" afterPath="$PROJECT_DIR$/src/Params/ParamCollection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/Params/ParamCollectionSpec.js" afterPath="$PROJECT_DIR$/spec/Params/ParamCollectionSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/RangeParam.js" afterPath="$PROJECT_DIR$/src/Params/RangeParam.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/SingleParam.js" afterPath="$PROJECT_DIR$/src/Params/SingleParam.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Templates/Template.js" afterPath="$PROJECT_DIR$/src/Templates/Template.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Templates/TemplateFactory.js" afterPath="$PROJECT_DIR$/src/Templates/TemplateFactory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/templates/TemplateFactorySpec.js" afterPath="$PROJECT_DIR$/spec/templates/TemplateFactorySpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/templates/TemplateSpec.js" afterPath="$PROJECT_DIR$/spec/templates/TemplateSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TimedDOMObserver.js" afterPath="$PROJECT_DIR$/src/TimedDOMObserver.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" afterPath="$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/oblique-js.iml" afterPath="$PROJECT_DIR$/.idea/oblique-js.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.coffee" afterPath="$PROJECT_DIR$/dist/oblique.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.js" afterPath="$PROJECT_DIR$/dist/oblique.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.min.js" afterPath="$PROJECT_DIR$/dist/oblique.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -65,68 +31,7 @@
     <favorites_list name="oblique-js" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="AlbumController.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/samples/Filters/src/AlbumController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40703517" vertical-offset="0" max-vertical-offset="1620">
-              <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Oblique.coffee" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Oblique.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1077" max-vertical-offset="1944">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ObliqueSpec.coffee" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="19383" max-vertical-offset="20088">
-              <caret line="738" column="72" selection-start-line="738" selection-start-column="72" selection-end-line="738" selection-end-column="72" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DOMProcessor.coffee" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DOMProcessor.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2349" max-vertical-offset="4860">
-              <caret line="104" column="50" selection-start-line="104" selection-start-column="50" selection-end-line="104" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/samples/Filters/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="945">
-              <caret line="18" column="9" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="photos.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/samples/Filters/json/photos.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1815" max-vertical-offset="2484">
-              <caret line="86" column="1" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -1265,19 +1170,26 @@
       <option name="project" value="LOCAL" />
       <updated>1414428155831</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="remove onLoad event">
+      <created>1414518298602</created>
+      <option name="number" value="00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1414518298602</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1040" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32704404" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991204" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32748538" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26757812" sideWeight="0.4992908" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26757812" sideWeight="0.4992908" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31603774" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20703125" sideWeight="0.50070924" order="2" side_tool="true" content_ui="tabs" />
@@ -1287,7 +1199,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3191824" sideWeight="0.49960285" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32704404" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1330,7 +1241,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;&#9;spec/ListParamsSpec.coffee&#10;" />
     <MESSAGE value="Build DataModelParser for parse expression coming from data-bq-model" />
     <MESSAGE value="Better errors" />
     <MESSAGE value="Fixed test errors" />
@@ -1355,7 +1265,8 @@
     <MESSAGE value="Controllers can now listen to location hash changes" />
     <MESSAGE value="Changes in distribution scripts" />
     <MESSAGE value="First Filters sample" />
-    <option name="LAST_COMMIT_MESSAGE" value="First Filters sample" />
+    <MESSAGE value="remove onLoad event" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove onLoad event" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1688,7 +1599,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/Filters/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="945">
+        <state vertical-scroll-proportion="0.48128343" vertical-offset="216" max-vertical-offset="945">
           <caret line="18" column="9" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="9" />
           <folding />
         </state>
@@ -1696,7 +1607,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/Filters/json/photos.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1815" max-vertical-offset="2484">
+        <state vertical-scroll-proportion="0.9037433" vertical-offset="1815" max-vertical-offset="2484">
           <caret line="86" column="1" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="1" />
           <folding />
         </state>
@@ -1704,7 +1615,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Oblique.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1077" max-vertical-offset="1944">
+        <state vertical-scroll-proportion="0.90954775" vertical-offset="1077" max-vertical-offset="1944">
           <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding />
         </state>
@@ -1712,7 +1623,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="19383" max-vertical-offset="20088">
+        <state vertical-scroll-proportion="0.90954775" vertical-offset="19383" max-vertical-offset="20088">
           <caret line="738" column="72" selection-start-line="738" selection-start-column="72" selection-end-line="738" selection-end-column="72" />
           <folding />
         </state>
@@ -1720,7 +1631,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DOMProcessor.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2349" max-vertical-offset="4860">
+        <state vertical-scroll-proportion="0.76884425" vertical-offset="2349" max-vertical-offset="4860">
           <caret line="104" column="50" selection-start-line="104" selection-start-column="50" selection-end-line="104" selection-end-column="50" />
           <folding />
         </state>
