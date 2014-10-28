@@ -150,7 +150,7 @@
           jQueryElement: obElement.getjQueryElement()
         };
         this._controllerInstancesData.push(controllerInstanceData);
-        _results.push(controllerInstanceData.instance.onLoad(this._createControllerData(controllerInstanceData)));
+        _results.push(controllerInstanceData.instance.onHashChange(this._createControllerData(controllerInstanceData)));
       }
       return _results;
     };

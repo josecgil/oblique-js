@@ -2,10 +2,6 @@ var AlbumController=function () {
 
 };
 
-AlbumController.prototype.onLoad=function(data){
-    this.onHashChange(data);
-};
-
 AlbumController.prototype.onHashChange=function(data) {
     this._checkByUrl(data);
     this._loadDataByFilter(data.hashParams);

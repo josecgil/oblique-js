@@ -44,5 +44,3 @@
   ObliqueNS.Param = Param;
 
 }).call(this);
-
-//# sourceMappingURL=0_Param.js.map

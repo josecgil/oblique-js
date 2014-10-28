@@ -844,12 +844,12 @@
       Oblique().setHashParams(paramsCollection);
       return expect(window.location.hash).toBe("#sizes=[104,105,XL]");
     });
-    it("If I register a Controller it calls its onLoad method when expression is in DOM", function(done) {
+    it("If I register a Controller it calls its onHashChange method when expression is in DOM", function(done) {
       var TestController;
       TestController = (function() {
         function TestController() {}
 
-        TestController.prototype.onLoad = function() {
+        TestController.prototype.onHashChange = function() {
           Oblique().destroy();
           return done();
         };
@@ -861,7 +861,7 @@
       Oblique().setIntervalTimeInMs(10);
       return $("#fixture").html("<div data-ob-controller='TestController'></div>");
     });
-    it("must call a controller with correct hashParams", function(done) {
+    it("must call a controller onHashChange with correct hashParams", function(done) {
       var TestController, hashParams;
       hashParams = Oblique().getHashParams();
       hashParams.addSingleParam("sort", "desc");
@@ -869,7 +869,7 @@
       TestController = (function() {
         function TestController() {}
 
-        TestController.prototype.onLoad = function(data) {
+        TestController.prototype.onHashChange = function(data) {
           hashParams = data.hashParams;
           expect(hashParams.count()).toBe(1);
           expect(hashParams.getParam("sort").value).toBe("desc");
@@ -887,16 +887,12 @@
     return it("must call a controller change() when location.hash change", function(done) {
       var TestController;
       TestController = (function() {
-        function TestController() {}
-
-        TestController.prototype.onLoad = function(data) {
+        function TestController() {
           var hashParams;
-          hashParams = data.hashParams;
-          expect(hashParams.count()).toBe(0);
           hashParams = Oblique().getHashParams();
           hashParams.addSingleParam("sort", "desc");
-          return Oblique().setHashParams(hashParams);
-        };
+          Oblique().setHashParams(hashParams);
+        }
 
         TestController.prototype.onHashChange = function(data) {
           var hashParams;
