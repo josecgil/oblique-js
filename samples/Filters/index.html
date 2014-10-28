@@ -9,14 +9,17 @@
 
 
     <script type="text/javascript" src="src/AlbumDirective.js"></script>
+    <script type="text/javascript" src="src/AlbumController.js"></script>
 
 </head>
 <body>
 
-<section data-ob-directive="AlbumDirective">
+<section data-ob-directive="AlbumDirective" data-ob-controller="AlbumController">
     <h1>Filtros</h1>
-    <label for="album1">Album 1</label><input name="album1" type="checkbox" value="1"/>
-    <label for="album2">Album 2</label><input name="album2" type="checkbox" value="2"/>
+    <form>
+        <label for="album1">Album 1</label><input name="album" type="checkbox" value="1"/>
+        <label for="album2">Album 2</label><input name="album" type="checkbox" value="2"/>
+    </form>
 </section>
 <section id="results">
 

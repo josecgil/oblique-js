@@ -688,9 +688,11 @@ describe "Oblique", ->
     Oblique().setHashParams(paramsCollection)
     expect(window.location.hash).toBe("#sizes=[104,105,XL]")
 
-  it "If I register a Controller it calls its constructor when expression is in DOM", (done)->
+  it "If I register a Controller it calls its onLoad method when expression is in DOM", (done)->
     class TestController
       constructor: ()->
+
+      onLoad:()->
         Oblique().destroy()
         done()
 
@@ -704,7 +706,9 @@ describe "Oblique", ->
     Oblique().setHashParams(hashParams)
 
     class TestController
-      constructor: (data)->
+      constructor: ()->
+
+      onLoad:(data)->
         hashParams = data.hashParams
         expect(hashParams.count()).toBe(1)
         expect(hashParams.getParam("sort").value).toBe("desc")
@@ -718,7 +722,9 @@ describe "Oblique", ->
 
   it "must call a controller change() when location.hash change", (done)->
     class TestController
-      constructor: (data)->
+      constructor: ()->
+
+      onLoad:(data)->
         hashParams = data.hashParams
         expect(hashParams.count()).toBe(0)
 
@@ -736,4 +742,3 @@ describe "Oblique", ->
     Oblique().registerController "TestController", TestController
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-ob-controller='TestController'></div>"
-

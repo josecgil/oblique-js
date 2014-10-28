@@ -844,13 +844,15 @@
       Oblique().setHashParams(paramsCollection);
       return expect(window.location.hash).toBe("#sizes=[104,105,XL]");
     });
-    it("If I register a Controller it calls its constructor when expression is in DOM", function(done) {
+    it("If I register a Controller it calls its onLoad method when expression is in DOM", function(done) {
       var TestController;
       TestController = (function() {
-        function TestController() {
+        function TestController() {}
+
+        TestController.prototype.onLoad = function() {
           Oblique().destroy();
-          done();
-        }
+          return done();
+        };
 
         return TestController;
 
@@ -865,13 +867,15 @@
       hashParams.addSingleParam("sort", "desc");
       Oblique().setHashParams(hashParams);
       TestController = (function() {
-        function TestController(data) {
+        function TestController() {}
+
+        TestController.prototype.onLoad = function(data) {
           hashParams = data.hashParams;
           expect(hashParams.count()).toBe(1);
           expect(hashParams.getParam("sort").value).toBe("desc");
           Oblique().destroy();
-          done();
-        }
+          return done();
+        };
 
         return TestController;
 
@@ -883,14 +887,16 @@
     return it("must call a controller change() when location.hash change", function(done) {
       var TestController;
       TestController = (function() {
-        function TestController(data) {
+        function TestController() {}
+
+        TestController.prototype.onLoad = function(data) {
           var hashParams;
           hashParams = data.hashParams;
           expect(hashParams.count()).toBe(0);
           hashParams = Oblique().getHashParams();
           hashParams.addSingleParam("sort", "desc");
-          Oblique().setHashParams(hashParams);
-        }
+          return Oblique().setHashParams(hashParams);
+        };
 
         TestController.prototype.onHashChange = function(data) {
           var hashParams;

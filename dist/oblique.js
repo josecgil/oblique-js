@@ -528,7 +528,7 @@
       this._throwErrorIfJQueryIsntLoaded();
       this._directiveCollection = new ObliqueNS.CallbackCollection();
       this._controllerCollection = new ObliqueNS.CallbackCollection();
-      this._controllerInstances = [];
+      this._controllerInstancesData = [];
       this._timedDOMObserver = this._createTimedDOMObserver(DOMProcessor.DEFAULT_INTERVAL_MS);
       this._memory = new ObliqueNS.Memory();
       jQuery(document).ready((function(_this) {
@@ -545,16 +545,14 @@
     DOMProcessor.prototype._listenToHashRouteChanges = function() {
       return $(window).on("hashchange", (function(_this) {
         return function() {
-          var controllerData, controllerInstance, _i, _len, _ref, _results;
+          var controllerData, controllerInstanceData, _i, _len, _ref, _results;
           console.log("Hash Cambiada");
-          _ref = _this._controllerInstances;
+          _ref = _this._controllerInstancesData;
           _results = [];
           for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            controllerInstance = _ref[_i];
-            controllerData = {
-              hashParams: Oblique().getHashParams()
-            };
-            _results.push(controllerInstance.onHashChange(controllerData));
+            controllerInstanceData = _ref[_i];
+            controllerData = _this._createControllerData(controllerInstanceData);
+            _results.push(controllerInstanceData.instance.onHashChange(controllerData));
           }
           return _results;
         };
@@ -642,7 +640,7 @@
     };
 
     DOMProcessor.prototype._processControllerElement = function(obElement, controllerAttrValue) {
-      var controller, controllerData, controllerName, _i, _len, _ref, _results;
+      var controllerConstructorFn, controllerInstanceData, controllerName, _i, _len, _ref, _results;
       _ref = controllerAttrValue.split(",");
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -651,19 +649,29 @@
         if (obElement.hasFlag(controllerName)) {
           continue;
         }
-        controller = this._controllerCollection.getCallbackByName(controllerName);
-        if (!controller) {
+        controllerConstructorFn = this._controllerCollection.getCallbackByName(controllerName);
+        if (!controllerConstructorFn) {
           throw new ObliqueNS.Error("There is no " + controllerName + " controller registered");
         }
         obElement.setFlag(controllerName);
-        controllerData = {
+        controllerInstanceData = {
+          instance: new controllerConstructorFn(),
           domElement: obElement.getDOMElement(),
-          jQueryElement: obElement.getjQueryElement(),
-          hashParams: Oblique().getHashParams()
+          jQueryElement: obElement.getjQueryElement()
         };
-        _results.push(this._controllerInstances.push(new controller(controllerData)));
+        this._controllerInstancesData.push(controllerInstanceData);
+        _results.push(controllerInstanceData.instance.onLoad(this._createControllerData(controllerInstanceData)));
       }
       return _results;
+    };
+
+    DOMProcessor.prototype._createControllerData = function(controllerInstanceData) {
+      var controllerData;
+      return controllerData = {
+        domElement: controllerInstanceData.domElement,
+        jQueryElement: controllerInstanceData.jQueryElement,
+        hashParams: Oblique().getHashParams()
+      };
     };
 
     DOMProcessor.prototype._getParams = function(obElement) {

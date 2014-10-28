@@ -335,7 +335,7 @@ class DOMProcessor
     @_directiveCollection = new ObliqueNS.CallbackCollection()
     @_controllerCollection = new ObliqueNS.CallbackCollection()
 
-    @_controllerInstances=[]
+    @_controllerInstancesData=[]
 
     @_timedDOMObserver=@_createTimedDOMObserver(DOMProcessor.DEFAULT_INTERVAL_MS)
 
@@ -351,10 +351,9 @@ class DOMProcessor
   _listenToHashRouteChanges:->
     $(window).on "hashchange", =>
       console.log "Hash Cambiada"
-      for controllerInstance in @_controllerInstances
-        controllerData=
-          hashParams: Oblique().getHashParams()
-        controllerInstance.onHashChange(controllerData)
+      for controllerInstanceData in @_controllerInstancesData
+        controllerData=@_createControllerData(controllerInstanceData)
+        controllerInstanceData.instance.onHashChange(controllerData)
 
   _ignoreHashRouteChanges:->
     $(window).off "hashchange"
@@ -412,17 +411,25 @@ class DOMProcessor
       controllerName=controllerName.trim()
       continue if obElement.hasFlag controllerName
 
-      controller=@_controllerCollection.getCallbackByName(controllerName)
-      throw new ObliqueNS.Error("There is no #{controllerName} controller registered") if not controller
+      controllerConstructorFn=@_controllerCollection.getCallbackByName(controllerName)
+      throw new ObliqueNS.Error("There is no #{controllerName} controller registered") if not controllerConstructorFn
       obElement.setFlag controllerName
 
-      controllerData=
+      controllerInstanceData=
+        instance: new controllerConstructorFn()
         domElement: obElement.getDOMElement()
         jQueryElement: obElement.getjQueryElement()
-        hashParams: Oblique().getHashParams()
 
-      @_controllerInstances.push(new controller controllerData)
+      @_controllerInstancesData.push(controllerInstanceData)
 
+      controllerInstanceData.instance.onLoad @_createControllerData(controllerInstanceData)
+
+
+  _createControllerData:(controllerInstanceData)->
+    controllerData=
+      domElement: controllerInstanceData.domElement
+      jQueryElement: controllerInstanceData.jQueryElement
+      hashParams: Oblique().getHashParams()
 
   _getParams : (obElement) ->
     dataParamsExpr=obElement.getAttributeValue("data-ob-params")
