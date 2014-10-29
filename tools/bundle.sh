@@ -31,7 +31,7 @@ function deleteFileIfPresent {
 }
 
 function getSourceCoffeeFiles {
-    result=`ls $1/*.coffee`
+    result=`ls $1/*.coffee $1/Templates/*.coffee $1/Params/*.coffee`
 }
 
 function showInfo {

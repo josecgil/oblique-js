@@ -3,18 +3,6 @@
 class EmptyParam extends ObliqueNS.Param
 
   constructor:()->
-
-  getLocationHash: ->
-    ""
-
-  isEmpty:() ->
-    return true
-
-  valueIsEqualTo:() ->
-    return true
-
-  containsValue:() ->
-    return true
-
+    super("EmptyParam")
 
 ObliqueNS.EmptyParam=EmptyParam

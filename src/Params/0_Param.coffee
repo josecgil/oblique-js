@@ -25,4 +25,17 @@ class Param
     value=hashArray[1].trim()
     {name:name, value:value}
 
+  getLocationHash: ->
+    ""
+
+  isEmpty:() ->
+    return true
+
+  valueIsEqualTo:() ->
+    return true
+
+  containsValue:() ->
+    return true
+
+
 ObliqueNS.Param=Param

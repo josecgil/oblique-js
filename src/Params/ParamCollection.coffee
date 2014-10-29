@@ -32,7 +32,7 @@ class ParamCollection
     return false
 
   add:(param)->
-    @_params[param.name]=param
+    @_params[param.name.toLowerCase()]=param
     param
 
   addSingleParam:(name, value)->
@@ -51,7 +51,7 @@ class ParamCollection
     @_params={}
 
   getParam:(paramName)->
-    param=@_params[paramName]
+    param=@_params[paramName.toLowerCase()]
     return new EmptyParam() if param is undefined
     param
 

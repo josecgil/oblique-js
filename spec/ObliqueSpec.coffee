@@ -758,7 +758,6 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-ob-controller='TestController'></div>"
 
-
   it "must set correctly # and & when I remove a param from list", ()->
     window.location.hash="#albums=[1]&color=green"
     hashParams = Oblique().getHashParams()
@@ -766,3 +765,16 @@ describe "Oblique", ->
     Oblique().setHashParams(hashParams)
     expect(window.location.hash).toBe("#color=green")
 
+  it "must work with params in camel case", ()->
+    window.location.hash="#Color=red"
+    hashParams = Oblique().getHashParams()
+    param=hashParams.getParam("color")
+    expect(param).toBeDefined()
+    expect(param.value).toBe("red")
+
+  it "must work with params in upper case", ()->
+    window.location.hash="#COLOR=red"
+    hashParams = Oblique().getHashParams()
+    param=hashParams.getParam("color")
+    expect(param).toBeDefined()
+    expect(param.value).toBe("red")

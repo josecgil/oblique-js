@@ -311,5 +311,9 @@ describe "ParamCollection", ->
 
   it "EmptyParam must behave like ArrayParam in contains()", () ->
     param=new EmptyParam()
-    expect(param.contains("XL")).toBeTruthy()
-    expect(param.contains("L")).toBeTruthy()
+    expect(param.containsValue("XL")).toBeTruthy()
+    expect(param.containsValue("L")).toBeTruthy()
+
+  it "EmptyParam must have name", () ->
+    param=new EmptyParam()
+    expect(param.name).toBe("EmptyParam")
