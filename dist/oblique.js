@@ -642,6 +642,22 @@
       };
     };
 
+    Param.prototype.getLocationHash = function() {
+      return "";
+    };
+
+    Param.prototype.isEmpty = function() {
+      return true;
+    };
+
+    Param.prototype.valueIsEqualTo = function() {
+      return true;
+    };
+
+    Param.prototype.containsValue = function() {
+      return true;
+    };
+
     return Param;
 
   })();
@@ -775,23 +791,9 @@
   EmptyParam = (function(_super) {
     __extends(EmptyParam, _super);
 
-    function EmptyParam() {}
-
-    EmptyParam.prototype.getLocationHash = function() {
-      return "";
-    };
-
-    EmptyParam.prototype.isEmpty = function() {
-      return true;
-    };
-
-    EmptyParam.prototype.valueIsEqualTo = function() {
-      return true;
-    };
-
-    EmptyParam.prototype.containsValue = function() {
-      return true;
-    };
+    function EmptyParam() {
+      EmptyParam.__super__.constructor.call(this, "EmptyParam");
+    }
 
     return EmptyParam;
 
@@ -845,7 +847,7 @@
     };
 
     ParamCollection.prototype.add = function(param) {
-      this._params[param.name] = param;
+      this._params[param.name.toLowerCase()] = param;
       return param;
     };
 
@@ -871,7 +873,7 @@
 
     ParamCollection.prototype.getParam = function(paramName) {
       var param;
-      param = this._params[paramName];
+      param = this._params[paramName.toLowerCase()];
       if (param === void 0) {
         return new EmptyParam();
       }
@@ -1143,5 +1145,3 @@
   ObliqueNS.TimedDOMObserver = TimedDOMObserver;
 
 }).call(this);
-
-//# sourceMappingURL=oblique.map

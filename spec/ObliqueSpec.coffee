@@ -2,17 +2,17 @@ describe "Oblique", ->
 
   beforeEach (done) ->
     Oblique().destroy()
-    Oblique().setIntervalTimeInMs
+    Oblique().setIntervalTimeInMs 10
     FixtureHelper.clear()
-    hashParams=Oblique().getHashParams()
-    hashParams.removeAll()
-    Oblique().setHashParams(hashParams)
+    window.location.hash=""
     done()
 
   afterEach ->
     Oblique().destroy()
+    window.location.hash=""
 
   it "On creation it has a default interval time", ->
+    Oblique().destroy()
     expect(Oblique().getIntervalTimeInMs()).toBe Oblique.DEFAULT_INTERVAL_MS
 
   it "Can change default interval time", ->

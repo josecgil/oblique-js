@@ -440,6 +440,19 @@ class Param
     value=hashArray[1].trim()
     {name:name, value:value}
 
+  getLocationHash: ->
+    ""
+
+  isEmpty:() ->
+    return true
+
+  valueIsEqualTo:() ->
+    return true
+
+  containsValue:() ->
+    return true
+
+
 ObliqueNS.Param=Param
 # ../src/Params/ArrayParam.coffee
 
@@ -519,18 +532,7 @@ ObliqueNS.ArrayParam=ArrayParam
 class EmptyParam extends ObliqueNS.Param
 
   constructor:()->
-
-  getLocationHash: ->
-    ""
-
-  isEmpty:() ->
-    return true
-
-  valueIsEqualTo:() ->
-    return true
-
-  containsValue:() ->
-    return true
+    super("EmptyParam")
 
 ObliqueNS.EmptyParam=EmptyParam
 # ../src/Params/ParamCollection.coffee
@@ -569,7 +571,7 @@ class ParamCollection
     return false
 
   add:(param)->
-    @_params[param.name]=param
+    @_params[param.name.toLowerCase()]=param
     param
 
   addSingleParam:(name, value)->
@@ -588,7 +590,7 @@ class ParamCollection
     @_params={}
 
   getParam:(paramName)->
-    param=@_params[paramName]
+    param=@_params[paramName.toLowerCase()]
     return new EmptyParam() if param is undefined
     param
 
