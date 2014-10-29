@@ -70,7 +70,9 @@ class ParamCollection
 
     hash = "#"
     for paramName, param of @_params
-      hash += param.getLocationHash()+"&"
+      continue if param.isEmpty()
+
+      hash += param.getLocationHash() + "&"
 
     hash=hash.substr(0,hash.length-1)
     hash

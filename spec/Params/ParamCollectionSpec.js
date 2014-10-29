@@ -310,10 +310,19 @@
       expect(param.isEmpty()).toBeTruthy();
       return expect(param.getLocationHash()).toBe("");
     });
-    return it("must return Empty param object when param array is an empty array", function() {
+    it("must return Empty param object when param array is an empty array", function() {
       var param, paramCollection;
       paramCollection = new ParamCollection("#album=[]");
       param = paramCollection.getParam("album");
+      expect(param).toBeDefined();
+      expect(param.isEmpty()).toBeTruthy();
+      return expect(param.getLocationHash()).toBe("");
+    });
+    return it("must return Empty param object when I remove the last value of a param array ", function() {
+      var param, paramCollection;
+      paramCollection = new ParamCollection("#album=[1]");
+      param = paramCollection.getParam("album");
+      param.remove("1");
       expect(param).toBeDefined();
       expect(param.isEmpty()).toBeTruthy();
       return expect(param.getLocationHash()).toBe("");

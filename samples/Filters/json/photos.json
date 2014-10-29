@@ -4,42 +4,48 @@
     "id": 51,
     "title": "non sunt voluptatem placeat consequuntur rem incidunt",
     "url": "http://placehold.it/600/8e973b",
-    "thumbnailUrl": "http://placehold.it/150/bb7f4"
+    "thumbnailUrl": "http://placehold.it/150/88FF88",
+    "color":"green"
   },
   {
     "albumId": "2",
     "id": 52,
     "title": "eveniet pariatur quia nobis reiciendis laboriosam ea",
     "url": "http://placehold.it/600/121fa4",
-    "thumbnailUrl": "http://placehold.it/150/9ed3d5"
+    "thumbnailUrl": "http://placehold.it/150/8888FF",
+    "color":"blue"
   },
   {
     "albumId": "2",
     "id": 53,
     "title": "soluta et harum aliquid officiis ab omnis consequatur",
     "url": "http://placehold.it/600/6efc5f",
-    "thumbnailUrl": "http://placehold.it/150/f349d6"
+    "thumbnailUrl": "http://placehold.it/150/ff8888",
+    "color":"red"
   },
   {
     "albumId": "2",
     "id": 54,
     "title": "ut ex quibusdam dolore mollitia",
     "url": "http://placehold.it/600/aa8f2e",
-    "thumbnailUrl": "http://placehold.it/150/d14fd5"
+    "thumbnailUrl": "http://placehold.it/150/8888FF",
+    "color":"blue"
   },
   {
     "albumId": "2",
     "id": 55,
     "title": "voluptatem consequatur totam qui aut iure est vel",
     "url": "http://placehold.it/600/5e04a4",
-    "thumbnailUrl": "http://placehold.it/150/5b3533"
+    "thumbnailUrl": "http://placehold.it/150/ff8888",
+    "color":"red"
   },
   {
     "albumId": "2",
     "id": 1,
     "title": "accusamus beatae ad facilis cum similique qui sunt",
     "url": "http://placehold.it/600/92c952",
-    "thumbnailUrl": "http://placehold.it/150/30ac17"
+    "thumbnailUrl": "http://placehold.it/150/8888FF",
+    "color":"blue"
   },
 
   {
@@ -47,41 +53,47 @@
     "id": 2,
     "title": "reprehenderit est deserunt velit ipsam",
     "url": "http://placehold.it/600/771796",
-    "thumbnailUrl": "http://placehold.it/150/dff9f6"
+    "thumbnailUrl": "http://placehold.it/150/ff0000",
+    "color":"red"
   },
   {
     "albumId": "1",
     "id": 3,
     "title": "officia porro iure quia iusto qui ipsa ut modi",
     "url": "http://placehold.it/600/24f355",
-    "thumbnailUrl": "http://placehold.it/150/1941e9"
+    "thumbnailUrl": "http://placehold.it/150/0000FF",
+    "color":"blue"
   },
   {
     "albumId": "1",
     "id": 4,
     "title": "culpa odio esse rerum omnis laboriosam voluptate repudiandae",
     "url": "http://placehold.it/600/d32776",
-    "thumbnailUrl": "http://placehold.it/150/39e985"
+    "thumbnailUrl": "http://placehold.it/150/00FF00",
+    "color":"green"
   },
   {
     "albumId": "1",
     "id": 5,
     "title": "natus nisi omnis corporis facere molestiae rerum in",
     "url": "http://placehold.it/600/f66b97",
-    "thumbnailUrl": "http://placehold.it/150/7735a"
+    "thumbnailUrl": "http://placehold.it/150/ff0000",
+    "color":"red"
   },
   {
     "albumId": "1",
     "id": 6,
     "title": "accusamus ea aliquid et amet sequi nemo",
     "url": "http://placehold.it/600/56a8c2",
-    "thumbnailUrl": "http://placehold.it/150/c672a0"
+    "thumbnailUrl": "http://placehold.it/150/0000FF",
+    "color":"blue"
   },
   {
     "albumId": "1",
     "id": 7,
     "title": "officia delectus consequatur vero aut veniam explicabo molestias",
     "url": "http://placehold.it/600/b0f7cc",
-    "thumbnailUrl": "http://placehold.it/150/4105a5"
+    "thumbnailUrl": "http://placehold.it/150/00FF00",
+    "color":"green"
   }
 ]

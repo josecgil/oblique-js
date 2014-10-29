@@ -103,9 +103,6 @@
     };
 
     ArrayParam.prototype.isEmpty = function() {
-      if (this.values === void 0) {
-        return true;
-      }
       if (this.count() === 0) {
         return true;
       }
@@ -128,6 +125,9 @@
     };
 
     ArrayParam.prototype.count = function() {
+      if (this.values === void 0) {
+        return 0;
+      }
       return this.values.length;
     };
 
@@ -291,6 +291,9 @@
       _ref = this._params;
       for (paramName in _ref) {
         param = _ref[paramName];
+        if (param.isEmpty()) {
+          continue;
+        }
         hash += param.getLocationHash() + "&";
       }
       hash = hash.substr(0, hash.length - 1);

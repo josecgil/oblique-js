@@ -110,6 +110,9 @@
       _ref = this._params;
       for (paramName in _ref) {
         param = _ref[paramName];
+        if (param.isEmpty()) {
+          continue;
+        }
         hash += param.getLocationHash() + "&";
       }
       hash = hash.substr(0, hash.length - 1);

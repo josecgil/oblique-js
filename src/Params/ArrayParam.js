@@ -52,9 +52,6 @@
     };
 
     ArrayParam.prototype.isEmpty = function() {
-      if (this.values === void 0) {
-        return true;
-      }
       if (this.count() === 0) {
         return true;
       }
@@ -77,6 +74,9 @@
     };
 
     ArrayParam.prototype.count = function() {
+      if (this.values === void 0) {
+        return 0;
+      }
       return this.values.length;
     };
 

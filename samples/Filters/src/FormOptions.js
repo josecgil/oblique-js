@@ -33,8 +33,18 @@
 
     };
 
-    FormOptions.prototype.click=function(clickCallbackFn) {
-        this.formElements.click(clickCallbackFn);
+    FormOptions.prototype.updateValue=function(value) {
+        this.formElements.val(value);
+    };
+
+
+    FormOptions.prototype.click=function(callbackFn) {
+        this.formElements.click(callbackFn);
+    };
+
+
+    FormOptions.prototype.change=function(callbackFn) {
+        this.formElements.change(callbackFn);
     };
 
     FormOptions.prototype._valuesContains=function(values, elementValue) {

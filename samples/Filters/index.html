@@ -12,18 +12,32 @@
     <script type="text/javascript" src="src/PhotoService.js"></script>
 
     <script type="text/javascript" src="src/AlbumDirective.js"></script>
-    <script type="text/javascript" src="src/AlbumController.js"></script>
+    <script type="text/javascript" src="src/PhotoController.js"></script>
+
+    <script type="text/javascript" src="src/ColorDirective.js"></script>
+
 
 </head>
 <body>
 
-<section data-ob-directive="AlbumDirective" data-ob-controller="AlbumController">
+
+<section data-ob-controller="PhotoController">
     <h1>Click to filter only photos of that album</h1>
-    <form>
-        <label for="album1">Album 1</label><input name="album" type="checkbox" value="1"/>
-        <label for="album2">Album 2</label><input name="album" type="checkbox" value="2"/>
-    </form>
+    <section data-ob-directive="AlbumDirective" >
+        <label for="album1">Album 1</label><input id="album1" type="checkbox" value="1"/>
+        <label for="album2">Album 2</label><input id="album2" type="checkbox" value="2"/>
+    </section>
+    <section data-ob-directive="ColorDirective">
+        <select name="colors" id="colors">
+            <option value="">Todos</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+        </select>
+    </section>
 </section>
+
+
 <section id="results">
 
 </section>

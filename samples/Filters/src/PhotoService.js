@@ -13,14 +13,22 @@
     }
 
     PhotoService.prototype.getFilteredPhotos=function(onSuccess, onError) {
-        var filterByAlbumIdFunction=function(album) {
-            var albumsHashValues = Oblique().getHashParams().getParam("albums").values;
-            if (albumsHashValues.indexOf(album.albumId)==-1) {
+        var filterByHashValues=function(album) {
+            var albumsParam = Oblique().getHashParams().getParam("albums");
+            var albumsHashValues = albumsParam.values;
+            if ( (!albumsParam.isEmpty()) && (albumsHashValues.indexOf(album.albumId)==-1)) {
                 return false;
             }
+
+            var colorParam = Oblique().getHashParams().getParam("color");
+            var colorHashValue = colorParam.value;
+            if ( (!colorParam.isEmpty()) && (colorHashValue!=album.color)) {
+                return false;
+            }
+
             return true;
         };
-        return this._getPhotos(filterByAlbumIdFunction, onSuccess, onError);
+        return this._getPhotos(filterByHashValues, onSuccess, onError);
     }
 
     PhotoService.prototype._getPhotos=function(filterFunction, onSuccess, onError) {

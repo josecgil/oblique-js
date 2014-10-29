@@ -907,7 +907,7 @@
       Oblique().setIntervalTimeInMs(10);
       return $("#fixture").html("<div data-ob-controller='TestController'></div>");
     });
-    return it("must call a controller onHashChange() when location.hash change", function(done) {
+    it("must call a controller onHashChange() when location.hash change", function(done) {
       var TestController;
       TestController = (function() {
         function TestController() {
@@ -932,6 +932,14 @@
       Oblique().registerController("TestController", TestController);
       Oblique().setIntervalTimeInMs(10);
       return $("#fixture").html("<div data-ob-controller='TestController'></div>");
+    });
+    return it("must set correctly # and & when I remove a param from list", function() {
+      var hashParams;
+      window.location.hash = "#albums=[1]&color=green";
+      hashParams = Oblique().getHashParams();
+      hashParams.getParam("albums").remove("1");
+      Oblique().setHashParams(hashParams);
+      return expect(window.location.hash).toBe("#color=green");
     });
   });
 

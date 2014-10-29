@@ -56,7 +56,6 @@ class ArrayParam extends ObliqueNS.Param
     @values=undefined if @count() is 0
 
   isEmpty:() ->
-    return true if @values is undefined
     return true if @count() is 0
     return false
 
@@ -69,6 +68,7 @@ class ArrayParam extends ObliqueNS.Param
     hash += "]"
 
   count:->
+    return 0 if @values is undefined
     @values.length
 
 
@@ -176,7 +176,9 @@ class ParamCollection
 
     hash = "#"
     for paramName, param of @_params
-      hash += param.getLocationHash()+"&"
+      continue if param.isEmpty()
+
+      hash += param.getLocationHash() + "&"
 
     hash=hash.substr(0,hash.length-1)
     hash

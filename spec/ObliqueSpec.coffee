@@ -757,3 +757,12 @@ describe "Oblique", ->
     Oblique().registerController "TestController", TestController
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-ob-controller='TestController'></div>"
+
+
+  it "must set correctly # and & when I remove a param from list", ()->
+    window.location.hash="#albums=[1]&color=green"
+    hashParams = Oblique().getHashParams()
+    hashParams.getParam("albums").remove("1")
+    Oblique().setHashParams(hashParams)
+    expect(window.location.hash).toBe("#color=green")
+

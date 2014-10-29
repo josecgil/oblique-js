@@ -284,3 +284,12 @@ describe "ParamCollection", ->
     expect(param).toBeDefined()
     expect(param.isEmpty()).toBeTruthy()
     expect(param.getLocationHash()).toBe("")
+
+
+  it "must return Empty param object when I remove the last value of a param array ", () ->
+    paramCollection=new ParamCollection("#album=[1]")
+    param=paramCollection.getParam("album")
+    param.remove("1")
+    expect(param).toBeDefined()
+    expect(param.isEmpty()).toBeTruthy()
+    expect(param.getLocationHash()).toBe("")
