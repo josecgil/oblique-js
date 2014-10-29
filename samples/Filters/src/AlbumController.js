@@ -1,55 +1,54 @@
-var AlbumController=function () {
-
+var AlbumController=function (data) {
+    this.photoService=new PhotoService();
+    this.formOptions=new FormOptions(data.jQueryElement.find("input[type='checkbox']"));
 };
 
 AlbumController.prototype.onHashChange=function(data) {
-    this._checkByUrl(data);
-    this._loadDataByFilter(data.hashParams);
+    var hashParams = data.hashParams;
+    Oblique().setHashParams(hashParams);
+
+    var albumsFilter = hashParams.getParam("albums");
+
+    if (albumsFilter.isEmpty()) {
+        this._applyNoFilter();
+        return;
+    };
+    this._applyFilter(albumsFilter);
 };
 
-AlbumController.prototype._checkByUrl=function(data){
-    var checkBoxes=data.jQueryElement.find("input[type='checkbox']");
-    var albumsFilter=this._getFilterFromHash(data.hashParams);
+AlbumController.prototype._applyNoFilter=function() {
     var self=this;
-    checkBoxes.each(function(i, checkbox) {
-        var albumIdFromCheckBox=$(checkbox).val();
-        $(checkbox).prop("checked",false);
-        if (albumsFilter==null) return;
-        if (self._albumIsInAlbumFilter(albumIdFromCheckBox, albumsFilter)) {
-            $(checkbox).prop("checked",true);
-        }
+
+    this.formOptions.reset();
+    this.photoService.getAllPhotos(function (jsonPhotos) {
+        self._renderHtml(jsonPhotos);
+    }, function (errorMessage) {
+        self._renderHtmlError(errorMessage);
     });
 };
 
-AlbumController.prototype._albumIsInAlbumFilter=function(albumId, albumFilter) {
-    if (albumFilter==null) return true;
-    if (albumFilter.indexOf(albumId)==-1) {
-        return false;
+AlbumController.prototype._applyFilter=function(albumsFilter) {
+    var self=this;
+    
+    this.formOptions.updateValues(albumsFilter.values);
+    this.photoService.getFilteredPhotos(function (jsonPhotos) {
+        self._renderHtml(jsonPhotos);
+    }, function (errorMessage) {
+        self._renderHtmlError(errorMessage);
+    });
+};
+
+
+AlbumController.prototype._renderHtml=function(jsonPhotos) {
+    $("#results").html("");
+    for(var i=0;i<jsonPhotos.length; i++) {
+        var photo=jsonPhotos[i];
+        $("#results").append("<img src='"+photo.thumbnailUrl+"' />");
     }
-    return true;
 };
 
-AlbumController.prototype._getFilterFromHash=function(hashParams) {
-    var albumsParam=hashParams.getParam("albums");
-    if (albumsParam!=null) return albumsParam.values;
-    return null;
-};
-
-AlbumController.prototype._loadDataByFilter=function(hashParams) {
-    var self=this;
-    $.getJSON( "/oblique-js/samples/Filters/json/photos.json", function( jsonPhotos ) {
-        //hashParams.removeDuplicateArrayValues();?
-
-        var albumsFilter=self._getFilterFromHash(hashParams);
-
-        $("#results").html("");
-        for(var i=0;i<jsonPhotos.length; i++) {
-            var photo=jsonPhotos[i];
-            if (self._albumIsInAlbumFilter(photo.albumId, albumsFilter)) {
-                $("#results").append("<img src='"+photo.thumbnailUrl+"' />");
-            }
-        }
-    });
+AlbumController.prototype._renderHtmlError=function(errorMessage) {
+    $("#results").html("Error: "+errorMessage);
 };
 
 Oblique().registerController("AlbumController", AlbumController)

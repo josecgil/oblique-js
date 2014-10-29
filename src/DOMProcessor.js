@@ -36,12 +36,11 @@
       return $(window).on("hashchange", (function(_this) {
         return function() {
           var controllerData, controllerInstanceData, _i, _len, _ref, _results;
-          console.log("Hash Cambiada");
           _ref = _this._controllerInstancesData;
           _results = [];
           for (_i = 0, _len = _ref.length; _i < _len; _i++) {
             controllerInstanceData = _ref[_i];
-            controllerData = _this._createControllerData(controllerInstanceData);
+            controllerData = _this._createControllerData(controllerInstanceData.domElement, controllerInstanceData.jQueryElement);
             _results.push(controllerInstanceData.instance.onHashChange(controllerData));
           }
           return _results;
@@ -130,7 +129,7 @@
     };
 
     DOMProcessor.prototype._processControllerElement = function(obElement, controllerAttrValue) {
-      var controllerConstructorFn, controllerInstanceData, controllerName, _i, _len, _ref, _results;
+      var controllerConstructorFn, controllerData, controllerInstanceData, controllerName, domElement, jQueryElement, _i, _len, _ref, _results;
       _ref = controllerAttrValue.split(",");
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -144,22 +143,25 @@
           throw new ObliqueNS.Error("There is no " + controllerName + " controller registered");
         }
         obElement.setFlag(controllerName);
+        domElement = obElement.getDOMElement();
+        jQueryElement = obElement.getjQueryElement();
+        controllerData = this._createControllerData(domElement, jQueryElement);
         controllerInstanceData = {
-          instance: new controllerConstructorFn(),
-          domElement: obElement.getDOMElement(),
-          jQueryElement: obElement.getjQueryElement()
+          instance: new controllerConstructorFn(controllerData),
+          domElement: domElement,
+          jQueryElement: jQueryElement
         };
         this._controllerInstancesData.push(controllerInstanceData);
-        _results.push(controllerInstanceData.instance.onHashChange(this._createControllerData(controllerInstanceData)));
+        _results.push(controllerInstanceData.instance.onHashChange(this._createControllerData(domElement, jQueryElement)));
       }
       return _results;
     };
 
-    DOMProcessor.prototype._createControllerData = function(controllerInstanceData) {
+    DOMProcessor.prototype._createControllerData = function(domElement, jQueryElement) {
       var controllerData;
       return controllerData = {
-        domElement: controllerInstanceData.domElement,
-        jQueryElement: controllerInstanceData.jQueryElement,
+        domElement: domElement,
+        jQueryElement: jQueryElement,
         hashParams: Oblique().getHashParams()
       };
     };

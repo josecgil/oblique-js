@@ -42,9 +42,9 @@ class Oblique
     return true if @_model
     false
 
-  renderHtml: (url, model) ->
+  _renderHtml: (url, model) ->
     if Handlebars is undefined
-      throw new ObliqueNS.Error("Oblique().renderHtml() needs handlebarsjs loaded to work")
+      throw new ObliqueNS.Error("Oblique()._renderHtml() needs handlebarsjs loaded to work")
     template=@templateFactory.createFromUrl url
     template.renderHTML model
 

@@ -328,7 +328,7 @@
       return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='Model'></div>");
     });
     it("must throw an error if Handlebars isn't loaded", function() {
-      return Oblique().renderHtml();
+      return Oblique()._renderHtml();
     });
     it("must render template", function() {
       var currentHtml, expectedHtml, modelToTest;
@@ -337,7 +337,7 @@
         body: "cuerpo"
       };
       expectedHtml = "<h1>titulo</h1><div>cuerpo</div>";
-      currentHtml = Oblique().renderHtml("/oblique-js/spec/Templates/test_ok.hbs", modelToTest);
+      currentHtml = Oblique()._renderHtml("/oblique-js/spec/Templates/test_ok.hbs", modelToTest);
       return expect(currentHtml).toBe(expectedHtml);
     });
     it("must throw an error if template is not found", function() {
@@ -347,7 +347,7 @@
         body: "cuerpo"
       };
       return expect(function() {
-        return Oblique().renderHtml("/patata.hbs", modelToTest);
+        return Oblique()._renderHtml("/patata.hbs", modelToTest);
       }).toThrow(new ObliqueNS.Error("template '/patata.hbs' not found"));
     });
     it("must throw an error if handlebars is not loaded", function() {
@@ -356,8 +356,8 @@
       window.Handlebars = void 0;
       try {
         return expect(function() {
-          return Oblique().renderHtml();
-        }).toThrow(new ObliqueNS.Error("Oblique().renderHtml() needs handlebarsjs loaded to work"));
+          return Oblique()._renderHtml();
+        }).toThrow(new ObliqueNS.Error("Oblique()._renderHtml() needs handlebarsjs loaded to work"));
       } finally {
         window.Handlebars = HandlebarsCopy;
       }
@@ -884,7 +884,30 @@
       Oblique().setIntervalTimeInMs(10);
       return $("#fixture").html("<div data-ob-controller='TestController'></div>");
     });
-    return it("must call a controller change() when location.hash change", function(done) {
+    it("must call a controller constructor with correct hashParams", function(done) {
+      var TestController, hashParams;
+      hashParams = Oblique().getHashParams();
+      hashParams.addSingleParam("sort", "desc");
+      Oblique().setHashParams(hashParams);
+      TestController = (function() {
+        function TestController(data) {
+          hashParams = data.hashParams;
+          expect(hashParams.count()).toBe(1);
+          expect(hashParams.getParam("sort").value).toBe("desc");
+          Oblique().destroy();
+          done();
+        }
+
+        TestController.prototype.onHashChange = function() {};
+
+        return TestController;
+
+      })();
+      Oblique().registerController("TestController", TestController);
+      Oblique().setIntervalTimeInMs(10);
+      return $("#fixture").html("<div data-ob-controller='TestController'></div>");
+    });
+    return it("must call a controller onHashChange() when location.hash change", function(done) {
       var TestController;
       TestController = (function() {
         function TestController() {

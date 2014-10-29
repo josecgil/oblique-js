@@ -274,7 +274,7 @@ describe "Oblique", ->
 
   it "must throw an error if Handlebars isn't loaded", ()->
     #expect(->
-      Oblique().renderHtml()
+      Oblique()._renderHtml()
     #).toThrow(new ObliqueNS.Error("Oblique needs handlebarsjs loaded to render templates"))
 
   it "must render template", ()->
@@ -284,7 +284,7 @@ describe "Oblique", ->
 
     expectedHtml="<h1>titulo</h1><div>cuerpo</div>"
 
-    currentHtml=Oblique().renderHtml "/oblique-js/spec/Templates/test_ok.hbs", modelToTest
+    currentHtml=Oblique()._renderHtml "/oblique-js/spec/Templates/test_ok.hbs", modelToTest
     expect(currentHtml).toBe expectedHtml
 
   it "must throw an error if template is not found", ->
@@ -293,7 +293,7 @@ describe "Oblique", ->
       body : "cuerpo"
 
     expect(->
-      Oblique().renderHtml "/patata.hbs", modelToTest
+      Oblique()._renderHtml "/patata.hbs", modelToTest
     ).toThrow(new ObliqueNS.Error("template '/patata.hbs' not found"))
 
   it "must throw an error if handlebars is not loaded", ->
@@ -301,8 +301,8 @@ describe "Oblique", ->
     window.Handlebars=undefined
     try
       expect(->
-        Oblique().renderHtml()
-      ).toThrow(new ObliqueNS.Error("Oblique().renderHtml() needs handlebarsjs loaded to work"))
+        Oblique()._renderHtml()
+      ).toThrow(new ObliqueNS.Error("Oblique()._renderHtml() needs handlebarsjs loaded to work"))
     finally
       window.Handlebars=HandlebarsCopy
 
@@ -720,7 +720,27 @@ describe "Oblique", ->
     $("#fixture").html "<div data-ob-controller='TestController'></div>"
 
 
-  it "must call a controller change() when location.hash change", (done)->
+  it "must call a controller constructor with correct hashParams", (done)->
+    hashParams=Oblique().getHashParams()
+    hashParams.addSingleParam("sort","desc")
+    Oblique().setHashParams(hashParams)
+
+    class TestController
+      constructor: (data)->
+        hashParams = data.hashParams
+        expect(hashParams.count()).toBe(1)
+        expect(hashParams.getParam("sort").value).toBe("desc")
+        Oblique().destroy()
+        done()
+
+      onHashChange:()->
+
+    Oblique().registerController "TestController", TestController
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-controller='TestController'></div>"
+
+
+  it "must call a controller onHashChange() when location.hash change", (done)->
     class TestController
       constructor: ()->
         hashParams=Oblique().getHashParams()

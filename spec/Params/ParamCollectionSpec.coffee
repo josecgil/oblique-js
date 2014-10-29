@@ -75,7 +75,7 @@ describe "ParamCollection", ->
     paramCollection=new ParamCollection("")
     paramCollection.add(new ArrayParam("sizes",["M","L"]))
     paramCollection.remove("sizes")
-    expect(paramCollection.getParam("sizes")).toBeUndefined()
+    expect(paramCollection.getParam("sizes").isEmpty()).toBeTruthy()
 
   it "must ignore remove an inexistent array param value", () ->
     paramCollection=new ParamCollection("")
@@ -99,13 +99,13 @@ describe "ParamCollection", ->
 
     expect(paramCollection.count()).toBe 1
     expect(paramCollection.getParam("colors")).toBeDefined()
-    expect(paramCollection.getParam("sizes")).toBeUndefined()
+    expect(paramCollection.getParam("sizes").isEmpty()).toBeTruthy()
 
   it "must clear a param by name", () ->
     paramCollection=new ParamCollection("")
     paramCollection.add(new ArrayParam("sizes",["XL"]))
     paramCollection.remove("sizes")
-    expect(paramCollection.getParam("sizes")).toBeUndefined()
+    expect(paramCollection.getParam("sizes").isEmpty()).toBeTruthy()
 
   it "must clear all params", () ->
     paramCollection=new ParamCollection("")
@@ -263,3 +263,24 @@ describe "ParamCollection", ->
     arrayParam=paramCollection.add(new ArrayParam("sizes",["M"]))
     expect(arrayParam.count()).toBe(1)
     expect(arrayParam.values[0]).toBe("M")
+
+  it "must return Empty param object when param doesn't exists", () ->
+    paramCollection=new ParamCollection("")
+    param=paramCollection.getParam("muggel")
+    expect(param).toBeDefined()
+    expect(param.isEmpty()).toBeTruthy()
+    expect(param.getLocationHash()).toBe("")
+
+  it "must return Empty param object when param doesn't have value", () ->
+    paramCollection=new ParamCollection("#album=")
+    param=paramCollection.getParam("album")
+    expect(param).toBeDefined()
+    expect(param.isEmpty()).toBeTruthy()
+    expect(param.getLocationHash()).toBe("")
+
+  it "must return Empty param object when param array is an empty array", () ->
+    paramCollection=new ParamCollection("#album=[]")
+    param=paramCollection.getParam("album")
+    expect(param).toBeDefined()
+    expect(param.isEmpty()).toBeTruthy()
+    expect(param.getLocationHash()).toBe("")

@@ -80,6 +80,15 @@
       return this.values.length;
     };
 
+    ArrayParam.is = function(strHashParam) {
+      var hashParam;
+      hashParam = Param.parse(strHashParam);
+      if (Param.containsChar(hashParam.value, "[")) {
+        return true;
+      }
+      return false;
+    };
+
     ArrayParam.createFrom = function(strHashParam) {
       var hashParam, trimmedValues, value, values, _i, _len;
       hashParam = Param.parse(strHashParam);
@@ -88,7 +97,10 @@
       trimmedValues = [];
       for (_i = 0, _len = values.length; _i < _len; _i++) {
         value = values[_i];
-        trimmedValues.push(value.trim());
+        value = value.trim();
+        if (!Param.stringIsNullOrEmpty(value)) {
+          trimmedValues.push(value);
+        }
       }
       return new ArrayParam(hashParam.name, trimmedValues);
     };

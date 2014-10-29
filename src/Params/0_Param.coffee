@@ -14,6 +14,11 @@ class Param
     return false if fullStr.indexOf(char) is -1
     true
 
+  @stringIsNullOrEmpty:(value) ->
+    return true if value is undefined
+    return true if value.trim().length is 0
+    false
+
   @parse:(strHashParam)->
     hashArray=strHashParam.split("=")
     name=hashArray[0].trim()

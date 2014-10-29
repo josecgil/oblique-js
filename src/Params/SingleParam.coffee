@@ -18,6 +18,7 @@ class SingleParam extends ObliqueNS.Param
 
   @is:(strHashParam)->
     hashParam=Param.parse(strHashParam)
+    return false if Param.stringIsNullOrEmpty(hashParam.value)
     return false if Param.containsChar(hashParam.value,"(")
     return false if Param.containsChar(hashParam.value,"[")
     true

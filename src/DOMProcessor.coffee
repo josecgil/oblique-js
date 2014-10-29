@@ -30,9 +30,8 @@ class DOMProcessor
 
   _listenToHashRouteChanges:->
     $(window).on "hashchange", =>
-      console.log "Hash Cambiada"
       for controllerInstanceData in @_controllerInstancesData
-        controllerData=@_createControllerData(controllerInstanceData)
+        controllerData=@_createControllerData(controllerInstanceData.domElement, controllerInstanceData.jQueryElement)
         controllerInstanceData.instance.onHashChange(controllerData)
 
   _ignoreHashRouteChanges:->
@@ -95,20 +94,25 @@ class DOMProcessor
       throw new ObliqueNS.Error("There is no #{controllerName} controller registered") if not controllerConstructorFn
       obElement.setFlag controllerName
 
+      domElement=obElement.getDOMElement()
+      jQueryElement=obElement.getjQueryElement()
+      controllerData=@_createControllerData(domElement, jQueryElement)
+
       controllerInstanceData=
-        instance: new controllerConstructorFn()
-        domElement: obElement.getDOMElement()
-        jQueryElement: obElement.getjQueryElement()
+        instance: new controllerConstructorFn(controllerData)
+        domElement: domElement
+        jQueryElement: jQueryElement
 
       @_controllerInstancesData.push(controllerInstanceData)
 
-      controllerInstanceData.instance.onHashChange @_createControllerData(controllerInstanceData)
+
+      controllerInstanceData.instance.onHashChange @_createControllerData(domElement, jQueryElement)
 
 
-  _createControllerData:(controllerInstanceData)->
+  _createControllerData:(domElement, jQueryElement)->
     controllerData=
-      domElement: controllerInstanceData.domElement
-      jQueryElement: controllerInstanceData.jQueryElement
+      domElement: domElement
+      jQueryElement: jQueryElement
       hashParams: Oblique().getHashParams()
 
   _getParams : (obElement) ->

@@ -26,6 +26,16 @@
       return true;
     };
 
+    Param.stringIsNullOrEmpty = function(value) {
+      if (value === void 0) {
+        return true;
+      }
+      if (value.trim().length === 0) {
+        return true;
+      }
+      return false;
+    };
+
     Param.parse = function(strHashParam) {
       var hashArray, name, value;
       hashArray = strHashParam.split("=");

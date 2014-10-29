@@ -3,6 +3,7 @@
 ArrayParam=ObliqueNS.ArrayParam
 RangeParam=ObliqueNS.RangeParam
 SingleParam=ObliqueNS.SingleParam
+EmptyParam=ObliqueNS.EmptyParam
 
 class ParamCollection
 
@@ -18,8 +19,11 @@ class ParamCollection
         param=SingleParam.createFrom(hashParam)
       else if (RangeParam.is(hashParam))
         param=RangeParam.createFrom(hashParam)
-      else
+      else if (ArrayParam.is(hashParam))
         param=ArrayParam.createFrom(hashParam)
+      else
+        param=new EmptyParam()
+
       @add(param)
 
   _StringIsEmpty:(value)->
@@ -47,7 +51,9 @@ class ParamCollection
     @_params={}
 
   getParam:(paramName)->
-    @_params[paramName]
+    param=@_params[paramName]
+    return new EmptyParam() if param is undefined
+    param
 
   count: ->
     count = 0

@@ -34,6 +34,9 @@
     SingleParam.is = function(strHashParam) {
       var hashParam;
       hashParam = Param.parse(strHashParam);
+      if (Param.stringIsNullOrEmpty(hashParam.value)) {
+        return false;
+      }
       if (Param.containsChar(hashParam.value, "(")) {
         return false;
       }

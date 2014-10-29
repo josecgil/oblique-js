@@ -43,13 +43,21 @@ class ArrayParam extends ObliqueNS.Param
   count:->
     @values.length
 
+
+  @is:(strHashParam)->
+    hashParam=Param.parse(strHashParam)
+    return true if Param.containsChar(hashParam.value,"[")
+    false
+
   @createFrom:(strHashParam)->
     hashParam=Param.parse(strHashParam)
     value=hashParam.value.replace("[","").replace("]","")
     values=value.split(",")
     trimmedValues=[]
     for value in values
-      trimmedValues.push value.trim()
+      value=value.trim()
+      trimmedValues.push value if not Param.stringIsNullOrEmpty(value)
+
 
     new ArrayParam(hashParam.name, trimmedValues)
 

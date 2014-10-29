@@ -62,10 +62,10 @@
       return false;
     };
 
-    Oblique.prototype.renderHtml = function(url, model) {
+    Oblique.prototype._renderHtml = function(url, model) {
       var template;
       if (Handlebars === void 0) {
-        throw new ObliqueNS.Error("Oblique().renderHtml() needs handlebarsjs loaded to work");
+        throw new ObliqueNS.Error("Oblique()._renderHtml() needs handlebarsjs loaded to work");
       }
       template = this.templateFactory.createFromUrl(url);
       return template.renderHTML(model);

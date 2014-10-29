@@ -86,7 +86,7 @@
       paramCollection = new ParamCollection("");
       paramCollection.add(new ArrayParam("sizes", ["M", "L"]));
       paramCollection.remove("sizes");
-      return expect(paramCollection.getParam("sizes")).toBeUndefined();
+      return expect(paramCollection.getParam("sizes").isEmpty()).toBeTruthy();
     });
     it("must ignore remove an inexistent array param value", function() {
       var paramCollection, sizesParam;
@@ -111,14 +111,14 @@
       paramCollection.remove("sizes");
       expect(paramCollection.count()).toBe(1);
       expect(paramCollection.getParam("colors")).toBeDefined();
-      return expect(paramCollection.getParam("sizes")).toBeUndefined();
+      return expect(paramCollection.getParam("sizes").isEmpty()).toBeTruthy();
     });
     it("must clear a param by name", function() {
       var paramCollection;
       paramCollection = new ParamCollection("");
       paramCollection.add(new ArrayParam("sizes", ["XL"]));
       paramCollection.remove("sizes");
-      return expect(paramCollection.getParam("sizes")).toBeUndefined();
+      return expect(paramCollection.getParam("sizes").isEmpty()).toBeTruthy();
     });
     it("must clear all params", function() {
       var paramCollection;
@@ -287,12 +287,36 @@
       expect(paramCollection.getParam("price").max).toBe("20");
       return expect(paramCollection.getParam("sort").value).toBe("desc");
     });
-    return it("must return added param object when add", function() {
+    it("must return added param object when add", function() {
       var arrayParam, paramCollection;
       paramCollection = new ParamCollection("");
       arrayParam = paramCollection.add(new ArrayParam("sizes", ["M"]));
       expect(arrayParam.count()).toBe(1);
       return expect(arrayParam.values[0]).toBe("M");
+    });
+    it("must return Empty param object when param doesn't exists", function() {
+      var param, paramCollection;
+      paramCollection = new ParamCollection("");
+      param = paramCollection.getParam("muggel");
+      expect(param).toBeDefined();
+      expect(param.isEmpty()).toBeTruthy();
+      return expect(param.getLocationHash()).toBe("");
+    });
+    it("must return Empty param object when param doesn't have value", function() {
+      var param, paramCollection;
+      paramCollection = new ParamCollection("#album=");
+      param = paramCollection.getParam("album");
+      expect(param).toBeDefined();
+      expect(param.isEmpty()).toBeTruthy();
+      return expect(param.getLocationHash()).toBe("");
+    });
+    return it("must return Empty param object when param array is an empty array", function() {
+      var param, paramCollection;
+      paramCollection = new ParamCollection("#album=[]");
+      param = paramCollection.getParam("album");
+      expect(param).toBeDefined();
+      expect(param.isEmpty()).toBeTruthy();
+      return expect(param.getLocationHash()).toBe("");
     });
   });
 

@@ -14,6 +14,11 @@ class Param
     return false if fullStr.indexOf(char) is -1
     true
 
+  @stringIsNullOrEmpty:(value) ->
+    return true if value is undefined
+    return true if value.trim().length is 0
+    false
+
   @parse:(strHashParam)->
     hashArray=strHashParam.split("=")
     name=hashArray[0].trim()
@@ -66,13 +71,21 @@ class ArrayParam extends ObliqueNS.Param
   count:->
     @values.length
 
+
+  @is:(strHashParam)->
+    hashParam=Param.parse(strHashParam)
+    return true if Param.containsChar(hashParam.value,"[")
+    false
+
   @createFrom:(strHashParam)->
     hashParam=Param.parse(strHashParam)
     value=hashParam.value.replace("[","").replace("]","")
     values=value.split(",")
     trimmedValues=[]
     for value in values
-      trimmedValues.push value.trim()
+      value=value.trim()
+      trimmedValues.push value if not Param.stringIsNullOrEmpty(value)
+
 
     new ArrayParam(hashParam.name, trimmedValues)
 
@@ -80,9 +93,23 @@ class ArrayParam extends ObliqueNS.Param
 ObliqueNS.ArrayParam=ArrayParam
 @.ObliqueNS=@.ObliqueNS or {}
 
+class EmptyParam extends ObliqueNS.Param
+
+  constructor:()->
+
+  getLocationHash: ->
+    ""
+
+  isEmpty:() ->
+    return true
+
+ObliqueNS.EmptyParam=EmptyParam
+@.ObliqueNS=@.ObliqueNS or {}
+
 ArrayParam=ObliqueNS.ArrayParam
 RangeParam=ObliqueNS.RangeParam
 SingleParam=ObliqueNS.SingleParam
+EmptyParam=ObliqueNS.EmptyParam
 
 class ParamCollection
 
@@ -98,8 +125,11 @@ class ParamCollection
         param=SingleParam.createFrom(hashParam)
       else if (RangeParam.is(hashParam))
         param=RangeParam.createFrom(hashParam)
-      else
+      else if (ArrayParam.is(hashParam))
         param=ArrayParam.createFrom(hashParam)
+      else
+        param=new EmptyParam()
+
       @add(param)
 
   _StringIsEmpty:(value)->
@@ -127,7 +157,9 @@ class ParamCollection
     @_params={}
 
   getParam:(paramName)->
-    @_params[paramName]
+    param=@_params[paramName]
+    return new EmptyParam() if param is undefined
+    param
 
   count: ->
     count = 0
@@ -205,6 +237,7 @@ class SingleParam extends ObliqueNS.Param
 
   @is:(strHashParam)->
     hashParam=Param.parse(strHashParam)
+    return false if Param.stringIsNullOrEmpty(hashParam.value)
     return false if Param.containsChar(hashParam.value,"(")
     return false if Param.containsChar(hashParam.value,"[")
     true
@@ -350,9 +383,8 @@ class DOMProcessor
 
   _listenToHashRouteChanges:->
     $(window).on "hashchange", =>
-      console.log "Hash Cambiada"
       for controllerInstanceData in @_controllerInstancesData
-        controllerData=@_createControllerData(controllerInstanceData)
+        controllerData=@_createControllerData(controllerInstanceData.domElement, controllerInstanceData.jQueryElement)
         controllerInstanceData.instance.onHashChange(controllerData)
 
   _ignoreHashRouteChanges:->
@@ -415,20 +447,25 @@ class DOMProcessor
       throw new ObliqueNS.Error("There is no #{controllerName} controller registered") if not controllerConstructorFn
       obElement.setFlag controllerName
 
+      domElement=obElement.getDOMElement()
+      jQueryElement=obElement.getjQueryElement()
+      controllerData=@_createControllerData(domElement, jQueryElement)
+
       controllerInstanceData=
-        instance: new controllerConstructorFn()
-        domElement: obElement.getDOMElement()
-        jQueryElement: obElement.getjQueryElement()
+        instance: new controllerConstructorFn(controllerData)
+        domElement: domElement
+        jQueryElement: jQueryElement
 
       @_controllerInstancesData.push(controllerInstanceData)
 
-      controllerInstanceData.instance.onHashChange @_createControllerData(controllerInstanceData)
+
+      controllerInstanceData.instance.onHashChange @_createControllerData(domElement, jQueryElement)
 
 
-  _createControllerData:(controllerInstanceData)->
+  _createControllerData:(domElement, jQueryElement)->
     controllerData=
-      domElement: controllerInstanceData.domElement
-      jQueryElement: controllerInstanceData.jQueryElement
+      domElement: domElement
+      jQueryElement: jQueryElement
       hashParams: Oblique().getHashParams()
 
   _getParams : (obElement) ->
@@ -617,9 +654,9 @@ class Oblique
     return true if @_model
     false
 
-  renderHtml: (url, model) ->
+  _renderHtml: (url, model) ->
     if Handlebars is undefined
-      throw new ObliqueNS.Error("Oblique().renderHtml() needs handlebarsjs loaded to work")
+      throw new ObliqueNS.Error("Oblique()._renderHtml() needs handlebarsjs loaded to work")
     template=@templateFactory.createFromUrl url
     template.renderHTML model
 
