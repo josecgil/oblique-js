@@ -62,16 +62,16 @@
       return false;
     };
 
-    Oblique.prototype._renderHtml = function(url, model) {
+    Oblique.prototype._onSuccess = function(url, model) {
       var template;
       if (Handlebars === void 0) {
-        throw new ObliqueNS.Error("Oblique()._renderHtml() needs handlebarsjs loaded to work");
+        throw new ObliqueNS.Error("Oblique()._onSuccess() needs handlebarsjs loaded to work");
       }
       template = this.templateFactory.createFromUrl(url);
       return template.renderHTML(model);
     };
 
-    Oblique.prototype.onError = function(onErrorCallback) {
+    Oblique.prototype._onError = function(onErrorCallback) {
       return this._onErrorCallbacks.push(onErrorCallback);
     };
 

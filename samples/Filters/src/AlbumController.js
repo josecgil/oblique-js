@@ -17,29 +17,20 @@ AlbumController.prototype.onHashChange=function(data) {
 };
 
 AlbumController.prototype._applyNoFilter=function() {
-    var self=this;
-
     this.formOptions.reset();
-    this.photoService.getAllPhotos(function (jsonPhotos) {
-        self._renderHtml(jsonPhotos);
-    }, function (errorMessage) {
-        self._renderHtmlError(errorMessage);
-    });
+    this.photoService.getAllPhotos(this._onSuccess, this._onError);
 };
 
 AlbumController.prototype._applyFilter=function(albumsFilter) {
-    var self=this;
-    
     this.formOptions.updateValues(albumsFilter.values);
-    this.photoService.getFilteredPhotos(function (jsonPhotos) {
-        self._renderHtml(jsonPhotos);
-    }, function (errorMessage) {
-        self._renderHtmlError(errorMessage);
-    });
+    this.photoService.getFilteredPhotos(this._onSuccess, this._onError);
 };
 
+AlbumController.prototype._onError=function (errorMessage) {
+    $("#results").html("Error: "+errorMessage);
+};
 
-AlbumController.prototype._renderHtml=function(jsonPhotos) {
+AlbumController.prototype._onSuccess=function(jsonPhotos) {
     $("#results").html("");
     for(var i=0;i<jsonPhotos.length; i++) {
         var photo=jsonPhotos[i];
@@ -47,8 +38,5 @@ AlbumController.prototype._renderHtml=function(jsonPhotos) {
     }
 };
 
-AlbumController.prototype._renderHtmlError=function(errorMessage) {
-    $("#results").html("Error: "+errorMessage);
-};
 
 Oblique().registerController("AlbumController", AlbumController)

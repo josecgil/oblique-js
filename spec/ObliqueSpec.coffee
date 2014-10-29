@@ -246,7 +246,7 @@ describe "Oblique", ->
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    Oblique().onError( (error) ->
+    Oblique()._onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
       expect(error.message).toBe '<div data-ob-directive="TestDirective" data-ob-model="Model.address.num"></div>: data-ob-model expression is undefined'
       done()
@@ -274,7 +274,7 @@ describe "Oblique", ->
 
   it "must throw an error if Handlebars isn't loaded", ()->
     #expect(->
-      Oblique()._renderHtml()
+      Oblique()._onSuccess()
     #).toThrow(new ObliqueNS.Error("Oblique needs handlebarsjs loaded to render templates"))
 
   it "must render template", ()->
@@ -284,7 +284,7 @@ describe "Oblique", ->
 
     expectedHtml="<h1>titulo</h1><div>cuerpo</div>"
 
-    currentHtml=Oblique()._renderHtml "/oblique-js/spec/Templates/test_ok.hbs", modelToTest
+    currentHtml=Oblique()._onSuccess "/oblique-js/spec/Templates/test_ok.hbs", modelToTest
     expect(currentHtml).toBe expectedHtml
 
   it "must throw an error if template is not found", ->
@@ -293,7 +293,7 @@ describe "Oblique", ->
       body : "cuerpo"
 
     expect(->
-      Oblique()._renderHtml "/patata.hbs", modelToTest
+      Oblique()._onSuccess "/patata.hbs", modelToTest
     ).toThrow(new ObliqueNS.Error("template '/patata.hbs' not found"))
 
   it "must throw an error if handlebars is not loaded", ->
@@ -301,8 +301,8 @@ describe "Oblique", ->
     window.Handlebars=undefined
     try
       expect(->
-        Oblique()._renderHtml()
-      ).toThrow(new ObliqueNS.Error("Oblique()._renderHtml() needs handlebarsjs loaded to work"))
+        Oblique()._onSuccess()
+      ).toThrow(new ObliqueNS.Error("Oblique()._onSuccess() needs handlebarsjs loaded to work"))
     finally
       window.Handlebars=HandlebarsCopy
 
@@ -387,7 +387,7 @@ describe "Oblique", ->
 
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
-    Oblique().onError( (error) ->
+    Oblique()._onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
       expect(error.message).toBe '<div data-ob-directive="TestDirective" data-ob-model="new InventedClass()">nice DOM</div>: data-ob-model expression error: InventedClass is not defined'
       Oblique().destroy()
@@ -429,7 +429,7 @@ describe "Oblique", ->
 
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
-    Oblique().onError( (error) ->
+    Oblique()._onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
       expect(error.message).toBe "<div data-ob-directive=\"TestDirective\" data-ob-params=\"patata\">nice DOM</div>: data-ob-params parse error: Unexpected token p"
       Oblique().destroy()
@@ -633,7 +633,7 @@ describe "Oblique", ->
     class TestDirective
       constructor: ->
 
-    Oblique().onError( (error) ->
+    Oblique()._onError( (error) ->
       expect(error.message).toBe "<div data-ob-directive=\"TestDirective\" data-ob-model=\"var Model=32\">nice DOM</div>: data-ob-model expression error: Can't create a variable named 'Model', is a reserved word"
       Oblique().destroy()
       done()

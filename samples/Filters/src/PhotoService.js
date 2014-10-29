@@ -5,25 +5,25 @@
     };
 
 
-    PhotoService.prototype.getAllPhotos=function(callbackOk, callbackError) {
+    PhotoService.prototype.getAllPhotos=function(onSuccess, onError) {
         var noFilterFunction = function () {
             return true;
         };
-        return this._getPhotos(noFilterFunction, callbackOk, callbackError);
+        return this._getPhotos(noFilterFunction, onSuccess, onError);
     }
 
-    PhotoService.prototype.getFilteredPhotos=function(callbackOk, callbackError) {
-        var albumsHashValues = Oblique().getHashParams().getParam("albums").values;
+    PhotoService.prototype.getFilteredPhotos=function(onSuccess, onError) {
         var filterByAlbumIdFunction=function(album) {
+            var albumsHashValues = Oblique().getHashParams().getParam("albums").values;
             if (albumsHashValues.indexOf(album.albumId)==-1) {
                 return false;
             }
             return true;
         };
-        return this._getPhotos(filterByAlbumIdFunction, callbackOk, callbackError);
+        return this._getPhotos(filterByAlbumIdFunction, onSuccess, onError);
     }
 
-    PhotoService.prototype._getPhotos=function(filterFunction, callbackOk, callbackError) {
+    PhotoService.prototype._getPhotos=function(filterFunction, onSuccess, onError) {
         var params={};
         $.getJSON( "/oblique-js/samples/Filters/json/photos.json", params)
             .done(function( jsonPhotos ) {
@@ -35,15 +35,12 @@
                         filteredJSONPhotos.push(photo);
                     }
                 }
-                callbackOk(filteredJSONPhotos);
+                onSuccess(filteredJSONPhotos);
             })
             .fail(function( jqxhr, textStatus, error ) {
-                callbackError(error);
+                onError(error);
             });
     };
-
-
-
 
     window.PhotoService=PhotoService;
 
