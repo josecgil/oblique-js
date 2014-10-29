@@ -10,4 +10,11 @@ class EmptyParam extends ObliqueNS.Param
   isEmpty:() ->
     return true
 
+  valueIsEqualTo:() ->
+    return true
+
+  containsValue:() ->
+    return true
+
+
 ObliqueNS.EmptyParam=EmptyParam

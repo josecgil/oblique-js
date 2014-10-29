@@ -52,6 +52,16 @@
       return new SingleParam(hashParam.name, hashParam.value);
     };
 
+    SingleParam.prototype.valueIsEqualTo = function(value) {
+      if (this.isEmpty()) {
+        return false;
+      }
+      if (this.value !== value) {
+        return false;
+      }
+      return true;
+    };
+
     return SingleParam;
 
   })(ObliqueNS.Param);

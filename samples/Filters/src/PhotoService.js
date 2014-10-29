@@ -12,17 +12,14 @@
         return this._getPhotos(noFilterFunction, onSuccess, onError);
     }
 
-    PhotoService.prototype.getFilteredPhotos=function(onSuccess, onError) {
+    PhotoService.prototype.getFilteredPhotos=function(albumsParam, colorParam, onSuccess, onError) {
         var filterByHashValues=function(album) {
-            var albumsParam = Oblique().getHashParams().getParam("albums");
-            var albumsHashValues = albumsParam.values;
-            if ( (!albumsParam.isEmpty()) && (albumsHashValues.indexOf(album.albumId)==-1)) {
+
+            if (!albumsParam.containsValue(album.albumId)) {
                 return false;
             }
 
-            var colorParam = Oblique().getHashParams().getParam("color");
-            var colorHashValue = colorParam.value;
-            if ( (!colorParam.isEmpty()) && (colorHashValue!=album.color)) {
+            if (!colorParam.valueIsEqualTo(album.color)) {
                 return false;
             }
 

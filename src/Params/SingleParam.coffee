@@ -28,4 +28,9 @@ class SingleParam extends ObliqueNS.Param
     new SingleParam(hashParam.name, hashParam.value)
 
 
+  valueIsEqualTo:(value)->
+    return false if @isEmpty()
+    return false if @value isnt value
+    true
+
 ObliqueNS.SingleParam=SingleParam

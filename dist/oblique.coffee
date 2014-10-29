@@ -86,9 +86,13 @@ class ArrayParam extends ObliqueNS.Param
       value=value.trim()
       trimmedValues.push value if not Param.stringIsNullOrEmpty(value)
 
-
     new ArrayParam(hashParam.name, trimmedValues)
 
+  containsValue:(value)->
+    return false if @isEmpty()
+    for val in @values
+      return true if val is value
+    false
 
 ObliqueNS.ArrayParam=ArrayParam
 @.ObliqueNS=@.ObliqueNS or {}
@@ -102,6 +106,13 @@ class EmptyParam extends ObliqueNS.Param
 
   isEmpty:() ->
     return true
+
+  valueIsEqualTo:() ->
+    return true
+
+  containsValue:() ->
+    return true
+
 
 ObliqueNS.EmptyParam=EmptyParam
 @.ObliqueNS=@.ObliqueNS or {}
@@ -248,6 +259,11 @@ class SingleParam extends ObliqueNS.Param
     hashParam=Param.parse(strHashParam)
     new SingleParam(hashParam.name, hashParam.value)
 
+
+  valueIsEqualTo:(value)->
+    return false if @isEmpty()
+    return false if @value isnt value
+    true
 
 ObliqueNS.SingleParam=SingleParam
 @.ObliqueNS=@.ObliqueNS or {}

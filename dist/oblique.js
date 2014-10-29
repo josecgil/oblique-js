@@ -156,6 +156,21 @@
       return new ArrayParam(hashParam.name, trimmedValues);
     };
 
+    ArrayParam.prototype.containsValue = function(value) {
+      var val, _i, _len, _ref;
+      if (this.isEmpty()) {
+        return false;
+      }
+      _ref = this.values;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        val = _ref[_i];
+        if (val === value) {
+          return true;
+        }
+      }
+      return false;
+    };
+
     return ArrayParam;
 
   })(ObliqueNS.Param);
@@ -174,6 +189,14 @@
     };
 
     EmptyParam.prototype.isEmpty = function() {
+      return true;
+    };
+
+    EmptyParam.prototype.valueIsEqualTo = function() {
+      return true;
+    };
+
+    EmptyParam.prototype.containsValue = function() {
       return true;
     };
 
@@ -407,6 +430,16 @@
       var hashParam;
       hashParam = Param.parse(strHashParam);
       return new SingleParam(hashParam.name, hashParam.value);
+    };
+
+    SingleParam.prototype.valueIsEqualTo = function(value) {
+      if (this.isEmpty()) {
+        return false;
+      }
+      if (this.value !== value) {
+        return false;
+      }
+      return true;
     };
 
     return SingleParam;

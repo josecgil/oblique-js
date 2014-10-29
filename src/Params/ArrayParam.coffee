@@ -58,8 +58,12 @@ class ArrayParam extends ObliqueNS.Param
       value=value.trim()
       trimmedValues.push value if not Param.stringIsNullOrEmpty(value)
 
-
     new ArrayParam(hashParam.name, trimmedValues)
 
+  containsValue:(value)->
+    return false if @isEmpty()
+    for val in @values
+      return true if val is value
+    false
 
 ObliqueNS.ArrayParam=ArrayParam

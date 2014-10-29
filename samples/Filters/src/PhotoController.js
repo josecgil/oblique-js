@@ -8,14 +8,14 @@ PhotoController.prototype.onHashChange=function(data) {
     var hashParams = data.hashParams;
     Oblique().setHashParams(hashParams);
 
-    var albumsFilter = hashParams.getParam("albums");
-    var colorFilter= hashParams.getParam("color");
+    var albumsParam = hashParams.getParam("albums");
+    var colorParam= hashParams.getParam("color");
 
-    if ((albumsFilter.isEmpty()) && (colorFilter.isEmpty())) {
+    if ((albumsParam.isEmpty()) && (colorParam.isEmpty())) {
         this._applyNoFilter();
         return;
     };
-    this._applyFilter(albumsFilter, colorFilter);
+    this._applyFilter(albumsParam, colorParam);
 };
 
 PhotoController.prototype._applyNoFilter=function() {
@@ -23,12 +23,12 @@ PhotoController.prototype._applyNoFilter=function() {
     this.photoService.getAllPhotos(this._onSuccess, this._onError);
 };
 
-PhotoController.prototype._applyFilter=function(albumsFilter, colorFilter) {
-    this.albumsFormOptions.updateValues(albumsFilter.values);
+PhotoController.prototype._applyFilter=function(albumsParam, colorParam) {
+    this.albumsFormOptions.updateValues(albumsParam.values);
 
-    this.colorFormOptions.updateValue(colorFilter.value);
+    this.colorFormOptions.updateValue(colorParam.value);
 
-    this.photoService.getFilteredPhotos(this._onSuccess, this._onError);
+    this.photoService.getFilteredPhotos(albumsParam, colorParam, this._onSuccess, this._onError);
 };
 
 PhotoController.prototype._onError=function (errorMessage) {

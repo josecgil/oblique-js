@@ -4,6 +4,7 @@ describe "ParamCollection", ->
   ArrayParam=ObliqueNS.ArrayParam
   RangeParam=ObliqueNS.RangeParam
   SingleParam=ObliqueNS.SingleParam
+  EmptyParam=ObliqueNS.EmptyParam
   ObError=ObliqueNS.Error
 
   it "must return empty params when Hash is empty", () ->
@@ -285,7 +286,6 @@ describe "ParamCollection", ->
     expect(param.isEmpty()).toBeTruthy()
     expect(param.getLocationHash()).toBe("")
 
-
   it "must return Empty param object when I remove the last value of a param array ", () ->
     paramCollection=new ParamCollection("#album=[1]")
     param=paramCollection.getParam("album")
@@ -293,3 +293,23 @@ describe "ParamCollection", ->
     expect(param).toBeDefined()
     expect(param.isEmpty()).toBeTruthy()
     expect(param.getLocationHash()).toBe("")
+
+  it "must compare single param values", () ->
+    param=new SingleParam("sort","asc")
+    expect(param.valueIsEqualTo("asc")).toBeTruthy()
+    expect(param.valueIsEqualTo("desc")).toBeFalsy()
+
+  it "must know if param array values contains a value", () ->
+    param=new ArrayParam("sizes",["L","XL"])
+    expect(param.containsValue("L")).toBeTruthy()
+    expect(param.containsValue("M")).toBeFalsy()
+
+  it "EmptyParam must behave like SingleParam in valueIsEqualTo()", () ->
+    param=new EmptyParam()
+    expect(param.valueIsEqualTo("asc")).toBeTruthy()
+    expect(param.valueIsEqualTo("desc")).toBeTruthy()
+
+  it "EmptyParam must behave like ArrayParam in contains()", () ->
+    param=new EmptyParam()
+    expect(param.contains("XL")).toBeTruthy()
+    expect(param.contains("L")).toBeTruthy()
