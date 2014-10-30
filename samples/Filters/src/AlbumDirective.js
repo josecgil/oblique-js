@@ -1,8 +1,8 @@
 var AlbumDirective=function (data) {
-    this.priceRangeFormOptions=new FormOptions(data.jQueryElement.find("input[type='checkbox']"));
+    this.albumsFormOptions=new FormOptions(data.jQueryElement.find("input[type='checkbox']"));
 
     var self=this;
-    this.priceRangeFormOptions.click(function(event) {
+    this.albumsFormOptions.click(function(event) {
 
         var clickedAlbum = $(event.target);
         var value=clickedAlbum.val();
@@ -15,6 +15,17 @@ var AlbumDirective=function (data) {
         }
     });
 };
+
+
+AlbumDirective.prototype.onHashChange=function(data) {
+    var albumsParam=data.hashParams.getParam("albums");
+    if (albumsParam.isEmpty()) {
+        this.albumsFormOptions.reset();
+        return;
+    }
+    this.albumsFormOptions.updateValues(albumsParam.values);
+};
+
 
 AlbumDirective.prototype._addParam=function (name, value) {
     var params = Oblique().getHashParams();

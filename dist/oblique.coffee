@@ -394,6 +394,7 @@ class DOMProcessor
     @_directiveCollection = new ObliqueNS.CallbackCollection()
     @_controllerCollection = new ObliqueNS.CallbackCollection()
 
+    @_directiveInstancesData=[]
     @_controllerInstancesData=[]
 
     @_timedDOMObserver=@_createTimedDOMObserver(DOMProcessor.DEFAULT_INTERVAL_MS)
@@ -409,9 +410,15 @@ class DOMProcessor
 
   _listenToHashRouteChanges:->
     $(window).on "hashchange", =>
-      for controllerInstanceData in @_controllerInstancesData
-        controllerData=@_createControllerData(controllerInstanceData.domElement, controllerInstanceData.jQueryElement)
-        controllerInstanceData.instance.onHashChange(controllerData)
+      for contData in @_controllerInstancesData
+        controllerData=@_createControllerData(contData.domElement, contData.jQueryElement)
+        if (contData.instance.onHashChange)
+          contData.instance.onHashChange(controllerData)
+
+      for dirData in @_directiveInstancesData
+        directiveData=@_createDirectiveData(dirData.domElement, dirData.jQueryElemen, dirData.model, dirData.params)
+        if (dirData.instance.onHashChange)
+          dirData.instance.onHashChange(directiveData)
 
   _ignoreHashRouteChanges:->
     $(window).off "hashchange"
@@ -444,6 +451,8 @@ class DOMProcessor
           directiveAttrValue=obElement.getAttributeValue "data-ob-directive"
           @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
       )
+    catch e
+      @_throwError("Error _applyObliqueElementsInDOM() : #{e.message}")
     finally
       @_isApplyingObliqueElementsInDOM = false
 
@@ -456,13 +465,24 @@ class DOMProcessor
       throw new ObliqueNS.Error("There is no #{directiveName} directive registered") if not directive
       obElement.setFlag directiveName
 
-      directiveData=
-        domElement: obElement.getDOMElement()
-        jQueryElement: obElement.getjQueryElement()
-        model: @_getDirectiveModel obElement
-        params: @_getParams obElement
+      domElement=obElement.getDOMElement()
+      jQueryElement=obElement.getjQueryElement()
+      model=@_getDirectiveModel obElement
+      params=@_getParams obElement
 
-      new directive directiveData
+      directiveData=@_createDirectiveData(domElement, jQueryElement, model, params)
+
+      directiveInstanceData=
+        instance: new directive(directiveData)
+        domElement: domElement
+        jQueryElement: jQueryElement
+        model: model
+        params: params
+
+      @_directiveInstancesData.push(directiveInstanceData)
+
+      if (directiveInstanceData.instance.onHashChange)
+        directiveInstanceData.instance.onHashChange(@_createDirectiveData(domElement, jQueryElement, model, params))
 
   _processControllerElement:(obElement, controllerAttrValue) ->
     for controllerName in controllerAttrValue.split(",")
@@ -475,6 +495,7 @@ class DOMProcessor
 
       domElement=obElement.getDOMElement()
       jQueryElement=obElement.getjQueryElement()
+
       controllerData=@_createControllerData(domElement, jQueryElement)
 
       controllerInstanceData=
@@ -484,15 +505,27 @@ class DOMProcessor
 
       @_controllerInstancesData.push(controllerInstanceData)
 
-
-      controllerInstanceData.instance.onHashChange @_createControllerData(domElement, jQueryElement)
-
+      if (controllerInstanceData.instance.onHashChange)
+        controllerInstanceData.instance.onHashChange(@_createControllerData(domElement, jQueryElement))
 
   _createControllerData:(domElement, jQueryElement)->
     controllerData=
       domElement: domElement
       jQueryElement: jQueryElement
       hashParams: Oblique().getHashParams()
+
+    controllerData
+
+
+  _createDirectiveData:(domElement, jQueryElement, model, params)->
+    directiveData=
+      domElement: domElement
+      jQueryElement: jQueryElement
+      model: model
+      params: params
+      hashParams: Oblique().getHashParams()
+
+    directiveData
 
   _getParams : (obElement) ->
     dataParamsExpr=obElement.getAttributeValue("data-ob-params")
@@ -680,9 +713,9 @@ class Oblique
     return true if @_model
     false
 
-  _onSuccess: (url, model) ->
+  renderHTML: (url, model) ->
     if Handlebars is undefined
-      throw new ObliqueNS.Error("Oblique()._onSuccess() needs handlebarsjs loaded to work")
+      throw new ObliqueNS.Error("Oblique().renderHtml(): needs handlebarsjs loaded to render templates")
     template=@templateFactory.createFromUrl url
     template.renderHTML model
 

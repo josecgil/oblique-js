@@ -17,5 +17,16 @@ PriceDirective.prototype._setRangeParam=function (name, min, max) {
     Oblique().setHashParams(params);
 };
 
+PriceDirective.prototype.onHashChange=function(data) {
+    var priceParam=data.hashParams.getParam("price");
+    if (priceParam.isEmpty()) {
+        this.priceRangeFormOptions.updateRange("1", "200");
+        return;
+    }
+    this.priceRangeFormOptions.updateRange(priceParam.min, priceParam.max);
+};
+
+
+
 
 Oblique().registerDirective("PriceDirective", PriceDirective);

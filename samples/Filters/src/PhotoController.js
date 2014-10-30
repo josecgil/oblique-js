@@ -1,8 +1,5 @@
 var PhotoController=function (data) {
     this.photoService=new PhotoService();
-    this.albumsFormOptions=new FormOptions(data.jQueryElement.find("input[type='checkbox']"));
-    this.colorFormOptions=new FormOptions(data.jQueryElement.find("select"));
-    this.priceRangeFormOptions=new FormOptions(data.jQueryElement.find("input[type=text]"));
 };
 
 PhotoController.prototype.onHashChange=function(data) {
@@ -21,23 +18,21 @@ PhotoController.prototype.onHashChange=function(data) {
 };
 
 PhotoController.prototype._applyNoFilter=function() {
-    this.albumsFormOptions.reset();
     this.photoService.getAllPhotos(this._onSuccess, this._onError);
 };
 
 PhotoController.prototype._applyFilter=function(albumsParam, colorParam, priceParam) {
-    this.albumsFormOptions.updateValues(albumsParam.values);
-    this.colorFormOptions.updateValue(colorParam.value);
-    this.priceRangeFormOptions.updateRange(priceParam.min, priceParam.max);
-
     this.photoService.getFilteredPhotos(albumsParam, colorParam, priceParam, this._onSuccess, this._onError);
 };
 
-PhotoController.prototype.onError=function (errorMessage) {
+PhotoController.prototype._onError=function (errorMessage) {
     $("#results").html("Error: "+errorMessage);
 };
 
 PhotoController.prototype._onSuccess=function(jsonPhotos) {
+
+    //Oblique().notify("ResultsDirective","onSuccess",jsonPhotos);
+
     $("#results").html("");
     for(var i=0;i<jsonPhotos.length; i++) {
         var photo=jsonPhotos[i];

@@ -36,13 +36,25 @@
     DOMProcessor.prototype._listenToHashRouteChanges = function() {
       return $(window).on("hashchange", (function(_this) {
         return function() {
-          var controllerData, controllerInstanceData, _i, _len, _ref, _results;
+          var contData, controllerData, dirData, directiveData, _i, _j, _len, _len1, _ref, _ref1, _results;
           _ref = _this._controllerInstancesData;
-          _results = [];
           for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            controllerInstanceData = _ref[_i];
-            controllerData = _this._createControllerData(controllerInstanceData.domElement, controllerInstanceData.jQueryElement);
-            _results.push(controllerInstanceData.instance.onHashChange(controllerData));
+            contData = _ref[_i];
+            controllerData = _this._createControllerData(contData.domElement, contData.jQueryElement);
+            if (contData.instance.onHashChange) {
+              contData.instance.onHashChange(controllerData);
+            }
+          }
+          _ref1 = _this._directiveInstancesData;
+          _results = [];
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            dirData = _ref1[_j];
+            directiveData = _this._createDirectiveData(dirData.domElement, dirData.jQueryElemen, dirData.model, dirData.params);
+            if (dirData.instance.onHashChange) {
+              _results.push(dirData.instance.onHashChange(directiveData));
+            } else {
+              _results.push(void 0);
+            }
           }
           return _results;
         };
@@ -108,7 +120,7 @@
     };
 
     DOMProcessor.prototype._processDirectiveElement = function(obElement, directiveAttrValue) {
-      var callbackHashChange, directive, directiveData, directiveInstanceData, directiveName, domElement, jQueryElement, model, params, _i, _len, _ref, _results;
+      var directive, directiveData, directiveInstanceData, directiveName, domElement, jQueryElement, model, params, _i, _len, _ref, _results;
       _ref = directiveAttrValue.split(",");
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -135,9 +147,8 @@
           params: params
         };
         this._directiveInstancesData.push(directiveInstanceData);
-        callbackHashChange = directiveInstanceData.instance.onHashChange;
-        if (callbackHashChange) {
-          _results.push(callbackHashChange(this._createDirectiveData(domElement, jQueryElement, model, params)));
+        if (directiveInstanceData.instance.onHashChange) {
+          _results.push(directiveInstanceData.instance.onHashChange(this._createDirectiveData(domElement, jQueryElement, model, params)));
         } else {
           _results.push(void 0);
         }
@@ -146,7 +157,7 @@
     };
 
     DOMProcessor.prototype._processControllerElement = function(obElement, controllerAttrValue) {
-      var callbackHashChange, controllerConstructorFn, controllerData, controllerInstanceData, controllerName, domElement, jQueryElement, _i, _len, _ref, _results;
+      var controllerConstructorFn, controllerData, controllerInstanceData, controllerName, domElement, jQueryElement, _i, _len, _ref, _results;
       _ref = controllerAttrValue.split(",");
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -169,9 +180,8 @@
           jQueryElement: jQueryElement
         };
         this._controllerInstancesData.push(controllerInstanceData);
-        callbackHashChange = controllerInstanceData.instance.onHashChange;
-        if (callbackHashChange) {
-          _results.push(callbackHashChange(this._createControllerData(domElement, jQueryElement)));
+        if (controllerInstanceData.instance.onHashChange) {
+          _results.push(controllerInstanceData.instance.onHashChange(this._createControllerData(domElement, jQueryElement)));
         } else {
           _results.push(void 0);
         }

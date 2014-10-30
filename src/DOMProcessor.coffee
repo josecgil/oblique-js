@@ -31,9 +31,15 @@ class DOMProcessor
 
   _listenToHashRouteChanges:->
     $(window).on "hashchange", =>
-      for controllerInstanceData in @_controllerInstancesData
-        controllerData=@_createControllerData(controllerInstanceData.domElement, controllerInstanceData.jQueryElement)
-        controllerInstanceData.instance.onHashChange(controllerData)
+      for contData in @_controllerInstancesData
+        controllerData=@_createControllerData(contData.domElement, contData.jQueryElement)
+        if (contData.instance.onHashChange)
+          contData.instance.onHashChange(controllerData)
+
+      for dirData in @_directiveInstancesData
+        directiveData=@_createDirectiveData(dirData.domElement, dirData.jQueryElemen, dirData.model, dirData.params)
+        if (dirData.instance.onHashChange)
+          dirData.instance.onHashChange(directiveData)
 
   _ignoreHashRouteChanges:->
     $(window).off "hashchange"
@@ -96,8 +102,8 @@ class DOMProcessor
 
       @_directiveInstancesData.push(directiveInstanceData)
 
-      callbackHashChange = directiveInstanceData.instance.onHashChange
-      callbackHashChange @_createDirectiveData(domElement, jQueryElement, model, params) if callbackHashChange
+      if (directiveInstanceData.instance.onHashChange)
+        directiveInstanceData.instance.onHashChange(@_createDirectiveData(domElement, jQueryElement, model, params))
 
   _processControllerElement:(obElement, controllerAttrValue) ->
     for controllerName in controllerAttrValue.split(",")
@@ -120,8 +126,8 @@ class DOMProcessor
 
       @_controllerInstancesData.push(controllerInstanceData)
 
-      callbackHashChange = controllerInstanceData.instance.onHashChange
-      callbackHashChange @_createControllerData(domElement, jQueryElement) if callbackHashChange
+      if (controllerInstanceData.instance.onHashChange)
+        controllerInstanceData.instance.onHashChange(@_createControllerData(domElement, jQueryElement))
 
   _createControllerData:(domElement, jQueryElement)->
     controllerData=
