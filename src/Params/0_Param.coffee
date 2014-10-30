@@ -29,13 +29,15 @@ class Param
     ""
 
   isEmpty:() ->
-    return true
+    true
 
   valueIsEqualTo:() ->
-    return true
+    true
 
   containsValue:() ->
-    return true
+    true
 
+  isInRange:()->
+    true
 
 ObliqueNS.Param=Param

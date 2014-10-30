@@ -35,6 +35,16 @@
       return false;
     };
 
+    RangeParam.prototype.isInRange = function(value) {
+      if (value < this.min) {
+        return false;
+      }
+      if (value > this.max) {
+        return false;
+      }
+      return true;
+    };
+
     RangeParam.is = function(strHashParam) {
       var hashParam;
       hashParam = Param.parse(strHashParam);

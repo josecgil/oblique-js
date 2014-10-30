@@ -37,6 +37,11 @@
         this.formElements.val(value);
     };
 
+    FormOptions.prototype.updateRange=function(min, max) {
+        $(this.formElements[0]).val(min);
+        $(this.formElements[1]).val(max);
+    };
+
 
     FormOptions.prototype.click=function(callbackFn) {
         this.formElements.click(callbackFn);

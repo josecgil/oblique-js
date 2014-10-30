@@ -1,8 +1,13 @@
 var ColorDirective=function (data) {
-    this.albumsFormOptions=new FormOptions(data.jQueryElement.find("select"));
+
+    //Oblique().linkFormControlWithHashParam(data.jQueryElement.find("select"),"colors");
+
+    //data-ob-linked-control-hashparam="colors"
+
+    this.priceRangeFormOptions=new FormOptions(data.jQueryElement.find("select"));
 
     var self=this;
-    this.albumsFormOptions.change(function(event) {
+    this.priceRangeFormOptions.change(function(event) {
 
         var select = $(event.target);
         var value=select.val();
@@ -10,6 +15,12 @@ var ColorDirective=function (data) {
         self._setParam("color", value);
     });
 };
+
+/*
+ColorDirective.prototype.onHashChange=function(data) {
+    this.colorFormOptions.updateValue(colorParam.value);
+};
+*/
 
 ColorDirective.prototype._setParam=function (name, value) {
     var params = Oblique().getHashParams();

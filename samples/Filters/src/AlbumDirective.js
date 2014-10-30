@@ -1,8 +1,8 @@
 var AlbumDirective=function (data) {
-    this.albumsFormOptions=new FormOptions(data.jQueryElement.find("input[type='checkbox']"));
+    this.priceRangeFormOptions=new FormOptions(data.jQueryElement.find("input[type='checkbox']"));
 
     var self=this;
-    this.albumsFormOptions.click(function(event) {
+    this.priceRangeFormOptions.click(function(event) {
 
         var clickedAlbum = $(event.target);
         var value=clickedAlbum.val();

@@ -12,7 +12,7 @@
         return this._getPhotos(noFilterFunction, onSuccess, onError);
     }
 
-    PhotoService.prototype.getFilteredPhotos=function(albumsParam, colorParam, onSuccess, onError) {
+    PhotoService.prototype.getFilteredPhotos=function(albumsParam, colorParam, priceParam, onSuccess, onError) {
         var filterByHashValues=function(album) {
 
             if (!albumsParam.containsValue(album.albumId)) {
@@ -23,6 +23,9 @@
                 return false;
             }
 
+            if (!priceParam.isInRange(album.price)) {
+                return false;
+            }
             return true;
         };
         return this._getPhotos(filterByHashValues, onSuccess, onError);

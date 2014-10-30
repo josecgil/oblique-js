@@ -18,6 +18,11 @@ class RangeParam extends ObliqueNS.Param
     return true if (@min is undefined and @max is undefined)
     return false
 
+  isInRange:(value) ->
+    return false if value<@min
+    return false if value>@max
+    true
+
   @is:(strHashParam)->
     hashParam=Param.parse(strHashParam)
     return true if Param.containsChar(hashParam.value,"(")

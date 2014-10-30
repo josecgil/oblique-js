@@ -55,6 +55,12 @@ describe "ParamCollection", ->
     expect(priceParam.min).toBe "0"
     expect(priceParam.max).toBe "100"
 
+  it "must know if value is between RangeParam values", () ->
+    priceParam=new RangeParam("price","10", "49")
+    expect(priceParam.isInRange(15)).toBeTruthy()
+    expect(priceParam.isInRange(9)).toBeFalsy()
+    expect(priceParam.isInRange(50)).toBeFalsy()
+
   it "must add an array param", () ->
     paramCollection=new ParamCollection("")
     paramCollection.add(new ArrayParam("sizes",["M"]))
@@ -313,6 +319,11 @@ describe "ParamCollection", ->
     param=new EmptyParam()
     expect(param.containsValue("XL")).toBeTruthy()
     expect(param.containsValue("L")).toBeTruthy()
+
+  it "EmptyParam must behave like RangeParam in isInRange()", () ->
+    param=new EmptyParam()
+    expect(param.isInRange("1")).toBeTruthy()
+    expect(param.isInRange("2")).toBeTruthy()
 
   it "EmptyParam must have name", () ->
     param=new EmptyParam()
