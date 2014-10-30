@@ -686,7 +686,7 @@ class Oblique
     template=@templateFactory.createFromUrl url
     template.renderHTML model
 
-  _onError:(onErrorCallback)->
+  onError:(onErrorCallback)->
     @_onErrorCallbacks.push onErrorCallback
 
   triggerOnError:(error)->

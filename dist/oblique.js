@@ -1071,7 +1071,7 @@
       return template.renderHTML(model);
     };
 
-    Oblique.prototype._onError = function(onErrorCallback) {
+    Oblique.prototype.onError = function(onErrorCallback) {
       return this._onErrorCallbacks.push(onErrorCallback);
     };
 

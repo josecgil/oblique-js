@@ -33,7 +33,7 @@ PhotoController.prototype._applyFilter=function(albumsParam, colorParam, pricePa
     this.photoService.getFilteredPhotos(albumsParam, colorParam, priceParam, this._onSuccess, this._onError);
 };
 
-PhotoController.prototype._onError=function (errorMessage) {
+PhotoController.prototype.onError=function (errorMessage) {
     $("#results").html("Error: "+errorMessage);
 };
 

@@ -246,7 +246,7 @@ describe "Oblique", ->
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
-    Oblique()._onError( (error) ->
+    Oblique().onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
       expect(error.message).toBe '<div data-ob-directive="TestDirective" data-ob-model="Model.address.num"></div>: data-ob-model expression is undefined'
       done()
@@ -272,11 +272,6 @@ describe "Oblique", ->
 
     FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='Model'></div>"
 
-  it "must throw an error if Handlebars isn't loaded", ()->
-    #expect(->
-      Oblique()._onSuccess()
-    #).toThrow(new ObliqueNS.Error("Oblique needs handlebarsjs loaded to render templates"))
-
   it "must render template", ()->
     modelToTest =
       title : "titulo",
@@ -284,7 +279,7 @@ describe "Oblique", ->
 
     expectedHtml="<h1>titulo</h1><div>cuerpo</div>"
 
-    currentHtml=Oblique()._onSuccess "/oblique-js/spec/Templates/test_ok.hbs", modelToTest
+    currentHtml=Oblique().renderHTML "/oblique-js/spec/Templates/test_ok.hbs", modelToTest
     expect(currentHtml).toBe expectedHtml
 
   it "must throw an error if template is not found", ->
@@ -293,7 +288,7 @@ describe "Oblique", ->
       body : "cuerpo"
 
     expect(->
-      Oblique()._onSuccess "/patata.hbs", modelToTest
+      Oblique().renderHTML "/patata.hbs", modelToTest
     ).toThrow(new ObliqueNS.Error("template '/patata.hbs' not found"))
 
   it "must throw an error if handlebars is not loaded", ->
@@ -301,8 +296,8 @@ describe "Oblique", ->
     window.Handlebars=undefined
     try
       expect(->
-        Oblique()._onSuccess()
-      ).toThrow(new ObliqueNS.Error("Oblique()._onSuccess() needs handlebarsjs loaded to work"))
+        Oblique().renderHTML()
+      ).toThrow(new ObliqueNS.Error("Oblique().renderHtml(): needs handlebarsjs loaded to render templates"))
     finally
       window.Handlebars=HandlebarsCopy
 
@@ -387,7 +382,7 @@ describe "Oblique", ->
 
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
-    Oblique()._onError( (error) ->
+    Oblique().onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
       expect(error.message).toBe '<div data-ob-directive="TestDirective" data-ob-model="new InventedClass()">nice DOM</div>: data-ob-model expression error: InventedClass is not defined'
       Oblique().destroy()
@@ -429,7 +424,7 @@ describe "Oblique", ->
 
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
-    Oblique()._onError( (error) ->
+    Oblique().onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
       expect(error.message).toBe "<div data-ob-directive=\"TestDirective\" data-ob-params=\"patata\">nice DOM</div>: data-ob-params parse error: Unexpected token p"
       Oblique().destroy()
@@ -633,7 +628,7 @@ describe "Oblique", ->
     class TestDirective
       constructor: ->
 
-    Oblique()._onError( (error) ->
+    Oblique().onError( (error) ->
       expect(error.message).toBe "<div data-ob-directive=\"TestDirective\" data-ob-model=\"var Model=32\">nice DOM</div>: data-ob-model expression error: Can't create a variable named 'Model', is a reserved word"
       Oblique().destroy()
       done()
@@ -778,3 +773,59 @@ describe "Oblique", ->
     param=hashParams.getParam("color")
     expect(param).toBeDefined()
     expect(param.value).toBe("red")
+
+
+  it "must call a directive onHashChange() when location.hash change", (done)->
+    class TestDirective
+      constructor: ()->
+        hashParams=Oblique().getHashParams()
+        hashParams.addSingleParam("sort","desc")
+        Oblique().setHashParams(hashParams)
+
+      onHashChange:(data)->
+        hashParams = data.hashParams
+        expect(hashParams.count()).toBe(1)
+        expect(hashParams.getParam("sort").value).toBe("desc")
+        Oblique().destroy()
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
+
+
+  it "must not throw an error if onHashChange() is not defined in a controller", (done)->
+
+    Oblique().onError((error)->
+      expect(false).toBeTruthy("has thrown an error!");
+    )
+
+    class TestController
+      constructor:()->
+        window.location.hash="#color=red"
+
+    Oblique().registerController "TestController", TestController
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-controller='TestController'></div>"
+
+    setTimeout(->
+      done()
+    ,20)
+
+  it "must not throw an error if onHashChange() is not defined in a directive", (done)->
+
+    Oblique().onError((error)->
+      expect(false).toBeTruthy("has thrown an error!");
+    )
+
+    class TestDirective
+      constructor:()->
+        window.location.hash="#color=red"
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
+
+    setTimeout(->
+      done()
+    ,20)

@@ -18,6 +18,7 @@
       this._throwErrorIfJQueryIsntLoaded();
       this._directiveCollection = new ObliqueNS.CallbackCollection();
       this._controllerCollection = new ObliqueNS.CallbackCollection();
+      this._directiveInstancesData = [];
       this._controllerInstancesData = [];
       this._timedDOMObserver = this._createTimedDOMObserver(DOMProcessor.DEFAULT_INTERVAL_MS);
       this._memory = new ObliqueNS.Memory();
@@ -72,6 +73,7 @@
     DOMProcessor._isApplyingObliqueElementsInDOM = false;
 
     DOMProcessor.prototype._applyObliqueElementsInDOM = function() {
+      var e;
       if (this._isApplyingObliqueElementsInDOM) {
         return;
       }
@@ -97,13 +99,16 @@
             }
           };
         })(this));
+      } catch (_error) {
+        e = _error;
+        return this._throwError("Error _applyObliqueElementsInDOM() : " + e.message);
       } finally {
         this._isApplyingObliqueElementsInDOM = false;
       }
     };
 
     DOMProcessor.prototype._processDirectiveElement = function(obElement, directiveAttrValue) {
-      var directive, directiveData, directiveName, _i, _len, _ref, _results;
+      var callbackHashChange, directive, directiveData, directiveInstanceData, directiveName, domElement, jQueryElement, model, params, _i, _len, _ref, _results;
       _ref = directiveAttrValue.split(",");
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -117,19 +122,31 @@
           throw new ObliqueNS.Error("There is no " + directiveName + " directive registered");
         }
         obElement.setFlag(directiveName);
-        directiveData = {
-          domElement: obElement.getDOMElement(),
-          jQueryElement: obElement.getjQueryElement(),
-          model: this._getDirectiveModel(obElement),
-          params: this._getParams(obElement)
+        domElement = obElement.getDOMElement();
+        jQueryElement = obElement.getjQueryElement();
+        model = this._getDirectiveModel(obElement);
+        params = this._getParams(obElement);
+        directiveData = this._createDirectiveData(domElement, jQueryElement, model, params);
+        directiveInstanceData = {
+          instance: new directive(directiveData),
+          domElement: domElement,
+          jQueryElement: jQueryElement,
+          model: model,
+          params: params
         };
-        _results.push(new directive(directiveData));
+        this._directiveInstancesData.push(directiveInstanceData);
+        callbackHashChange = directiveInstanceData.instance.onHashChange;
+        if (callbackHashChange) {
+          _results.push(callbackHashChange(this._createDirectiveData(domElement, jQueryElement, model, params)));
+        } else {
+          _results.push(void 0);
+        }
       }
       return _results;
     };
 
     DOMProcessor.prototype._processControllerElement = function(obElement, controllerAttrValue) {
-      var controllerConstructorFn, controllerData, controllerInstanceData, controllerName, domElement, jQueryElement, _i, _len, _ref, _results;
+      var callbackHashChange, controllerConstructorFn, controllerData, controllerInstanceData, controllerName, domElement, jQueryElement, _i, _len, _ref, _results;
       _ref = controllerAttrValue.split(",");
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -152,18 +169,36 @@
           jQueryElement: jQueryElement
         };
         this._controllerInstancesData.push(controllerInstanceData);
-        _results.push(controllerInstanceData.instance.onHashChange(this._createControllerData(domElement, jQueryElement)));
+        callbackHashChange = controllerInstanceData.instance.onHashChange;
+        if (callbackHashChange) {
+          _results.push(callbackHashChange(this._createControllerData(domElement, jQueryElement)));
+        } else {
+          _results.push(void 0);
+        }
       }
       return _results;
     };
 
     DOMProcessor.prototype._createControllerData = function(domElement, jQueryElement) {
       var controllerData;
-      return controllerData = {
+      controllerData = {
         domElement: domElement,
         jQueryElement: jQueryElement,
         hashParams: Oblique().getHashParams()
       };
+      return controllerData;
+    };
+
+    DOMProcessor.prototype._createDirectiveData = function(domElement, jQueryElement, model, params) {
+      var directiveData;
+      directiveData = {
+        domElement: domElement,
+        jQueryElement: jQueryElement,
+        model: model,
+        params: params,
+        hashParams: Oblique().getHashParams()
+      };
+      return directiveData;
     };
 
     DOMProcessor.prototype._getParams = function(obElement) {

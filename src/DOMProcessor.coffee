@@ -15,6 +15,7 @@ class DOMProcessor
     @_directiveCollection = new ObliqueNS.CallbackCollection()
     @_controllerCollection = new ObliqueNS.CallbackCollection()
 
+    @_directiveInstancesData=[]
     @_controllerInstancesData=[]
 
     @_timedDOMObserver=@_createTimedDOMObserver(DOMProcessor.DEFAULT_INTERVAL_MS)
@@ -65,6 +66,8 @@ class DOMProcessor
           directiveAttrValue=obElement.getAttributeValue "data-ob-directive"
           @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
       )
+    catch e
+      @_throwError("Error _applyObliqueElementsInDOM() : #{e.message}")
     finally
       @_isApplyingObliqueElementsInDOM = false
 
@@ -77,13 +80,24 @@ class DOMProcessor
       throw new ObliqueNS.Error("There is no #{directiveName} directive registered") if not directive
       obElement.setFlag directiveName
 
-      directiveData=
-        domElement: obElement.getDOMElement()
-        jQueryElement: obElement.getjQueryElement()
-        model: @_getDirectiveModel obElement
-        params: @_getParams obElement
+      domElement=obElement.getDOMElement()
+      jQueryElement=obElement.getjQueryElement()
+      model=@_getDirectiveModel obElement
+      params=@_getParams obElement
 
-      new directive directiveData
+      directiveData=@_createDirectiveData(domElement, jQueryElement, model, params)
+
+      directiveInstanceData=
+        instance: new directive(directiveData)
+        domElement: domElement
+        jQueryElement: jQueryElement
+        model: model
+        params: params
+
+      @_directiveInstancesData.push(directiveInstanceData)
+
+      callbackHashChange = directiveInstanceData.instance.onHashChange
+      callbackHashChange @_createDirectiveData(domElement, jQueryElement, model, params) if callbackHashChange
 
   _processControllerElement:(obElement, controllerAttrValue) ->
     for controllerName in controllerAttrValue.split(",")
@@ -96,6 +110,7 @@ class DOMProcessor
 
       domElement=obElement.getDOMElement()
       jQueryElement=obElement.getjQueryElement()
+
       controllerData=@_createControllerData(domElement, jQueryElement)
 
       controllerInstanceData=
@@ -105,15 +120,27 @@ class DOMProcessor
 
       @_controllerInstancesData.push(controllerInstanceData)
 
-
-      controllerInstanceData.instance.onHashChange @_createControllerData(domElement, jQueryElement)
-
+      callbackHashChange = controllerInstanceData.instance.onHashChange
+      callbackHashChange @_createControllerData(domElement, jQueryElement) if callbackHashChange
 
   _createControllerData:(domElement, jQueryElement)->
     controllerData=
       domElement: domElement
       jQueryElement: jQueryElement
       hashParams: Oblique().getHashParams()
+
+    controllerData
+
+
+  _createDirectiveData:(domElement, jQueryElement, model, params)->
+    directiveData=
+      domElement: domElement
+      jQueryElement: jQueryElement
+      model: model
+      params: params
+      hashParams: Oblique().getHashParams()
+
+    directiveData
 
   _getParams : (obElement) ->
     dataParamsExpr=obElement.getAttributeValue("data-ob-params")
