@@ -2,7 +2,8 @@
 (function() {
   var ArrayParam, Param,
     __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   this.ObliqueNS = this.ObliqueNS || {};
 
@@ -106,16 +107,11 @@
     };
 
     ArrayParam.prototype.containsValue = function(value) {
-      var val, _i, _len, _ref;
       if (this.isEmpty()) {
         return false;
       }
-      _ref = this.values;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        val = _ref[_i];
-        if (val === value) {
-          return true;
-        }
+      if (__indexOf.call(this.values, value) >= 0) {
+        return true;
       }
       return false;
     };

@@ -62,8 +62,7 @@ class ArrayParam extends ObliqueNS.Param
 
   containsValue:(value)->
     return false if @isEmpty()
-    for val in @values
-      return true if val is value
-    false
+    return true if value in @values
+    return false
 
 ObliqueNS.ArrayParam=ArrayParam

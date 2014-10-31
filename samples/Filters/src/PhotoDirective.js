@@ -1,35 +1,33 @@
-var PhotoDirective=function () {
+var PhotoResultsDirective=function () {
     this.photoService=new PhotoService();
 };
 
-PhotoDirective.prototype.onHashChange=function(data) {
+PhotoResultsDirective.prototype.onHashChange=function(data) {
     var hashParams = data.hashParams;
     Oblique().setHashParams(hashParams);
 
-    var albumsParam = hashParams.getParam("albums");
-    var colorParam= hashParams.getParam("color");
-    var priceParam = hashParams.getParam("price");
-
-    if ((albumsParam.isEmpty()) && (colorParam.isEmpty()) && (priceParam.isEmpty())) {
+    var params=hashParams.find(["albums","color","price"])
+    if (params.isEmpty()) {
         this._applyNoFilter();
         return;
     }
-    this._applyFilter(albumsParam, colorParam, priceParam);
+
+    this._applyFilter(params);
 };
 
-PhotoDirective.prototype._applyNoFilter=function() {
+PhotoResultsDirective.prototype._applyNoFilter=function() {
     this.photoService.getAllPhotos(this._onSuccess, this._onError);
 };
 
-PhotoDirective.prototype._applyFilter=function(albumsParam, colorParam, priceParam) {
-    this.photoService.getFilteredPhotos(albumsParam, colorParam, priceParam, this._onSuccess, this._onError);
+PhotoResultsDirective.prototype._applyFilter=function(params) {
+    this.photoService.getFilteredPhotos(params, this._onSuccess, this._onError);
 };
 
-PhotoDirective.prototype._onError=function (errorMessage) {
+PhotoResultsDirective.prototype._onError=function (errorMessage) {
     $("#results").html("Error: "+errorMessage);
 };
 
-PhotoDirective.prototype._onSuccess=function(jsonPhotos) {
+PhotoResultsDirective.prototype._onSuccess=function(jsonPhotos) {
     $("#results").html("");
     for(var i=0;i<jsonPhotos.length; i++) {
         var photo=jsonPhotos[i];
@@ -37,4 +35,4 @@ PhotoDirective.prototype._onSuccess=function(jsonPhotos) {
     }
 };
 
-Oblique().registerDirective("PhotoDirective", PhotoDirective)
+Oblique().registerDirective("PhotoResultsDirective", PhotoResultsDirective)

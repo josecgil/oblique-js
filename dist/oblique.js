@@ -2,7 +2,8 @@
 (function() {
   var ArrayParam, CallbackCollection, DOMProcessor, DataModelVariable, Element, EmptyParam, Memory, Oblique, ObliqueError, Param, ParamCollection, RangeParam, SingleParam, Template, TemplateFactory, TimedDOMObserver,
     __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   this.ObliqueNS = this.ObliqueNS || {};
 
@@ -177,16 +178,11 @@
     };
 
     ArrayParam.prototype.containsValue = function(value) {
-      var val, _i, _len, _ref;
       if (this.isEmpty()) {
         return false;
       }
-      _ref = this.values;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        val = _ref[_i];
-        if (val === value) {
-          return true;
-        }
+      if (__indexOf.call(this.values, value) >= 0) {
+        return true;
       }
       return false;
     };
@@ -291,20 +287,49 @@
       return param;
     };
 
+    ParamCollection.prototype.find = function(paramNames) {
+      var foundedParamCollection, lowerCaseParamNames, param, paramName, _ref, _ref1;
+      lowerCaseParamNames = (function() {
+        var _i, _len, _results;
+        _results = [];
+        for (_i = 0, _len = paramNames.length; _i < _len; _i++) {
+          param = paramNames[_i];
+          _results.push(param.toLowerCase());
+        }
+        return _results;
+      })();
+      foundedParamCollection = new ParamCollection();
+      _ref = this._params;
+      for (paramName in _ref) {
+        param = _ref[paramName];
+        if ((!this._isEmptyParam(param)) && (_ref1 = paramName.toLowerCase(), __indexOf.call(lowerCaseParamNames, _ref1) >= 0)) {
+          foundedParamCollection.add(param);
+        }
+      }
+      return foundedParamCollection;
+    };
+
+    ParamCollection.prototype.isEmpty = function() {
+      if (this.count() === 0) {
+        return true;
+      }
+      return false;
+    };
+
     ParamCollection.prototype.count = function() {
       var count, param, paramName, _ref;
       count = 0;
       _ref = this._params;
       for (paramName in _ref) {
         param = _ref[paramName];
-        if (!this._isEmpty(param)) {
+        if (!this._isEmptyParam(param)) {
           count++;
         }
       }
       return count;
     };
 
-    ParamCollection.prototype._isEmpty = function(param) {
+    ParamCollection.prototype._isEmptyParam = function(param) {
       if (param === void 0) {
         return true;
       }
@@ -634,9 +659,7 @@
       DOMProcessor._singletonInstance = this;
       this._throwErrorIfJQueryIsntLoaded();
       this._directiveCollection = new ObliqueNS.CallbackCollection();
-      this._controllerCollection = new ObliqueNS.CallbackCollection();
       this._directiveInstancesData = [];
-      this._controllerInstancesData = [];
       this._timedDOMObserver = this._createTimedDOMObserver(DOMProcessor.DEFAULT_INTERVAL_MS);
       this._memory = new ObliqueNS.Memory();
       jQuery(document).ready((function(_this) {
@@ -653,19 +676,11 @@
     DOMProcessor.prototype._listenToHashRouteChanges = function() {
       return $(window).on("hashchange", (function(_this) {
         return function() {
-          var contData, controllerData, dirData, directiveData, _i, _j, _len, _len1, _ref, _ref1, _results;
-          _ref = _this._controllerInstancesData;
-          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            contData = _ref[_i];
-            controllerData = _this._createControllerData(contData.domElement, contData.jQueryElement);
-            if (contData.instance.onHashChange) {
-              contData.instance.onHashChange(controllerData);
-            }
-          }
-          _ref1 = _this._directiveInstancesData;
+          var dirData, directiveData, _i, _len, _ref, _results;
+          _ref = _this._directiveInstancesData;
           _results = [];
-          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-            dirData = _ref1[_j];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            dirData = _ref[_i];
             directiveData = _this._createDirectiveData(dirData.domElement, dirData.jQueryElemen, dirData.model, dirData.params);
             if (dirData.instance.onHashChange) {
               _results.push(dirData.instance.onHashChange(directiveData));
@@ -708,16 +723,6 @@
       }
       this._isApplyingObliqueElementsInDOM = true;
       try {
-        $("*[data-ob-controller]").each((function(_this) {
-          return function(index, DOMElement) {
-            var controllerAttrValue, obElement;
-            obElement = new ObliqueNS.Element(DOMElement);
-            controllerAttrValue = obElement.getAttributeValue("data-ob-controller");
-            if (controllerAttrValue) {
-              return _this._processControllerElement(obElement, controllerAttrValue);
-            }
-          };
-        })(this));
         return $("*[data-ob-directive]").each((function(_this) {
           return function(index, DOMElement) {
             var directiveAttrValue, obElement;
@@ -771,49 +776,6 @@
         }
       }
       return _results;
-    };
-
-    DOMProcessor.prototype._processControllerElement = function(obElement, controllerAttrValue) {
-      var controllerConstructorFn, controllerData, controllerInstanceData, controllerName, domElement, jQueryElement, _i, _len, _ref, _results;
-      _ref = controllerAttrValue.split(",");
-      _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        controllerName = _ref[_i];
-        controllerName = controllerName.trim();
-        if (obElement.hasFlag(controllerName)) {
-          continue;
-        }
-        controllerConstructorFn = this._controllerCollection.getCallbackByName(controllerName);
-        if (!controllerConstructorFn) {
-          throw new ObliqueNS.Error("There is no " + controllerName + " controller registered");
-        }
-        obElement.setFlag(controllerName);
-        domElement = obElement.getDOMElement();
-        jQueryElement = obElement.getjQueryElement();
-        controllerData = this._createControllerData(domElement, jQueryElement);
-        controllerInstanceData = {
-          instance: new controllerConstructorFn(controllerData),
-          domElement: domElement,
-          jQueryElement: jQueryElement
-        };
-        this._controllerInstancesData.push(controllerInstanceData);
-        if (controllerInstanceData.instance.onHashChange) {
-          _results.push(controllerInstanceData.instance.onHashChange(this._createControllerData(domElement, jQueryElement)));
-        } else {
-          _results.push(void 0);
-        }
-      }
-      return _results;
-    };
-
-    DOMProcessor.prototype._createControllerData = function(domElement, jQueryElement) {
-      var controllerData;
-      controllerData = {
-        domElement: domElement,
-        jQueryElement: jQueryElement,
-        hashParams: Oblique().getHashParams()
-      };
-      return controllerData;
     };
 
     DOMProcessor.prototype._createDirectiveData = function(domElement, jQueryElement, model, params) {
@@ -896,10 +858,6 @@
 
     DOMProcessor.prototype.registerDirective = function(directiveName, directiveConstructorFn) {
       return this._directiveCollection.add(directiveName, directiveConstructorFn);
-    };
-
-    DOMProcessor.prototype.registerController = function(controllerName, controllerConstructorFn) {
-      return this._controllerCollection.add(controllerName, controllerConstructorFn);
     };
 
     DOMProcessor.prototype.destroy = function() {
@@ -1075,10 +1033,6 @@
 
     Oblique.prototype.registerDirective = function(directiveName, directiveConstructorFn) {
       return this.domProcessor.registerDirective(directiveName, directiveConstructorFn);
-    };
-
-    Oblique.prototype.registerController = function(controllerName, controllerConstructorFn) {
-      return this.domProcessor.registerController(controllerName, controllerConstructorFn);
     };
 
     Oblique.prototype.destroy = function() {

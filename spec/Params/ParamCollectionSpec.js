@@ -365,10 +365,95 @@
       expect(param.isInRange("1")).toBeTruthy();
       return expect(param.isInRange("2")).toBeTruthy();
     });
-    return it("EmptyParam must have name", function() {
+    it("EmptyParam must have name", function() {
       var param;
       param = new EmptyParam();
       return expect(param.name).toBe("EmptyParam");
+    });
+    it("must find one params by name array", function() {
+      var foundedParamCollection, paramCollection, sortParam;
+      paramCollection = new ParamCollection();
+      paramCollection.addSingleParam("sort", "desc");
+      foundedParamCollection = paramCollection.find(["sort"]);
+      expect(foundedParamCollection.count()).toBe(1);
+      sortParam = foundedParamCollection.getParam("sort");
+      expect(sortParam).toBeDefined();
+      return expect(sortParam.value).toBe("desc");
+    });
+    it("must return an Empty param if param searched doesn't exists", function() {
+      var foundedParamCollection, paramCollection, priceParam;
+      paramCollection = new ParamCollection();
+      paramCollection.addSingleParam("sort", "desc");
+      foundedParamCollection = paramCollection.find(["price"]);
+      expect(foundedParamCollection.count()).toBe(0);
+      priceParam = foundedParamCollection.getParam("price");
+      expect(priceParam).toBeDefined();
+      expect(priceParam.name).toBe("EmptyParam");
+      return expect(priceParam.isEmpty()).toBeTruthy();
+    });
+    it("must find one params by name array when param name is upper case", function() {
+      var foundedParamCollection, paramCollection, sortParam;
+      paramCollection = new ParamCollection();
+      paramCollection.addSingleParam("sort", "desc");
+      foundedParamCollection = paramCollection.find(["SORT"]);
+      expect(foundedParamCollection.count()).toBe(1);
+      sortParam = foundedParamCollection.getParam("sort");
+      expect(sortParam).toBeDefined();
+      return expect(sortParam.value).toBe("desc");
+    });
+    it("must find one params by name array when param name is mixed case", function() {
+      var foundedParamCollection, paramCollection, sortParam;
+      paramCollection = new ParamCollection();
+      paramCollection.addSingleParam("sorT", "desc");
+      foundedParamCollection = paramCollection.find(["Sort"]);
+      expect(foundedParamCollection.count()).toBe(1);
+      sortParam = foundedParamCollection.getParam("sOrt");
+      expect(sortParam).toBeDefined();
+      return expect(sortParam.value).toBe("desc");
+    });
+    it("must find several params by name array", function() {
+      var foundedParamCollection, paramCollection;
+      paramCollection = new ParamCollection();
+      paramCollection.add(new ArrayParam("sizes", ["M", "L"]));
+      paramCollection.add(new RangeParam("price", "10", "40"));
+      paramCollection.add(new SingleParam("sort", "desc"));
+      foundedParamCollection = paramCollection.find(["sizes", "price", "sort"]);
+      expect(foundedParamCollection.count()).toBe(3);
+      expect(foundedParamCollection.getParam("sizes").isEmpty()).toBeFalsy();
+      expect(foundedParamCollection.getParam("price").isEmpty()).toBeFalsy();
+      return expect(foundedParamCollection.getParam("sort").isEmpty()).toBeFalsy();
+    });
+    it("must find several params by name array excluding some existing params", function() {
+      var foundedParamCollection, paramCollection;
+      paramCollection = new ParamCollection();
+      paramCollection.add(new ArrayParam("sizes", ["M", "L"]));
+      paramCollection.add(new RangeParam("price", "10", "40"));
+      paramCollection.add(new SingleParam("sort", "desc"));
+      expect(paramCollection.count()).toBe(3);
+      foundedParamCollection = paramCollection.find(["sizes", "price"]);
+      expect(foundedParamCollection.count()).toBe(2);
+      expect(foundedParamCollection.getParam("sizes").isEmpty()).toBeFalsy();
+      expect(foundedParamCollection.getParam("price").isEmpty()).toBeFalsy();
+      return expect(foundedParamCollection.getParam("sort").isEmpty()).toBeTruthy();
+    });
+    it("must know if a paramCollection isEmpty", function() {
+      var paramCollection;
+      paramCollection = new ParamCollection();
+      return expect(paramCollection.isEmpty()).toBeTruthy();
+    });
+    it("must know if a paramCollection not isEmpty", function() {
+      var paramCollection;
+      paramCollection = new ParamCollection();
+      paramCollection.add(new ArrayParam("sizes", ["M", "L"]));
+      return expect(paramCollection.isEmpty()).toBeFalsy();
+    });
+    return it("must return an Empty param if param searched doesn't exists", function() {
+      var foundedParamCollection, paramCollection;
+      paramCollection = new ParamCollection();
+      paramCollection.addSingleParam("sort", "desc");
+      expect(paramCollection.isEmpty()).toBeFalsy();
+      foundedParamCollection = paramCollection.find(["price"]);
+      return expect(foundedParamCollection.isEmpty()).toBeTruthy();
     });
   });
 

@@ -55,13 +55,26 @@ class ParamCollection
     return new EmptyParam() if param is undefined
     param
 
+  find:(paramNames)->
+    lowerCaseParamNames = (param.toLowerCase() for param in paramNames)
+
+    foundedParamCollection=new ParamCollection()
+    for paramName, param of @_params
+      if (not @_isEmptyParam(param)) and (paramName.toLowerCase() in lowerCaseParamNames)
+        foundedParamCollection.add param
+    foundedParamCollection
+
+  isEmpty:->
+    return true if @count() is 0
+    false
+
   count: ->
     count = 0
     for paramName, param of @_params
-      count++ if not @_isEmpty(param)
+      count++ if not @_isEmptyParam(param)
     count
 
-  _isEmpty: (param)  ->
+  _isEmptyParam: (param)  ->
     return true if param is undefined
     return param.isEmpty()
 

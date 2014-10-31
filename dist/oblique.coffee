@@ -105,9 +105,8 @@ class ArrayParam extends ObliqueNS.Param
 
   containsValue:(value)->
     return false if @isEmpty()
-    for val in @values
-      return true if val is value
-    false
+    return true if value in @values
+    return false
 
 ObliqueNS.ArrayParam=ArrayParam
 @.ObliqueNS=@.ObliqueNS or {}
@@ -175,13 +174,26 @@ class ParamCollection
     return new EmptyParam() if param is undefined
     param
 
+  find:(paramNames)->
+    lowerCaseParamNames = (param.toLowerCase() for param in paramNames)
+
+    foundedParamCollection=new ParamCollection()
+    for paramName, param of @_params
+      if (not @_isEmptyParam(param)) and (paramName.toLowerCase() in lowerCaseParamNames)
+        foundedParamCollection.add param
+    foundedParamCollection
+
+  isEmpty:->
+    return true if @count() is 0
+    false
+
   count: ->
     count = 0
     for paramName, param of @_params
-      count++ if not @_isEmpty(param)
+      count++ if not @_isEmptyParam(param)
     count
 
-  _isEmpty: (param)  ->
+  _isEmptyParam: (param)  ->
     return true if param is undefined
     return param.isEmpty()
 
@@ -392,10 +404,8 @@ class DOMProcessor
     @_throwErrorIfJQueryIsntLoaded()
 
     @_directiveCollection = new ObliqueNS.CallbackCollection()
-    @_controllerCollection = new ObliqueNS.CallbackCollection()
 
     @_directiveInstancesData=[]
-    @_controllerInstancesData=[]
 
     @_timedDOMObserver=@_createTimedDOMObserver(DOMProcessor.DEFAULT_INTERVAL_MS)
 
@@ -410,11 +420,6 @@ class DOMProcessor
 
   _listenToHashRouteChanges:->
     $(window).on "hashchange", =>
-      for contData in @_controllerInstancesData
-        controllerData=@_createControllerData(contData.domElement, contData.jQueryElement)
-        if (contData.instance.onHashChange)
-          contData.instance.onHashChange(controllerData)
-
       for dirData in @_directiveInstancesData
         directiveData=@_createDirectiveData(dirData.domElement, dirData.jQueryElemen, dirData.model, dirData.params)
         if (dirData.instance.onHashChange)
@@ -438,13 +443,6 @@ class DOMProcessor
     return if @_isApplyingObliqueElementsInDOM
     @_isApplyingObliqueElementsInDOM = true
     try
-      $("*[data-ob-controller]").each(
-        (index, DOMElement) =>
-          obElement=new ObliqueNS.Element DOMElement
-          controllerAttrValue=obElement.getAttributeValue "data-ob-controller"
-          @_processControllerElement(obElement, controllerAttrValue) if controllerAttrValue
-      )
-
       $("*[data-ob-directive]").each(
         (index, DOMElement) =>
           obElement=new ObliqueNS.Element DOMElement
@@ -483,39 +481,6 @@ class DOMProcessor
 
       if (directiveInstanceData.instance.onHashChange)
         directiveInstanceData.instance.onHashChange(@_createDirectiveData(domElement, jQueryElement, model, params))
-
-  _processControllerElement:(obElement, controllerAttrValue) ->
-    for controllerName in controllerAttrValue.split(",")
-      controllerName=controllerName.trim()
-      continue if obElement.hasFlag controllerName
-
-      controllerConstructorFn=@_controllerCollection.getCallbackByName(controllerName)
-      throw new ObliqueNS.Error("There is no #{controllerName} controller registered") if not controllerConstructorFn
-      obElement.setFlag controllerName
-
-      domElement=obElement.getDOMElement()
-      jQueryElement=obElement.getjQueryElement()
-
-      controllerData=@_createControllerData(domElement, jQueryElement)
-
-      controllerInstanceData=
-        instance: new controllerConstructorFn(controllerData)
-        domElement: domElement
-        jQueryElement: jQueryElement
-
-      @_controllerInstancesData.push(controllerInstanceData)
-
-      if (controllerInstanceData.instance.onHashChange)
-        controllerInstanceData.instance.onHashChange(@_createControllerData(domElement, jQueryElement))
-
-  _createControllerData:(domElement, jQueryElement)->
-    controllerData=
-      domElement: domElement
-      jQueryElement: jQueryElement
-      hashParams: Oblique().getHashParams()
-
-    controllerData
-
 
   _createDirectiveData:(domElement, jQueryElement, model, params)->
     directiveData=
@@ -578,9 +543,6 @@ class DOMProcessor
 
   registerDirective: (directiveName, directiveConstructorFn) ->
     @_directiveCollection.add directiveName, directiveConstructorFn
-
-  registerController: (controllerName, controllerConstructorFn) ->
-    @_controllerCollection.add controllerName, controllerConstructorFn
 
   destroy: ->
     @_ignoreHashRouteChanges()
@@ -693,9 +655,6 @@ class Oblique
 
   registerDirective: (directiveName, directiveConstructorFn) ->
     @domProcessor.registerDirective directiveName, directiveConstructorFn
-
-  registerController: (controllerName, controllerConstructorFn) ->
-    @domProcessor.registerController controllerName, controllerConstructorFn
 
   destroy: ->
     @domProcessor.destroy()
