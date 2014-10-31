@@ -1,8 +1,8 @@
 var ColorDirective=function (data) {
-    this.colorFormOptions=new FormOptions(data.jQueryElement.find("select"));
+    this.colorSelect=data.jQueryElement.find("select");
 
     var self=this;
-    this.colorFormOptions.change(function(event) {
+    this.colorSelect.change(function(event) {
 
         var select = $(event.target);
         var value=select.val();
@@ -15,10 +15,10 @@ var ColorDirective=function (data) {
 ColorDirective.prototype.onHashChange=function(data) {
     var colorParam=data.hashParams.getParam("color");
     if (colorParam.isEmpty()) {
-        this.colorFormOptions.updateValue("");
+        this.colorSelect.val("");
         return;
     }
-    this.colorFormOptions.updateValue(colorParam.value);
+    this.colorSelect.val(colorParam.value);
 };
 
 

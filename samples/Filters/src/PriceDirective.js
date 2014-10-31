@@ -1,14 +1,13 @@
 var PriceDirective=function (data) {
-    this.priceRangeFormOptions=new FormOptions(data.jQueryElement.find("input[type=text]"));
+    this.priceMinInput=data.jQueryElement.find("#priceMin");
+    this.priceMaxInput=data.jQueryElement.find("#priceMax");
 
     var self=this;
-    this.priceRangeFormOptions.change(function(event) {
-
-        var min= $("#priceMin").val();
-        var max= $("#priceMax").val();
-
-        self._setRangeParam("price", min, max);
-    });
+    var onChangePrice=function(event) {
+        self._setRangeParam("price", self.priceMinInput.val(), self.priceMaxInput.val());
+    }
+    this.priceMinInput.change(onChangePrice);
+    this.priceMaxInput.change(onChangePrice);
 };
 
 PriceDirective.prototype._setRangeParam=function (name, min, max) {
@@ -20,13 +19,12 @@ PriceDirective.prototype._setRangeParam=function (name, min, max) {
 PriceDirective.prototype.onHashChange=function(data) {
     var priceParam=data.hashParams.getParam("price");
     if (priceParam.isEmpty()) {
-        this.priceRangeFormOptions.updateRange("1", "200");
+        this.priceMinInput.val(1);
+        this.priceMaxInput.val(200);
         return;
     }
-    this.priceRangeFormOptions.updateRange(priceParam.min, priceParam.max);
+    this.priceMinInput.val(priceParam.min);
+    this.priceMaxInput.val(priceParam.max);
 };
-
-
-
 
 Oblique().registerDirective("PriceDirective", PriceDirective);
