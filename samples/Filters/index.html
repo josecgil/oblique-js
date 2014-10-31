@@ -12,7 +12,8 @@
     <script type="text/javascript" src="src/PhotoService.js"></script>
 
     <script type="text/javascript" src="src/AlbumDirective.js"></script>
-    <script type="text/javascript" src="src/PhotoController.js"></script>
+    <script type="text/javascript" src="src/PhotoDirective.js"></script>
+    <!--script type="text/javascript" src="src/PhotoController.js"></script-->
 
     <script type="text/javascript" src="src/PriceDirective.js"></script>
     <script type="text/javascript" src="src/ColorDirective.js"></script>
@@ -20,35 +21,29 @@
 
 </head>
 <body>
+<section data-ob-directive="PhotoDirective">
+        <h1>Click to filter only photos of that album</h1>
+        <section data-ob-directive="AlbumDirective">
+            <label for="album1">Album 1</label><input id="album1" type="checkbox" value="1"/>
+            <label for="album2">Album 2</label><input id="album2" type="checkbox" value="2"/>
+        </section>
+        <section data-ob-directive="ColorDirective">
+            <select name="colors" id="colors">
+                <option value="">Todos</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+            </select>
+        </section>
+        <section data-ob-directive="PriceDirective">
+            <label for="priceMin">Precio:</label>
+            <input type="text" name="priceMin" id="priceMin" value="1"/>
+            <input type="text" name="priceMax" id="priceMax" value="200"/>
+        </section>
+        <!--data-ob-view="ResultsView"-->
+        <section id="results" >
 
-
-<section data-ob-controller="PhotoController">
-    <h1>Click to filter only photos of that album</h1>
-    <section data-ob-directive="AlbumDirective">
-        <label for="album1">Album 1</label><input id="album1" type="checkbox" value="1"/>
-        <label for="album2">Album 2</label><input id="album2" type="checkbox" value="2"/>
+        </section>
     </section>
-    <section data-ob-directive="ColorDirective">
-        <select name="colors" id="colors">
-            <option value="">Todos</option>
-            <option value="red">Red</option>
-            <option value="green">Green</option>
-            <option value="blue">Blue</option>
-        </select>
-    </section>
-    <section data-ob-directive="PriceDirective">
-        <label for="priceMin">Precio:</label>
-        <input type="text" name="priceMin" id="priceMin" value="1"/>
-        <input type="text" name="priceMax" id="priceMax" value="200"/>
-    </section>
-    <!--data-ob-view="ResultsView"-->
-    <section id="results" >
-
-    </section>
-</section>
-
-
-
-
 </body>
 </html>

@@ -1,8 +1,8 @@
-var PhotoController=function (data) {
+var PhotoDirective=function () {
     this.photoService=new PhotoService();
 };
 
-PhotoController.prototype.onHashChange=function(data) {
+PhotoDirective.prototype.onHashChange=function(data) {
     var hashParams = data.hashParams;
     Oblique().setHashParams(hashParams);
 
@@ -13,26 +13,23 @@ PhotoController.prototype.onHashChange=function(data) {
     if ((albumsParam.isEmpty()) && (colorParam.isEmpty()) && (priceParam.isEmpty())) {
         this._applyNoFilter();
         return;
-    };
+    }
     this._applyFilter(albumsParam, colorParam, priceParam);
 };
 
-PhotoController.prototype._applyNoFilter=function() {
+PhotoDirective.prototype._applyNoFilter=function() {
     this.photoService.getAllPhotos(this._onSuccess, this._onError);
 };
 
-PhotoController.prototype._applyFilter=function(albumsParam, colorParam, priceParam) {
+PhotoDirective.prototype._applyFilter=function(albumsParam, colorParam, priceParam) {
     this.photoService.getFilteredPhotos(albumsParam, colorParam, priceParam, this._onSuccess, this._onError);
 };
 
-PhotoController.prototype._onError=function (errorMessage) {
+PhotoDirective.prototype._onError=function (errorMessage) {
     $("#results").html("Error: "+errorMessage);
 };
 
-PhotoController.prototype._onSuccess=function(jsonPhotos) {
-
-    //Oblique().notify("ResultsDirective","onSuccess",jsonPhotos);
-
+PhotoDirective.prototype._onSuccess=function(jsonPhotos) {
     $("#results").html("");
     for(var i=0;i<jsonPhotos.length; i++) {
         var photo=jsonPhotos[i];
@@ -40,5 +37,4 @@ PhotoController.prototype._onSuccess=function(jsonPhotos) {
     }
 };
 
-
-Oblique().registerController("PhotoController", PhotoController)
+Oblique().registerDirective("PhotoDirective", PhotoDirective)

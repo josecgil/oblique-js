@@ -683,24 +683,24 @@ describe "Oblique", ->
     Oblique().setHashParams(paramsCollection)
     expect(window.location.hash).toBe("#sizes=[104,105,XL]")
 
-  it "If I register a Controller it calls its onHashChange method when expression is in DOM", (done)->
-    class TestController
+  it "If I register a Directive it calls its onHashChange method when expression is in DOM", (done)->
+    class TestDirective
       constructor: ()->
 
       onHashChange:()->
         Oblique().destroy()
         done()
 
-    Oblique().registerController "TestController", TestController
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-ob-controller='TestController'></div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
 
-  it "must call a controller onHashChange with correct hashParams", (done)->
+  it "must call a directive onHashChange with correct hashParams", (done)->
     hashParams=Oblique().getHashParams()
     hashParams.addSingleParam("sort","desc")
     Oblique().setHashParams(hashParams)
 
-    class TestController
+    class TestDirective
       constructor: ()->
 
       onHashChange:(data)->
@@ -710,17 +710,17 @@ describe "Oblique", ->
         Oblique().destroy()
         done()
 
-    Oblique().registerController "TestController", TestController
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-ob-controller='TestController'></div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
 
 
-  it "must call a controller constructor with correct hashParams", (done)->
+  it "must call a directive constructor with correct hashParams", (done)->
     hashParams=Oblique().getHashParams()
     hashParams.addSingleParam("sort","desc")
     Oblique().setHashParams(hashParams)
 
-    class TestController
+    class TestDirective
       constructor: (data)->
         hashParams = data.hashParams
         expect(hashParams.count()).toBe(1)
@@ -730,13 +730,13 @@ describe "Oblique", ->
 
       onHashChange:()->
 
-    Oblique().registerController "TestController", TestController
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-ob-controller='TestController'></div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
 
 
-  it "must call a controller onHashChange() when location.hash change", (done)->
-    class TestController
+  it "must call a directive onHashChange() when location.hash change", (done)->
+    class TestDirective
       constructor: ()->
         hashParams=Oblique().getHashParams()
         hashParams.addSingleParam("sort","desc")
@@ -749,9 +749,9 @@ describe "Oblique", ->
         Oblique().destroy()
         done()
 
-    Oblique().registerController "TestController", TestController
+    Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-ob-controller='TestController'></div>"
+    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
 
   it "must set correctly # and & when I remove a param from list", ()->
     window.location.hash="#albums=[1]&color=green"
@@ -773,44 +773,6 @@ describe "Oblique", ->
     param=hashParams.getParam("color")
     expect(param).toBeDefined()
     expect(param.value).toBe("red")
-
-
-  it "must call a directive onHashChange() when location.hash change", (done)->
-    class TestDirective
-      constructor: ()->
-        hashParams=Oblique().getHashParams()
-        hashParams.addSingleParam("sort","desc")
-        Oblique().setHashParams(hashParams)
-
-      onHashChange:(data)->
-        hashParams = data.hashParams
-        expect(hashParams.count()).toBe(1)
-        expect(hashParams.getParam("sort").value).toBe("desc")
-        Oblique().destroy()
-        done()
-
-    Oblique().registerDirective "TestDirective", TestDirective
-    Oblique().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
-
-
-  it "must not throw an error if onHashChange() is not defined in a controller", (done)->
-
-    Oblique().onError((error)->
-      expect(false).toBeTruthy("has thrown an error!");
-    )
-
-    class TestController
-      constructor:()->
-        window.location.hash="#color=red"
-
-    Oblique().registerController "TestController", TestController
-    Oblique().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-ob-controller='TestController'></div>"
-
-    setTimeout(->
-      done()
-    ,20)
 
   it "must not throw an error if onHashChange() is not defined in a directive", (done)->
 

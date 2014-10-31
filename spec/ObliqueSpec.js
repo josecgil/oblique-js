@@ -840,32 +840,32 @@
       Oblique().setHashParams(paramsCollection);
       return expect(window.location.hash).toBe("#sizes=[104,105,XL]");
     });
-    it("If I register a Controller it calls its onHashChange method when expression is in DOM", function(done) {
-      var TestController;
-      TestController = (function() {
-        function TestController() {}
+    it("If I register a Directive it calls its onHashChange method when expression is in DOM", function(done) {
+      var TestDirective;
+      TestDirective = (function() {
+        function TestDirective() {}
 
-        TestController.prototype.onHashChange = function() {
+        TestDirective.prototype.onHashChange = function() {
           Oblique().destroy();
           return done();
         };
 
-        return TestController;
+        return TestDirective;
 
       })();
-      Oblique().registerController("TestController", TestController);
+      Oblique().registerDirective("TestDirective", TestDirective);
       Oblique().setIntervalTimeInMs(10);
-      return $("#fixture").html("<div data-ob-controller='TestController'></div>");
+      return $("#fixture").html("<div data-ob-directive='TestDirective'></div>");
     });
-    it("must call a controller onHashChange with correct hashParams", function(done) {
-      var TestController, hashParams;
+    it("must call a directive onHashChange with correct hashParams", function(done) {
+      var TestDirective, hashParams;
       hashParams = Oblique().getHashParams();
       hashParams.addSingleParam("sort", "desc");
       Oblique().setHashParams(hashParams);
-      TestController = (function() {
-        function TestController() {}
+      TestDirective = (function() {
+        function TestDirective() {}
 
-        TestController.prototype.onHashChange = function(data) {
+        TestDirective.prototype.onHashChange = function(data) {
           hashParams = data.hashParams;
           expect(hashParams.count()).toBe(1);
           expect(hashParams.getParam("sort").value).toBe("desc");
@@ -873,20 +873,20 @@
           return done();
         };
 
-        return TestController;
+        return TestDirective;
 
       })();
-      Oblique().registerController("TestController", TestController);
+      Oblique().registerDirective("TestDirective", TestDirective);
       Oblique().setIntervalTimeInMs(10);
-      return $("#fixture").html("<div data-ob-controller='TestController'></div>");
+      return $("#fixture").html("<div data-ob-directive='TestDirective'></div>");
     });
-    it("must call a controller constructor with correct hashParams", function(done) {
-      var TestController, hashParams;
+    it("must call a directive constructor with correct hashParams", function(done) {
+      var TestDirective, hashParams;
       hashParams = Oblique().getHashParams();
       hashParams.addSingleParam("sort", "desc");
       Oblique().setHashParams(hashParams);
-      TestController = (function() {
-        function TestController(data) {
+      TestDirective = (function() {
+        function TestDirective(data) {
           hashParams = data.hashParams;
           expect(hashParams.count()).toBe(1);
           expect(hashParams.getParam("sort").value).toBe("desc");
@@ -894,64 +894,14 @@
           done();
         }
 
-        TestController.prototype.onHashChange = function() {};
+        TestDirective.prototype.onHashChange = function() {};
 
-        return TestController;
-
-      })();
-      Oblique().registerController("TestController", TestController);
-      Oblique().setIntervalTimeInMs(10);
-      return $("#fixture").html("<div data-ob-controller='TestController'></div>");
-    });
-    it("must call a controller onHashChange() when location.hash change", function(done) {
-      var TestController;
-      TestController = (function() {
-        function TestController() {
-          var hashParams;
-          hashParams = Oblique().getHashParams();
-          hashParams.addSingleParam("sort", "desc");
-          Oblique().setHashParams(hashParams);
-        }
-
-        TestController.prototype.onHashChange = function(data) {
-          var hashParams;
-          hashParams = data.hashParams;
-          expect(hashParams.count()).toBe(1);
-          expect(hashParams.getParam("sort").value).toBe("desc");
-          Oblique().destroy();
-          return done();
-        };
-
-        return TestController;
+        return TestDirective;
 
       })();
-      Oblique().registerController("TestController", TestController);
+      Oblique().registerDirective("TestDirective", TestDirective);
       Oblique().setIntervalTimeInMs(10);
-      return $("#fixture").html("<div data-ob-controller='TestController'></div>");
-    });
-    it("must set correctly # and & when I remove a param from list", function() {
-      var hashParams;
-      window.location.hash = "#albums=[1]&color=green";
-      hashParams = Oblique().getHashParams();
-      hashParams.getParam("albums").remove("1");
-      Oblique().setHashParams(hashParams);
-      return expect(window.location.hash).toBe("#color=green");
-    });
-    it("must work with params in camel case", function() {
-      var hashParams, param;
-      window.location.hash = "#Color=red";
-      hashParams = Oblique().getHashParams();
-      param = hashParams.getParam("color");
-      expect(param).toBeDefined();
-      return expect(param.value).toBe("red");
-    });
-    it("must work with params in upper case", function() {
-      var hashParams, param;
-      window.location.hash = "#COLOR=red";
-      hashParams = Oblique().getHashParams();
-      param = hashParams.getParam("color");
-      expect(param).toBeDefined();
-      return expect(param.value).toBe("red");
+      return $("#fixture").html("<div data-ob-directive='TestDirective'></div>");
     });
     it("must call a directive onHashChange() when location.hash change", function(done) {
       var TestDirective;
@@ -979,25 +929,29 @@
       Oblique().setIntervalTimeInMs(10);
       return $("#fixture").html("<div data-ob-directive='TestDirective'></div>");
     });
-    it("must not throw an error if onHashChange() is not defined in a controller", function(done) {
-      var TestController;
-      Oblique().onError(function(error) {
-        return expect(false).toBeTruthy("has thrown an error!");
-      });
-      TestController = (function() {
-        function TestController() {
-          window.location.hash = "#color=red";
-        }
-
-        return TestController;
-
-      })();
-      Oblique().registerController("TestController", TestController);
-      Oblique().setIntervalTimeInMs(10);
-      $("#fixture").html("<div data-ob-controller='TestController'></div>");
-      return setTimeout(function() {
-        return done();
-      }, 20);
+    it("must set correctly # and & when I remove a param from list", function() {
+      var hashParams;
+      window.location.hash = "#albums=[1]&color=green";
+      hashParams = Oblique().getHashParams();
+      hashParams.getParam("albums").remove("1");
+      Oblique().setHashParams(hashParams);
+      return expect(window.location.hash).toBe("#color=green");
+    });
+    it("must work with params in camel case", function() {
+      var hashParams, param;
+      window.location.hash = "#Color=red";
+      hashParams = Oblique().getHashParams();
+      param = hashParams.getParam("color");
+      expect(param).toBeDefined();
+      return expect(param.value).toBe("red");
+    });
+    it("must work with params in upper case", function() {
+      var hashParams, param;
+      window.location.hash = "#COLOR=red";
+      hashParams = Oblique().getHashParams();
+      param = hashParams.getParam("color");
+      expect(param).toBeDefined();
+      return expect(param.value).toBe("red");
     });
     return it("must not throw an error if onHashChange() is not defined in a directive", function(done) {
       var TestDirective;

@@ -32,10 +32,6 @@
       return this.domProcessor.registerDirective(directiveName, directiveConstructorFn);
     };
 
-    Oblique.prototype.registerController = function(controllerName, controllerConstructorFn) {
-      return this.domProcessor.registerController(controllerName, controllerConstructorFn);
-    };
-
     Oblique.prototype.destroy = function() {
       var e;
       this.domProcessor.destroy();

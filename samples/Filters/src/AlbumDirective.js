@@ -1,8 +1,8 @@
 var AlbumDirective=function (data) {
-    this.albumsFormOptions=new FormOptions(data.jQueryElement.find("input[type='checkbox']"));
+    this.albumsCheckboxes=data.jQueryElement.find("input[type='checkbox']");
 
     var self=this;
-    this.albumsFormOptions.click(function(event) {
+    this.albumsCheckboxes.click(function(event) {
 
         var clickedAlbum = $(event.target);
         var value=clickedAlbum.val();
@@ -16,14 +16,30 @@ var AlbumDirective=function (data) {
     });
 };
 
-
 AlbumDirective.prototype.onHashChange=function(data) {
     var albumsParam=data.hashParams.getParam("albums");
     if (albumsParam.isEmpty()) {
-        this.albumsFormOptions.reset();
+        this.albumsCheckboxes.each(function(i, element) {
+            $(element).prop("checked",false)
+        });
         return;
     }
-    this.albumsFormOptions.updateValues(albumsParam.values);
+
+    var valuesContains=function(values, elementValue) {
+        if (values.indexOf(elementValue)==-1) {
+            return false;
+        }
+        return true;
+    };
+
+    this.albumsCheckboxes.each(function(i, element) {
+        var checkedValue=false;
+        //usar containsValue del param
+        if (valuesContains(albumsParam.values, $(element).val())) {
+            checkedValue=true;
+        }
+        $(element).prop("checked",checkedValue);
+    });
 };
 
 
