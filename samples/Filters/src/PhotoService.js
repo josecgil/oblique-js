@@ -1,16 +1,14 @@
 (function() {
 
     var PhotoService=function() {
-
     };
-
 
     PhotoService.prototype.getAllPhotos=function(onSuccess, onError) {
         var noFilterFunction = function () {
             return true;
         };
         return this._getPhotos(noFilterFunction, onSuccess, onError);
-    }
+    };
 
     PhotoService.prototype.getFilteredPhotos=function(params, onSuccess, onError) {
         var filterByHashValues=function(album) {
@@ -32,7 +30,7 @@
             return true;
         };
         return this._getPhotos(filterByHashValues, onSuccess, onError);
-    }
+    };
 
     PhotoService.prototype._getPhotos=function(filterFunction, onSuccess, onError) {
         var params={};

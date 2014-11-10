@@ -8,6 +8,7 @@ var PriceDirective=function (data) {
     }
     this.priceMinInput.change(onChangePrice);
     this.priceMaxInput.change(onChangePrice);
+    this.onHashChange(data)
 };
 
 PriceDirective.prototype._setRangeParam=function (name, min, max) {

@@ -14,6 +14,7 @@ var AlbumDirective=function (data) {
             self._removeParam("albums", value);
         }
     });
+    this.onHashChange(data)
 };
 
 AlbumDirective.prototype.onHashChange=function(data) {

@@ -1,5 +1,6 @@
-var PhotoResultsDirective=function () {
+var PhotoResultsDirective=function (data) {
     this.photoService=new PhotoService();
+    this.onHashChange(data)
 };
 
 PhotoResultsDirective.prototype.onHashChange=function(data) {

@@ -479,8 +479,8 @@ class DOMProcessor
 
       @_directiveInstancesData.push(directiveInstanceData)
 
-      if (directiveInstanceData.instance.onHashChange)
-        directiveInstanceData.instance.onHashChange(@_createDirectiveData(domElement, jQueryElement, model, params))
+      #if (directiveInstanceData.instance.onHashChange)
+      #  directiveInstanceData.instance.onHashChange(@_createDirectiveData(domElement, jQueryElement, model, params))
 
   _createDirectiveData:(domElement, jQueryElement, model, params)->
     directiveData=

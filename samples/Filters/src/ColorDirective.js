@@ -9,6 +9,7 @@ var ColorDirective=function (data) {
 
         self._setParam("color", value);
     });
+    this.onHashChange(data)
 };
 
 

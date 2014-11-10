@@ -768,12 +768,7 @@
           model: model,
           params: params
         };
-        this._directiveInstancesData.push(directiveInstanceData);
-        if (directiveInstanceData.instance.onHashChange) {
-          _results.push(directiveInstanceData.instance.onHashChange(this._createDirectiveData(domElement, jQueryElement, model, params)));
-        } else {
-          _results.push(void 0);
-        }
+        _results.push(this._directiveInstancesData.push(directiveInstanceData));
       }
       return _results;
     };
