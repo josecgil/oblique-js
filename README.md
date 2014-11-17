@@ -20,8 +20,9 @@
 9. [The Model](#the-model)
 10. [The `data-ob-model` attribute](#the-data-ob-model-attribute)
 11. [Templates](#templates)
-12. [Error handling](#error-handling)
-13. [Notes](#notes)
+12. [Hash routing](#hash-routing)
+13. [Error handling](#error-handling)
+14. [Notes](#notes)
 
 
 ## Requeriments
@@ -337,6 +338,9 @@ The template part (`/templates/hellouser.hbs` file) will be:
 **Note**: `handlebars` must be loaded before the use of the `Oblique().renderHtml()` method.
 
 For a complete reference of the template language check [handlebars website](http://handlebarsjs.com/)
+
+##Hash routing
+
 
 ##Error handling
 
