@@ -26,17 +26,9 @@ AlbumDirective.prototype.onHashChange=function(data) {
         return;
     }
 
-    var valuesContains=function(values, elementValue) {
-        if (values.indexOf(elementValue)==-1) {
-            return false;
-        }
-        return true;
-    };
-
     this.albumsCheckboxes.each(function(i, element) {
         var checkedValue=false;
-        //usar containsValue del param
-        if (valuesContains(albumsParam.values, $(element).val())) {
+        if (albumsParam.values.containsValue($(element).val())) {
             checkedValue=true;
         }
         $(element).prop("checked",checkedValue);
