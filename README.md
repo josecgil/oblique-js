@@ -6,6 +6,7 @@
 + **Params** to send config data to code
 + **Model & model selection** to bind data in page with code & DOM elements
 + **Templates** to do big DOM manipulations (it uses [handlebars](http://handlebarsjs.com/))
++ **Hash routing** to handle changes & manipulate hash url params
 
 ##Table of contents
 
@@ -341,6 +342,17 @@ For a complete reference of the template language check [handlebars website](htt
 
 ##Hash routing
 
+Hash routing refers to the hability to check & change document.location.hash values. `oblique.js` provides an easy to use mechanism to extract & modifiy hash params from url & to check when params are changed.
+
+###Check hash route params
+
+###Modify hash route params
+
+###Listen to changes in hash route params
+
+###samples
+
+In  [samples/Filters directory](http://github.com/josecgil/oblique-js/tree/master/samples/Filters) there is a complete & functional sample thats uses all the hash routing functionality.
 
 ##Error handling
 
