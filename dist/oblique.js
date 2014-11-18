@@ -43,7 +43,10 @@
       var hashArray, name, value;
       hashArray = strHashParam.split("=");
       name = hashArray[0].trim();
-      value = hashArray[1].trim();
+      value = "";
+      if (hashArray.length > 1) {
+        value = hashArray[1].trim();
+      }
       return {
         name: name,
         value: value
@@ -133,7 +136,7 @@
     ArrayParam.prototype.getLocationHash = function() {
       var hash, value, _i, _len, _ref;
       if (this.count() === 0) {
-        return "";
+        return this.name;
       }
       hash = "" + this.name + "=[";
       _ref = this.values;
@@ -147,6 +150,9 @@
 
     ArrayParam.prototype.count = function() {
       if (this.values === void 0) {
+        return 0;
+      }
+      if (this.values.length === 0) {
         return 0;
       }
       return this.values.length;
@@ -338,19 +344,16 @@
 
     ParamCollection.prototype.getLocationHash = function() {
       var hash, param, paramName, _ref;
-      if (this.count() === 0) {
-        return "";
-      }
       hash = "#";
       _ref = this._params;
       for (paramName in _ref) {
         param = _ref[paramName];
-        if (param.isEmpty()) {
-          continue;
-        }
         hash += param.getLocationHash() + "&";
       }
       hash = hash.substr(0, hash.length - 1);
+      if (hash === "#") {
+        hash = "";
+      }
       return hash;
     };
 
@@ -372,16 +375,26 @@
       this.min = min;
       this.max = max;
       RangeParam.__super__.constructor.call(this, this.name);
-      if (!this._isString(this.min)) {
+      if (!this._isValidValue(this.min)) {
         throw new ObliqueNS.Error("Param constructor must be called with second param string");
       }
-      if (!this._isString(this.max)) {
+      if (!this._isValidValue(this.max)) {
         throw new ObliqueNS.Error("Param constructor must be called with third param string");
       }
     }
 
+    RangeParam.prototype._isValidValue = function(value) {
+      if (value === void 0) {
+        return true;
+      }
+      return this._isString(value);
+    };
+
     RangeParam.prototype.getLocationHash = function() {
-      return "" + this.name + "=(" + this.min + "," + this.max + ")";
+      if (!this.isEmpty()) {
+        return "" + this.name + "=(" + this.min + "," + this.max + ")";
+      }
+      return this.name;
     };
 
     RangeParam.prototype.isEmpty = function() {
@@ -413,9 +426,15 @@
     RangeParam.createFrom = function(strHashParam) {
       var hashParam, max, min, value;
       hashParam = Param.parse(strHashParam);
-      value = hashParam.value.replace("(", "").replace(")", "");
-      min = (value.split(",")[0]).trim();
-      max = (value.split(",")[1]).trim();
+      min = void 0;
+      max = void 0;
+      if (!Param.stringIsNullOrEmpty(hashParam.value)) {
+        value = hashParam.value.replace("(", "").replace(")", "");
+        if (value.trim().length > 0) {
+          min = (value.split(",")[0]).trim();
+          max = (value.split(",")[1]).trim();
+        }
+      }
       return new RangeParam(hashParam.name, min, max);
     };
 
@@ -442,11 +461,17 @@
     }
 
     SingleParam.prototype.getLocationHash = function() {
-      return "" + this.name + "=" + this.value;
+      if (!this.isEmpty()) {
+        return "" + this.name + "=" + this.value;
+      }
+      return this.name;
     };
 
     SingleParam.prototype.isEmpty = function() {
       if (this.value === void 0) {
+        return true;
+      }
+      if (this.value.trim().length === 0) {
         return true;
       }
       return false;
@@ -455,9 +480,6 @@
     SingleParam.is = function(strHashParam) {
       var hashParam;
       hashParam = Param.parse(strHashParam);
-      if (Param.stringIsNullOrEmpty(hashParam.value)) {
-        return false;
-      }
       if (Param.containsChar(hashParam.value, "(")) {
         return false;
       }

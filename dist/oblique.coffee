@@ -22,7 +22,8 @@ class Param
   @parse:(strHashParam)->
     hashArray=strHashParam.split("=")
     name=hashArray[0].trim()
-    value=hashArray[1].trim()
+    value=""
+    value=hashArray[1].trim() if hashArray.length>1
     {name:name, value:value}
 
   getLocationHash: ->
@@ -75,7 +76,7 @@ class ArrayParam extends ObliqueNS.Param
     return false
 
   getLocationHash: ->
-    return "" if @count() is 0
+    return @name if @count() is 0
     hash = "#{@name}=["
     for value in @values
       hash += "#{value},"
@@ -84,8 +85,8 @@ class ArrayParam extends ObliqueNS.Param
 
   count:->
     return 0 if @values is undefined
+    return 0 if @values.length is 0
     @values.length
-
 
   @is:(strHashParam)->
     hashParam=Param.parse(strHashParam)
@@ -198,15 +199,16 @@ class ParamCollection
     return param.isEmpty()
 
   getLocationHash: ->
-    return "" if @count() is 0
+    #return "" if @count() is 0
 
     hash = "#"
     for paramName, param of @_params
-      continue if param.isEmpty()
+      #continue if param.isEmpty()
 
       hash += param.getLocationHash() + "&"
 
     hash=hash.substr(0,hash.length-1)
+    hash="" if hash is "#"
     hash
 
 ObliqueNS.ParamCollection=ParamCollection
@@ -220,13 +222,18 @@ class RangeParam extends ObliqueNS.Param
 
   constructor:(@name, @min, @max)->
     super(@name)
-    if (not @_isString(@min))
+    if (not @_isValidValue(@min))
       throw new ObliqueNS.Error("Param constructor must be called with second param string")
-    if (not @_isString(@max))
+    if (not @_isValidValue(@max))
       throw new ObliqueNS.Error("Param constructor must be called with third param string")
 
+  _isValidValue:(value) ->
+    return true if value is undefined
+    return @_isString(value)
+
   getLocationHash:->
-     "#{@name}=(#{@min},#{@max})"
+    return "#{@name}=(#{@min},#{@max})" if not @isEmpty()
+    @name
 
   isEmpty:() ->
     return true if (@min is undefined and @max is undefined)
@@ -244,9 +251,13 @@ class RangeParam extends ObliqueNS.Param
 
   @createFrom:(strHashParam)->
     hashParam=Param.parse(strHashParam)
-    value=hashParam.value.replace("(","").replace(")","")
-    min=(value.split(",")[0]).trim()
-    max=(value.split(",")[1]).trim()
+    min=undefined
+    max=undefined
+    if (not Param.stringIsNullOrEmpty(hashParam.value))
+      value=hashParam.value.replace("(","").replace(")","")
+      if (value.trim().length>0)
+        min=(value.split(",")[0]).trim()
+        max=(value.split(",")[1]).trim()
     new RangeParam(hashParam.name, min, max)
 
 ObliqueNS.RangeParam=RangeParam
@@ -262,15 +273,16 @@ class SingleParam extends ObliqueNS.Param
       throw new ObliqueNS.Error("Param constructor must be called with second param string")
 
   getLocationHash: ->
-    "#{@name}=#{@value}"
+    return "#{@name}=#{@value}" if not @isEmpty()
+    @name
 
   isEmpty:() ->
     return true if @value is undefined
+    return true if @value.trim().length is 0
     return false
 
   @is:(strHashParam)->
     hashParam=Param.parse(strHashParam)
-    return false if Param.stringIsNullOrEmpty(hashParam.value)
     return false if Param.containsChar(hashParam.value,"(")
     return false if Param.containsChar(hashParam.value,"[")
     true
