@@ -10,15 +10,16 @@ class SingleParam extends ObliqueNS.Param
       throw new ObliqueNS.Error("Param constructor must be called with second param string")
 
   getLocationHash: ->
-    "#{@name}=#{@value}"
+    return "#{@name}=#{@value}" if not @isEmpty()
+    @name
 
   isEmpty:() ->
     return true if @value is undefined
+    return true if @value.trim().length is 0
     return false
 
   @is:(strHashParam)->
     hashParam=Param.parse(strHashParam)
-    return false if Param.stringIsNullOrEmpty(hashParam.value)
     return false if Param.containsChar(hashParam.value,"(")
     return false if Param.containsChar(hashParam.value,"[")
     true

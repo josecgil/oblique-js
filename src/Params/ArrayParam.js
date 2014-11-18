@@ -62,7 +62,7 @@
     ArrayParam.prototype.getLocationHash = function() {
       var hash, value, _i, _len, _ref;
       if (this.count() === 0) {
-        return "";
+        return this.name;
       }
       hash = "" + this.name + "=[";
       _ref = this.values;
@@ -76,6 +76,9 @@
 
     ArrayParam.prototype.count = function() {
       if (this.values === void 0) {
+        return 0;
+      }
+      if (this.values.length === 0) {
         return 0;
       }
       return this.values.length;

@@ -918,7 +918,7 @@
       hashParams = Oblique().getHashParams();
       hashParams.getParam("albums").remove("1");
       Oblique().setHashParams(hashParams);
-      return expect(window.location.hash).toBe("#color=green");
+      return expect(window.location.hash).toBe("#albums&color=green");
     });
     it("must work with params in camel case", function() {
       var hashParams, param;

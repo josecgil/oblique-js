@@ -32,7 +32,7 @@ class ArrayParam extends ObliqueNS.Param
     return false
 
   getLocationHash: ->
-    return "" if @count() is 0
+    return @name if @count() is 0
     hash = "#{@name}=["
     for value in @values
       hash += "#{value},"
@@ -41,8 +41,8 @@ class ArrayParam extends ObliqueNS.Param
 
   count:->
     return 0 if @values is undefined
+    return 0 if @values.length is 0
     @values.length
-
 
   @is:(strHashParam)->
     hashParam=Param.parse(strHashParam)

@@ -16,6 +16,7 @@
         <item url="file://$PROJECT_DIR$/spec/CallbackCollectionSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/DataModelVariableSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
+        <item url="file://$PROJECT_DIR$/spec/Params/ParamCollectionSpec.js" />
         <item url="file://$PROJECT_DIR$/src/ObliqueError.js" />
         <item url="file://$PROJECT_DIR$/src/Params/RangeParam.js" />
         <item url="file://$PROJECT_DIR$/dist/oblique.js" />
@@ -32,7 +33,6 @@
         <item url="file://$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" />
         <item url="file://$PROJECT_DIR$/src/Params/0_Param.js" />
         <item url="file://$PROJECT_DIR$/src/Params/ParamCollection.js" />
-        <item url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/ElementSpec.js" />
       </sourceFilesUrls>
     </properties>
@@ -79,6 +79,7 @@
       <root url="file://$PROJECT_DIR$/spec/CallbackCollectionSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/DataModelVariableSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
+      <root url="file://$PROJECT_DIR$/spec/Params/ParamCollectionSpec.js" />
       <root url="file://$PROJECT_DIR$/src/ObliqueError.js" />
       <root url="file://$PROJECT_DIR$/dist/oblique.js" />
       <root url="file://$PROJECT_DIR$/src/Params/RangeParam.js" />
@@ -96,7 +97,6 @@
       <root url="file://$PROJECT_DIR$/spec/templates/TemplateSpec.js" />
       <root url="file://$PROJECT_DIR$/src/Params/0_Param.js" />
       <root url="file://$PROJECT_DIR$/src/Params/ParamCollection.js" />
-      <root url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/ElementSpec.js" />
     </CLASSES>
     <SOURCES />

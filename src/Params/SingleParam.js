@@ -21,11 +21,17 @@
     }
 
     SingleParam.prototype.getLocationHash = function() {
-      return "" + this.name + "=" + this.value;
+      if (!this.isEmpty()) {
+        return "" + this.name + "=" + this.value;
+      }
+      return this.name;
     };
 
     SingleParam.prototype.isEmpty = function() {
       if (this.value === void 0) {
+        return true;
+      }
+      if (this.value.trim().length === 0) {
         return true;
       }
       return false;
@@ -34,9 +40,6 @@
     SingleParam.is = function(strHashParam) {
       var hashParam;
       hashParam = Param.parse(strHashParam);
-      if (Param.stringIsNullOrEmpty(hashParam.value)) {
-        return false;
-      }
       if (Param.containsChar(hashParam.value, "(")) {
         return false;
       }

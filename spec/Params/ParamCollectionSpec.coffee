@@ -144,7 +144,7 @@ describe "ParamCollection", ->
   it "must return location hash for an array param of zero", () ->
     paramCollection=new ParamCollection("")
     paramCollection.add(new ArrayParam("sizes",[]))
-    expect(paramCollection.getLocationHash()).toBe("")
+    expect(paramCollection.getLocationHash()).toBe("#sizes")
 
   it "must return location hash for 2 params", () ->
     paramCollection=new ParamCollection("")
@@ -216,6 +216,22 @@ describe "ParamCollection", ->
     expect(paramCollection.count()).toBe(1)
     expect(paramCollection.getParam("sort").value).toBe("desc")
 
+  it "must understand single param without value from location hash", () ->
+    paramCollection=new ParamCollection("#sort=")
+    expect(paramCollection.count()).toBe(0)
+    expect(paramCollection.getParam("sort").isEmpty()).toBeTruthy()
+
+  it "must understand single param without = from location hash", () ->
+    paramCollection=new ParamCollection("#sort")
+    expect(paramCollection.count()).toBe(0)
+    expect(paramCollection.getParam("sort").isEmpty()).toBeTruthy()
+
+  it "must understand two single param without = from location hash", () ->
+    paramCollection=new ParamCollection("#sort&prices")
+    expect(paramCollection.count()).toBe(0)
+    expect(paramCollection.getParam("sort").isEmpty()).toBeTruthy()
+    expect(paramCollection.getParam("prices").isEmpty()).toBeTruthy()
+
   it "must understand 2 single params from location hash", () ->
     paramCollection=new ParamCollection("#sort=desc&numItems=48")
     expect(paramCollection.count()).toBe(2)
@@ -283,14 +299,21 @@ describe "ParamCollection", ->
     param=paramCollection.getParam("album")
     expect(param).toBeDefined()
     expect(param.isEmpty()).toBeTruthy()
-    expect(param.getLocationHash()).toBe("")
+    expect(paramCollection.getLocationHash()).toBe("#album")
+
+  it "must return Empty param object when param doesn't have value nor =", () ->
+    paramCollection=new ParamCollection("#album")
+    param=paramCollection.getParam("album")
+    expect(param).toBeDefined()
+    expect(param.isEmpty()).toBeTruthy()
+    expect(paramCollection.getLocationHash()).toBe("#album")
 
   it "must return Empty param object when param array is an empty array", () ->
     paramCollection=new ParamCollection("#album=[]")
     param=paramCollection.getParam("album")
     expect(param).toBeDefined()
     expect(param.isEmpty()).toBeTruthy()
-    expect(param.getLocationHash()).toBe("")
+    expect(param.getLocationHash()).toBe("album")
 
   it "must return Empty param object when I remove the last value of a param array ", () ->
     paramCollection=new ParamCollection("#album=[1]")
@@ -298,7 +321,7 @@ describe "ParamCollection", ->
     param.remove("1")
     expect(param).toBeDefined()
     expect(param.isEmpty()).toBeTruthy()
-    expect(param.getLocationHash()).toBe("")
+    expect(param.getLocationHash()).toBe("album")
 
   it "must compare single param values", () ->
     param=new SingleParam("sort","asc")
@@ -408,3 +431,15 @@ describe "ParamCollection", ->
 
     foundedParamCollection=paramCollection.find(["price"])
     expect(foundedParamCollection.isEmpty()).toBeTruthy()
+
+  it "must return correct hash when value of SingleParam is empty", () ->
+    param=SingleParam.createFrom("sort")
+    expect(param.getLocationHash()).toBe("sort")
+
+  it "must return correct hash when value of RangeParam is empty", () ->
+    param=RangeParam.createFrom("price=()")
+    expect(param.getLocationHash()).toBe("price")
+
+  it "must return correct hash when value of ArrayParam is empty", () ->
+    param=ArrayParam.createFrom("colors=[]")
+    expect(param.getLocationHash()).toBe("colors")

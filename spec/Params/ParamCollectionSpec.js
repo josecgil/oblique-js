@@ -164,7 +164,7 @@
       var paramCollection;
       paramCollection = new ParamCollection("");
       paramCollection.add(new ArrayParam("sizes", []));
-      return expect(paramCollection.getLocationHash()).toBe("");
+      return expect(paramCollection.getLocationHash()).toBe("#sizes");
     });
     it("must return location hash for 2 params", function() {
       var paramCollection;
@@ -239,6 +239,25 @@
       paramCollection = new ParamCollection("#sort=desc");
       expect(paramCollection.count()).toBe(1);
       return expect(paramCollection.getParam("sort").value).toBe("desc");
+    });
+    it("must understand single param without value from location hash", function() {
+      var paramCollection;
+      paramCollection = new ParamCollection("#sort=");
+      expect(paramCollection.count()).toBe(0);
+      return expect(paramCollection.getParam("sort").isEmpty()).toBeTruthy();
+    });
+    it("must understand single param without = from location hash", function() {
+      var paramCollection;
+      paramCollection = new ParamCollection("#sort");
+      expect(paramCollection.count()).toBe(0);
+      return expect(paramCollection.getParam("sort").isEmpty()).toBeTruthy();
+    });
+    it("must understand two single param without = from location hash", function() {
+      var paramCollection;
+      paramCollection = new ParamCollection("#sort&prices");
+      expect(paramCollection.count()).toBe(0);
+      expect(paramCollection.getParam("sort").isEmpty()).toBeTruthy();
+      return expect(paramCollection.getParam("prices").isEmpty()).toBeTruthy();
     });
     it("must understand 2 single params from location hash", function() {
       var paramCollection;
@@ -316,7 +335,15 @@
       param = paramCollection.getParam("album");
       expect(param).toBeDefined();
       expect(param.isEmpty()).toBeTruthy();
-      return expect(param.getLocationHash()).toBe("");
+      return expect(paramCollection.getLocationHash()).toBe("#album");
+    });
+    it("must return Empty param object when param doesn't have value nor =", function() {
+      var param, paramCollection;
+      paramCollection = new ParamCollection("#album");
+      param = paramCollection.getParam("album");
+      expect(param).toBeDefined();
+      expect(param.isEmpty()).toBeTruthy();
+      return expect(paramCollection.getLocationHash()).toBe("#album");
     });
     it("must return Empty param object when param array is an empty array", function() {
       var param, paramCollection;
@@ -324,7 +351,7 @@
       param = paramCollection.getParam("album");
       expect(param).toBeDefined();
       expect(param.isEmpty()).toBeTruthy();
-      return expect(param.getLocationHash()).toBe("");
+      return expect(param.getLocationHash()).toBe("album");
     });
     it("must return Empty param object when I remove the last value of a param array ", function() {
       var param, paramCollection;
@@ -333,7 +360,7 @@
       param.remove("1");
       expect(param).toBeDefined();
       expect(param.isEmpty()).toBeTruthy();
-      return expect(param.getLocationHash()).toBe("");
+      return expect(param.getLocationHash()).toBe("album");
     });
     it("must compare single param values", function() {
       var param;
@@ -447,13 +474,28 @@
       paramCollection.add(new ArrayParam("sizes", ["M", "L"]));
       return expect(paramCollection.isEmpty()).toBeFalsy();
     });
-    return it("must return an Empty param if param searched doesn't exists", function() {
+    it("must return an Empty param if param searched doesn't exists", function() {
       var foundedParamCollection, paramCollection;
       paramCollection = new ParamCollection();
       paramCollection.addSingleParam("sort", "desc");
       expect(paramCollection.isEmpty()).toBeFalsy();
       foundedParamCollection = paramCollection.find(["price"]);
       return expect(foundedParamCollection.isEmpty()).toBeTruthy();
+    });
+    it("must return correct hash when value of SingleParam is empty", function() {
+      var param;
+      param = SingleParam.createFrom("sort");
+      return expect(param.getLocationHash()).toBe("sort");
+    });
+    it("must return correct hash when value of RangeParam is empty", function() {
+      var param;
+      param = RangeParam.createFrom("price=()");
+      return expect(param.getLocationHash()).toBe("price");
+    });
+    return it("must return correct hash when value of ArrayParam is empty", function() {
+      var param;
+      param = ArrayParam.createFrom("colors=[]");
+      return expect(param.getLocationHash()).toBe("colors");
     });
   });
 

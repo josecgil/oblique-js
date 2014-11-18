@@ -40,7 +40,10 @@
       var hashArray, name, value;
       hashArray = strHashParam.split("=");
       name = hashArray[0].trim();
-      value = hashArray[1].trim();
+      value = "";
+      if (hashArray.length > 1) {
+        value = hashArray[1].trim();
+      }
       return {
         name: name,
         value: value

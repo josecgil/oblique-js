@@ -133,19 +133,16 @@
 
     ParamCollection.prototype.getLocationHash = function() {
       var hash, param, paramName, _ref;
-      if (this.count() === 0) {
-        return "";
-      }
       hash = "#";
       _ref = this._params;
       for (paramName in _ref) {
         param = _ref[paramName];
-        if (param.isEmpty()) {
-          continue;
-        }
         hash += param.getLocationHash() + "&";
       }
       hash = hash.substr(0, hash.length - 1);
+      if (hash === "#") {
+        hash = "";
+      }
       return hash;
     };
 

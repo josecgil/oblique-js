@@ -22,7 +22,8 @@ class Param
   @parse:(strHashParam)->
     hashArray=strHashParam.split("=")
     name=hashArray[0].trim()
-    value=hashArray[1].trim()
+    value=""
+    value=hashArray[1].trim() if hashArray.length>1
     {name:name, value:value}
 
   getLocationHash: ->
