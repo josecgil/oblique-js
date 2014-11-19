@@ -167,6 +167,12 @@ describe "ParamCollection", ->
     sizesParam.remove("M")
     expect(sizesParam.values).toBeUndefined()
 
+  it "must return correct hash when I remove a param value", () ->
+    paramCollection=new ParamCollection("")
+    paramCollection.add(new ArrayParam("sizes",["M"]))
+    paramCollection.remove("sizes")
+    expect(paramCollection.getLocationHash()).toBe("")
+
   it "must return location hash for 0 params", () ->
     paramCollection=new ParamCollection("")
     expect(paramCollection.getLocationHash()).toBe("")

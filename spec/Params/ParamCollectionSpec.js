@@ -189,6 +189,13 @@
       sizesParam.remove("M");
       return expect(sizesParam.values).toBeUndefined();
     });
+    it("must return correct hash when I remove a param value", function() {
+      var paramCollection;
+      paramCollection = new ParamCollection("");
+      paramCollection.add(new ArrayParam("sizes", ["M"]));
+      paramCollection.remove("sizes");
+      return expect(paramCollection.getLocationHash()).toBe("");
+    });
     it("must return location hash for 0 params", function() {
       var paramCollection;
       paramCollection = new ParamCollection("");

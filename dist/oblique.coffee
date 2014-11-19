@@ -205,6 +205,7 @@ class ParamCollection
     for paramName, param of @_params
       #continue if param.isEmpty()
 
+      continue if param is undefined
       hash += param.getLocationHash() + "&"
 
     hash=hash.substr(0,hash.length-1)
