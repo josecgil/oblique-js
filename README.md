@@ -345,8 +345,23 @@ For a complete reference of the template language check [handlebars website](htt
 Hash routing refers to the hability to check & change document.location.hash values. `oblique.js` provides an easy to use mechanism to extract & modifiy hash params from url & to check when params are changed.
 
 ###Check hash route params
+Calling `Oblique().getHashParams()' you get a `ParamCollection` object that allows you to check and modify current hash params.
+
+It has the following methods to check route values:
+
+`getParam(nameOfParam)`: returns a 'Param' object that allows to check and modify an individual param.
+`isEmpty()`: returns true if there is no hash params, otherwise return false.
+
+
+
+
 
 ###Modify hash route params
+
+`Oblique().setHashParams(params)`
+
+`ParamCollection` object has the following methods to change route values:
+`addArrayParam(nameOfParam, arrayValuesOfParam)`: adds a param of type array (ex: `addArrayParam("size", ['M','L','XL'])` adds size=['M','L','XL'] ro route)
 
 ###Listen to changes in hash route params
 
