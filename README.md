@@ -352,21 +352,16 @@ It has the following methods to check route values:
 + `getParam(nameOfParam)`: returns a 'Param' object that allows to check and modify an individual param.
 + `isEmpty()`: returns true if there is no hash params, otherwise return false.
 
-
-
-
-
 ###Modify hash route params
 
-`Oblique().setHashParams(params)`
+You change hash params modifying `ParamCollection` object obtained by `Oblique().getHashParams()`, calling methods of this object to mofify its values and then setting the modified `ParamCollection` object via `Oblique().setHashParams(params)`.
 
 `ParamCollection` object has the following methods to change route values:
 + `addArrayParam(nameOfParam, arrayValuesOfParam)`: adds a param of type array. 
-+ `addRangeParam(nameOfParam, minValue, maxValue)`: add a para of type range (composed of a min and a max value)
-+ `addSingleParam(nameOfParam, value)`: 
++ `addRangeParam(nameOfParam, minValue, maxValue)`: adds a param of type range (composed of a min and a max value)
++ `addSingleParam(nameOfParam, value)`: adds a param of type single.
 
-Examples
-
+Example:
 ```
 var params=Oblique().getHashParams();
 params.addArrayParam("size", ['M','L','XL']) //adds size=['M','L','XL'] to route
