@@ -361,7 +361,19 @@ It has the following methods to check route values:
 `Oblique().setHashParams(params)`
 
 `ParamCollection` object has the following methods to change route values:
-+ `addArrayParam(nameOfParam, arrayValuesOfParam)`: adds a param of type array (ex: `addArrayParam("size", ['M','L','XL'])` adds size=['M','L','XL'] ro route)
++ `addArrayParam(nameOfParam, arrayValuesOfParam)`: adds a param of type array. 
++ `addRangeParam(nameOfParam, minValue, maxValue)`: add a para of type range (composed of a min and a max value)
++ `addSingleParam(nameOfParam, value)`: 
+
+Examples
+
+```
+var params=Oblique().getHashParams();
+params.addArrayParam("size", ['M','L','XL']) //adds size=['M','L','XL'] to route
+params.addRangeParam("price", 10, 20) //adds price=(10,20) to route
+params.addSingleParam("sort", "desc") //adds sort=desc to route
+Oblique().setHashParams(params); //this last line is when the change really occurs.
+```
 
 ###Listen to changes in hash route params
 
