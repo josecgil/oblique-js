@@ -345,22 +345,33 @@ For a complete reference of the template language check [handlebars website](htt
 Hash routing refers to the hability to check & change document.location.hash values. `oblique.js` provides an easy to use mechanism to extract & modifiy hash params from url & to check when params are changed.
 
 ###Check hash route params
-Calling `Oblique().getHashParams()` you get a `ParamCollection` object that allows you to check and modify current hash params.
+Calling `Oblique().getHashParams()` you get a `ParamCollection` object that allows you to check, add, modify and delete current hash params.
 
 It has the following methods to check route values:
 
 + `getParam(nameOfParam)`: returns a 'Param' object that allows to check and modify an individual param.
 + `isEmpty()`: returns true if there is no hash params, otherwise return false.
 
-###Modify hash route params
+###Add hash route params
 
-You change hash params modifying `ParamCollection` object obtained by `Oblique().getHashParams()`, calling methods of this object to mofify its values and then setting the modified `ParamCollection` object via `Oblique().setHashParams(params)`.
+You add hash params modifying `ParamCollection` object obtained by `Oblique().getHashParams()`, calling methods of this object to mofify its values and then setting the modified `ParamCollection` object via `Oblique().setHashParams(params)`.
 
-`ParamCollection` object has the following methods to change route values:
+`ParamCollection` object has the following methods to add route values:
 + `addArrayParam(nameOfParam, arrayValuesOfParam)`: adds a param of type array. 
 + `addRangeParam(nameOfParam, minValue, maxValue)`: adds a param of type range (composed of a min and a max value)
 + `addSingleParam(nameOfParam, value)`: adds a param of type single.
 
+###Modify hash route params
+
+You can get a `Param` object with the method `getParam(nameOfParam)` of a 
+`ParamCollection` object.
+Depending of the param you can get 4 types of `Param` object:
++ArrayParam: representing a param with multiples values.
++SingleParam: representing a param with a single value.
++RangeParam: representing a param with a min and a max value. 
++EmptyParam: represeting an empty or non-existent param.
+
+###Remove hash route params
 Example:
 ```
 var params=Oblique().getHashParams();
