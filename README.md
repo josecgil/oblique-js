@@ -352,6 +352,35 @@ It has the following methods to check route values:
 + `getParam(nameOfParam)`: returns a 'Param' object that allows to check and modify an individual param.
 + `isEmpty()`: returns true if there is no hash params, otherwise return false.
 
+You can get a `Param` object with the method `getParam(nameOfParam)` of a 
+`ParamCollection` object.
+Depending of the param you can get 4 types of `Param` object:
++ ArrayParam: representing a param with multiples values.
++ RangeParam: representing a param with a min and a max value. 
++ SingleParam: representing a param with a single value.
++ EmptyParam: representing an empty or non-existent param.
+
+Any of there param objects has a method `isEmpty()` that returns true if param has no value. 
+Let's supose i have an url with this hash params:
+`#sizes=[S, M, L]&price=(9,26)&color=red`
+
+Here are examples to get values for any of these:
+```
+var params=Oblique()..getHashParams();
+var sizesParam=params.getParam("sizes"); //ArrayParam
+var priceParam=params.getParam("price"); //RangeParam
+var colorParam=params.getParam("color"); //SingleParam
+var noneParam=params.getParam("foobar"); //EmptyParam
+
+var noneIsEmpty=noneParam.isEmpty() //true
+var sizesIsEmpty=sizesParam.IsEmpty() //false
+
+var sizes=sizesParam.values; //["S" , "M", "L"]
+var priceMIn=priceParam.min; //"9"
+var priceMax=priceParam.max; //"26"
+var color=colorParam.value; //"red"
+```
+
 ###Add hash route params
 
 You add hash params modifying `ParamCollection` object obtained by `Oblique().getHashParams()`, calling methods of this object to mofify its values and then setting the modified `ParamCollection` object via `Oblique().setHashParams(params)`.
@@ -363,14 +392,30 @@ You add hash params modifying `ParamCollection` object obtained by `Oblique().ge
 
 ###Modify hash route params
 
-You can get a `Param` object with the method `getParam(nameOfParam)` of a 
-`ParamCollection` object.
-Depending of the param you can get 4 types of `Param` object:
-+ArrayParam: representing a param with multiples values.
-+SingleParam: representing a param with a single value.
-+RangeParam: representing a param with a min and a max value. 
-+EmptyParam: represeting an empty or non-existent param.
+To modify a param you:  
 
++ get the `ParamCollection` object via `Oblique().getHashParams()`
++ get the `Param` object you want via `getParam(nameOfParam)`
++ modify the `Param` values (see examples below)
++ set the modified `ParamCollection` object via `Oblique().setHashParams(paramCollection)`
+
+Let's supose i have an url with this hash params:
+`#sizes=[S, M, L]&price=(9,26)&color=red`
+
+Here are examples to set values for any of these:
+```
+var params=Oblique()..getHashParams();
+var sizesParam=params.getParam("sizes"); //ArrayParam
+var priceParam=params.getParam("price"); //RangeParam
+var colorParam=params.getParam("color"); //SingleParam
+
+sizesParam.values=["XL", "XXL"];
+priceParam.min=1;
+priceParam.max=100;
+colorParam.value="blue";
+
+Oblique().setHashParams(params);
+```
 ###Remove hash route params
 Example:
 ```
