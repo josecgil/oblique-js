@@ -342,15 +342,15 @@ For a complete reference of the template language check [handlebars website](htt
 
 ##Hash routing
 
-Hash routing refers to the hability to check & change document.location.hash values. `oblique.js` provides an easy to use mechanism to extract & modifiy hash params from url & to check when params are changed.
+Hash routing refers to the hability to check & change document.location.hash values. `oblique.js` provides an easy way to get, add, modify & remove hash params from url & to notify you when params are changed.
 
 ###Check hash route params
 Calling `Oblique().getHashParams()` you get a `ParamCollection` object that allows you to check, add, modify and delete current hash params.
 
 It has the following methods to check route values:
 
-+ `getParam(nameOfParam)`: returns a 'Param' object that allows to check and modify an individual param.
-+ `isEmpty()`: returns true if there is no hash params, otherwise return false.
++ `getParam(nameOfParam)`: returns a `Param` object that allows to check and modify any individual param.
++ `isEmpty()`: returns true if there is no hash params in the collection, otherwise return false.
 
 You can get a `Param` object with the method `getParam(nameOfParam)` of a 
 `ParamCollection` object.
@@ -361,11 +361,12 @@ Depending of the param you can get 4 types of `Param` object:
 + EmptyParam: representing an empty or non-existent param.
 
 Any of there param objects has a method `isEmpty()` that returns true if param has no value. 
-Let's supose i have an url with this hash params:
-`#sizes=[S, M, L]&price=(9,26)&color=red`
 
-Here are examples to get values for any of these:
+Example:
+
 ```
+//Let's supose I have an url with this hash params:
+//#sizes=[S, M, L]&price=(9,26)&color=red
 var params=Oblique()..getHashParams();
 var sizesParam=params.getParam("sizes"); //ArrayParam
 var priceParam=params.getParam("price"); //RangeParam
@@ -383,12 +384,31 @@ var color=colorParam.value; //"red"
 
 ###Add hash route params
 
-You add hash params modifying `ParamCollection` object obtained by `Oblique().getHashParams()`, calling methods of this object to mofify its values and then setting the modified `ParamCollection` object via `Oblique().setHashParams(params)`.
+You add hash params 
++ getting `ParamCollection` object via `Oblique().getHashParams()`
++ calling methods of this object to mofify its values 
++ and then setting the modified `ParamCollection` object via `Oblique().setHashParams(params)`.
 
 `ParamCollection` object has the following methods to add route values:
 + `addArrayParam(nameOfParam, arrayValuesOfParam)`: adds a param of type array. 
 + `addRangeParam(nameOfParam, minValue, maxValue)`: adds a param of type range (composed of a min and a max value)
 + `addSingleParam(nameOfParam, value)`: adds a param of type single.
+
+Examples:
+```
+//Let's supose i have an url with this hash params:
+//#source=1
+
+var params=Oblique().getHashParams();
+params.addArrayParam("sizes",["S","M","L"]);
+params.addRangeParam("price", 25 , 50);
+params.addSingleParam("color","green");
+
+Oblique().setHashParams(params);
+
+//sets the url to 
+//#source=1&sizes=[S,M,L]&price=(25,50)&color=green
+```
 
 ###Modify hash route params
 
@@ -399,12 +419,11 @@ To modify a param you:
 + modify the `Param` values (see examples below)
 + set the modified `ParamCollection` object via `Oblique().setHashParams(paramCollection)`
 
-Let's supose i have an url with this hash params:
-`#sizes=[S, M, L]&price=(9,26)&color=red`
-
-Here are examples to set values for any of these:
+Examples:
 ```
-var params=Oblique()..getHashParams();
+//Let's supose i have an url with this hash params:
+//#sizes=[S, M, L]&price=(9,26)&color=red
+var params=Oblique().getHashParams();
 var sizesParam=params.getParam("sizes"); //ArrayParam
 var priceParam=params.getParam("price"); //RangeParam
 var colorParam=params.getParam("color"); //SingleParam
@@ -415,15 +434,26 @@ priceParam.max=100;
 colorParam.value="blue";
 
 Oblique().setHashParams(params);
+//New hash is:
+//#sizes=[XL, XXL]&price=(1,100)&color=blue
 ```
+
 ###Remove hash route params
+To remove a hash params you
++ get a `ParamCollection` object via `Oblique().getHashParams()`
++ call `remove(nameOfParam)` or `removeAll()`  
++ set the modified `ParamCollection` object via `Oblique().setHashParams(params)`.
+
 Example:
 ```
+//Let's supose I have an url with this hash params:
+//#sizes=[S, M, L]&price=(9,26)&color=red
+
 var params=Oblique().getHashParams();
-params.addArrayParam("size", ['M','L','XL']) //adds size=['M','L','XL'] to route
-params.addRangeParam("price", 10, 20) //adds price=(10,20) to route
-params.addSingleParam("sort", "desc") //adds sort=desc to route
+params.remove("sizes") 
 Oblique().setHashParams(params); //this last line is when the change really occurs.
+//New hash is:
+//#price=(1,100)&color=blue
 ```
 
 ###Listen to changes in hash route params
