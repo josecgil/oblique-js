@@ -458,6 +458,15 @@ Oblique().setHashParams(params); //this last line is when the change really occu
 
 ###Listen to changes in hash route params
 
+`oblique.js` can provide 
+
+```
+
+
+
+```
+
+
 ###samples
 
 In  [samples/Filters directory](http://github.com/josecgil/oblique-js/tree/master/samples/Filters) there is a complete & functional sample thats uses all the hash routing functionality.
