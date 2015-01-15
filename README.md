@@ -275,7 +275,7 @@ With `data-ob-model="format(new Date())"` you send the result of the global func
 
 With `data-ob-model="new Address(Model.address)"` you send an instance of Address that receives the address part of the model.
 
-C. Assign a variable and use it later
+C. Assign a variable and use it later in the page
 
 if you execute code that creates a local variable, like this:
 
@@ -458,12 +458,28 @@ Oblique().setHashParams(params); //this last line is when the change really occu
 
 ###Listen to changes in hash route params
 
-`oblique.js` can provide 
+`oblique.js` provides a convenient mechanism to listen to changes in hash params. You can add a function `onHashChange` to every `directive`. `oblique.js` will call this function on every hash change passing an object with a `ParamCollection` object.   
+
+
+This is an example listening to changes in hash for a `price` param:
 
 ```
+var PriceDirective=function (data) {
 
+};
 
+PriceDirective.prototype.onHashChange=function(data) {
+    var priceParam=data.hashParams.getParam("price");
+    if (priceParam.isEmpty()) {
+        this.priceMinInput.val(1);
+        this.priceMaxInput.val(200);
+        return;
+    }
+    this.priceMinInput.val(priceParam.min);
+    this.priceMaxInput.val(priceParam.max);
+};
 
+Oblique().registerDirective("PriceDirective", PriceDirective);
 ```
 
 
