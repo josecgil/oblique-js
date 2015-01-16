@@ -523,4 +523,4 @@ For example, if you want that `oblique.js` checks the DOM every second, you can 
 ##Learn more
 To learn more and see more complex examples check the [samples directory](http://github.com/josecgil/oblique-js/tree/master/samples)
 
-You can learn more about every object of the system checking usage cases in the [spec directory] https://github.com/josecgil/oblique-js/tree/master/spec)
+You can learn more about every object of the system checking usage cases in the [spec directory](https://github.com/josecgil/oblique-js/tree/master/spec)
