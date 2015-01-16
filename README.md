@@ -24,7 +24,7 @@
 12. [Hash routing](#hash-routing)
 13. [Error handling](#error-handling)
 14. [Notes](#notes)
-
+15. [Learn more](#learn-more)
 
 ## Requeriments
 
@@ -309,7 +309,7 @@ The next example uses a simple object (name, surname) to render an html like thi
 
 ```
 <div id="hellouser">
-    <p>Hello <strong>Edgar</strong>Allan</p>
+    <p>Hello <strong>Edgar</strong>Allan Poe</p>
 </div>
 ```
 The javascript part will look like this:
@@ -320,7 +320,7 @@ The javascript part will look like this:
     var user=
     {
         name: "Edgar",
-        surName: "Allan"
+        surName: "Allan Poe"
     }
     
     //builds an string from the template and the data from the model
@@ -355,10 +355,10 @@ It has the following methods to check route values:
 You can get a `Param` object with the method `getParam(nameOfParam)` of a 
 `ParamCollection` object.
 Depending of the param you can get 4 types of `Param` object:
-+ ArrayParam: representing a param with multiples values.
-+ RangeParam: representing a param with a min and a max value. 
-+ SingleParam: representing a param with a single value.
-+ EmptyParam: representing an empty or non-existent param.
++ ArrayParam: representing a param with multiples values. It has a `values` property where you can check or change his values.
++ RangeParam: representing a param with a min and a max value. It has a `min` and `max` property where you can check or change his values.  
++ SingleParam: representing a param with a single value. It has a `value` property where you can check or change his values. 
++ EmptyParam: representing an empty or non-existent param. It doesn't have values properties.
 
 Any of there param objects has a method `isEmpty()` that returns true if param has no value. 
 
@@ -461,7 +461,7 @@ Oblique().setHashParams(params); //this last line is when the change really occu
 `oblique.js` provides a convenient mechanism to listen to changes in hash params. You can add a function `onHashChange` to every `directive`. `oblique.js` will call this function on every hash change passing an object with a `ParamCollection` object.   
 
 
-This is an example listening to changes in hash for a `price` param:
+This is an example we listen to changes in hash for a `price` param:
 
 ```
 var PriceDirective=function (data) {
@@ -469,14 +469,12 @@ var PriceDirective=function (data) {
 };
 
 PriceDirective.prototype.onHashChange=function(data) {
-    var priceParam=data.hashParams.getParam("price");
-    if (priceParam.isEmpty()) {
-        this.priceMinInput.val(1);
-        this.priceMaxInput.val(200);
-        return;
-    }
-    this.priceMinInput.val(priceParam.min);
-    this.priceMaxInput.val(priceParam.max);
+   var priceParam=data.hashParams.getParam("price");
+   if (priceParam.isEmpty()) {
+       //do whatever when is empty
+       return;
+   }
+   //do whatever when is not empty
 };
 
 Oblique().registerDirective("PriceDirective", PriceDirective);
@@ -522,6 +520,7 @@ For example, if you want that `oblique.js` checks the DOM every second, you can 
 </script>
 ```
 
-###More samples
-
+##Learn more
 To learn more and see more complex examples check the [samples directory](http://github.com/josecgil/oblique-js/tree/master/samples)
+
+You can learn more about every object of the system checking usage cases in the [spec directory] https://github.com/josecgil/oblique-js/tree/master/spec)
