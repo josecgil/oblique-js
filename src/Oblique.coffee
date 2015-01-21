@@ -51,7 +51,7 @@ class Oblique
   triggerOnError:(error)->
     for callback in @_onErrorCallbacks
       callback(error)
-    throw error
+    #throw error
 
   getHashParams:() ->
     new ObliqueNS.ParamCollection(window.location.hash)
