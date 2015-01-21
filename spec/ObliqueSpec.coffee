@@ -248,7 +248,7 @@ describe "Oblique", ->
 
     Oblique().onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
-      expect(error.message).toBe '<div data-ob-directive="TestDirective" data-ob-model="Model.address.num"></div>: data-ob-model expression is undefined'
+      expect(error.message).toBe '<div data-ob-directive="TestDirective" data-ob-model="Model.address.num"></div>: data-ob-model expression error: ObliqueError is not defined'
       done()
     )
 

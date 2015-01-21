@@ -463,7 +463,8 @@ class DOMProcessor
           @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
       )
     catch e
-      @_throwError("Error _applyObliqueElementsInDOM() : #{e.message}")
+      @_throwError(e, "Error _applyObliqueElementsInDOM() : #{e.message}")
+      throw e;
     finally
       @_isApplyingObliqueElementsInDOM = false
 
@@ -511,8 +512,7 @@ class DOMProcessor
     try
       jQuery.parseJSON(dataParamsExpr)
     catch e
-      @_throwError("#{obElement.getHtml()}: data-ob-params parse error: #{e.message}")
-
+      @_throwError(e, "#{obElement.getHtml()}: data-ob-params parse error: #{e.message}")
 
   _getDirectiveModel : (___obElement) ->
     ###
@@ -537,12 +537,18 @@ class DOMProcessor
         ___directiveModel=___variableValue
 
       if (not ___directiveModel)
-        @_throwError("#{___obElement.getHtml()}: data-ob-model expression is undefined")
+        errorMsg = "#{___obElement.getHtml()}: data-ob-model expression is undefined"
+        @_throwError(new ObliqueError(errorMsg), errorMsg)
       ___directiveModel
     catch e
-      @_throwError("#{___obElement.getHtml()}: data-ob-model expression error: #{e.message}")
+      @_throwError(e, "#{___obElement.getHtml()}: data-ob-model expression error: #{e.message}")
+      throw e
 
-  _throwError: (errorMessage) ->
+  _throwError: (e, errorMessage) ->
+    console.log "--- Init Oblique Error ---"
+    console.log errorMessage
+    console.log e.stack
+    console.log "--- End  Oblique Error ---"
     Oblique().triggerOnError(new ObliqueNS.Error(errorMessage))
 
   getIntervalTimeInMs: ->
@@ -697,7 +703,7 @@ class Oblique
   triggerOnError:(error)->
     for callback in @_onErrorCallbacks
       callback(error)
-    throw error
+    #throw error
 
   getHashParams:() ->
     new ObliqueNS.ParamCollection(window.location.hash)

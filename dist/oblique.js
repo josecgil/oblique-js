@@ -760,7 +760,8 @@
         })(this));
       } catch (_error) {
         e = _error;
-        return this._throwError("Error _applyObliqueElementsInDOM() : " + e.message);
+        this._throwError(e, "Error _applyObliqueElementsInDOM() : " + e.message);
+        throw e;
       } finally {
         this._isApplyingObliqueElementsInDOM = false;
       }
@@ -820,7 +821,7 @@
         return jQuery.parseJSON(dataParamsExpr);
       } catch (_error) {
         e = _error;
-        return this._throwError("" + (obElement.getHtml()) + ": data-ob-params parse error: " + e.message);
+        return this._throwError(e, "" + (obElement.getHtml()) + ": data-ob-params parse error: " + e.message);
       }
     };
 
@@ -833,7 +834,7 @@
         local variables created by
           eval(@_memory.localVarsScript())
        */
-      var Model, e, ___dataModelExpr, ___dataModelVariable, ___directiveModel, ___variableName, ___variableValue;
+      var Model, e, errorMsg, ___dataModelExpr, ___dataModelVariable, ___directiveModel, ___variableName, ___variableValue;
       Model = Oblique().getModel();
       ___dataModelExpr = ___obElement.getAttributeValue("data-ob-model");
       if (___dataModelExpr === void 0) {
@@ -850,16 +851,22 @@
           ___directiveModel = ___variableValue;
         }
         if (!___directiveModel) {
-          this._throwError("" + (___obElement.getHtml()) + ": data-ob-model expression is undefined");
+          errorMsg = "" + (___obElement.getHtml()) + ": data-ob-model expression is undefined";
+          this._throwError(new ObliqueError(errorMsg), errorMsg);
         }
         return ___directiveModel;
       } catch (_error) {
         e = _error;
-        return this._throwError("" + (___obElement.getHtml()) + ": data-ob-model expression error: " + e.message);
+        this._throwError(e, "" + (___obElement.getHtml()) + ": data-ob-model expression error: " + e.message);
+        throw e;
       }
     };
 
-    DOMProcessor.prototype._throwError = function(errorMessage) {
+    DOMProcessor.prototype._throwError = function(e, errorMessage) {
+      console.log("--- Init Oblique Error ---");
+      console.log(errorMessage);
+      console.log(e.stack);
+      console.log("--- End  Oblique Error ---");
       return Oblique().triggerOnError(new ObliqueNS.Error(errorMessage));
     };
 
@@ -1095,13 +1102,14 @@
     };
 
     Oblique.prototype.triggerOnError = function(error) {
-      var callback, _i, _len, _ref;
+      var callback, _i, _len, _ref, _results;
       _ref = this._onErrorCallbacks;
+      _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         callback = _ref[_i];
-        callback(error);
+        _results.push(callback(error));
       }
-      throw error;
+      return _results;
     };
 
     Oblique.prototype.getHashParams = function() {

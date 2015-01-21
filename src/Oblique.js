@@ -72,13 +72,14 @@
     };
 
     Oblique.prototype.triggerOnError = function(error) {
-      var callback, _i, _len, _ref;
+      var callback, _i, _len, _ref, _results;
       _ref = this._onErrorCallbacks;
+      _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         callback = _ref[_i];
-        callback(error);
+        _results.push(callback(error));
       }
-      throw error;
+      return _results;
     };
 
     Oblique.prototype.getHashParams = function() {

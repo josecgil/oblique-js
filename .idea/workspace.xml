@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/ParamCollection.coffee" afterPath="$PROJECT_DIR$/src/Params/ParamCollection.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/ParamCollection.js" afterPath="$PROJECT_DIR$/src/Params/ParamCollection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/Params/ParamCollectionSpec.coffee" afterPath="$PROJECT_DIR$/spec/Params/ParamCollectionSpec.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/Params/ParamCollectionSpec.js" afterPath="$PROJECT_DIR$/spec/Params/ParamCollectionSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.coffee" afterPath="$PROJECT_DIR$/dist/oblique.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.js" afterPath="$PROJECT_DIR$/dist/oblique.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.min.js" afterPath="$PROJECT_DIR$/dist/oblique.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.js" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -36,7 +30,70 @@
     <favorites_list name="oblique-js" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="Oblique.coffee" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Oblique.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1081" max-vertical-offset="2001">
+              <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+              <folding>
+                <marker date="1421834513960" expanded="true" signature="1288:1344" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DOMProcessor.coffee" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DOMProcessor.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3743" max-vertical-offset="5017">
+              <caret line="146" column="26" selection-start-line="146" selection-start-column="26" selection-end-line="146" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlbumDirective.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/samples/Filters/src/AlbumDirective.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1827">
+              <caret line="0" column="36" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpecRunner.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SpecRunner.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.921053" vertical-offset="136" max-vertical-offset="1943">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DOMProcessorSpec.coffee" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/DOMProcessorSpec.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.275862" vertical-offset="5560" max-vertical-offset="6438">
+              <caret line="210" column="30" selection-start-line="210" selection-start-column="27" selection-end-line="210" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ObliqueSpec.coffee" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33257404" vertical-offset="6958" max-vertical-offset="22823">
+              <caret line="250" column="115" selection-start-line="250" selection-start-column="115" selection-end-line="250" selection-end-column="115" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -55,23 +112,23 @@
         <option value="$PROJECT_DIR$/samples/Filters/json/photos.json" />
         <option value="$PROJECT_DIR$/samples/Filters/src/FormOptions.js" />
         <option value="$PROJECT_DIR$/samples/Filters/src/PhotoController.js" />
-        <option value="$PROJECT_DIR$/src/Oblique.coffee" />
         <option value="$PROJECT_DIR$/samples/Filters/index.html" />
         <option value="$PROJECT_DIR$/src/0_functions.coffee" />
-        <option value="$PROJECT_DIR$/src/DOMProcessor.coffee" />
         <option value="$PROJECT_DIR$/samples/Filters/src/PhotoService.js" />
         <option value="$PROJECT_DIR$/samples/Filters/src/ColorDirective.js" />
         <option value="$PROJECT_DIR$/samples/Filters/src/PriceDirective.js" />
         <option value="$PROJECT_DIR$/samples/Filters/src/PhotoDirective.js" />
-        <option value="$PROJECT_DIR$/samples/Filters/src/AlbumDirective.js" />
         <option value="$PROJECT_DIR$/src/Params/0_Param.coffee" />
         <option value="$PROJECT_DIR$/src/Params/ArrayParam.coffee" />
         <option value="$PROJECT_DIR$/src/Params/SingleParam.coffee" />
         <option value="$PROJECT_DIR$/src/Params/RangeParam.coffee" />
-        <option value="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/spec/Params/ParamCollectionSpec.coffee" />
         <option value="$PROJECT_DIR$/src/Params/ParamCollection.coffee" />
+        <option value="$PROJECT_DIR$/src/Oblique.coffee" />
+        <option value="$PROJECT_DIR$/src/DOMProcessor.coffee" />
+        <option value="$PROJECT_DIR$/samples/Filters/src/AlbumDirective.js" />
+        <option value="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
       </list>
     </option>
   </component>
@@ -154,7 +211,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="tools" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -171,10 +228,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Params" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -186,30 +239,26 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Params" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ParamCollectionSpec.coffee" />
+              <option name="myItemId" value="DOMProcessor.coffee" />
               <option name="myItemType" value="com.intellij.plugins.watcher.projectView.NestingTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oblique-js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oblique-js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -278,24 +327,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="dist" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique-js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dist" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oblique.coffee" />
-              <option name="myItemType" value="com.intellij.plugins.watcher.projectView.NestingTreeNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -360,16 +391,128 @@
       <recent name="$PROJECT_DIR$/spec" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RestoreUpdateTree">
+    <UpdateInfo date="Moments ago" ActionInfo="_Update">
+      <UpdatedFiles>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated from server" />
+          <option name="myStatusName" value="Changed on server" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CHANGED_ON_SERVER" />
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Updated" />
+            <option name="myStatusName" value="Changed" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="UPDATED" />
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/README.md</PATH>
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Created" />
+            <option name="myStatusName" value="Created" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="CREATED" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Deleted" />
+            <option name="myStatusName" value="Deleted" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="true" />
+            <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Restored" />
+            <option name="myStatusName" value="Will be restored" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="RESTORED" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Modified" />
+          <option name="myStatusName" value="Modified" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MODIFIED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Skipped" />
+          <option name="myStatusName" value="Skipped" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="SKIPPED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with conflicts" />
+          <option name="myStatusName" value="Will be merged with conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_CONFLICTS" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with tree conflicts" />
+          <option name="myStatusName" value="Merged with tree conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with property conflicts" />
+          <option name="myStatusName" value="Will be merged with property conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged" />
+          <option name="myStatusName" value="Will be merged" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Not in repository" />
+          <option name="myStatusName" value="Not in repository" />
+          <option name="mySupportsDeletion" value="true" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UNKNOWN" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Locally added" />
+          <option name="myStatusName" value="Locally added" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="LOCALLY_ADDED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Locally removed" />
+          <option name="myStatusName" value="Locally removed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="LOCALLY_REMOVED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Switched" />
+          <option name="myStatusName" value="Switched" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="SWITCHED" />
+        </FILE-GROUP>
+      </UpdatedFiles>
+    </UpdateInfo>
+  </component>
+  <component name="RunManager" selected="Bash.bundle.sh">
     <configuration default="false" name="bundle.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="/bin/bash" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools" />
       <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <module name="oblique-js" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools/bundle.sh" />
       <option name="PARAMETERS" value="" />
+      <module name="oblique-js" />
+      <envs />
       <RunnerSettings RunnerId="BashRunner" />
       <ConfigurationWrapper RunnerId="BashRunner" />
       <method />
@@ -379,25 +522,10 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
-      <method />
-    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <method />
     </configuration>
-    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="INTERPRETER_PATH" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <module name="" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -405,6 +533,21 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -443,8 +586,9 @@
       <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Bash.bundle.sh" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
   </component>
@@ -458,624 +602,6 @@
       <created>1394662908407</created>
       <option name="number" value="Default" />
       <updated>1394662908407</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Change default interval time (100ms -&gt; 500ms)">
-      <created>1394668238197</created>
-      <option name="number" value="00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1394668238197</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Do a one pass to apply directives before setInterval">
-      <created>1394668406096</created>
-      <option name="number" value="00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1394668406096</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Minor fixes">
-      <created>1394668884288</created>
-      <option name="number" value="00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1394668884288</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Minor refactors&#10;">
-      <created>1394669239067</created>
-      <option name="number" value="00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1394669239067</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Apply Directives on document ready&#10;Method names refactor">
-      <created>1394670073407</created>
-      <option name="number" value="00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1394670073407</updated>
-    </task>
-    <task id="LOCAL-00006" summary="preventDefault in click Event in sample Directive">
-      <created>1394670162114</created>
-      <option name="number" value="00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1394670162114</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Little refactors">
-      <created>1394670638782</created>
-      <option name="number" value="00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1394670638782</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Reformat code">
-      <created>1394670735599</created>
-      <option name="number" value="00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1394670735599</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Change DOM Traversal from Jquery based to vanilla JS&#10;Only traverse DOM one time, not every time for every directive&#10;Change Directives to work with CSS EXpressions not NAMES.&#10;You can now make a directive to apply to all images or to work with not standard tags.&#10;&#10;">
-      <created>1394813075079</created>
-      <option name="number" value="00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1394813075079</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Sample directive to change src of all images">
-      <created>1394816957561</created>
-      <option name="number" value="00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1394816957561</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Migrate oblique to CoffeeScript">
-      <created>1394818169292</created>
-      <option name="number" value="00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1394818169293</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Create base project folder structure for src/specs/dist&#10;Create tool to minify and bundle oblique">
-      <created>1394878987552</created>
-      <option name="number" value="00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1394878987552</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Rename Demo to samples">
-      <created>1394879169978</created>
-      <option name="number" value="00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1394879169978</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Convert jasmine spec to CoffeeScript">
-      <created>1394879981990</created>
-      <option name="number" value="00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1394879981990</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Added first tests to Oblique">
-      <created>1394884434606</created>
-      <option name="number" value="00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1394884434606</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Tests for registerDirective">
-      <created>1394886126929</created>
-      <option name="number" value="00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1394886126929</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Change Exceptions tests to more jasmine idiomatic code">
-      <created>1394887556999</created>
-      <option name="number" value="00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1394887556999</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Some tests for DOM traversal&#10;New DOM traversal algorithm">
-      <created>1394892065231</created>
-      <option name="number" value="00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1394892065231</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Comment old traversal code">
-      <created>1394892127796</created>
-      <option name="number" value="00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1394892127796</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Fix tab bug in coffeescript">
-      <created>1394892174793</created>
-      <option name="number" value="00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1394892174793</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Fix tab bug in coffeescript">
-      <created>1394892203681</created>
-      <option name="number" value="00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1394892203681</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Change traverse in bqDOMDocument">
-      <created>1395000597053</created>
-      <option name="number" value="00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1395000597054</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Fixed a bug Applying directives">
-      <created>1395046665161</created>
-      <option name="number" value="00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1395046665161</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Fixed a bug Applying directives">
-      <created>1395047469556</created>
-      <option name="number" value="00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1395047469556</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Fixed a bug Applying directives&#10;">
-      <created>1395047500130</created>
-      <option name="number" value="00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1395047500130</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Better DOMDocument traversal">
-      <created>1395049526619</created>
-      <option name="number" value="00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1395049526619</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Only traverse tags">
-      <created>1395051000487</created>
-      <option name="number" value="00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1395051000487</updated>
-    </task>
-    <task id="LOCAL-00028" summary="create flag concept in bqDOMElement">
-      <created>1395058526086</created>
-      <option name="number" value="00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1395058526086</updated>
-    </task>
-    <task id="LOCAL-00029" summary="change flags implementation from jQuery to vanillaJS">
-      <created>1395059101834</created>
-      <option name="number" value="00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1395059101834</updated>
-    </task>
-    <task id="LOCAL-00030" summary="change flags implementation from vanillaJS to JQuery&#10;Refactor bqDOMElmentSpec&#10;">
-      <created>1395071865064</created>
-      <option name="number" value="00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1395071865064</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Refactor tests names and constants&#10;Added large DOM test">
-      <created>1395072160529</created>
-      <option name="number" value="00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1395072160529</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Removed all references to $, replaced with jQuery">
-      <created>1395073635753</created>
-      <option name="number" value="00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1395073635753</updated>
-    </task>
-    <task id="LOCAL-00033" summary="added performance tests">
-      <created>1395078621180</created>
-      <option name="number" value="00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1395078621180</updated>
-    </task>
-    <task id="LOCAL-00034" summary="optimize code for performance">
-      <created>1395081187414</created>
-      <option name="number" value="00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1395081187414</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Added tests for DirectiveCollection (future Class)">
-      <created>1395082033051</created>
-      <option name="number" value="00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1395082033052</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Implemented first version of DirectiveCollection">
-      <created>1395093162470</created>
-      <option name="number" value="00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1395093162470</updated>
-    </task>
-    <task id="LOCAL-00037" summary="better performance applying directives if they have common CSS_EXPRESSIONS">
-      <created>1395095533279</created>
-      <option name="number" value="00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1395095533279</updated>
-    </task>
-    <task id="LOCAL-00038" summary="move responsability of directive validation from Oblique to DirectiveCollection">
-      <created>1395096317502</created>
-      <option name="number" value="00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1395096317502</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Change uses of jQuery for FixtureHelper">
-      <created>1395097863407</created>
-      <option name="number" value="00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1395097863407</updated>
-    </task>
-    <task id="LOCAL-00040" summary="Litlle refactors to add legibility &amp; comprehesion">
-      <created>1395098110833</created>
-      <option name="number" value="00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1395098110833</updated>
-    </task>
-    <task id="LOCAL-00041" summary="add oblique.min.js to VCS">
-      <created>1395098193646</created>
-      <option name="number" value="00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1395098193646</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Namespaces en todas las clase de Oblique.&#10;Ahora sólo se expone la fn Oblique en window">
-      <created>1395102619859</created>
-      <option name="number" value="00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1395102619859</updated>
-    </task>
-    <task id="LOCAL-00043" summary="created TimedDOMObserver &amp; tests">
-      <created>1395184675762</created>
-      <option name="number" value="00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1395184675762</updated>
-    </task>
-    <task id="LOCAL-00044" summary="created TimedDOMObserver &amp; tests&#10;">
-      <created>1395266680659</created>
-      <option name="number" value="00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1395266680659</updated>
-    </task>
-    <task id="LOCAL-00045" summary="created TimedDOMObserver &amp; tests&#10;">
-      <created>1395267197589</created>
-      <option name="number" value="00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1395267197589</updated>
-    </task>
-    <task id="LOCAL-00046" summary="change all window references to @ at correct context">
-      <created>1395394583711</created>
-      <option name="number" value="00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1395394583711</updated>
-    </task>
-    <task id="LOCAL-00047" summary="Change DirectiveProcessor to use TimedDOMObserver">
-      <created>1395396001124</created>
-      <option name="number" value="00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1395396001124</updated>
-    </task>
-    <task id="LOCAL-00048" summary="Better script to bundle &amp; minify &#10;little refactors in DirectiveProcessor">
-      <created>1395397593666</created>
-      <option name="number" value="00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1395397593666</updated>
-    </task>
-    <task id="LOCAL-00049" summary="ignore source js int git, only track coffee source files">
-      <created>1395398399306</created>
-      <option name="number" value="00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1395398399306</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Build src coffee -&gt; js in bundle &amp; minify process">
-      <created>1395398889027</created>
-      <option name="number" value="00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1395398889028</updated>
-    </task>
-    <task id="LOCAL-00051" summary="refactor TimedDOMObserver">
-      <created>1395402636454</created>
-      <option name="number" value="00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1395402636455</updated>
-    </task>
-    <task id="LOCAL-00052" summary="Merge remote branch 'origin/master'&#10;&#10;Conflicts:&#10;&#9;src/oblique/DirectiveProcessor.js&#10;&#9;src/oblique/Error.js&#10;&#9;src/oblique/TimedDOMObserver.js&#10;">
-      <created>1395402799735</created>
-      <option name="number" value="00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1395402799736</updated>
-    </task>
-    <task id="LOCAL-00053" summary="Add design ideas to TODO">
-      <created>1395410871922</created>
-      <option name="number" value="00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1395410871922</updated>
-    </task>
-    <task id="LOCAL-00054" summary="Add design ideas to TODO">
-      <created>1395411128148</created>
-      <option name="number" value="00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1395411128148</updated>
-    </task>
-    <task id="LOCAL-00055" summary="More ideas to TODO">
-      <created>1395519975522</created>
-      <option name="number" value="00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1395519975523</updated>
-    </task>
-    <task id="LOCAL-00056" summary="More ideas to TODO&#10;Rework bundle &amp; minifiy proccess">
-      <created>1395582668364</created>
-      <option name="number" value="00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1395582668364</updated>
-    </task>
-    <task id="LOCAL-00057" summary="Refactor bundle &amp; minify proccess to use functions">
-      <created>1395613965063</created>
-      <option name="number" value="00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1395613965064</updated>
-    </task>
-    <task id="LOCAL-00058" summary="Refactor bundle &amp; minify proccess to use functions">
-      <created>1395651198606</created>
-      <option name="number" value="00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1395651198606</updated>
-    </task>
-    <task id="LOCAL-00059" summary="Refactor bundle &amp; minify proccess to better naming &amp; help info">
-      <created>1395652531881</created>
-      <option name="number" value="00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1395652531882</updated>
-    </task>
-    <task id="LOCAL-00060" summary="helpers dir to lowercase">
-      <created>1395657718188</created>
-      <option name="number" value="00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1395657718189</updated>
-    </task>
-    <task id="LOCAL-00061" summary="add missed files">
-      <created>1395658332917</created>
-      <option name="number" value="00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1395658332918</updated>
-    </task>
-    <task id="LOCAL-00062" summary="add missed files">
-      <created>1395669972730</created>
-      <option name="number" value="00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1395669972778</updated>
-    </task>
-    <task id="LOCAL-00063" summary="add missed files">
-      <created>1395670398888</created>
-      <option name="number" value="00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1395670398888</updated>
-    </task>
-    <task id="LOCAL-00064" summary="add missed files">
-      <created>1395670589750</created>
-      <option name="number" value="00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1395670589750</updated>
-    </task>
-    <task id="LOCAL-00065" summary="improve directory &amp; file deletion &amp; creation on bundle script">
-      <created>1395674574099</created>
-      <option name="number" value="00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1395674574100</updated>
-    </task>
-    <task id="LOCAL-00066" summary="improve directory &amp; file deletion &amp; creation on bundle script">
-      <created>1395674948548</created>
-      <option name="number" value="00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1395674948548</updated>
-    </task>
-    <task id="LOCAL-00067" summary="Merge remote branch 'origin/master'&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;&#9;tools/bundle.sh&#10;">
-      <created>1395674995958</created>
-      <option name="number" value="00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1395674995959</updated>
-    </task>
-    <task id="LOCAL-00068" summary="change TODO to markdown format">
-      <created>1395675203392</created>
-      <option name="number" value="00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1395675203392</updated>
-    </task>
-    <task id="LOCAL-00069" summary="change TODO to markdown format">
-      <created>1395675512758</created>
-      <option name="number" value="00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1395675512758</updated>
-    </task>
-    <task id="LOCAL-00070" summary="change - to lists md format">
-      <created>1395675575159</created>
-      <option name="number" value="00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1395675575160</updated>
-    </task>
-    <task id="LOCAL-00071" summary="change - to lists md format">
-      <created>1395675776291</created>
-      <option name="number" value="00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1395675776292</updated>
-    </task>
-    <task id="LOCAL-00072" summary="Fix broken test due to a bad rename">
-      <created>1395675933615</created>
-      <option name="number" value="00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1395675933615</updated>
-    </task>
-    <task id="LOCAL-00073" summary="Ammend TODO">
-      <created>1395696226094</created>
-      <option name="number" value="00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1395696226094</updated>
-    </task>
-    <task id="LOCAL-00074" summary="Add file to include in ObliqueJS">
-      <created>1398864170093</created>
-      <option name="number" value="00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1398864170093</updated>
-    </task>
-    <task id="LOCAL-00075" summary="Add DirectiveTag to project">
-      <created>1400054794936</created>
-      <option name="number" value="00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1400054794936</updated>
-    </task>
-    <task id="LOCAL-00076" summary="refactor of DirectiveTag Spec to use FixtureHelper">
-      <created>1400074447670</created>
-      <option name="number" value="00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1400074447670</updated>
-    </task>
-    <task id="LOCAL-00077" summary="Añadir TODOs">
-      <created>1401454933936</created>
-      <option name="number" value="00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1401454933936</updated>
-    </task>
-    <task id="LOCAL-00078" summary="Added Named params support">
-      <created>1401900142284</created>
-      <option name="number" value="00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1401900142284</updated>
-    </task>
-    <task id="LOCAL-00079" summary="Test for 2 directives in the same tag">
-      <created>1402386657054</created>
-      <option name="number" value="00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1402386657054</updated>
-    </task>
-    <task id="LOCAL-00080" summary="First usable version">
-      <created>1402387329124</created>
-      <option name="number" value="00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1402387329124</updated>
-    </task>
-    <task id="LOCAL-00081" summary="Fixed bug getting directive name">
-      <created>1402390190413</created>
-      <option name="number" value="00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1402390190413</updated>
-    </task>
-    <task id="LOCAL-00082" summary="Fixed bug getting directive name">
-      <created>1402394468342</created>
-      <option name="number" value="00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1402394468342</updated>
-    </task>
-    <task id="LOCAL-00083" summary="Fixed bug calc Directive hash">
-      <created>1402505070786</created>
-      <option name="number" value="00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1402505070786</updated>
-    </task>
-    <task id="LOCAL-00084" summary="Support for models in Oblique&#10;Now Models are injected to Oblique and passed to Directives.">
-      <created>1402674960148</created>
-      <option name="number" value="00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1402674960149</updated>
-    </task>
-    <task id="LOCAL-00085" summary="Support for JSONPath for directives to select parts of a model">
-      <created>1402676493524</created>
-      <option name="number" value="00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1402676493524</updated>
-    </task>
-    <task id="LOCAL-00086" summary="Move src out of Oblique dir">
-      <created>1402691450110</created>
-      <option name="number" value="00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1402691450110</updated>
-    </task>
-    <task id="LOCAL-00087" summary="Change in ObliqueError to work properly in safari">
-      <created>1402697629557</created>
-      <option name="number" value="00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1402697629557</updated>
-    </task>
-    <task id="LOCAL-00088" summary="Throws error if data-model contains not valid selection">
-      <created>1402776825295</created>
-      <option name="number" value="00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1402776825295</updated>
-    </task>
-    <task id="LOCAL-00089" summary="Test data-models errors&#10;Better Error messages for data-model errors">
-      <created>1402782703260</created>
-      <option name="number" value="00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1402782703260</updated>
-    </task>
-    <task id="LOCAL-00090" summary="Test data-models errors&#10;Better Error messages for data-model errors">
-      <created>1402782903649</created>
-      <option name="number" value="00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1402782903649</updated>
-    </task>
-    <task id="LOCAL-00091" summary="Test data-models errors&#10;Better Error messages for data-model errors">
-      <created>1402783150987</created>
-      <option name="number" value="00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1402783150987</updated>
-    </task>
-    <task id="LOCAL-00092" summary="little improvements in speed processing directives">
-      <created>1402835325929</created>
-      <option name="number" value="00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1402835325929</updated>
-    </task>
-    <task id="LOCAL-00093" summary="x100 faster time parsing data-model expressions">
-      <created>1402905728064</created>
-      <option name="number" value="00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1402905728064</updated>
-    </task>
-    <task id="LOCAL-00094" summary="x100 faster time parsing data-model expressions">
-      <created>1402905755641</created>
-      <option name="number" value="00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1402905755641</updated>
-    </task>
-    <task id="LOCAL-00095" summary="Merge remote-tracking branch 'origin/master'&#10;">
-      <created>1402905807042</created>
-      <option name="number" value="00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1402905807042</updated>
-    </task>
-    <task id="LOCAL-00096" summary="faster directive processing">
-      <created>1402906453758</created>
-      <option name="number" value="00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1402906453758</updated>
-    </task>
-    <task id="LOCAL-00097" summary="Merge remote-tracking branch 'origin/master'&#10;">
-      <created>1402906522475</created>
-      <option name="number" value="00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1402906522475</updated>
-    </task>
-    <task id="LOCAL-00098" summary="check if JSON.getPathValue returns arrays correctly">
-      <created>1402934190300</created>
-      <option name="number" value="00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1402934190300</updated>
-    </task>
-    <task id="LOCAL-00099" summary="init template system">
-      <created>1402955038870</created>
-      <option name="number" value="00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1402955038870</updated>
-    </task>
-    <task id="LOCAL-00100" summary="Fixed template system to date">
-      <created>1402962266995</created>
-      <option name="number" value="00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1402962266995</updated>
-    </task>
-    <task id="LOCAL-00101" summary="Better new sample">
-      <created>1403131852676</created>
-      <option name="number" value="00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1403131852676</updated>
-    </task>
-    <task id="LOCAL-00102" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;&#9;spec/ListParamsSpec.coffee&#10;">
-      <created>1403878096085</created>
-      <option name="number" value="00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1403878096085</updated>
-    </task>
-    <task id="LOCAL-00103" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;&#9;spec/ListParamsSpec.coffee&#10;">
-      <created>1404468302482</created>
-      <option name="number" value="00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1404468302482</updated>
     </task>
     <task id="LOCAL-00104" summary="Build DataModelParser for parse expression coming from data-bq-model">
       <created>1404479578822</created>
@@ -1359,19 +885,33 @@
       <option name="project" value="LOCAL" />
       <updated>1416328159835</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="bug: generate hash url after removing param doesn't work">
+      <created>1416417081264</created>
+      <option name="number" value="00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1416417081264</updated>
+    </task>
+    <task id="LOCAL-00152" summary="Better error reporting">
+      <created>1421835580801</created>
+      <option name="number" value="00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1421835580801</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32704404" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991204" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32748538" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3185654" sideWeight="0.49960285" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14635417" sideWeight="0.4992908" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23177083" sideWeight="0.4992908" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.314346" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20703125" sideWeight="0.50070924" order="2" side_tool="true" content_ui="tabs" />
@@ -1380,11 +920,9 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3185654" sideWeight="0.49960285" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32704404" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1402,9 +940,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30078125" sideWeight="0.4992908" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31761006" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1424,8 +962,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="create a location.hash from a param list" />
-    <MESSAGE value="Parse location hash" />
     <MESSAGE value="methods for manipulaing hash routes in Oblique" />
     <MESSAGE value="Controllers running inside Oblique" />
     <MESSAGE value="Renamings &amp; Refactors" />
@@ -1449,7 +985,9 @@
     <MESSAGE value="?" />
     <MESSAGE value="Oblique.js now works correcty with params with name but no value:&#10;&#10;#sort&#10;#sort=&#10;#price=()&#10;#colors=[]" />
     <MESSAGE value="update dist files to latest changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="update dist files to latest changes" />
+    <MESSAGE value="bug: generate hash url after removing param doesn't work" />
+    <MESSAGE value="Better error reporting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Better error reporting" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.8794326" />
   </component>
   <component name="XDebuggerManager">
@@ -1543,13 +1081,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/DOMProcessorSpec.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.93467337" vertical-offset="4653" max-vertical-offset="5994">
-          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/samples/MVD_JS/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.611898" vertical-offset="0" max-vertical-offset="1080">
@@ -1578,13 +1109,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CallbackCollection.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1026">
-          <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Templates/TemplateFactory.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="999">
@@ -1603,20 +1127,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
           <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SpecRunner.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4510686" vertical-offset="17" max-vertical-offset="1474">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/oblique.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5909592" vertical-offset="9584" max-vertical-offset="15664">
-          <caret line="460" column="35" selection-start-line="460" selection-start-column="35" selection-end-line="460" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1676,20 +1186,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DOMProcessor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6844">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DOMProcessor.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2086" max-vertical-offset="4843">
-          <caret line="84" column="22" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/samples/Filters/src/PriceDirective.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3152174" vertical-offset="0" max-vertical-offset="1044">
@@ -1718,18 +1214,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samples/Filters/src/AlbumDirective.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4728261" vertical-offset="522" max-vertical-offset="1827">
-          <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/samples/Filters/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36394557" vertical-offset="288" max-vertical-offset="1479">
           <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1744,7 +1232,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40108696" vertical-offset="617" max-vertical-offset="2117">
           <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1762,24 +1249,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Oblique.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3152174" vertical-offset="0" max-vertical-offset="2001">
-          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5137817" vertical-offset="21226" max-vertical-offset="22823">
-          <caret line="748" column="47" selection-start-line="748" selection-start-column="47" selection-end-line="748" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/oblique.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="907">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samples/Filters/src/PhotoDirective.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1276">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/Params/ParamCollectionSpec.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4344" max-vertical-offset="13253">
+          <caret line="173" column="53" selection-start-line="173" selection-start-column="53" selection-end-line="173" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Params/ParamCollection.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1835" max-vertical-offset="2987">
+          <caret line="81" column="23" selection-start-line="81" selection-start-column="23" selection-end-line="81" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/oblique.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12789416" vertical-offset="0" max-vertical-offset="34394">
+          <caret line="4" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="1180" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CallbackCollection.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8108696" vertical-offset="182" max-vertical-offset="1102">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1788,39 +1297,74 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.80159634" vertical-offset="10694" max-vertical-offset="11571">
-          <caret line="393" column="132" selection-start-line="393" selection-start-column="132" selection-end-line="393" selection-end-column="132" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/Filters/src/PhotoDirective.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1276">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.63626" vertical-offset="10694" max-vertical-offset="15428">
+          <caret line="388" column="43" selection-start-line="388" selection-start-column="43" selection-end-line="388" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/Params/ParamCollectionSpec.coffee">
+    <entry file="file://$PROJECT_DIR$/dist/oblique.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4344" max-vertical-offset="13253">
-          <caret line="173" column="53" selection-start-line="173" selection-start-column="53" selection-end-line="173" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.17530319" vertical-offset="12804" max-vertical-offset="21663">
+          <caret line="447" column="24" selection-start-line="447" selection-start-column="24" selection-end-line="447" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Params/ParamCollection.coffee">
+    <entry file="file://$PROJECT_DIR$/src/Oblique.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1835" max-vertical-offset="2987">
-          <caret line="81" column="23" selection-start-line="81" selection-start-column="23" selection-end-line="81" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1081" max-vertical-offset="2001">
+          <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+          <folding>
+            <marker date="1421834513960" expanded="true" signature="1288:1344" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DOMProcessor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2523" max-vertical-offset="6960">
+          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/oblique.js">
+    <entry file="file://$PROJECT_DIR$/src/DOMProcessor.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12789416" vertical-offset="0" max-vertical-offset="34394">
-          <caret line="4" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="1180" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3743" max-vertical-offset="5017">
+          <caret line="146" column="26" selection-start-line="146" selection-start-column="26" selection-end-line="146" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samples/Filters/src/AlbumDirective.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1827">
+          <caret line="0" column="36" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SpecRunner.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.921053" vertical-offset="136" max-vertical-offset="1943">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/DOMProcessorSpec.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.275862" vertical-offset="5560" max-vertical-offset="6438">
+          <caret line="210" column="30" selection-start-line="210" selection-start-column="27" selection-end-line="210" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33257404" vertical-offset="6958" max-vertical-offset="22823">
+          <caret line="250" column="115" selection-start-line="250" selection-start-column="115" selection-end-line="250" selection-end-column="115" />
           <folding />
         </state>
       </provider>

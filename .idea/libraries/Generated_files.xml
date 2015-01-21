@@ -4,7 +4,6 @@
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/spec/helpers/Interval.js" />
         <item url="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
-        <item url="file://$PROJECT_DIR$/spec/Params/ParamCollectionSpec.js" />
         <item url="file://$PROJECT_DIR$/samples/Old/directives/MenuDirective.js" />
         <item url="file://$PROJECT_DIR$/samples/Old/directives/ClockDirective.js" />
         <item url="file://$PROJECT_DIR$/src/Memory.js" />
@@ -14,6 +13,7 @@
         <item url="file://$PROJECT_DIR$/src/Templates/TemplateFactory.js" />
         <item url="file://$PROJECT_DIR$/spec/DOMProcessorSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/CallbackCollectionSpec.js" />
+        <item url="file://$PROJECT_DIR$/src/DOMProcessor.js" />
         <item url="file://$PROJECT_DIR$/spec/DataModelVariableSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
         <item url="file://$PROJECT_DIR$/spec/Params/ParamCollectionSpec.js" />
@@ -66,7 +66,6 @@
       <root url="file://$PROJECT_DIR$/src/Error.js" />
       <root url="file://$PROJECT_DIR$/spec/helpers/Interval.js" />
       <root url="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
-      <root url="file://$PROJECT_DIR$/spec/Params/ParamCollectionSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/templates/TemplateFactorySpec.js" />
       <root url="file://$PROJECT_DIR$/samples/Old/directives/MenuDirective.js" />
       <root url="file://$PROJECT_DIR$/src/Memory.js" />
@@ -78,6 +77,7 @@
       <root url="file://$PROJECT_DIR$/spec/DOMProcessorSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/CallbackCollectionSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/DataModelVariableSpec.js" />
+      <root url="file://$PROJECT_DIR$/src/DOMProcessor.js" />
       <root url="file://$PROJECT_DIR$/spec/helpers/IntervalSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/Params/ParamCollectionSpec.js" />
       <root url="file://$PROJECT_DIR$/src/ObliqueError.js" />

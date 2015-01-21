@@ -300,7 +300,7 @@
       Oblique().setIntervalTimeInMs(10);
       Oblique().onError(function(error) {
         expect(error.name).toBe("ObliqueNS.Error");
-        expect(error.message).toBe('<div data-ob-directive="TestDirective" data-ob-model="Model.address.num"></div>: data-ob-model expression is undefined');
+        expect(error.message).toBe('<div data-ob-directive="TestDirective" data-ob-model="Model.address.num"></div>: data-ob-model expression error: ObliqueError is not defined');
         return done();
       });
       return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='Model.address.num'></div>");
