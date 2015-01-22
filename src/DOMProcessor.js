@@ -81,6 +81,16 @@
       }
       this._isApplyingObliqueElementsInDOM = true;
       try {
+        $("*[data-ob-var]").each((function(_this) {
+          return function(index, DOMElement) {
+            var obElement, scriptAttrValue;
+            obElement = new ObliqueNS.Element(DOMElement);
+            scriptAttrValue = obElement.getAttributeValue("data-ob-var");
+            if (scriptAttrValue) {
+              return _this._processScriptElement(obElement, scriptAttrValue);
+            }
+          };
+        })(this));
         return $("*[data-ob-directive]").each((function(_this) {
           return function(index, DOMElement) {
             var directiveAttrValue, obElement;
@@ -98,6 +108,29 @@
       } finally {
         this._isApplyingObliqueElementsInDOM = false;
       }
+    };
+
+    DOMProcessor.prototype._execJS = function(___JSScriptBlock) {
+      var Model, ___dataModelVariable, ___directiveModel, ___variableName, ___variableValue;
+      Model = Oblique().getModel();
+      eval(this._memory.localVarsScript());
+      ___directiveModel = eval(___JSScriptBlock);
+      ___dataModelVariable = new DataModelVariable(___JSScriptBlock);
+      if (___dataModelVariable.isSet) {
+        ___variableName = ___dataModelVariable.name;
+        ___variableValue = eval(___variableName);
+        this._memory.setVar(___variableName, ___variableValue);
+        ___directiveModel = ___variableValue;
+      }
+      return ___directiveModel;
+    };
+
+    DOMProcessor.prototype._processScriptElement = function(obElement, varAttrValue) {
+      if (obElement.hasFlag("data-ob-var")) {
+        return;
+      }
+      obElement.setFlag("data-ob-var");
+      return this._execJS(varAttrValue);
     };
 
     DOMProcessor.prototype._processDirectiveElement = function(obElement, directiveAttrValue) {
@@ -167,25 +200,18 @@
         local variables created by
           eval(@_memory.localVarsScript())
        */
-      var Model, e, errorMsg, ___dataModelExpr, ___dataModelVariable, ___directiveModel, ___variableName, ___variableValue;
-      Model = Oblique().getModel();
+      var e, error, errorMsg, ___dataModelExpr, ___directiveModel;
       ___dataModelExpr = ___obElement.getAttributeValue("data-ob-model");
       if (___dataModelExpr === void 0) {
         return void 0;
       }
       try {
-        eval(this._memory.localVarsScript());
-        ___directiveModel = eval(___dataModelExpr);
-        ___dataModelVariable = new DataModelVariable(___dataModelExpr);
-        if (___dataModelVariable.isSet) {
-          ___variableName = ___dataModelVariable.name;
-          ___variableValue = eval(___variableName);
-          this._memory.setVar(___variableName, ___variableValue);
-          ___directiveModel = ___variableValue;
-        }
+        ___directiveModel = this._execJS(___dataModelExpr);
         if (!___directiveModel) {
           errorMsg = "" + (___obElement.getHtml()) + ": data-ob-model expression is undefined";
-          this._throwError(new ObliqueError(errorMsg), errorMsg);
+          error = new ObliqueError(errorMsg);
+          this._throwError(error, errorMsg);
+          throw error;
         }
         return ___directiveModel;
       } catch (_error) {

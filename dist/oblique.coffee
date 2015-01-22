@@ -456,6 +456,12 @@ class DOMProcessor
     return if @_isApplyingObliqueElementsInDOM
     @_isApplyingObliqueElementsInDOM = true
     try
+      $("*[data-ob-var]").each(
+        (index, DOMElement) =>
+          obElement=new ObliqueNS.Element DOMElement
+          scriptAttrValue=obElement.getAttributeValue "data-ob-var"
+          @_processScriptElement(obElement, scriptAttrValue) if scriptAttrValue
+      )
       $("*[data-ob-directive]").each(
         (index, DOMElement) =>
           obElement=new ObliqueNS.Element DOMElement
@@ -467,6 +473,25 @@ class DOMProcessor
       throw e;
     finally
       @_isApplyingObliqueElementsInDOM = false
+
+  _execJS : (___JSScriptBlock) ->
+    Model = Oblique().getModel()
+    eval(@_memory.localVarsScript())
+
+    ___directiveModel = eval(___JSScriptBlock)
+    ___dataModelVariable = new DataModelVariable(___JSScriptBlock)
+    if (___dataModelVariable.isSet)
+      ___variableName = ___dataModelVariable.name
+      ___variableValue = eval(___variableName)
+      @_memory.setVar(___variableName, ___variableValue)
+      ___directiveModel = ___variableValue
+
+    ___directiveModel
+
+  _processScriptElement:(obElement, varAttrValue) ->
+    return if obElement.hasFlag "data-ob-var"
+    obElement.setFlag "data-ob-var"
+    @_execJS varAttrValue
 
   _processDirectiveElement:(obElement, directiveAttrValue) ->
     for directiveName in directiveAttrValue.split(",")
@@ -492,9 +517,6 @@ class DOMProcessor
         params: params
 
       @_directiveInstancesData.push(directiveInstanceData)
-
-      #if (directiveInstanceData.instance.onHashChange)
-      #  directiveInstanceData.instance.onHashChange(@_createDirectiveData(domElement, jQueryElement, model, params))
 
   _createDirectiveData:(domElement, jQueryElement, model, params)->
     directiveData=
@@ -522,23 +544,15 @@ class DOMProcessor
       local variables created by
         eval(@_memory.localVarsScript())
     ###
-    Model=Oblique().getModel()
     ___dataModelExpr=___obElement.getAttributeValue("data-ob-model")
     return undefined if ___dataModelExpr is undefined
     try
-      eval(@_memory.localVarsScript())
-
-      ___directiveModel=eval(___dataModelExpr)
-      ___dataModelVariable=new DataModelVariable(___dataModelExpr)
-      if (___dataModelVariable.isSet)
-        ___variableName=___dataModelVariable.name
-        ___variableValue=eval(___variableName)
-        @_memory.setVar(___variableName, ___variableValue)
-        ___directiveModel=___variableValue
-
+      ___directiveModel = @_execJS(___dataModelExpr)
       if (not ___directiveModel)
         errorMsg = "#{___obElement.getHtml()}: data-ob-model expression is undefined"
-        @_throwError(new ObliqueError(errorMsg), errorMsg)
+        error=new ObliqueError(errorMsg)
+        @_throwError(error, errorMsg)
+        throw error
       ___directiveModel
     catch e
       @_throwError(e, "#{___obElement.getHtml()}: data-ob-model expression error: #{e.message}")

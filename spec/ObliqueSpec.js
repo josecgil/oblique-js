@@ -936,7 +936,7 @@
       expect(param).toBeDefined();
       return expect(param.value).toBe("red");
     });
-    return it("must not throw an error if onHashChange() is not defined in a directive", function(done) {
+    it("must not throw an error if onHashChange() is not defined in a directive", function(done) {
       var TestDirective;
       Oblique().onError(function(error) {
         return expect(false).toBeTruthy("has thrown an error!");
@@ -955,6 +955,98 @@
       return setTimeout(function() {
         return done();
       }, 20);
+    });
+    it("must create a variable in data-ob-var", function(done) {
+      var TestDirective;
+      TestDirective = (function() {
+        function TestDirective(data) {
+          expect(data.model).toBe(1);
+          done();
+        }
+
+        return TestDirective;
+
+      })();
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      FixtureHelper.clear();
+      FixtureHelper.appendHTML("<div data-ob-var='var fooVar=1'></div>");
+      return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='fooVar'>nice DOM</div>");
+    });
+    it("must create a variable with complex value in data-ob-var", function(done) {
+      var TestDirective;
+      TestDirective = (function() {
+        function TestDirective(data) {
+          expect(data.model).toBe(5);
+          done();
+        }
+
+        return TestDirective;
+
+      })();
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      FixtureHelper.clear();
+      FixtureHelper.appendHTML("<div data-ob-var='var fooVar=2*2+1'></div>");
+      return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='fooVar'>nice DOM</div>");
+    });
+    it("must create a variable with string value in data-ob-var", function(done) {
+      var TestDirective, jsStringValue;
+      TestDirective = (function() {
+        function TestDirective(data) {
+          expect(data.model).toBe("hello");
+          done();
+        }
+
+        return TestDirective;
+
+      })();
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      FixtureHelper.clear();
+      jsStringValue = 'var fooVar="hello"';
+      FixtureHelper.appendHTML("<div data-ob-var='" + jsStringValue + "'></div>");
+      return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='fooVar'>nice DOM</div>");
+    });
+    it("must create a variable with string value from other variables in data-ob-var", function(done) {
+      var TestDirective, nameVar, saluteVar, spaceVar;
+      TestDirective = (function() {
+        function TestDirective(data) {
+          expect(data.model).toBe("hello world");
+          done();
+        }
+
+        return TestDirective;
+
+      })();
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      FixtureHelper.clear();
+      saluteVar = 'var salute="hello"';
+      spaceVar = 'var space=" "';
+      nameVar = 'var name="world"';
+      FixtureHelper.appendHTML("<div data-ob-var='" + saluteVar + "'></div>");
+      FixtureHelper.appendHTML("<div data-ob-var='" + spaceVar + "'></div>");
+      FixtureHelper.appendHTML("<div data-ob-var='" + nameVar + "'></div>");
+      FixtureHelper.appendHTML("<div data-ob-var='var all=salute+space+name'></div>");
+      return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='all'>nice DOM</div>");
+    });
+    return it("must use a variable in data-ob-model that is created later in DOM", function(done) {
+      var TestDirective;
+      TestDirective = (function() {
+        function TestDirective(data) {
+          expect(data.model).toBe(1);
+          done();
+        }
+
+        return TestDirective;
+
+      })();
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      FixtureHelper.clear();
+      FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='fooVar'>nice DOM</div>");
+      return FixtureHelper.appendHTML("<div data-ob-var='var fooVar=1'></div>");
     });
   });
 

@@ -779,3 +779,70 @@ describe "Oblique", ->
     setTimeout(->
       done()
     ,20)
+
+  it "must create a variable in data-ob-var", (done)->
+    class TestDirective
+      constructor: (data)->
+        expect(data.model).toBe 1
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    FixtureHelper.clear()
+    FixtureHelper.appendHTML "<div data-ob-var='var fooVar=1'></div>"
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='fooVar'>nice DOM</div>"
+
+  it "must create a variable with complex value in data-ob-var", (done)->
+    class TestDirective
+      constructor: (data)->
+        expect(data.model).toBe 5
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    FixtureHelper.clear()
+    FixtureHelper.appendHTML "<div data-ob-var='var fooVar=2*2+1'></div>"
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='fooVar'>nice DOM</div>"
+
+  it "must create a variable with string value in data-ob-var", (done)->
+    class TestDirective
+      constructor: (data)->
+        expect(data.model).toBe "hello"
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    FixtureHelper.clear()
+    jsStringValue='var fooVar="hello"'
+    FixtureHelper.appendHTML "<div data-ob-var='#{jsStringValue}'></div>"
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='fooVar'>nice DOM</div>"
+
+  it "must create a variable with string value from other variables in data-ob-var", (done)->
+    class TestDirective
+      constructor: (data)->
+        expect(data.model).toBe "hello world"
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    FixtureHelper.clear()
+    saluteVar='var salute="hello"'
+    spaceVar='var space=" "'
+    nameVar='var name="world"'
+    FixtureHelper.appendHTML "<div data-ob-var='#{saluteVar}'></div>"
+    FixtureHelper.appendHTML "<div data-ob-var='#{spaceVar}'></div>"
+    FixtureHelper.appendHTML "<div data-ob-var='#{nameVar}'></div>"
+    FixtureHelper.appendHTML "<div data-ob-var='var all=salute+space+name'></div>"
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='all'>nice DOM</div>"
+
+  it "must use a variable in data-ob-model that is created later in DOM", (done)->
+    class TestDirective
+      constructor: (data)->
+        expect(data.model).toBe 1
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    FixtureHelper.clear()
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='fooVar'>nice DOM</div>"
+    FixtureHelper.appendHTML "<div data-ob-var='var fooVar=1'></div>"

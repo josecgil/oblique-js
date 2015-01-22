@@ -71,3 +71,8 @@ The Framework must not impose programming style/paradigm
     * methods / properties to be compatible on multiple browsers / versions
     of ECMAScript...
     * cookies
+
+* Create variables outside data-ob-model:
+<div data-ob-script="var foo=1"></div>
+/* some code */
+<div data-ob-directive="TestDirective" data-ob-model="foo"></div>

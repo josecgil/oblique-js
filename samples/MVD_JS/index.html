@@ -13,9 +13,11 @@
 
 </head>
 <body>
-
     <script type="text/javascript" src="src/InjectModel.js"></script>
-    <section data-ob-directive="ColorDirective" data-ob-model="var colors=new Colors(Model.colors)">
+
+    <span data-ob-var="var colors=new Colors(Model.colors)"></span>
+
+    <section data-ob-directive="ColorDirective" data-ob-model="colors">
         <button style="color:red">Red</button>
         <button style="color:green">Green</button>
         <button style="color:blue">Blue</button>
