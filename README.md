@@ -20,11 +20,12 @@
 8. [The `data-ob-params` attribute](#the-data-ob-params-attribute)
 9. [The Model](#the-model)
 10. [The `data-ob-model` attribute](#the-data-ob-model-attribute)
-11. [Templates](#templates)
-12. [Hash routing](#hash-routing)
-13. [Error handling](#error-handling)
-14. [Notes](#notes)
-15. [Learn more](#learn-more)
+11. [The 'data-ob-var' attribute](#the-data-ob-var-attribute) 
+12. [Templates](#templates)
+13. [Hash routing](#hash-routing)
+14. [Error handling](#error-handling)
+15. [Notes](#notes)
+16. [Learn more](#learn-more)
 
 ## Requeriments
 
@@ -90,6 +91,7 @@ In `oblique.js` it goes like this:
 
 + When `oblique.js` is loaded and the DOM is ready it sets a timer to search the DOM every 400ms
 + on every execution
+   + it searchs for elements with the `data-ob-var` attribute not already processed and creates the variables declared
    + it searchs for elements with the `data-ob-directive` attribute not already processed
    + it extracts all the directives names declared in element
    + it parse the attributes beginning with data-ob and builds a 'data' object
@@ -293,13 +295,42 @@ The next html is valid in `oblique.js`:
     <!--some html-->
 </div>
 
-    <p data-ob-model="anAddress">
-        <!--some html-->
-    </p>
+<p ... data-ob-model="anAddress">
+    <!--some html-->
+</p>
    
 ```
 
 The second expression `data-ob-model="anAddress"` retrieves the `anAdress` variable from an especial oblique storage so `anAddress` is the same instance of the same object that the previous one `data-ob-model` attribute.
+
+##The data-ob-var attribute
+
+You can create a variable in Oblique and use it in data-ob-model or data-ob-var expressions with the `data-ob-var` attribute. This attribute can be declared without a `data-ob-directive` attribute in the same tag.
+
+Here is an usage example:
+```
+<div data-ob-var="var anAddress=new Address(Model.address)">
+    <!--some html-->
+</div>
+
+<p ... data-ob-model="anAddress">
+    <!--some html-->
+</p>
+   
+```
+And here is another usage example:
+
+```
+<div data-ob-var="var number=2"></div>
+<div data-ob-var="var otherNumber=number+2"></div>
+
+<p ... data-ob-model="otherNumber">
+    <!--some html-->
+</p>
+   
+```
+
+Note: variables are allways executed before any directive execution.
 
 ##Templates
 
