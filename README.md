@@ -20,7 +20,7 @@
 8. [The `data-ob-params` attribute](#the-data-ob-params-attribute)
 9. [The Model](#the-model)
 10. [The `data-ob-model` attribute](#the-data-ob-model-attribute)
-11. [The 'data-ob-var' attribute](#the-data-ob-var-attribute) 
+11. [The `data-ob-var` attribute](#the-data-ob-var-attribute) 
 12. [Templates](#templates)
 13. [Hash routing](#hash-routing)
 14. [Error handling](#error-handling)
@@ -305,7 +305,7 @@ The second expression `data-ob-model="anAddress"` retrieves the `anAdress` varia
 
 ##The data-ob-var attribute
 
-You can create a variable in Oblique and use it in data-ob-model or data-ob-var expressions with the `data-ob-var` attribute. This attribute can be declared without a `data-ob-directive` attribute in the same tag.
+You can create variables in `oblique.js` and use it in `data-ob-model`  or `data-ob-var` expressions with the `data-ob-var` attribute. This attribute can be declared without a `data-ob-directive` attribute in the same tag.
 
 Here is an usage example:
 ```
@@ -330,7 +330,7 @@ And here is another usage example:
    
 ```
 
-Note: variables are allways executed before any directive execution.
+Note: variables are always executed before any directive execution.
 
 ##Templates
 
