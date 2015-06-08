@@ -100,6 +100,7 @@ class ArrayParam extends ObliqueNS.Param
     trimmedValues=[]
     for value in values
       value=value.trim()
+      value=unescape(value)
       trimmedValues.push value if not Param.stringIsNullOrEmpty(value)
 
     new ArrayParam(hashParam.name, trimmedValues)

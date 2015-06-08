@@ -506,9 +506,9 @@
     });
     return it("must understand latin accents chars in param from location hash", function() {
       var paramCollection;
-      paramCollection = new ParamCollection("#sort=áéíóúÁÉÍÓÚñÑ");
+      paramCollection = new ParamCollection("#features=[BA%D1O]");
       expect(paramCollection.count()).toBe(1);
-      return expect(paramCollection.getParam("sort").value).toBe("áéíóúÁÉÍÓÚñÑ");
+      return expect(paramCollection.getParam("features").values[0]).toBe("BAÑO");
     });
   });
 

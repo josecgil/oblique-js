@@ -451,6 +451,6 @@ describe "ParamCollection", ->
     expect(param.getLocationHash()).toBe("colors")
 
   it "must understand latin accents chars in param from location hash", () ->
-    paramCollection=new ParamCollection("#sort=áéíóúÁÉÍÓÚñÑ")
+    paramCollection=new ParamCollection("#features=[BA%D1O]")
     expect(paramCollection.count()).toBe(1)
-    expect(paramCollection.getParam("sort").value).toBe("áéíóúÁÉÍÓÚñÑ")
+    expect(paramCollection.getParam("features").values[0]).toBe("BAÑO")
