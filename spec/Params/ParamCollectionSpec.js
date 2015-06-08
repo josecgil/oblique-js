@@ -499,10 +499,16 @@
       param = RangeParam.createFrom("price=()");
       return expect(param.getLocationHash()).toBe("price");
     });
-    return it("must return correct hash when value of ArrayParam is empty", function() {
+    it("must return correct hash when value of ArrayParam is empty", function() {
       var param;
       param = ArrayParam.createFrom("colors=[]");
       return expect(param.getLocationHash()).toBe("colors");
+    });
+    return it("must understand latin accents chars in param from location hash", function() {
+      var paramCollection;
+      paramCollection = new ParamCollection("#sort=áéíóúÁÉÍÓÚñÑ");
+      expect(paramCollection.count()).toBe(1);
+      return expect(paramCollection.getParam("sort").value).toBe("áéíóúÁÉÍÓÚñÑ");
     });
   });
 

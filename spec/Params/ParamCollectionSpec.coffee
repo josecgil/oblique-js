@@ -449,3 +449,8 @@ describe "ParamCollection", ->
   it "must return correct hash when value of ArrayParam is empty", () ->
     param=ArrayParam.createFrom("colors=[]")
     expect(param.getLocationHash()).toBe("colors")
+
+  it "must understand latin accents chars in param from location hash", () ->
+    paramCollection=new ParamCollection("#sort=áéíóúÁÉÍÓÚñÑ")
+    expect(paramCollection.count()).toBe(1)
+    expect(paramCollection.getParam("sort").value).toBe("áéíóúÁÉÍÓÚñÑ")
