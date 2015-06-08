@@ -8,6 +8,7 @@ class SingleParam extends ObliqueNS.Param
     super(@name)
     if (not @_isString(@value))
       throw new ObliqueNS.Error("Param constructor must be called with second param string")
+    @value=unescape(@value) if (@value isnt undefined)
 
   getLocationHash: ->
     return "#{@name}=#{@value}" if not @isEmpty()

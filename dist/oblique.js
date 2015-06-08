@@ -176,7 +176,9 @@
       for (_i = 0, _len = values.length; _i < _len; _i++) {
         value = values[_i];
         value = value.trim();
-        value = unescape(value);
+        if (value !== void 0) {
+          value = unescape(value);
+        }
         if (!Param.stringIsNullOrEmpty(value)) {
           trimmedValues.push(value);
         }
@@ -385,6 +387,12 @@
       if (!this._isValidValue(this.max)) {
         throw new ObliqueNS.Error("Param constructor must be called with third param string");
       }
+      if (this.min !== void 0) {
+        this.min = unescape(this.min);
+      }
+      if (this.max !== void 0) {
+        this.max = unescape(this.max);
+      }
     }
 
     RangeParam.prototype._isValidValue = function(value) {
@@ -461,6 +469,9 @@
       SingleParam.__super__.constructor.call(this, this.name);
       if (!this._isString(this.value)) {
         throw new ObliqueNS.Error("Param constructor must be called with second param string");
+      }
+      if (this.value !== void 0) {
+        this.value = unescape(this.value);
       }
     }
 

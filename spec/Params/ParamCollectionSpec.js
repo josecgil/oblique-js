@@ -504,11 +504,24 @@
       param = ArrayParam.createFrom("colors=[]");
       return expect(param.getLocationHash()).toBe("colors");
     });
-    return it("must understand latin accents chars in param from location hash", function() {
+    it("must understand latin accents chars in array param from location hash", function() {
       var paramCollection;
       paramCollection = new ParamCollection("#features=[BA%D1O]");
       expect(paramCollection.count()).toBe(1);
       return expect(paramCollection.getParam("features").values[0]).toBe("BAÑO");
+    });
+    it("must understand latin accents chars in single param from location hash", function() {
+      var paramCollection;
+      paramCollection = new ParamCollection("#feature=BA%D1O");
+      expect(paramCollection.count()).toBe(1);
+      return expect(paramCollection.getParam("feature").value).toBe("BAÑO");
+    });
+    return it("must understand latin accents chars in Range param from location hash", function() {
+      var paramCollection;
+      paramCollection = new ParamCollection("#features=(BA%D1O,adi%F3s)");
+      expect(paramCollection.count()).toBe(1);
+      expect(paramCollection.getParam("features").min).toBe("BAÑO");
+      return expect(paramCollection.getParam("features").max).toBe("adiós");
     });
   });
 

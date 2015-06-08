@@ -450,7 +450,18 @@ describe "ParamCollection", ->
     param=ArrayParam.createFrom("colors=[]")
     expect(param.getLocationHash()).toBe("colors")
 
-  it "must understand latin accents chars in param from location hash", () ->
+  it "must understand latin accents chars in array param from location hash", () ->
     paramCollection=new ParamCollection("#features=[BA%D1O]")
     expect(paramCollection.count()).toBe(1)
     expect(paramCollection.getParam("features").values[0]).toBe("BAÑO")
+
+  it "must understand latin accents chars in single param from location hash", () ->
+    paramCollection=new ParamCollection("#feature=BA%D1O")
+    expect(paramCollection.count()).toBe(1)
+    expect(paramCollection.getParam("feature").value).toBe("BAÑO")
+
+  it "must understand latin accents chars in Range param from location hash", () ->
+    paramCollection=new ParamCollection("#features=(BA%D1O,adi%F3s)")
+    expect(paramCollection.count()).toBe(1)
+    expect(paramCollection.getParam("features").min).toBe("BAÑO")
+    expect(paramCollection.getParam("features").max).toBe("adiós")

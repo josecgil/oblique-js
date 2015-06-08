@@ -100,7 +100,7 @@ class ArrayParam extends ObliqueNS.Param
     trimmedValues=[]
     for value in values
       value=value.trim()
-      value=unescape(value)
+      value=unescape(value) if (value isnt undefined)
       trimmedValues.push value if not Param.stringIsNullOrEmpty(value)
 
     new ArrayParam(hashParam.name, trimmedValues)
@@ -228,6 +228,9 @@ class RangeParam extends ObliqueNS.Param
       throw new ObliqueNS.Error("Param constructor must be called with second param string")
     if (not @_isValidValue(@max))
       throw new ObliqueNS.Error("Param constructor must be called with third param string")
+    @min=unescape(@min) if (@min isnt undefined)
+    @max=unescape(@max) if (@max isnt undefined)
+
 
   _isValidValue:(value) ->
     return true if value is undefined
@@ -273,6 +276,7 @@ class SingleParam extends ObliqueNS.Param
     super(@name)
     if (not @_isString(@value))
       throw new ObliqueNS.Error("Param constructor must be called with second param string")
+    @value=unescape(@value) if (@value isnt undefined)
 
   getLocationHash: ->
     return "#{@name}=#{@value}" if not @isEmpty()

@@ -102,7 +102,9 @@
       for (_i = 0, _len = values.length; _i < _len; _i++) {
         value = values[_i];
         value = value.trim();
-        value = unescape(value);
+        if (value !== void 0) {
+          value = unescape(value);
+        }
         if (!Param.stringIsNullOrEmpty(value)) {
           trimmedValues.push(value);
         }

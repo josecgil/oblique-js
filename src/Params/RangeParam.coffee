@@ -10,6 +10,9 @@ class RangeParam extends ObliqueNS.Param
       throw new ObliqueNS.Error("Param constructor must be called with second param string")
     if (not @_isValidValue(@max))
       throw new ObliqueNS.Error("Param constructor must be called with third param string")
+    @min=unescape(@min) if (@min isnt undefined)
+    @max=unescape(@max) if (@max isnt undefined)
+
 
   _isValidValue:(value) ->
     return true if value is undefined

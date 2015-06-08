@@ -22,6 +22,12 @@
       if (!this._isValidValue(this.max)) {
         throw new ObliqueNS.Error("Param constructor must be called with third param string");
       }
+      if (this.min !== void 0) {
+        this.min = unescape(this.min);
+      }
+      if (this.max !== void 0) {
+        this.max = unescape(this.max);
+      }
     }
 
     RangeParam.prototype._isValidValue = function(value) {

@@ -18,6 +18,9 @@
       if (!this._isString(this.value)) {
         throw new ObliqueNS.Error("Param constructor must be called with second param string");
       }
+      if (this.value !== void 0) {
+        this.value = unescape(this.value);
+      }
     }
 
     SingleParam.prototype.getLocationHash = function() {
