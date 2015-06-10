@@ -21,7 +21,7 @@ class DOMProcessor
     @_memory=new ObliqueNS.Memory()
 
     jQuery(document).ready =>
-      @_applyObliqueElementsInDOM()
+      @_doACycle()
       @_timedDOMObserver.observe()
       @_listenToHashRouteChanges()
 
@@ -43,15 +43,30 @@ class DOMProcessor
   _createTimedDOMObserver: (intervalInMs)->
     observer=new ObliqueNS.TimedDOMObserver intervalInMs
     observer.onChange(=>
-      @_applyObliqueElementsInDOM()
+        @_doACycle()
     )
     observer
 
-  @_isApplyingObliqueElementsInDOM = false
-  _applyObliqueElementsInDOM: ->
-    return if @_isApplyingObliqueElementsInDOM
-    @_isApplyingObliqueElementsInDOM = true
+  @_isDoingACycle = false
+  _doACycle: ->
     try
+      return if @_isDoingACycle
+      @_isDoingACycle = true
+
+      @_applyObliqueElementsInDOM()
+      @_callOnIntervalOnCurrentDirectives()
+    catch e
+      @_throwError(e, "Error doing a cycle in Oblique.js: #{e.message}")
+      throw e
+    finally
+      @_isDoingACycle = false
+
+  _callOnIntervalOnCurrentDirectives: ->
+    for directiveInstanceData in @_directiveInstancesData
+      directive=directiveInstanceData.instance
+      directive.onInterval() if directive.onInterval
+
+  _applyObliqueElementsInDOM: ->
       $("*[data-ob-var]").each(
         (index, DOMElement) =>
           obElement=new ObliqueNS.Element DOMElement
@@ -64,11 +79,6 @@ class DOMProcessor
           directiveAttrValue=obElement.getAttributeValue "data-ob-directive"
           @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
       )
-    catch e
-      @_throwError(e, "Error _applyObliqueElementsInDOM() : #{e.message}")
-      throw e;
-    finally
-      @_isApplyingObliqueElementsInDOM = false
 
   _execJS : (___JSScriptBlock) ->
     Model = Oblique().getModel()

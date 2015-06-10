@@ -36,3 +36,4 @@ describe "CallbackCollection", ->
     directives.add "TestDirective2", TestDirective2
 
     expect(directives.getCallbackByName("TestDirective")).toBe TestDirective
+

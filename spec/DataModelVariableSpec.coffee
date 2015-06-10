@@ -41,3 +41,4 @@ describe "DataModelVariable", ->
   it "must know if variable is not set when comparison expression", () ->
     dataModelVariable=new DataModelVariable("is32=(number==32)")
     expect(dataModelVariable.isSet).toBeTruthy()
+

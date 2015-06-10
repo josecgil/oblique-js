@@ -67,3 +67,4 @@ class ArrayParam extends ObliqueNS.Param
     return false
 
 ObliqueNS.ArrayParam=ArrayParam
+

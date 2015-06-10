@@ -31,3 +31,4 @@ class CallbackCollection
     @_callbacksByName[name]
 
 ObliqueNS.CallbackCollection=CallbackCollection
+

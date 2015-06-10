@@ -846,3 +846,50 @@ describe "Oblique", ->
     FixtureHelper.clear()
     FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='fooVar'>nice DOM</div>"
     FixtureHelper.appendHTML "<div data-ob-var='var fooVar=1'></div>"
+
+  it "must call a directive onInterval() when Oblique() timed event occurs", (done)->
+    class TestDirective
+      constructor: ()->
+
+      onInterval:()->
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
+
+  it "must call a directive almost 95 times in a second", (done)->
+    times=0
+
+    class TestDirective
+      constructor: ()->
+
+      onInterval:()->
+        times++
+
+    setTimeout(->
+      expect(times>=95).toBeTruthy()
+      done()
+    ,1000)
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
+
+
+  it "must call a onError when onInterval() has errors", (done)->
+    Oblique().onError((error)->
+      expect(error.message).toBeTruthy "Error message"
+      done()
+    )
+
+    class TestDirective
+      constructor: ()->
+
+      onInterval:()->
+        throw new Error "Error message"
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
+

@@ -15,7 +15,6 @@ describe "Memory", ->
     memory.setVar("name","Carlos")
     expect(memory.localVarsScript()).toBe "var name=this._memory.getVar(\"name\");"
 
-
   it "must return script with one var when there is one var (number)", () ->
     memory=new Memory()
     memory.setVar("num",32)

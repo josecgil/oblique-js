@@ -215,3 +215,4 @@ describe "DOMProcessor", ->
     DOMProcessor().registerDirective "TestDirective3", TestDirective3
     DOMProcessor().registerDirective "TestDirective4", TestDirective4
     DOMProcessor().setIntervalTimeInMs 10
+
