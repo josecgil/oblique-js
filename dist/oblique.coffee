@@ -111,6 +111,7 @@ class ArrayParam extends ObliqueNS.Param
     return false
 
 ObliqueNS.ArrayParam=ArrayParam
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class EmptyParam extends ObliqueNS.Param
@@ -119,6 +120,7 @@ class EmptyParam extends ObliqueNS.Param
     super("EmptyParam")
 
 ObliqueNS.EmptyParam=EmptyParam
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 ArrayParam=ObliqueNS.ArrayParam
@@ -214,8 +216,6 @@ class ParamCollection
     hash
 
 ObliqueNS.ParamCollection=ParamCollection
-
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 Param=ObliqueNS.Param
@@ -351,6 +351,7 @@ ObliqueNS.TemplateFactory=TemplateFactory
 unless String::trim
   String::trim = ->
     @replace /^\s+|\s+$/g, ""
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class CallbackCollection
@@ -384,6 +385,7 @@ class CallbackCollection
     @_callbacksByName[name]
 
 ObliqueNS.CallbackCollection=CallbackCollection
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DataModelVariable
@@ -407,6 +409,7 @@ class DataModelVariable
     true
 
 ObliqueNS.DataModelVariable=DataModelVariable
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 DataModelVariable=ObliqueNS.DataModelVariable
@@ -742,6 +745,7 @@ class Oblique
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class ObliqueError extends Error

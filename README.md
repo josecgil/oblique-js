@@ -7,6 +7,7 @@
 + **Model & model selection** to bind data in page with code & DOM elements
 + **Templates** to do big DOM manipulations (it uses [handlebars](http://handlebarsjs.com/))
 + **Hash routing** to handle changes & manipulate hash url params
++ **Timed events** to do recurring tasks
 
 ##Table of contents
 
