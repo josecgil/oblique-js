@@ -23,9 +23,10 @@
 11. [The `data-ob-var` attribute](#the-data-ob-var-attribute) 
 12. [Templates](#templates)
 13. [Hash routing](#hash-routing)
-14. [Error handling](#error-handling)
-15. [Notes](#notes)
-16. [Learn more](#learn-more)
+14. [Timed events](#timed-events) 
+15. [Error handling](#error-handling)
+16. [Notes](#notes)
+17. [Learn more](#learn-more)
 
 ## Requeriments
 
@@ -516,6 +517,24 @@ Oblique().registerDirective("PriceDirective", PriceDirective);
 
 In  [samples/Filters directory](http://github.com/josecgil/oblique-js/tree/master/samples/Filters) there is a complete & functional sample thats uses all the hash routing functionality.
 
+##Timed events
+
+Every directive you create in `oblique.js` has the possibility to listen to an `onInterval` event. This event is fired every 400ms (this default can be changed via `Oblique().setIntervalTimeInMs()`). Let's see an example:
+
+```
+var TimedExampleDirective=function () {
+
+};
+
+TimedExampleDirective.prototype.onInterval=function() {
+	//This event is fired every 400ms by default
+	console.log("It's time to do some work!");
+};
+```
+
+In  [samples/Timer directory](https://github.com/josecgil/oblique-js/tree/master/samples/Timer) there is a complete & functional sample thats uses the timed events functionality.
+
+
 ##Error handling
 
 `oblique.js` has an `onError` event where you can register a function to be called when an error is throw. Here is an example:
@@ -537,11 +556,11 @@ In  [samples/Filters directory](http://github.com/josecgil/oblique-js/tree/maste
 
 ###On inserting new 'data-ob-directives' via DOM manipulation
 
-`oblique.js` checks the DOM on the moment the DOM is loaded, and then every 400ms to check for directives loaded dinamically (via DOM manipulation). So, if you use AJAX, your app is a Single Page Application (SPA) or do intensive DOM manipulation there is no problem to use `oblique.js`, it will find and execute dinamically loaded directives.
+`oblique.js` checks the DOM on the moment the DOM is loaded, and then every 400ms (by default) to check for directives loaded dinamically (via DOM manipulation). So, if you use AJAX, your app is a Single Page Application (SPA) or do intensive DOM manipulation there is no problem to use `oblique.js`, it will find and execute dinamically loaded directives.
 
 ###Interval to check for directives
 
-By default, `oblique.js` checks the DOM every 400ms, but you can change this via the `Oblique().setIntervalTimeInMs()`. 
+By default, `oblique.js` checks the DOM every 400ms, but you can change this via the `Oblique().setIntervalTimeInMs()`. This algo changes the frequency of the `onInterval()` event.
 
 For example, if you want that `oblique.js` checks the DOM every second, you can do:
 
