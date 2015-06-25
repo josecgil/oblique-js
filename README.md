@@ -209,7 +209,7 @@ The final javascript code looks like this:
 ```
 <script type="text/javascript">
     var PremiumBadgeDirective=function(data) {
-        isPremiumUser=data.Model.isPremium;
+        isPremiumUser=data.model.isPremium;
         premiumImage=data.jQueryElement;
         if (isPremiumUser) {
             premiumImage.show();
