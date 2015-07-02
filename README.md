@@ -1,4 +1,4 @@
-# `oblique.js`
+![alt tag](https://raw.githubusercontent.com/josecgil/oblique-js/master/logo/ObliqueLogo.jpg)
 
 `oblique.js` is a framework that lets your create web apps providing:
 
