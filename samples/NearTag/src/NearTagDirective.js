@@ -15,12 +15,15 @@
     };
 
     NearTagDirective.prototype.onInterval=function() {
+        console.log("Called!");
         if (this._elementRemoved) {
+            NearTagDirective.prototype.onInterval=null;
             return;
         }
         if (this._isNearOrPastViewPort()) {
             this._elementRemoved=true;
             this._element.remove();
+            console.log("Removed!");
         }
     };
 
