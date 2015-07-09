@@ -57,7 +57,11 @@ class Oblique
     new ObliqueNS.ParamCollection(window.location.hash)
 
   setHashParams:(paramCollection) ->
-    window.location.hash=paramCollection.getLocationHash()
+    hash=paramCollection.getLocationHash()
+    location=window.location
+    urlWithoutHash=location.protocol+"//"+location.host+location.pathname+location.search
+    newUrl=urlWithoutHash+hash
+    window.location.replace newUrl
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
