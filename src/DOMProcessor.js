@@ -82,7 +82,9 @@
           return;
         }
         this._isDoingACycle = true;
-        this._applyObliqueElementsInDOM();
+        this._applyGlobalDirectives();
+        this._applyVariablesInDOM();
+        this._applyDirectivesInDOM();
         return this._callOnIntervalOnCurrentDirectives();
       } catch (_error) {
         e = _error;
@@ -109,9 +111,8 @@
       return _results;
     };
 
-    DOMProcessor.prototype._applyObliqueElementsInDOM = function() {
-      var rootElement;
-      $("*[data-ob-var]").each((function(_this) {
+    DOMProcessor.prototype._applyVariablesInDOM = function() {
+      return $("*[data-ob-var]").each((function(_this) {
         return function(index, DOMElement) {
           var obElement, scriptAttrValue;
           obElement = new ObliqueNS.Element(DOMElement);
@@ -121,12 +122,19 @@
           }
         };
       })(this));
+    };
+
+    DOMProcessor.prototype._applyGlobalDirectives = function() {
+      var rootElement;
       rootElement = new ObliqueNS.Element(document.documentElement);
-      this._directiveCollectionOnlyGlobal.each((function(_this) {
-        return function(directiveName, directiveFn) {
+      return this._directiveCollectionOnlyGlobal.each((function(_this) {
+        return function(directiveName) {
           return _this._processDirectiveElement(rootElement, directiveName);
         };
       })(this));
+    };
+
+    DOMProcessor.prototype._applyDirectivesInDOM = function() {
       return $("*[data-ob-directive]").each((function(_this) {
         return function(index, DOMElement) {
           var directiveAttrValue, obElement;

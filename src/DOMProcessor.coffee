@@ -54,7 +54,10 @@ class DOMProcessor
       return if @_isDoingACycle
       @_isDoingACycle = true
 
-      @_applyObliqueElementsInDOM()
+      @_applyGlobalDirectives()
+      @_applyVariablesInDOM()
+      @_applyDirectivesInDOM()
+
       @_callOnIntervalOnCurrentDirectives()
     catch e
       @_throwError(e, "Error doing a cycle in Oblique.js: #{e.message}")
@@ -67,7 +70,7 @@ class DOMProcessor
       directive=directiveInstanceData.instance
       directive.onInterval() if directive.onInterval
 
-  _applyObliqueElementsInDOM: ->
+  _applyVariablesInDOM: ->
       $("*[data-ob-var]").each(
         (index, DOMElement) =>
           obElement=new ObliqueNS.Element DOMElement
@@ -75,12 +78,14 @@ class DOMProcessor
           @_processScriptElement(obElement, scriptAttrValue) if scriptAttrValue
       )
 
+  _applyGlobalDirectives: ->
       rootElement=new ObliqueNS.Element document.documentElement
       @_directiveCollectionOnlyGlobal.each(
-        (directiveName, directiveFn) =>
+        (directiveName) =>
           @_processDirectiveElement(rootElement, directiveName)
       )
 
+  _applyDirectivesInDOM: ->
       $("*[data-ob-directive]").each(
         (index, DOMElement) =>
           obElement=new ObliqueNS.Element DOMElement

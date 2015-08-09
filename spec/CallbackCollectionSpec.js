@@ -66,14 +66,14 @@
       directives.add("TestDirective", TestDirective);
       directives.add("TestDirective2", TestDirective2);
       count = 0;
-      return directives.each(function(directiveName, directiveFn) {
+      return directives.each(function(name, directiveClass) {
         if (count === 0) {
-          expect(directiveName).toBe("TestDirective");
-          expect(directiveFn).toBe(TestDirective);
+          expect(name).toBe("TestDirective");
+          expect(directiveClass).toBe(TestDirective);
         }
         if (count === 1) {
-          expect(directiveName).toBe("TestDirective2");
-          expect(directiveFn).toBe(TestDirective2);
+          expect(name).toBe("TestDirective2");
+          expect(directiveClass).toBe(TestDirective2);
         }
         if (count === 1) {
           done();

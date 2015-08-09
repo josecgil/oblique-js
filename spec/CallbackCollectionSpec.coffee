@@ -48,12 +48,12 @@ describe "CallbackCollection", ->
     directives.add "TestDirective", TestDirective
     directives.add "TestDirective2", TestDirective2
     count=0
-    directives.each (directiveName, directiveFn)->
+    directives.each (name, directiveClass)->
       if count is 0
-        expect(directiveName).toBe "TestDirective"
-        expect(directiveFn).toBe TestDirective
+        expect(name).toBe "TestDirective"
+        expect(directiveClass).toBe TestDirective
       if count is 1
-        expect(directiveName).toBe "TestDirective2"
-        expect(directiveFn).toBe TestDirective2
+        expect(name).toBe "TestDirective2"
+        expect(directiveClass).toBe TestDirective2
       done() if count is 1
       count++
