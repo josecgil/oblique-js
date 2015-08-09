@@ -36,7 +36,7 @@ Currently `oblique.js` needs  [jQuery](http://jquery.com/) to work properly. If 
 
 ## Installation
 
-Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](http://jquery.com/) and (optionally) [handlebars](http://handlebarsjs.com/)
+Just download [oblique.js](https://raw.githubusercontent.com/josecgil/oblique-js/master/dist/oblique.js) or [oblique.min.js](https://raw.githubusercontent.com/josecgil/oblique-js/master/dist/oblique.js) file and load it after [jQuery](http://jquery.com/) and (optionally) [handlebars](http://handlebarsjs.com/)
 
 ```<script type="text/javascript" src="https://raw.githubusercontent.com/josecgil/oblique-js/master/dist/oblique.min.js"></script>```
 
