@@ -1,356 +1,13 @@
-@.ObliqueNS=@.ObliqueNS or {}
 
-class Param
+# ../src/0_functions.coffee
 
-  constructor:(@name)->
-    if not @_isString(@name)
-      throw new ObliqueNS.Error("Param constructor must be called with first param string")
-
-  _isString:(value)->
-    return true if typeof(value) is 'string'
-    false
-
-  @containsChar:(fullStr, char) ->
-    return false if fullStr.indexOf(char) is -1
-    true
-
-  @stringIsNullOrEmpty:(value) ->
-    return true if value is undefined
-    return true if value.trim().length is 0
-    false
-
-  @parse:(strHashParam)->
-    hashArray=strHashParam.split("=")
-    name=hashArray[0].trim()
-    value=""
-    value=hashArray[1].trim() if hashArray.length>1
-    {name:name, value:value}
-
-  getLocationHash: ->
-    ""
-
-  isEmpty:() ->
-    true
-
-  valueIsEqualTo:() ->
-    true
-
-  containsValue:() ->
-    true
-
-  isInRange:()->
-    true
-
-ObliqueNS.Param=Param
-@.ObliqueNS=@.ObliqueNS or {}
-
-Param=ObliqueNS.Param
-
-class ArrayParam extends ObliqueNS.Param
-
-  constructor:(@name, values)->
-    super(@name)
-    if not @_isArray(values)
-      throw new ObliqueNS.Error("Param constructor must be called with second param array")
-    @values=[]
-    for value in values
-      @add value
-
-  _isArray:(value)->
-    return true if Object.prototype.toString.call(value) is '[object Array]'
-    false
-
-  add:(value)->
-    if (not @_isString(value))
-      throw new ObliqueNS.Error("Array param must be an string")
-    @values.push value
-
-  remove:(value)->
-    index=@values.indexOf value
-    return if index is -1
-    @values.splice index, 1
-    @values=undefined if @count() is 0
-
-  isEmpty:() ->
-    return true if @count() is 0
-    return false
-
-  getLocationHash: ->
-    return @name if @count() is 0
-    hash = "#{@name}=["
-    for value in @values
-      hash += "#{value},"
-    hash = hash.substr(0,hash.length-1)
-    hash += "]"
-
-  count:->
-    return 0 if @values is undefined
-    return 0 if @values.length is 0
-    @values.length
-
-  @is:(strHashParam)->
-    hashParam=Param.parse(strHashParam)
-    return true if Param.containsChar(hashParam.value,"[")
-    false
-
-  @createFrom:(strHashParam)->
-    hashParam=Param.parse(strHashParam)
-    value=hashParam.value.replace("[","").replace("]","")
-    values=value.split(",")
-    trimmedValues=[]
-    for value in values
-      value=value.trim()
-      value=unescape(value) if (value isnt undefined)
-      trimmedValues.push value if not Param.stringIsNullOrEmpty(value)
-
-    new ArrayParam(hashParam.name, trimmedValues)
-
-  containsValue:(value)->
-    return false if @isEmpty()
-    return true if value in @values
-    return false
-
-ObliqueNS.ArrayParam=ArrayParam
-
-@.ObliqueNS=@.ObliqueNS or {}
-
-class EmptyParam extends ObliqueNS.Param
-
-  constructor:()->
-    super("EmptyParam")
-
-ObliqueNS.EmptyParam=EmptyParam
-
-@.ObliqueNS=@.ObliqueNS or {}
-
-ArrayParam=ObliqueNS.ArrayParam
-RangeParam=ObliqueNS.RangeParam
-SingleParam=ObliqueNS.SingleParam
-EmptyParam=ObliqueNS.EmptyParam
-
-class ParamCollection
-
-  constructor:(locationHash) ->
-    @removeAll()
-    return if @_StringIsEmpty(locationHash)
-
-    locationHash=locationHash.replace("#","")
-
-    for hashParam in locationHash.split("&")
-      param=undefined
-      if (SingleParam.is(hashParam))
-        param=SingleParam.createFrom(hashParam)
-      else if (RangeParam.is(hashParam))
-        param=RangeParam.createFrom(hashParam)
-      else if (ArrayParam.is(hashParam))
-        param=ArrayParam.createFrom(hashParam)
-      else
-        param=new EmptyParam()
-
-      @add(param)
-
-  _StringIsEmpty:(value)->
-    return true if value is undefined
-    return true if value.trim().length is 0
-    return false
-
-  add:(param)->
-    @_params[param.name.toLowerCase()]=param
-    param
-
-  addSingleParam:(name, value)->
-    @add new SingleParam(name, value)
-
-  addRangeParam:(name, min, max)->
-    @add new RangeParam(name, min, max)
-
-  addArrayParam:(name, values)->
-    @add new ArrayParam(name, values)
-
-  remove:(paramName)->
-    @_params[paramName]=undefined
-
-  removeAll: ->
-    @_params={}
-
-  getParam:(paramName)->
-    param=@_params[paramName.toLowerCase()]
-    return new EmptyParam() if param is undefined
-    param
-
-  find:(paramNames)->
-    lowerCaseParamNames = (param.toLowerCase() for param in paramNames)
-
-    foundedParamCollection=new ParamCollection()
-    for paramName, param of @_params
-      if (not @_isEmptyParam(param)) and (paramName.toLowerCase() in lowerCaseParamNames)
-        foundedParamCollection.add param
-    foundedParamCollection
-
-  isEmpty:->
-    return true if @count() is 0
-    false
-
-  count: ->
-    count = 0
-    for paramName, param of @_params
-      count++ if not @_isEmptyParam(param)
-    count
-
-  _isEmptyParam: (param)  ->
-    return true if param is undefined
-    return param.isEmpty()
-
-  getLocationHash: ->
-    #return "" if @count() is 0
-
-    hash = "#"
-    for paramName, param of @_params
-      #continue if param.isEmpty()
-
-      continue if param is undefined
-      hash += param.getLocationHash() + "&"
-
-    hash=hash.substr(0,hash.length-1)
-    hash="" if hash is "#"
-    hash
-
-ObliqueNS.ParamCollection=ParamCollection
-@.ObliqueNS=@.ObliqueNS or {}
-
-Param=ObliqueNS.Param
-
-class RangeParam extends ObliqueNS.Param
-
-  constructor:(@name, @min, @max)->
-    super(@name)
-    if (not @_isValidValue(@min))
-      throw new ObliqueNS.Error("Param constructor must be called with second param string")
-    if (not @_isValidValue(@max))
-      throw new ObliqueNS.Error("Param constructor must be called with third param string")
-    @min=unescape(@min) if (@min isnt undefined)
-    @max=unescape(@max) if (@max isnt undefined)
-
-
-  _isValidValue:(value) ->
-    return true if value is undefined
-    return @_isString(value)
-
-  getLocationHash:->
-    return "#{@name}=(#{@min},#{@max})" if not @isEmpty()
-    @name
-
-  isEmpty:() ->
-    return true if (@min is undefined and @max is undefined)
-    return false
-
-  isInRange:(value) ->
-    return false if value<@min
-    return false if value>@max
-    true
-
-  @is:(strHashParam)->
-    hashParam=Param.parse(strHashParam)
-    return true if Param.containsChar(hashParam.value,"(")
-    false
-
-  @createFrom:(strHashParam)->
-    hashParam=Param.parse(strHashParam)
-    min=undefined
-    max=undefined
-    if (not Param.stringIsNullOrEmpty(hashParam.value))
-      value=hashParam.value.replace("(","").replace(")","")
-      if (value.trim().length>0)
-        min=(value.split(",")[0]).trim()
-        max=(value.split(",")[1]).trim()
-    new RangeParam(hashParam.name, min, max)
-
-ObliqueNS.RangeParam=RangeParam
-@.ObliqueNS=@.ObliqueNS or {}
-
-Param=ObliqueNS.Param
-
-class SingleParam extends ObliqueNS.Param
-
-  constructor:(@name, @value)->
-    super(@name)
-    if (not @_isString(@value))
-      throw new ObliqueNS.Error("Param constructor must be called with second param string")
-    @value=unescape(@value) if (@value isnt undefined)
-
-  getLocationHash: ->
-    return "#{@name}=#{@value}" if not @isEmpty()
-    @name
-
-  isEmpty:() ->
-    return true if @value is undefined
-    return true if @value.trim().length is 0
-    return false
-
-  @is:(strHashParam)->
-    hashParam=Param.parse(strHashParam)
-    return false if Param.containsChar(hashParam.value,"(")
-    return false if Param.containsChar(hashParam.value,"[")
-    true
-
-  @createFrom:(strHashParam)->
-    hashParam=Param.parse(strHashParam)
-    new SingleParam(hashParam.name, hashParam.value)
-
-
-  valueIsEqualTo:(value)->
-    return false if @isEmpty()
-    return false if @value isnt value
-    true
-
-ObliqueNS.SingleParam=SingleParam
-@.ObliqueNS=@.ObliqueNS or {}
-
-class Template
-
-  constructor:(templateContent)->
-    @compiledTemplate = Handlebars.compile(templateContent)
-
-  renderHTML:(model) ->
-    @compiledTemplate(model)
-
-ObliqueNS.Template=Template
-@.ObliqueNS=@.ObliqueNS or {}
-
-class TemplateFactory
-
-  Template=ObliqueNS.Template
-
-  createFromString:(templateStr)->
-    new Template templateStr
-
-  createFromDOMElement:(element) ->
-    @createFromString $(element).html()
-
-  createFromUrl:(url) ->
-    templateContent=undefined
-    errorStatusCode=200
-    errorMessage=undefined
-    jQuery.ajax(
-      url: url
-      success: (data) ->
-        templateContent=data
-      error: (e) ->
-        errorStatusCode=e.status
-        errorMessage=e.statusCode
-      async: false
-    )
-
-    throw new ObliqueNS.Error("template '#{url}' not found") if errorStatusCode is 404
-    throw new ObliqueNS.Error(errorMessage) if errorStatusCode isnt 200
-    template=@createFromString(templateContent)
-
-
-ObliqueNS.TemplateFactory=TemplateFactory
 #Add string::trim() if not present
 unless String::trim
   String::trim = ->
     @replace /^\s+|\s+$/g, ""
+
+
+# ../src/CallbackCollection.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -384,31 +41,15 @@ class CallbackCollection
   getCallbackByName : (name) ->
     @_callbacksByName[name]
 
+  each: (fnAtEachCallback) ->
+    for callbackName of @_callbacksByName
+      callBack=@getCallbackByName callbackName
+      fnAtEachCallback(callbackName, callBack)
+
 ObliqueNS.CallbackCollection=CallbackCollection
 
-@.ObliqueNS=@.ObliqueNS or {}
 
-class DataModelVariable
-
-  constructor:(@_expression)->
-    @_firstEqualPosition=@_expression.indexOf("=")
-    @name=@_getVariableName()
-    @isSet = @_isSet()
-
-  _getVariableName: () ->
-    return @_expression if @_firstEqualPosition is -1
-    parts=@_expression.split("=")
-    variableName=(parts[0].replace("var ", "")).trim()
-    return undefined  if variableName is ""
-    variableName
-
-  _isSet:() ->
-    return false if @_firstEqualPosition is -1
-    nextChar=@_expression.substr(@_firstEqualPosition+1, 1)
-    return false if nextChar is "="
-    true
-
-ObliqueNS.DataModelVariable=DataModelVariable
+# ../src/DOMProcessor.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -425,6 +66,7 @@ class DOMProcessor
     @_throwErrorIfJQueryIsntLoaded()
 
     @_directiveCollection = new ObliqueNS.CallbackCollection()
+    @_directiveCollectionOnlyGlobal = new ObliqueNS.CallbackCollection()
 
     @_directiveInstancesData=[]
 
@@ -485,6 +127,13 @@ class DOMProcessor
           scriptAttrValue=obElement.getAttributeValue "data-ob-var"
           @_processScriptElement(obElement, scriptAttrValue) if scriptAttrValue
       )
+
+      rootElement=new ObliqueNS.Element document.documentElement
+      @_directiveCollectionOnlyGlobal.each(
+        (directiveName, directiveFn) =>
+          @_processDirectiveElement(rootElement, directiveName)
+      )
+
       $("*[data-ob-directive]").each(
         (index, DOMElement) =>
           obElement=new ObliqueNS.Element DOMElement
@@ -595,6 +244,10 @@ class DOMProcessor
   registerDirective: (directiveName, directiveConstructorFn) ->
     @_directiveCollection.add directiveName, directiveConstructorFn
 
+  registerDirectiveAsGlobal: (directiveName, directiveConstructorFn) ->
+    @_directiveCollectionOnlyGlobal.add directiveName, directiveConstructorFn
+    @registerDirective directiveName, directiveConstructorFn
+
   destroy: ->
     @_ignoreHashRouteChanges()
     @_timedDOMObserver.destroy()
@@ -602,6 +255,36 @@ class DOMProcessor
 
 ObliqueNS.DOMProcessor=DOMProcessor
 @.Oblique=DOMProcessor
+
+# ../src/DataModelVariable.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class DataModelVariable
+
+  constructor:(@_expression)->
+    @_firstEqualPosition=@_expression.indexOf("=")
+    @name=@_getVariableName()
+    @isSet = @_isSet()
+
+  _getVariableName: () ->
+    return @_expression if @_firstEqualPosition is -1
+    parts=@_expression.split("=")
+    variableName=(parts[0].replace("var ", "")).trim()
+    return undefined  if variableName is ""
+    variableName
+
+  _isSet:() ->
+    return false if @_firstEqualPosition is -1
+    nextChar=@_expression.substr(@_firstEqualPosition+1, 1)
+    return false if nextChar is "="
+    true
+
+ObliqueNS.DataModelVariable=DataModelVariable
+
+
+# ../src/Element.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Element
@@ -661,6 +344,8 @@ class Element
     @getDOMElement().outerHTML
 
 ObliqueNS.Element=Element
+# ../src/Memory.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 class Memory
 
@@ -682,6 +367,9 @@ class Memory
     script
 
 ObliqueNS.Memory=Memory
+
+# ../src/Oblique.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Oblique
@@ -706,6 +394,9 @@ class Oblique
 
   registerDirective: (directiveName, directiveConstructorFn) ->
     @domProcessor.registerDirective directiveName, directiveConstructorFn
+
+  registerDirectiveAsGlobal: (directiveName, directiveConstructorFn) ->
+    @domProcessor.registerDirectiveAsGlobal directiveName, directiveConstructorFn
 
   destroy: ->
     @domProcessor.destroy()
@@ -741,10 +432,17 @@ class Oblique
     new ObliqueNS.ParamCollection(window.location.hash)
 
   setHashParams:(paramCollection) ->
-    window.location.hash=paramCollection.getLocationHash()
+    hash=paramCollection.getLocationHash()
+    location=window.location
+    urlWithoutHash=location.protocol+"//"+location.host+location.pathname+location.search
+    newUrl=urlWithoutHash+hash
+    window.location.replace newUrl
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
+
+
+# ../src/ObliqueError.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -754,6 +452,381 @@ class ObliqueError extends Error
     @name = "ObliqueNS.Error"
 
 ObliqueNS.Error=ObliqueError
+
+# ../src/Params/0_Param.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class Param
+
+  constructor:(@name)->
+    if not @_isString(@name)
+      throw new ObliqueNS.Error("Param constructor must be called with first param string")
+
+  _isString:(value)->
+    return true if typeof(value) is 'string'
+    false
+
+  @containsChar:(fullStr, char) ->
+    return false if fullStr.indexOf(char) is -1
+    true
+
+  @stringIsNullOrEmpty:(value) ->
+    return true if value is undefined
+    return true if value.trim().length is 0
+    false
+
+  @parse:(strHashParam)->
+    hashArray=strHashParam.split("=")
+    name=hashArray[0].trim()
+    value=""
+    value=hashArray[1].trim() if hashArray.length>1
+    {name:name, value:value}
+
+  getLocationHash: ->
+    ""
+
+  isEmpty:() ->
+    true
+
+  valueIsEqualTo:() ->
+    true
+
+  containsValue:() ->
+    true
+
+  isInRange:()->
+    true
+
+ObliqueNS.Param=Param
+
+# ../src/Params/ArrayParam.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+Param=ObliqueNS.Param
+
+class ArrayParam extends ObliqueNS.Param
+
+  constructor:(@name, values)->
+    super(@name)
+    if not @_isArray(values)
+      throw new ObliqueNS.Error("Param constructor must be called with second param array")
+    @values=[]
+    for value in values
+      @add value
+
+  _isArray:(value)->
+    return true if Object.prototype.toString.call(value) is '[object Array]'
+    false
+
+  add:(value)->
+    if (not @_isString(value))
+      throw new ObliqueNS.Error("Array param must be an string")
+    @values.push value
+
+  remove:(value)->
+    index=@values.indexOf value
+    return if index is -1
+    @values.splice index, 1
+    @values=undefined if @count() is 0
+
+  isEmpty:() ->
+    return true if @count() is 0
+    return false
+
+  getLocationHash: ->
+    return @name if @count() is 0
+    hash = "#{@name}=["
+    for value in @values
+      hash += "#{value},"
+    hash = hash.substr(0,hash.length-1)
+    hash += "]"
+
+  count:->
+    return 0 if @values is undefined
+    return 0 if @values.length is 0
+    @values.length
+
+  @is:(strHashParam)->
+    hashParam=Param.parse(strHashParam)
+    return true if Param.containsChar(hashParam.value,"[")
+    false
+
+  @createFrom:(strHashParam)->
+    hashParam=Param.parse(strHashParam)
+    value=hashParam.value.replace("[","").replace("]","")
+    values=value.split(",")
+    trimmedValues=[]
+    for value in values
+      value=value.trim()
+      value=unescape(value) if (value isnt undefined)
+      trimmedValues.push value if not Param.stringIsNullOrEmpty(value)
+
+    new ArrayParam(hashParam.name, trimmedValues)
+
+  containsValue:(value)->
+    return false if @isEmpty()
+    return true if value in @values
+    return false
+
+ObliqueNS.ArrayParam=ArrayParam
+
+
+# ../src/Params/EmptyParam.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class EmptyParam extends ObliqueNS.Param
+
+  constructor:()->
+    super("EmptyParam")
+
+ObliqueNS.EmptyParam=EmptyParam
+
+
+# ../src/Params/ParamCollection.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+ArrayParam=ObliqueNS.ArrayParam
+RangeParam=ObliqueNS.RangeParam
+SingleParam=ObliqueNS.SingleParam
+EmptyParam=ObliqueNS.EmptyParam
+
+class ParamCollection
+
+  constructor:(locationHash) ->
+    @removeAll()
+    return if @_StringIsEmpty(locationHash)
+
+    locationHash=locationHash.replace("#","")
+
+    for hashParam in locationHash.split("&")
+      param=undefined
+      if (SingleParam.is(hashParam))
+        param=SingleParam.createFrom(hashParam)
+      else if (RangeParam.is(hashParam))
+        param=RangeParam.createFrom(hashParam)
+      else if (ArrayParam.is(hashParam))
+        param=ArrayParam.createFrom(hashParam)
+      else
+        param=new EmptyParam()
+
+      @add(param)
+
+  _StringIsEmpty:(value)->
+    return true if value is undefined
+    return true if value.trim().length is 0
+    return false
+
+  add:(param)->
+    @_params[param.name.toLowerCase()]=param
+    param
+
+  addSingleParam:(name, value)->
+    @add new SingleParam(name, value)
+
+  addRangeParam:(name, min, max)->
+    @add new RangeParam(name, min, max)
+
+  addArrayParam:(name, values)->
+    @add new ArrayParam(name, values)
+
+  remove:(paramName)->
+    @_params[paramName]=undefined
+
+  removeAll: ->
+    @_params={}
+
+  getParam:(paramName)->
+    param=@_params[paramName.toLowerCase()]
+    return new EmptyParam() if param is undefined
+    param
+
+  find:(paramNames)->
+    lowerCaseParamNames = (param.toLowerCase() for param in paramNames)
+
+    foundedParamCollection=new ParamCollection()
+    for paramName, param of @_params
+      if (not @_isEmptyParam(param)) and (paramName.toLowerCase() in lowerCaseParamNames)
+        foundedParamCollection.add param
+    foundedParamCollection
+
+  isEmpty:->
+    return true if @count() is 0
+    false
+
+  count: ->
+    count = 0
+    for paramName, param of @_params
+      count++ if not @_isEmptyParam(param)
+    count
+
+  _isEmptyParam: (param)  ->
+    return true if param is undefined
+    return param.isEmpty()
+
+  getLocationHash: ->
+    #return "" if @count() is 0
+
+    hash = "#"
+    for paramName, param of @_params
+      #continue if param.isEmpty()
+
+      continue if param is undefined
+      hash += param.getLocationHash() + "&"
+
+    hash=hash.substr(0,hash.length-1)
+    hash="" if hash is "#"
+    hash
+
+ObliqueNS.ParamCollection=ParamCollection
+# ../src/Params/RangeParam.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+Param=ObliqueNS.Param
+
+class RangeParam extends ObliqueNS.Param
+
+  constructor:(@name, @min, @max)->
+    super(@name)
+    if (not @_isValidValue(@min))
+      throw new ObliqueNS.Error("Param constructor must be called with second param string")
+    if (not @_isValidValue(@max))
+      throw new ObliqueNS.Error("Param constructor must be called with third param string")
+    @min=unescape(@min) if (@min isnt undefined)
+    @max=unescape(@max) if (@max isnt undefined)
+
+
+  _isValidValue:(value) ->
+    return true if value is undefined
+    return @_isString(value)
+
+  getLocationHash:->
+    return "#{@name}=(#{@min},#{@max})" if not @isEmpty()
+    @name
+
+  isEmpty:() ->
+    return true if (@min is undefined and @max is undefined)
+    return false
+
+  isInRange:(value) ->
+    return false if value<@min
+    return false if value>@max
+    true
+
+  @is:(strHashParam)->
+    hashParam=Param.parse(strHashParam)
+    return true if Param.containsChar(hashParam.value,"(")
+    false
+
+  @createFrom:(strHashParam)->
+    hashParam=Param.parse(strHashParam)
+    min=undefined
+    max=undefined
+    if (not Param.stringIsNullOrEmpty(hashParam.value))
+      value=hashParam.value.replace("(","").replace(")","")
+      if (value.trim().length>0)
+        min=(value.split(",")[0]).trim()
+        max=(value.split(",")[1]).trim()
+    new RangeParam(hashParam.name, min, max)
+
+ObliqueNS.RangeParam=RangeParam
+
+# ../src/Params/SingleParam.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+Param=ObliqueNS.Param
+
+class SingleParam extends ObliqueNS.Param
+
+  constructor:(@name, @value)->
+    super(@name)
+    if (not @_isString(@value))
+      throw new ObliqueNS.Error("Param constructor must be called with second param string")
+    @value=unescape(@value) if (@value isnt undefined)
+
+  getLocationHash: ->
+    return "#{@name}=#{@value}" if not @isEmpty()
+    @name
+
+  isEmpty:() ->
+    return true if @value is undefined
+    return true if @value.trim().length is 0
+    return false
+
+  @is:(strHashParam)->
+    hashParam=Param.parse(strHashParam)
+    return false if Param.containsChar(hashParam.value,"(")
+    return false if Param.containsChar(hashParam.value,"[")
+    true
+
+  @createFrom:(strHashParam)->
+    hashParam=Param.parse(strHashParam)
+    new SingleParam(hashParam.name, hashParam.value)
+
+
+  valueIsEqualTo:(value)->
+    return false if @isEmpty()
+    return false if @value isnt value
+    true
+
+ObliqueNS.SingleParam=SingleParam
+
+# ../src/Templates/Template.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class Template
+
+  constructor:(templateContent)->
+    @compiledTemplate = Handlebars.compile(templateContent)
+
+  renderHTML:(model) ->
+    @compiledTemplate(model)
+
+ObliqueNS.Template=Template
+
+# ../src/Templates/TemplateFactory.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class TemplateFactory
+
+  Template=ObliqueNS.Template
+
+  createFromString:(templateStr)->
+    new Template templateStr
+
+  createFromDOMElement:(element) ->
+    @createFromString $(element).html()
+
+  createFromUrl:(url) ->
+    templateContent=undefined
+    errorStatusCode=200
+    errorMessage=undefined
+    jQuery.ajax(
+      url: url
+      success: (data) ->
+        templateContent=data
+      error: (e) ->
+        errorStatusCode=e.status
+        errorMessage=e.statusCode
+      async: false
+    )
+
+    throw new ObliqueNS.Error("template '#{url}' not found") if errorStatusCode is 404
+    throw new ObliqueNS.Error(errorMessage) if errorStatusCode isnt 200
+    template=@createFromString(templateContent)
+
+
+ObliqueNS.TemplateFactory=TemplateFactory
+
+# ../src/TimedDOMObserver.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class TimedDOMObserver

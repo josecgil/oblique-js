@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/spec/CallbackCollectionSpec.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CallbackCollection.coffee" afterPath="$PROJECT_DIR$/src/CallbackCollection.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CallbackCollection.js" afterPath="$PROJECT_DIR$/src/CallbackCollection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/CallbackCollectionSpec.coffee" afterPath="$PROJECT_DIR$/spec/CallbackCollectionSpec.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DOMProcessor.coffee" afterPath="$PROJECT_DIR$/src/DOMProcessor.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DOMProcessor.js" afterPath="$PROJECT_DIR$/src/DOMProcessor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Oblique.coffee" afterPath="$PROJECT_DIR$/src/Oblique.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Oblique.js" afterPath="$PROJECT_DIR$/src/Oblique.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/ObliqueSpec.js" afterPath="$PROJECT_DIR$/spec/ObliqueSpec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/oblique-js.iml" afterPath="$PROJECT_DIR$/.idea/oblique-js.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/GlobalDirective/src/GlobalDirective.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samples/GlobalDirective/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.coffee" afterPath="$PROJECT_DIR$/dist/oblique.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.js" afterPath="$PROJECT_DIR$/dist/oblique.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.min.js" afterPath="$PROJECT_DIR$/dist/oblique.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -41,11 +34,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DOMProcessor.coffee" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DOMProcessor.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DOMProcessor.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3027523" vertical-offset="1342" max-vertical-offset="4620">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1342" max-vertical-offset="4620">
               <caret line="70" column="22" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GlobalDirective.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/samples/GlobalDirective/src/GlobalDirective.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.1" vertical-offset="0" max-vertical-offset="440">
+              <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/samples/GlobalDirective/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.8387097" vertical-offset="31" max-vertical-offset="484">
+              <caret line="4" column="81" selection-start-line="4" selection-start-column="81" selection-end-line="4" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -65,8 +78,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/samples/Filters/src/ColorDirective.js" />
-        <option value="$PROJECT_DIR$/samples/Filters/src/PriceDirective.js" />
         <option value="$PROJECT_DIR$/samples/Filters/src/PhotoDirective.js" />
         <option value="$PROJECT_DIR$/TODO.md" />
         <option value="$PROJECT_DIR$/samples/MVD_JS/src/ColorDirective.js" />
@@ -116,6 +127,8 @@
         <option value="$PROJECT_DIR$/spec/CallbackCollectionSpec.coffee" />
         <option value="$PROJECT_DIR$/src/DOMProcessor.coffee" />
         <option value="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
+        <option value="$PROJECT_DIR$/samples/GlobalDirective/src/GlobalDirective.js" />
+        <option value="$PROJECT_DIR$/samples/GlobalDirective/index.html" />
       </list>
     </option>
   </component>
@@ -197,7 +210,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="samples" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="todo-list" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -211,7 +228,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
+              <option name="myItemId" value="samples" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oblique-js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oblique-js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="samples" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GlobalDirective" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oblique-js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oblique-js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="samples" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GlobalDirective" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -263,11 +320,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/samples/GlobalDirective" />
       <recent name="C:\Users\josecarlos\Desktop\oblique-js\samples" />
       <recent name="C:\Users\josecarlos\Desktop\oblique-js\samples\Appear" />
       <recent name="C:\Users\josecarlos\Desktop\oblique-js\lib\jquery-appear" />
       <recent name="C:\Users\josecarlos\Desktop\oblique-js\samples\Timer" />
-      <recent name="C:\Users\josecarlos\Desktop\oblique-js\samples\Filters\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\josecarlos\Desktop\oblique-js\samples\Appear\src" />
@@ -377,12 +434,6 @@
       <created>1394662908407</created>
       <option name="number" value="Default" />
       <updated>1394662908407</updated>
-    </task>
-    <task id="LOCAL-00112" summary="Finish moel section">
-      <created>1406132645963</created>
-      <option name="number" value="00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1406132645963</updated>
     </task>
     <task id="LOCAL-00113" summary="Finish model section">
       <created>1406132676224</created>
@@ -672,21 +723,28 @@
       <option name="project" value="LOCAL" />
       <updated>1435225277112</updated>
     </task>
-    <option name="localTasksCounter" value="161" />
+    <task id="LOCAL-00161" summary="Added support for Global Directives&#10;Fixed some spec failures (time, firefox error messages)&#10;">
+      <created>1439160904738</created>
+      <option name="number" value="00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1439160904753</updated>
+    </task>
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32704404" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991204" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32748538" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15250199" sideWeight="0.49853373" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15250199" sideWeight="0.49853373" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.313783" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.313783" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15250199" sideWeight="0.5014663" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32383966" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3260234" sideWeight="0.49960285" order="9" side_tool="false" content_ui="tabs" />
@@ -694,7 +752,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3185654" sideWeight="0.49960285" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32704404" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -737,7 +794,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="remove onLoad event" />
     <MESSAGE value="update dist files" />
     <MESSAGE value="Refactor of filter sample&#10;Empty params (null object pattern)&#10;FormOptions class to work with form elements &amp; hashParams sync&#10;" />
     <MESSAGE value="name Refactor &#10;" />
@@ -762,7 +818,8 @@
     <MESSAGE value="Added tests for OnInterval Event&#10;Compiled with CoffeeScript 1.9.2&#10;Deleted old examples" />
     <MESSAGE value="Added a little extra text to docs" />
     <MESSAGE value="Added Appear Demo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Appear Demo" />
+    <MESSAGE value="Added support for Global Directives&#10;Fixed some spec failures (time, firefox error messages)&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added support for Global Directives&#10;Fixed some spec failures (time, firefox error messages)&#10;" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.8794326" />
   </component>
   <component name="XDebuggerManager">
@@ -772,20 +829,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/samples/MVD_JS/templates/sizes.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="270">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/MVD_JS/src/ColorDirective.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="486">
-          <caret line="10" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/samples/todo-list/src/ItemCollection.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18043478" vertical-offset="124" max-vertical-offset="1044">
@@ -1136,8 +1179,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DOMProcessor.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3027523" vertical-offset="1342" max-vertical-offset="4620">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1342" max-vertical-offset="4620">
           <caret line="70" column="22" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samples/GlobalDirective/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8387097" vertical-offset="31" max-vertical-offset="484">
+          <caret line="4" column="81" selection-start-line="4" selection-start-column="81" selection-end-line="4" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samples/GlobalDirective/src/GlobalDirective.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1" vertical-offset="0" max-vertical-offset="440">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
           <folding />
         </state>
       </provider>
