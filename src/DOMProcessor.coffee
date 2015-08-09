@@ -13,6 +13,7 @@ class DOMProcessor
     @_throwErrorIfJQueryIsntLoaded()
 
     @_directiveCollection = new ObliqueNS.CallbackCollection()
+    @_directiveCollectionOnlyGlobal = new ObliqueNS.CallbackCollection()
 
     @_directiveInstancesData=[]
 
@@ -73,6 +74,13 @@ class DOMProcessor
           scriptAttrValue=obElement.getAttributeValue "data-ob-var"
           @_processScriptElement(obElement, scriptAttrValue) if scriptAttrValue
       )
+
+      rootElement=new ObliqueNS.Element document.documentElement
+      @_directiveCollectionOnlyGlobal.each(
+        (directiveName, directiveFn) =>
+          @_processDirectiveElement(rootElement, directiveName)
+      )
+
       $("*[data-ob-directive]").each(
         (index, DOMElement) =>
           obElement=new ObliqueNS.Element DOMElement
@@ -182,6 +190,10 @@ class DOMProcessor
 
   registerDirective: (directiveName, directiveConstructorFn) ->
     @_directiveCollection.add directiveName, directiveConstructorFn
+
+  registerDirectiveAsGlobal: (directiveName, directiveConstructorFn) ->
+    @_directiveCollectionOnlyGlobal.add directiveName, directiveConstructorFn
+    @registerDirective directiveName, directiveConstructorFn
 
   destroy: ->
     @_ignoreHashRouteChanges()

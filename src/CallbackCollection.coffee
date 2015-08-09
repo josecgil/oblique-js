@@ -30,5 +30,10 @@ class CallbackCollection
   getCallbackByName : (name) ->
     @_callbacksByName[name]
 
+  each: (fnAtEachCallback) ->
+    for callbackName of @_callbacksByName
+      callBack=@getCallbackByName callbackName
+      fnAtEachCallback(callbackName, callBack)
+
 ObliqueNS.CallbackCollection=CallbackCollection
 

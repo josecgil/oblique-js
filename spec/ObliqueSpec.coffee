@@ -69,7 +69,7 @@ describe "Oblique", ->
       Oblique().registerDirective "test", {}
     ).toThrow(new ObliqueNS.Error("registerDirective must be called with a Directive 'Constructor/Class'"))
 
-  it "must execute 1 directive in a 10000 elements DOM in <200ms", (done)->
+  it "must execute 1 directive in a 10000 elements DOM in <500ms", (done)->
 
     DOM_ELEMENTS_COUNT = 4*250
     FixtureHelper.appendHTML "<p data-ob-directive='TestDirective'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
@@ -84,7 +84,7 @@ describe "Oblique", ->
         counter++
         if (counter is (DOM_ELEMENTS_COUNT))
           interval.stop()
-          expect(interval.timeInMs).toBeLessThan 200
+          expect(interval.timeInMs).toBeLessThan 500
           done()
 
     interval.start()
@@ -426,7 +426,7 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     Oblique().onError( (error) ->
       expect(error.name).toBe "ObliqueNS.Error"
-      expect(error.message).toBe "<div data-ob-directive=\"TestDirective\" data-ob-params=\"patata\">nice DOM</div>: data-ob-params parse error: Unexpected token p"
+      expect(error.message.indexOf("data-ob-params parse error")!=-1).toBeTruthy()
       Oblique().destroy()
       done()
     )
@@ -858,7 +858,7 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
 
-  it "must call a directive almost 95 times in a second", (done)->
+  it "must call a directive almost 80 times in a second", (done)->
     times=0
 
     class TestDirective
@@ -868,7 +868,7 @@ describe "Oblique", ->
         times++
 
     setTimeout(->
-      expect(times>=95).toBeTruthy()
+      expect(times>=80).toBeTruthy()
       done()
     ,1000)
 
@@ -893,3 +893,10 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
 
+  it "must call a directive registered as global when isn't in the DOM", (done)->
+    class GlobalTestDirective
+      constructor: ()->
+        done()
+
+    Oblique().registerDirectiveAsGlobal "GlobalTestDirective", GlobalTestDirective
+    Oblique().setIntervalTimeInMs 10
