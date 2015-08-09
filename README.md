@@ -571,6 +571,7 @@ var GlobalDirective=function () {
 
 Oblique().registerDirectiveAsGlobal("GlobalDirective", GlobalDirective);
 ```
+This is the prefered way.
 
 ##Error handling
 
