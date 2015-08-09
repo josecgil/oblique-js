@@ -26,8 +26,9 @@
 13. [Hash routing](#hash-routing)
 14. [Timed events](#timed-events) 
 15. [Error handling](#error-handling)
-16. [Notes](#notes)
-17. [Learn more](#learn-more)
+16. [Global Directives](#global-directives)
+17. [Notes](#notes)
+18. [Learn more](#learn-more)
 
 ## Requeriments
 
@@ -35,13 +36,13 @@ Currently `oblique.js` needs  [jQuery](http://jquery.com/) to work properly. If 
 
 ## Installation
 
-Just download `oblique.js` or `oblique.min.js` file and load it after [jQuery](http://jquery.com/) and (optionally) [handlebars](http://handlebarsjs.com/)
+Just download [oblique.js](https://raw.githubusercontent.com/josecgil/oblique-js/master/dist/oblique.js) or [oblique.min.js](https://raw.githubusercontent.com/josecgil/oblique-js/master/dist/oblique.min.js) file and load it after [jQuery](http://jquery.com/) and (optionally) [handlebars](http://handlebarsjs.com/)
 
 ```<script type="text/javascript" src="https://raw.githubusercontent.com/josecgil/oblique-js/master/dist/oblique.min.js"></script>```
 
 ## An overview
 
-`oblique.js` constantly searchs the entire DOM tree for elements with the `data-ob-directive` attribute. When an element is found, it process it and marks the element as 'processed' so the next time does'nt find it.
+`oblique.js` constantly searchs the entire DOM tree for elements with the `data-ob-directive` attribute (an exception to this are [Global Directives](#global-directives)). When an element is found, it process it and marks the element as 'processed' so the next time does'nt find it.
 
 At the core of `oblique.js` the are a two elements: 
 + a DOM Element thats declares code to execute and data to be sent to the code.
@@ -535,6 +536,42 @@ TimedExampleDirective.prototype.onInterval=function() {
 
 In  [samples/Timer directory](https://github.com/josecgil/oblique-js/tree/master/samples/Timer) there is a complete & functional sample thats uses the timed events functionality.
 
+##Global Directives
+
+Sometimes you want to execute some code that isn't related to an especific part of the DOM. There are two ways to do this:
+
+1) Attach the directive to the body or html tag. Example:
+
+```
+<html>
+	<head>
+		<title>Document title</title>
+	</head>
+	<body data-ob-directive="GlobalDirective">
+	...
+	</body>
+</html>
+```
+An then create a normal directive:
+
+```
+var GlobalDirective=function () {
+	//Some code not related to the body tag
+};
+
+Oblique().registerDirective("GlobalDirective", GlobalDirective);
+```
+
+2) Register the directive as Global using `Oblique().registerDirectiveAsGlobal` method. This will execute the directive when the DOM is ready and will tie the directive to the root element of the document:
+
+```
+var GlobalDirective=function () {
+	//Some code not related to the body tag
+};
+
+Oblique().registerDirectiveAsGlobal("GlobalDirective", GlobalDirective);
+```
+This is the prefered way.
 
 ##Error handling
 
