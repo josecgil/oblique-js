@@ -401,14 +401,14 @@ Example:
 ```
 //Let's supose I have an url with this hash params:
 //#sizes=[S, M, L]&price=(9,26)&color=red
-var params=Oblique()..getHashParams();
+var params=Oblique().getHashParams();
 var sizesParam=params.getParam("sizes"); //ArrayParam
 var priceParam=params.getParam("price"); //RangeParam
 var colorParam=params.getParam("color"); //SingleParam
 var noneParam=params.getParam("foobar"); //EmptyParam
 
-var noneIsEmpty=noneParam.isEmpty() //true
-var sizesIsEmpty=sizesParam.isEmpty() //false
+var noneIsEmpty=noneParam.isEmpty(); //true
+var sizesIsEmpty=sizesParam.isEmpty(); //false
 
 var sizes=sizesParam.values; //["S" , "M", "L"]
 var priceMIn=priceParam.min; //"9"
