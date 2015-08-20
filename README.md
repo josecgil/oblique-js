@@ -408,7 +408,7 @@ var colorParam=params.getParam("color"); //SingleParam
 var noneParam=params.getParam("foobar"); //EmptyParam
 
 var noneIsEmpty=noneParam.isEmpty() //true
-var sizesIsEmpty=sizesParam.IsEmpty() //false
+var sizesIsEmpty=sizesParam.isEmpty() //false
 
 var sizes=sizesParam.values; //["S" , "M", "L"]
 var priceMIn=priceParam.min; //"9"
