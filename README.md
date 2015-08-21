@@ -490,6 +490,20 @@ Oblique().setHashParams(params); //this last line is when the change really occu
 //#price=(1,100)&color=blue
 ```
 
+###Some helper 'Param' methods
+
+*ArrayParam*
+
+```
+//Let's supose I have an url with this hash params:
+//#sizes=[S, M, L]
+
+var params=Oblique().getHashParams();
+var sizes=params.getParam("sizes");
+
+
+```
+
 ###Listen to changes in hash route params
 
 `oblique.js` provides a convenient mechanism to listen to changes in hash params. You can add a function `onHashChange` to every `directive`. `oblique.js` will call this function on every hash change passing an object with a `ParamCollection` object.   
