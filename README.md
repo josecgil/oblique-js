@@ -337,7 +337,7 @@ Note: variables are always executed before any directive execution.
 
 ##Templates
 
-`oblique.js` uses [handlebars](http://handlebarsjs.com/) as his template system, it exposes the `Oblique().renderHtml(pathToTemplate, object)` method to use `handlebars`. 
+`oblique.js` uses [handlebars](http://handlebarsjs.com/) as his template system, it exposes the `Oblique().renderHTML(pathToTemplate, object)` method to use `handlebars`. 
 
 The next example uses a simple object (name, surname) to render an html like this:
 
@@ -358,7 +358,7 @@ The javascript part will look like this:
     }
     
     //builds an string from the template and the data from the model
-    var helloUserHtml=Oblique().renderHtml("/templates/hellouser.hbs", user);
+    var helloUserHtml=Oblique().renderHTML("/templates/hellouser.hbs", user);
     //changes a DOM element with the html from the previous step
     $("#hellouser").html(helloUserHtml);
 </script>
