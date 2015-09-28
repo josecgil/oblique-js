@@ -612,10 +612,7 @@ class DOMProcessor
       throw e
 
   _throwError: (e, errorMessage) ->
-    console.log "--- Init Oblique Error ---"
-    console.log errorMessage
-    console.log e.stack
-    console.log "--- End  Oblique Error ---"
+    Oblique.logError e
     Oblique().triggerOnError(new ObliqueNS.Error(errorMessage))
 
   getIntervalTimeInMs: ->
@@ -760,6 +757,11 @@ ObliqueNS.Memory=Memory
 class Oblique
 
   constructor: ->
+    if window.jQuery is undefined
+      error=new ObliqueNS.Error "ObliqueJS needs jQuery to be loaded"
+      Oblique.logError error
+      throw error
+
     return new Oblique() if @ is window
 
     return Oblique._singletonInstance  if Oblique._singletonInstance
@@ -770,6 +772,13 @@ class Oblique
     @_onErrorCallbacks=[]
 
   @DEFAULT_INTERVAL_MS = 500
+
+  @logError = (error) ->
+    console.log "--- Init Oblique Error ---"
+    console.log error.message
+    console.log error.stack
+    console.log "--- End  Oblique Error ---"
+
 
   getIntervalTimeInMs: ->
     @domProcessor.getIntervalTimeInMs()
@@ -811,7 +820,6 @@ class Oblique
   triggerOnError:(error)->
     for callback in @_onErrorCallbacks
       callback(error)
-    #throw error
 
   getHashParams:() ->
     new ObliqueNS.ParamCollection(window.location.hash)
@@ -825,7 +833,6 @@ class Oblique
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
-
 
 # ../src/ObliqueError.coffee
 
