@@ -12,8 +12,7 @@ class DOMProcessor
 
     @_throwErrorIfJQueryIsntLoaded()
 
-    @_directiveCollection = new ObliqueNS.CallbackCollection()
-    @_directiveCollectionOnlyGlobal = new ObliqueNS.CallbackCollection()
+    @_directiveCollection = new ObliqueNS.DirectiveCollection()
 
     @_directiveInstancesData=[]
 
@@ -80,9 +79,10 @@ class DOMProcessor
 
   _applyGlobalDirectives: ->
       rootElement=new ObliqueNS.Element document.documentElement
-      @_directiveCollectionOnlyGlobal.each(
-        (directiveName) =>
-          @_processDirectiveElement(rootElement, directiveName)
+      @_directiveCollection.each(
+        (directive) =>
+          return if not directive.isGlobal
+          @_processDirectiveElement(rootElement, directive.name)
       )
 
   _applyDirectivesInDOM: ->
@@ -117,7 +117,7 @@ class DOMProcessor
       directiveName=directiveName.trim()
       continue if obElement.hasFlag directiveName
 
-      directive=@_directiveCollection.getCallbackByName(directiveName)
+      directive=@_directiveCollection.findByName(directiveName).callback
       throw new ObliqueNS.Error("There is no #{directiveName} directive registered") if not directive
       obElement.setFlag directiveName
 
@@ -178,10 +178,7 @@ class DOMProcessor
       throw e
 
   _throwError: (e, errorMessage) ->
-    console.log "--- Init Oblique Error ---"
-    console.log errorMessage
-    console.log e.stack
-    console.log "--- End  Oblique Error ---"
+    Oblique.logError e
     Oblique().triggerOnError(new ObliqueNS.Error(errorMessage))
 
   getIntervalTimeInMs: ->
@@ -194,11 +191,10 @@ class DOMProcessor
     @_timedDOMObserver.observe()
 
   registerDirective: (directiveName, directiveConstructorFn) ->
-    @_directiveCollection.add directiveName, directiveConstructorFn
+    @_directiveCollection.add new ObliqueNS.Directive(directiveName, directiveConstructorFn)
 
   registerDirectiveAsGlobal: (directiveName, directiveConstructorFn) ->
-    @_directiveCollectionOnlyGlobal.add directiveName, directiveConstructorFn
-    @registerDirective directiveName, directiveConstructorFn
+    @_directiveCollection.add new ObliqueNS.Directive(directiveName, directiveConstructorFn, true)
 
   destroy: ->
     @_ignoreHashRouteChanges()

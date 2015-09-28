@@ -81,7 +81,7 @@
     it("If I register an object that no is a Directive it throws an Error", function() {
       return expect(function() {
         return Oblique().registerDirective("test", {});
-      }).toThrow(new ObliqueNS.Error("registerDirective must be called with a Directive 'Constructor/Class'"));
+      }).toThrow(new ObliqueNS.Error("Directive must be called with a 'Constructor Function/Class' param"));
     });
     it("must execute 1 directive in a 10000 elements DOM in <500ms", function(done) {
       var DOM_ELEMENTS_COUNT, TestDirective, counter, interval;
@@ -223,6 +223,48 @@
       Oblique().registerDirective("TestDirective", TestDirective);
       Oblique().setIntervalTimeInMs(10);
       return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='Model.name'></div>");
+    });
+    it("A directive must receive part of the model that data-ob-model specifies if is a boolean", function(done) {
+      var TestDirective, modelToTest;
+      modelToTest = {
+        name: "Carlos",
+        isLogged: true
+      };
+      TestDirective = (function() {
+        function TestDirective(data) {
+          expect(data.model).toBeTruthy();
+          Oblique().destroy();
+          done();
+        }
+
+        return TestDirective;
+
+      })();
+      Oblique().setModel(modelToTest);
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='Model.isLogged'></div>");
+    });
+    it("A directive must receive part of the model that data-ob-model specifies if is an int", function(done) {
+      var TestDirective, modelToTest;
+      modelToTest = {
+        name: "Carlos",
+        number: 1
+      };
+      TestDirective = (function() {
+        function TestDirective(data) {
+          expect(data.model).toBe(1);
+          Oblique().destroy();
+          done();
+        }
+
+        return TestDirective;
+
+      })();
+      Oblique().setModel(modelToTest);
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='Model.number'></div>");
     });
     it("data-ob-model must work with complex models, simple resuls", function(done) {
       var TestDirective, modelToTest;
@@ -1105,7 +1147,7 @@
       Oblique().setIntervalTimeInMs(10);
       return $("#fixture").html("<div data-ob-directive='TestDirective'></div>");
     });
-    return it("must call a directive registered as global when isn't in the DOM", function(done) {
+    it("must call a directive registered as global when isn't in the DOM", function(done) {
       var GlobalTestDirective;
       GlobalTestDirective = (function() {
         function GlobalTestDirective() {
@@ -1117,6 +1159,22 @@
       })();
       Oblique().registerDirectiveAsGlobal("GlobalTestDirective", GlobalTestDirective);
       return Oblique().setIntervalTimeInMs(10);
+    });
+    return it("must throw an error if jQuery is not present", function() {
+      var e, error, jQuery;
+      jQuery = window.jQuery;
+      error = false;
+      try {
+        window.jQuery = void 0;
+        Oblique();
+      } catch (_error) {
+        e = _error;
+        error = true;
+        expect(e.message).toBe("ObliqueJS needs jQuery to be loaded");
+      } finally {
+        window.jQuery = jQuery;
+      }
+      return expect(error).toBeTruthy();
     });
   });
 

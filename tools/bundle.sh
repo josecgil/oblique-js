@@ -31,7 +31,10 @@ function deleteFileIfPresent {
 }
 
 function getSourceCoffeeFiles {
-    result=`ls $1/*.coffee $1/Templates/*.coffee $1/Params/*.coffee`
+    ls $1/Directives/*.coffee >temp.txt
+    ls $1/Templates/*.coffee $1/Params/*.coffee >>temp.txt
+    ls $1/*.coffee >>temp.txt
+    result=`cat temp.txt`
 }
 
 function showInfo {

@@ -67,7 +67,7 @@ describe "Oblique", ->
   it "If I register an object that no is a Directive it throws an Error", ()->
     expect(->
       Oblique().registerDirective "test", {}
-    ).toThrow(new ObliqueNS.Error("registerDirective must be called with a Directive 'Constructor/Class'"))
+    ).toThrow(new ObliqueNS.Error("Directive must be called with a 'Constructor Function/Class' param"))
 
   it "must execute 1 directive in a 10000 elements DOM in <500ms", (done)->
 
@@ -182,6 +182,43 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
 
     FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='Model.name'></div>"
+
+  it "A directive must receive part of the model that data-ob-model specifies if is a boolean", (done)->
+    modelToTest =
+      name : "Carlos",
+      isLogged : true
+
+    class TestDirective
+      constructor: (data)->
+        expect(data.model).toBeTruthy()
+        Oblique().destroy()
+        done()
+
+    Oblique().setModel modelToTest
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='Model.isLogged'></div>"
+
+  it "A directive must receive part of the model that data-ob-model specifies if is an int", (done)->
+    modelToTest =
+      name : "Carlos",
+      number : 1
+
+    class TestDirective
+      constructor: (data)->
+        expect(data.model).toBe 1
+        Oblique().destroy()
+        done()
+
+    Oblique().setModel modelToTest
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='Model.number'></div>"
+
 
   it "data-ob-model must work with complex models, simple resuls", (done)->
     modelToTest =
@@ -900,3 +937,17 @@ describe "Oblique", ->
 
     Oblique().registerDirectiveAsGlobal "GlobalTestDirective", GlobalTestDirective
     Oblique().setIntervalTimeInMs 10
+
+
+  it "must throw an error if jQuery is not present", ()->
+    jQuery=window.jQuery
+    error=false;
+    try
+      window.jQuery=undefined
+      Oblique()
+    catch e
+      error=true;
+      expect(e.message).toBe "ObliqueJS needs jQuery to be loaded";
+    finally
+      window.jQuery=jQuery
+    expect(error).toBeTruthy()

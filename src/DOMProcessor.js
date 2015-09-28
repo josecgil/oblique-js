@@ -16,8 +16,7 @@
       }
       DOMProcessor._singletonInstance = this;
       this._throwErrorIfJQueryIsntLoaded();
-      this._directiveCollection = new ObliqueNS.CallbackCollection();
-      this._directiveCollectionOnlyGlobal = new ObliqueNS.CallbackCollection();
+      this._directiveCollection = new ObliqueNS.DirectiveCollection();
       this._directiveInstancesData = [];
       this._timedDOMObserver = this._createTimedDOMObserver(DOMProcessor.DEFAULT_INTERVAL_MS);
       this._memory = new ObliqueNS.Memory();
@@ -127,9 +126,12 @@
     DOMProcessor.prototype._applyGlobalDirectives = function() {
       var rootElement;
       rootElement = new ObliqueNS.Element(document.documentElement);
-      return this._directiveCollectionOnlyGlobal.each((function(_this) {
-        return function(directiveName) {
-          return _this._processDirectiveElement(rootElement, directiveName);
+      return this._directiveCollection.each((function(_this) {
+        return function(directive) {
+          if (!directive.isGlobal) {
+            return;
+          }
+          return _this._processDirectiveElement(rootElement, directive.name);
         };
       })(this));
     };
@@ -180,7 +182,7 @@
         if (obElement.hasFlag(directiveName)) {
           continue;
         }
-        directive = this._directiveCollection.getCallbackByName(directiveName);
+        directive = this._directiveCollection.findByName(directiveName).callback;
         if (!directive) {
           throw new ObliqueNS.Error("There is no " + directiveName + " directive registered");
         }
@@ -259,10 +261,7 @@
     };
 
     DOMProcessor.prototype._throwError = function(e, errorMessage) {
-      console.log("--- Init Oblique Error ---");
-      console.log(errorMessage);
-      console.log(e.stack);
-      console.log("--- End  Oblique Error ---");
+      Oblique.logError(e);
       return Oblique().triggerOnError(new ObliqueNS.Error(errorMessage));
     };
 
@@ -280,12 +279,11 @@
     };
 
     DOMProcessor.prototype.registerDirective = function(directiveName, directiveConstructorFn) {
-      return this._directiveCollection.add(directiveName, directiveConstructorFn);
+      return this._directiveCollection.add(new ObliqueNS.Directive(directiveName, directiveConstructorFn));
     };
 
     DOMProcessor.prototype.registerDirectiveAsGlobal = function(directiveName, directiveConstructorFn) {
-      this._directiveCollectionOnlyGlobal.add(directiveName, directiveConstructorFn);
-      return this.registerDirective(directiveName, directiveConstructorFn);
+      return this._directiveCollection.add(new ObliqueNS.Directive(directiveName, directiveConstructorFn, true));
     };
 
     DOMProcessor.prototype.destroy = function() {

@@ -115,7 +115,7 @@ describe "DOMProcessor", ->
   it "If I register an object that no is a Directive it throws an Error", ()->
     expect(->
       DOMProcessor().registerDirective "test", {}
-    ).toThrow(new ObError("registerDirective must be called with a Directive 'Constructor/Class'"))
+    ).toThrow(new ObError("Directive must be called with a 'Constructor Function/Class' param"))
 
   it "must execute 1 directive in a 10000 elements DOM in <200ms", (done)->
 

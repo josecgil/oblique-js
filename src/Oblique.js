@@ -6,6 +6,12 @@
 
   Oblique = (function() {
     function Oblique() {
+      var error;
+      if (window.jQuery === void 0) {
+        error = new ObliqueNS.Error("ObliqueJS needs jQuery to be loaded");
+        Oblique.logError(error);
+        throw error;
+      }
       if (this === window) {
         return new Oblique();
       }
@@ -19,6 +25,13 @@
     }
 
     Oblique.DEFAULT_INTERVAL_MS = 500;
+
+    Oblique.logError = function(error) {
+      console.log("--- Init Oblique Error ---");
+      console.log(error.message);
+      console.log(error.stack);
+      return console.log("--- End  Oblique Error ---");
+    };
 
     Oblique.prototype.getIntervalTimeInMs = function() {
       return this.domProcessor.getIntervalTimeInMs();
