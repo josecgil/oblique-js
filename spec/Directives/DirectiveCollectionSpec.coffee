@@ -53,3 +53,4 @@ describe "DirectiveCollection", ->
     expect(directive.name).toBe "SampleDirective3"
     expect(directive.callback).toBe SampleDirective3
     expect(directive.isGlobal).toBeFalsy()
+

@@ -14,6 +14,7 @@ class ParamCollection
     locationHash=locationHash.replace("#","")
 
     for hashParam in locationHash.split("&")
+      hashParam=decodeURIComponent(hashParam);
       param=undefined
       if (SingleParam.is(hashParam))
         param=SingleParam.createFrom(hashParam)

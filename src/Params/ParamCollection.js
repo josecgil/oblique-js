@@ -24,6 +24,7 @@
       ref = locationHash.split("&");
       for (i = 0, len = ref.length; i < len; i++) {
         hashParam = ref[i];
+        hashParam = decodeURIComponent(hashParam);
         param = void 0;
         if (SingleParam.is(hashParam)) {
           param = SingleParam.createFrom(hashParam);
