@@ -116,7 +116,7 @@ All `Directives` receive a `data` param with info related to the context of the 
 The `data-ob-params` is a form to send config params to a directive. The format of the params is JSON.
 
 ```
-<p data-ob-directive="PopupDirective" data-ob-params="{\"width\":\"200px\", \"height\":\"100px\"}">Popup content</p>
+<p data-ob-directive="PopupDirective" data-ob-params="{'width':'200px', 'height':'100px'}">Popup content</p>
 ```
 
 In this example, the `PopupDirective` will receive a JSON object in the `data.params` property:
