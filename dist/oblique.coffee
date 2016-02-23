@@ -16,6 +16,7 @@ class Directive
 
 ObliqueNS.Directive=Directive
 
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class DirectiveCollection
@@ -41,6 +42,7 @@ class DirectiveCollection
       index++
 
 ObliqueNS.DirectiveCollection=DirectiveCollection
+
 
 
 
@@ -88,6 +90,7 @@ class Param
     true
 
 ObliqueNS.Param=Param
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 Param=ObliqueNS.Param
@@ -158,6 +161,7 @@ class ArrayParam extends ObliqueNS.Param
 
 ObliqueNS.ArrayParam=ArrayParam
 
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class EmptyParam extends ObliqueNS.Param
@@ -167,8 +171,35 @@ class EmptyParam extends ObliqueNS.Param
 
 ObliqueNS.EmptyParam=EmptyParam
 
+
 @.ObliqueNS=@.ObliqueNS or {}
 
+class LocationParser
+
+  constructor:(locationHash) ->
+    locationHash=locationHash.replace("#","")+"&"
+
+    @hashParams=[]
+    currentParam=""
+    isInsideValue=false
+    for ch in locationHash
+      if ch is ']' or ch is ')'
+        isInsideValue=false
+      if ch is '[' or ch is '('
+        isInsideValue=true
+
+      if ch is '&' and not isInsideValue
+        @hashParams.push(currentParam)
+        currentParam=""
+        continue
+
+      currentParam=currentParam+ch
+
+ObliqueNS.LocationParser=LocationParser
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+LocationParser=ObliqueNS.LocationParser
 ArrayParam=ObliqueNS.ArrayParam
 RangeParam=ObliqueNS.RangeParam
 SingleParam=ObliqueNS.SingleParam
@@ -180,9 +211,10 @@ class ParamCollection
     @removeAll()
     return if @_StringIsEmpty(locationHash)
 
-    locationHash=locationHash.replace("#","")
+    locationParser=new LocationParser locationHash
 
-    for hashParam in locationHash.split("&")
+
+    for hashParam in locationParser.hashParams
       hashParam=decodeURIComponent(hashParam);
       param=undefined
       if (SingleParam.is(hashParam))
@@ -263,6 +295,7 @@ class ParamCollection
     hash
 
 ObliqueNS.ParamCollection=ParamCollection
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 Param=ObliqueNS.Param
@@ -313,6 +346,8 @@ class RangeParam extends ObliqueNS.Param
     new RangeParam(hashParam.name, min, max)
 
 ObliqueNS.RangeParam=RangeParam
+
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 Param=ObliqueNS.Param
@@ -351,6 +386,7 @@ class SingleParam extends ObliqueNS.Param
     true
 
 ObliqueNS.SingleParam=SingleParam
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Template
@@ -362,6 +398,8 @@ class Template
     @compiledTemplate(model)
 
 ObliqueNS.Template=Template
+
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class TemplateFactory
@@ -394,10 +432,12 @@ class TemplateFactory
 
 
 ObliqueNS.TemplateFactory=TemplateFactory
+
 #Add string::trim() if not present
 unless String::trim
   String::trim = ->
     @replace /^\s+|\s+$/g, ""
+
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -422,6 +462,7 @@ class DataModelVariable
     true
 
 ObliqueNS.DataModelVariable=DataModelVariable
+
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -628,6 +669,7 @@ class DOMProcessor
 
 ObliqueNS.DOMProcessor=DOMProcessor
 @.Oblique=DOMProcessor
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Element
@@ -687,6 +729,7 @@ class Element
     @getDOMElement().outerHTML
 
 ObliqueNS.Element=Element
+
 @.ObliqueNS=@.ObliqueNS or {}
 class Memory
 
@@ -708,6 +751,7 @@ class Memory
     script
 
 ObliqueNS.Memory=Memory
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Oblique
@@ -789,6 +833,7 @@ class Oblique
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class ObliqueError extends Error
@@ -797,6 +842,7 @@ class ObliqueError extends Error
     @name = "ObliqueNS.Error"
 
 ObliqueNS.Error=ObliqueError
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class TimedDOMObserver
@@ -821,3 +867,4 @@ class TimedDOMObserver
     @_intervalId=undefined
 
 ObliqueNS.TimedDOMObserver=TimedDOMObserver
+

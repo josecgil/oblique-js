@@ -467,3 +467,14 @@ describe "ParamCollection", ->
     expect(paramCollection.getParam("features").max).toBe("adiós")
 
 
+  it "must understand reserved char & in Range param from location hash", () ->
+    paramCollection=new ParamCollection("#filter=[JACK & JONES, Otro param]")
+    expect(paramCollection.count()).toBe(1)
+    filterValues=paramCollection.getParam("filter").values
+
+    expect(filterValues.length).toBe 2
+    expect(filterValues[0]).toBe "JACK & JONES"
+    expect(filterValues[1]).toBe "Otro param"
+
+
+

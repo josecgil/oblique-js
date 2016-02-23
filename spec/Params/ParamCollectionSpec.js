@@ -516,12 +516,21 @@
       expect(paramCollection.count()).toBe(1);
       return expect(paramCollection.getParam("feature").value).toBe("BAÑO");
     });
-    return it("must understand latin accents chars in Range param from location hash", function() {
+    it("must understand latin accents chars in Range param from location hash", function() {
       var paramCollection;
       paramCollection = new ParamCollection("#features=(BAÑO,adiós)");
       expect(paramCollection.count()).toBe(1);
       expect(paramCollection.getParam("features").min).toBe("BAÑO");
       return expect(paramCollection.getParam("features").max).toBe("adiós");
+    });
+    return it("must understand reserved char & in Range param from location hash", function() {
+      var filterValues, paramCollection;
+      paramCollection = new ParamCollection("#filter=[JACK & JONES, Otro param]");
+      expect(paramCollection.count()).toBe(1);
+      filterValues = paramCollection.getParam("filter").values;
+      expect(filterValues.length).toBe(2);
+      expect(filterValues[0]).toBe("JACK & JONES");
+      return expect(filterValues[1]).toBe("Otro param");
     });
   });
 

@@ -1,5 +1,6 @@
 @.ObliqueNS=@.ObliqueNS or {}
 
+LocationParser=ObliqueNS.LocationParser
 ArrayParam=ObliqueNS.ArrayParam
 RangeParam=ObliqueNS.RangeParam
 SingleParam=ObliqueNS.SingleParam
@@ -11,9 +12,10 @@ class ParamCollection
     @removeAll()
     return if @_StringIsEmpty(locationHash)
 
-    locationHash=locationHash.replace("#","")
+    locationParser=new LocationParser locationHash
 
-    for hashParam in locationHash.split("&")
+
+    for hashParam in locationParser.hashParams
       hashParam=decodeURIComponent(hashParam);
       param=undefined
       if (SingleParam.is(hashParam))
