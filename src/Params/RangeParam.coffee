@@ -48,3 +48,5 @@ class RangeParam extends ObliqueNS.Param
     new RangeParam(hashParam.name, min, max)
 
 ObliqueNS.RangeParam=RangeParam
+
+

@@ -466,3 +466,4 @@ describe "ParamCollection", ->
     expect(paramCollection.getParam("features").min).toBe("BAÑO")
     expect(paramCollection.getParam("features").max).toBe("adiós")
 
+

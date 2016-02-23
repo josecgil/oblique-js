@@ -44,3 +44,5 @@ describe "Memory", ->
       memory.setVar("Model","value")
     ).toThrow(new ObliqueNS.Error("Can't create a variable named 'Model', is a reserved word"))
 
+
+

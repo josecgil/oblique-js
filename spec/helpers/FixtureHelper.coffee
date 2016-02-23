@@ -8,3 +8,5 @@ class @FixtureHelper
     fixtureJQuery = $("#fixture")
     fixtureJQuery.append newHTML for [1..times]
     fixtureJQuery.get 0
+
+

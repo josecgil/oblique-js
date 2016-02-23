@@ -36,3 +36,4 @@ class SingleParam extends ObliqueNS.Param
     true
 
 ObliqueNS.SingleParam=SingleParam
+

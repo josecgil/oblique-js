@@ -28,6 +28,7 @@ describe "DirectiveCollection", ->
 
     expect(directives.count()).toBe 2
 
+
     directives.each(
       (directive, index)->
         if index is 0

@@ -42,3 +42,4 @@ class Param
     true
 
 ObliqueNS.Param=Param
+

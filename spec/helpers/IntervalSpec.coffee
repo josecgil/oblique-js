@@ -13,7 +13,7 @@ describe "Interval", ->
         interval.stop()
         expect(interval.timeInMs).toBeGreaterThan 1
         done()
-    ,2)
+    ,10)
 
   it "must count 0 if I check without start() or stop()", ()->
     interval=new Interval()
@@ -23,4 +23,5 @@ describe "Interval", ->
     interval=new Interval()
     interval.start()
     expect(interval.timeInMs).toBe -1
+
 
