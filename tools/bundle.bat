@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy ByPass -file bundle.ps1
