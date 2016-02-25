@@ -123,4 +123,3 @@ describe "Element", ->
     bqElement=new Element $("#elementHtml")
     expect(bqElement.getjQueryElement().get(0).outerHTML).toBe '<div id="elementHtml" data-test="element html"></div>'
 
-

@@ -6,5 +6,3 @@ class EmptyParam extends ObliqueNS.Param
     super("EmptyParam")
 
 ObliqueNS.EmptyParam=EmptyParam
-
-

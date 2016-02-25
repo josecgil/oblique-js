@@ -64,7 +64,7 @@
     RangeParam.is = function(strHashParam) {
       var hashParam;
       hashParam = Param.parse(strHashParam);
-      if (Param.containsChar(hashParam.value, "(")) {
+      if (Param.isEnclosedInChars(hashParam.value, "(", ")")) {
         return true;
       }
       return false;

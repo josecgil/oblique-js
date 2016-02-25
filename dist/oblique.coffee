@@ -1,3 +1,6 @@
+
+# ../src/Directives/Directive.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Directive
@@ -16,6 +19,8 @@ class Directive
 
 ObliqueNS.Directive=Directive
 
+
+# ../src/Directives/DirectiveCollection.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -45,6 +50,7 @@ ObliqueNS.DirectiveCollection=DirectiveCollection
 
 
 
+# ../src/Params/0_Param.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -61,6 +67,11 @@ class Param
   @containsChar:(fullStr, char) ->
     return false if fullStr.indexOf(char) is -1
     true
+
+  @isEnclosedInChars:(fullStr, charStart, charEnd) ->
+    return true if fullStr[0] is charStart
+    return true if fullStr[fullStr.length-1] is charEnd
+    false
 
   @stringIsNullOrEmpty:(value) ->
     return true if value is undefined
@@ -90,6 +101,8 @@ class Param
     true
 
 ObliqueNS.Param=Param
+
+# ../src/Params/ArrayParam.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -139,7 +152,7 @@ class ArrayParam extends ObliqueNS.Param
 
   @is:(strHashParam)->
     hashParam=Param.parse(strHashParam)
-    return true if Param.containsChar(hashParam.value,"[")
+    return true if Param.isEnclosedInChars(hashParam.value,"[","]")
     false
 
   @createFrom:(strHashParam)->
@@ -162,6 +175,8 @@ class ArrayParam extends ObliqueNS.Param
 ObliqueNS.ArrayParam=ArrayParam
 
 
+# ../src/Params/EmptyParam.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class EmptyParam extends ObliqueNS.Param
@@ -171,6 +186,7 @@ class EmptyParam extends ObliqueNS.Param
 
 ObliqueNS.EmptyParam=EmptyParam
 
+# ../src/Params/LocationParser.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -196,6 +212,8 @@ class LocationParser
       currentParam=currentParam+ch
 
 ObliqueNS.LocationParser=LocationParser
+
+# ../src/Params/ParamCollection.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -295,6 +313,7 @@ class ParamCollection
     hash
 
 ObliqueNS.ParamCollection=ParamCollection
+# ../src/Params/RangeParam.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -331,7 +350,7 @@ class RangeParam extends ObliqueNS.Param
 
   @is:(strHashParam)->
     hashParam=Param.parse(strHashParam)
-    return true if Param.containsChar(hashParam.value,"(")
+    return true if Param.isEnclosedInChars(hashParam.value,"(",")")
     false
 
   @createFrom:(strHashParam)->
@@ -346,7 +365,7 @@ class RangeParam extends ObliqueNS.Param
     new RangeParam(hashParam.name, min, max)
 
 ObliqueNS.RangeParam=RangeParam
-
+# ../src/Params/SingleParam.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -371,8 +390,9 @@ class SingleParam extends ObliqueNS.Param
 
   @is:(strHashParam)->
     hashParam=Param.parse(strHashParam)
-    return false if Param.containsChar(hashParam.value,"(")
-    return false if Param.containsChar(hashParam.value,"[")
+    value = hashParam.value
+    return false if Param.isEnclosedInChars(value,"(",")")
+    return false if Param.isEnclosedInChars(value,"[","]")
     true
 
   @createFrom:(strHashParam)->
@@ -386,6 +406,7 @@ class SingleParam extends ObliqueNS.Param
     true
 
 ObliqueNS.SingleParam=SingleParam
+# ../src/Templates/Template.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -398,7 +419,7 @@ class Template
     @compiledTemplate(model)
 
 ObliqueNS.Template=Template
-
+# ../src/Templates/TemplateFactory.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -432,37 +453,14 @@ class TemplateFactory
 
 
 ObliqueNS.TemplateFactory=TemplateFactory
+# ../src/0_functions.coffee
 
 #Add string::trim() if not present
 unless String::trim
   String::trim = ->
     @replace /^\s+|\s+$/g, ""
 
-
-@.ObliqueNS=@.ObliqueNS or {}
-
-class DataModelVariable
-
-  constructor:(@_expression)->
-    @_firstEqualPosition=@_expression.indexOf("=")
-    @name=@_getVariableName()
-    @isSet = @_isSet()
-
-  _getVariableName: () ->
-    return @_expression if @_firstEqualPosition is -1
-    parts=@_expression.split("=")
-    variableName=(parts[0].replace("var ", "")).trim()
-    return undefined  if variableName is ""
-    variableName
-
-  _isSet:() ->
-    return false if @_firstEqualPosition is -1
-    nextChar=@_expression.substr(@_firstEqualPosition+1, 1)
-    return false if nextChar is "="
-    true
-
-ObliqueNS.DataModelVariable=DataModelVariable
-
+# ../src/DOMProcessor.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -669,6 +667,33 @@ class DOMProcessor
 
 ObliqueNS.DOMProcessor=DOMProcessor
 @.Oblique=DOMProcessor
+# ../src/DataModelVariable.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class DataModelVariable
+
+  constructor:(@_expression)->
+    @_firstEqualPosition=@_expression.indexOf("=")
+    @name=@_getVariableName()
+    @isSet = @_isSet()
+
+  _getVariableName: () ->
+    return @_expression if @_firstEqualPosition is -1
+    parts=@_expression.split("=")
+    variableName=(parts[0].replace("var ", "")).trim()
+    return undefined  if variableName is ""
+    variableName
+
+  _isSet:() ->
+    return false if @_firstEqualPosition is -1
+    nextChar=@_expression.substr(@_firstEqualPosition+1, 1)
+    return false if nextChar is "="
+    true
+
+ObliqueNS.DataModelVariable=DataModelVariable
+
+# ../src/Element.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -730,6 +755,8 @@ class Element
 
 ObliqueNS.Element=Element
 
+# ../src/Memory.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 class Memory
 
@@ -751,6 +778,8 @@ class Memory
     script
 
 ObliqueNS.Memory=Memory
+
+# ../src/Oblique.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -834,6 +863,8 @@ class Oblique
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
 
+# ../src/ObliqueError.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class ObliqueError extends Error
@@ -842,6 +873,8 @@ class ObliqueError extends Error
     @name = "ObliqueNS.Error"
 
 ObliqueNS.Error=ObliqueError
+
+# ../src/TimedDOMObserver.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -867,4 +900,3 @@ class TimedDOMObserver
     @_intervalId=undefined
 
 ObliqueNS.TimedDOMObserver=TimedDOMObserver
-

@@ -37,4 +37,3 @@ describe "TemplateFactory", ->
       new TemplateFactory().createFromUrl "/patata.hbs"
     ).toThrow(new ObliqueNS.Error("template '/patata.hbs' not found"))
 
-

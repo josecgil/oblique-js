@@ -30,4 +30,3 @@ describe "TimedDOMObserver", ->
 
     observer.observe()
 
-

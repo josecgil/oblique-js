@@ -41,12 +41,13 @@
     };
 
     SingleParam.is = function(strHashParam) {
-      var hashParam;
+      var hashParam, value;
       hashParam = Param.parse(strHashParam);
-      if (Param.containsChar(hashParam.value, "(")) {
+      value = hashParam.value;
+      if (Param.isEnclosedInChars(value, "(", ")")) {
         return false;
       }
-      if (Param.containsChar(hashParam.value, "[")) {
+      if (Param.isEnclosedInChars(value, "[", "]")) {
         return false;
       }
       return true;

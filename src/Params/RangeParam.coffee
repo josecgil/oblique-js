@@ -33,7 +33,7 @@ class RangeParam extends ObliqueNS.Param
 
   @is:(strHashParam)->
     hashParam=Param.parse(strHashParam)
-    return true if Param.containsChar(hashParam.value,"(")
+    return true if Param.isEnclosedInChars(hashParam.value,"(",")")
     false
 
   @createFrom:(strHashParam)->
@@ -48,5 +48,3 @@ class RangeParam extends ObliqueNS.Param
     new RangeParam(hashParam.name, min, max)
 
 ObliqueNS.RangeParam=RangeParam
-
-

@@ -26,6 +26,16 @@
       return true;
     };
 
+    Param.isEnclosedInChars = function(fullStr, charStart, charEnd) {
+      if (fullStr[0] === charStart) {
+        return true;
+      }
+      if (fullStr[fullStr.length - 1] === charEnd) {
+        return true;
+      }
+      return false;
+    };
+
     Param.stringIsNullOrEmpty = function(value) {
       if (value === void 0) {
         return true;

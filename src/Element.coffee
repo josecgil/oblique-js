@@ -57,4 +57,3 @@ class Element
     @getDOMElement().outerHTML
 
 ObliqueNS.Element=Element
-

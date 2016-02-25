@@ -203,4 +203,3 @@ class DOMProcessor
 
 ObliqueNS.DOMProcessor=DOMProcessor
 @.Oblique=DOMProcessor
-

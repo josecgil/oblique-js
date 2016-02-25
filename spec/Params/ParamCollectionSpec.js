@@ -523,7 +523,7 @@
       expect(paramCollection.getParam("features").min).toBe("BAÑO");
       return expect(paramCollection.getParam("features").max).toBe("adiós");
     });
-    return it("must understand reserved char & in Range param from location hash", function() {
+    it("must understand reserved char & in Range param from location hash", function() {
       var filterValues, paramCollection;
       paramCollection = new ParamCollection("#filter=[JACK & JONES, Otro param]");
       expect(paramCollection.count()).toBe(1);
@@ -531,6 +531,32 @@
       expect(filterValues.length).toBe(2);
       expect(filterValues[0]).toBe("JACK & JONES");
       return expect(filterValues[1]).toBe("Otro param");
+    });
+    it("must understand reserved char ( in Range param from location hash", function() {
+      var filterValues, paramCollection;
+      paramCollection = new ParamCollection("#filter=[JACK ( JONES, Otro param]");
+      expect(paramCollection.count()).toBe(1);
+      filterValues = paramCollection.getParam("filter").values;
+      expect(filterValues.length).toBe(2);
+      expect(filterValues[0]).toBe("JACK ( JONES");
+      return expect(filterValues[1]).toBe("Otro param");
+    });
+    it("must understand reserved char ( & ) in Range param from location hash", function() {
+      var filterValues, paramCollection;
+      paramCollection = new ParamCollection("#filter=[JACK (JONES) LUCIUS, Otro param]");
+      expect(paramCollection.count()).toBe(1);
+      filterValues = paramCollection.getParam("filter").values;
+      expect(filterValues.length).toBe(2);
+      expect(filterValues[0]).toBe("JACK (JONES) LUCIUS");
+      return expect(filterValues[1]).toBe("Otro param");
+    });
+    return it("must understand array param with ( in value", function() {
+      var colorsValues, paramCollection;
+      paramCollection = new ParamCollection("#colors=[rojo (claro),azul]");
+      expect(paramCollection.count()).toBe(1);
+      colorsValues = paramCollection.getParam("colors").values;
+      expect(colorsValues[0]).toBe("rojo (claro)");
+      return expect(colorsValues[1]).toBe("azul");
     });
   });
 

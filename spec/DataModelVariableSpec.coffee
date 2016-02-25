@@ -42,4 +42,3 @@ describe "DataModelVariable", ->
     dataModelVariable=new DataModelVariable("is32=(number==32)")
     expect(dataModelVariable.isSet).toBeTruthy()
 
-

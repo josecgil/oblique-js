@@ -22,4 +22,3 @@ class LocationParser
       currentParam=currentParam+ch
 
 ObliqueNS.LocationParser=LocationParser
-

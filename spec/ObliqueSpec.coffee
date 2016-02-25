@@ -959,4 +959,3 @@ describe "Oblique", ->
     finally
       window.jQuery=jQuery
     expect(error).toBeTruthy()
-

@@ -21,8 +21,9 @@ class SingleParam extends ObliqueNS.Param
 
   @is:(strHashParam)->
     hashParam=Param.parse(strHashParam)
-    return false if Param.containsChar(hashParam.value,"(")
-    return false if Param.containsChar(hashParam.value,"[")
+    value = hashParam.value
+    return false if Param.isEnclosedInChars(value,"(",")")
+    return false if Param.isEnclosedInChars(value,"[","]")
     true
 
   @createFrom:(strHashParam)->
@@ -36,4 +37,3 @@ class SingleParam extends ObliqueNS.Param
     true
 
 ObliqueNS.SingleParam=SingleParam
-

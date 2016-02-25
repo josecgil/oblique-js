@@ -9,4 +9,3 @@ class @Interval
   stop:->
     endDate=new Date()
     @timeInMs=endDate-@_startDate
-

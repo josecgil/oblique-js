@@ -14,6 +14,11 @@ class Param
     return false if fullStr.indexOf(char) is -1
     true
 
+  @isEnclosedInChars:(fullStr, charStart, charEnd) ->
+    return true if fullStr[0] is charStart
+    return true if fullStr[fullStr.length-1] is charEnd
+    false
+
   @stringIsNullOrEmpty:(value) ->
     return true if value is undefined
     return true if value.trim().length is 0
@@ -42,4 +47,3 @@ class Param
     true
 
 ObliqueNS.Param=Param
-
