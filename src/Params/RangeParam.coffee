@@ -1,6 +1,7 @@
 @.ObliqueNS=@.ObliqueNS or {}
 
 Param=ObliqueNS.Param
+ParamParser=ObliqueNS.ParamParser
 
 class RangeParam extends ObliqueNS.Param
 

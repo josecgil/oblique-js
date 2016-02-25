@@ -1,5 +1,7 @@
 @.ObliqueNS=@.ObliqueNS or {}
 
+ParamParser=ObliqueNS.ParamParser
+
 class Param
 
   constructor:(@name)->
@@ -25,7 +27,10 @@ class Param
     false
 
   @parse:(strHashParam)->
-    hashArray=strHashParam.split("=")
+    #hashArray=strHashParam.split("=")
+    hashArray=new ParamParser(strHashParam, "=").hashParams;
+
+
     name=hashArray[0].trim()
     value=""
     value=hashArray[1].trim() if hashArray.length>1

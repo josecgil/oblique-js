@@ -78,7 +78,7 @@
       <root url="file://$PROJECT_DIR$/spec/helpers/FixtureHelper.js" />
       <root url="file://$PROJECT_DIR$/spec/DOMProcessorSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/TimedDOMObserverSpec.js" />
-      <root url="file://$PROJECT_DIR$/src/Params/LocationParser.js" />
+      <root url="file://$PROJECT_DIR$/src/Params/01_ParamParser.js" />
       <root url="file://$PROJECT_DIR$/spec/ObliqueSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/ElementSpec.js" />
       <root url="file://$PROJECT_DIR$/spec/MemorySpec.js" />
@@ -97,10 +97,10 @@
       <root url="file://$PROJECT_DIR$/src/Directives/Directive.js" />
       <root url="file://$PROJECT_DIR$/src/Params/SingleParam.js" />
       <root url="file://$PROJECT_DIR$/src/Directives/DirectiveCollection.js" />
-      <root url="file://$PROJECT_DIR$/src/Params/0_Param.js" />
+      <root url="file://$PROJECT_DIR$/src/Params/02_Param.js" />
       <root url="file://$PROJECT_DIR$/dist/oblique.js" />
       <root url="file://$PROJECT_DIR$/spec/Directives/DirectiveSpec.js" />
-      <root url="file://$PROJECT_DIR$/spec/Params/LocationParserSpec.js" />
+      <root url="file://$PROJECT_DIR$/spec/Params/ParamParserSpec.js" />
       <root url="file://$PROJECT_DIR$/src/Params/EmptyParam.js" />
       <root url="file://$PROJECT_DIR$/spec/Directives/DirectiveCollectionSpec.js" />
       <root url="file://$PROJECT_DIR$/src/Params/RangeParam.js" />

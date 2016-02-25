@@ -1,24 +1,24 @@
 @.ObliqueNS=@.ObliqueNS or {}
 
-class LocationParser
+class ParamParser
 
-  constructor:(locationHash) ->
-    locationHash=locationHash.replace("#","")+"&"
+  constructor:(params, separator="&") ->
+    params=params.replace("#","")+separator
 
     @hashParams=[]
     currentParam=""
     isInsideValue=false
-    for ch in locationHash
+    for ch in params
       if ch is ']' or ch is ')'
         isInsideValue=false
       if ch is '[' or ch is '('
         isInsideValue=true
 
-      if ch is '&' and not isInsideValue
+      if ch is separator and not isInsideValue
         @hashParams.push(currentParam)
         currentParam=""
         continue
 
       currentParam=currentParam+ch
 
-ObliqueNS.LocationParser=LocationParser
+ObliqueNS.ParamParser=ParamParser

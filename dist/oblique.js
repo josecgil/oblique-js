@@ -350,7 +350,7 @@
       if (this._StringIsEmpty(locationHash)) {
         return;
       }
-      locationParser = new LocationParser(locationHash);
+      locationParser = new ParamParser(locationHash);
       ref = locationParser.hashParams;
       for (i = 0, len1 = ref.length; i < len1; i++) {
         hashParam = ref[i];
@@ -1359,5 +1359,3 @@
   ObliqueNS.TimedDOMObserver = TimedDOMObserver;
 
 }).call(this);
-
-//# sourceMappingURL=oblique.js.map
