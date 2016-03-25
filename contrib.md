@@ -2,12 +2,13 @@ INSTALL
 --------------------------
 * install node.js
 * update npm
+sudo npm install npm -g
 
-install CoffeeScript
-npm install -g coffee-script
+* install CoffeeScript
+sudo npm install -g coffee-script
 
-install UglifyJS
-npm install -g uglifyjs
+* install UglifyJS
+sudo npm install -g uglifyjs
 
 BUNDLE
 --------------------------

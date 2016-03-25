@@ -35,6 +35,7 @@ function getSourceCoffeeFiles {
     ls $1/Templates/*.coffee $1/Params/*.coffee >>temp.txt
     ls $1/*.coffee >>temp.txt
     result=`cat temp.txt`
+    rm temp.txt
 }
 
 function showInfo {
