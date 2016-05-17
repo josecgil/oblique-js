@@ -1168,7 +1168,7 @@
       Oblique().registerDirectiveAsGlobal("GlobalTestDirective", GlobalTestDirective);
       return Oblique().setIntervalTimeInMs(10);
     });
-    return it("must throw an error if jQuery is not present", function() {
+    it("must throw an error if jQuery is not present", function() {
       var e, error, error1, jQuery;
       jQuery = window.jQuery;
       error = false;
@@ -1183,6 +1183,32 @@
         window.jQuery = jQuery;
       }
       return expect(error).toBeTruthy();
+    });
+    return it("must not listen to hashChange when hashChange is disabled", function(done) {
+      var TestDirective, onHashChangeWasCalled;
+      onHashChangeWasCalled = false;
+      TestDirective = (function() {
+        function TestDirective() {}
+
+        TestDirective.prototype.onHashChange = function() {
+          return onHashChangeWasCalled = true;
+        };
+
+        return TestDirective;
+
+      })();
+      Oblique().registerDirectiveAsGlobal("TestDirective", TestDirective);
+      setTimeout(function() {
+        var hashParams;
+        hashParams = Oblique().getHashParams();
+        hashParams.addSingleParam("testDisableHashChange", "true");
+        Oblique().disableHashChangeEvent();
+        return Oblique().setHashParams(hashParams);
+      }, 100);
+      return setTimeout(function() {
+        expect(onHashChangeWasCalled).toBe(false);
+        return done();
+      }, 200);
     });
   });
 

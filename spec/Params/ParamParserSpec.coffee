@@ -43,3 +43,4 @@ describe "ParamParser", ->
     expect(locationParser.hashParams[1]).toBe "brand=(LEVIS SONS]( BRAND),ADIDAS)"
     expect(locationParser.hashParams[2]).toBe "price=(12,22)"
 
+

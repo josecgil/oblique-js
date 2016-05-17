@@ -24,3 +24,4 @@ describe "Interval", ->
     interval.start()
     expect(interval.timeInMs).toBe -1
 
+

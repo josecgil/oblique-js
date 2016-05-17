@@ -509,3 +509,4 @@ describe "ParamCollection", ->
     colorsValues = paramCollection.getParam("colors").values
     expect(colorsValues[0]).toBe("rojo (claro)")
     expect(colorsValues[1]).toBe("azul")
+

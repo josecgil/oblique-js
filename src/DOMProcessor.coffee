@@ -20,6 +20,8 @@ class DOMProcessor
 
     @_memory=new ObliqueNS.Memory()
 
+    @_hashChangeEventEnabled = yes
+
     jQuery(document).ready =>
       @_doACycle()
       @_timedDOMObserver.observe()
@@ -27,8 +29,16 @@ class DOMProcessor
 
   @DEFAULT_INTERVAL_MS = 500
 
+
+  enableHashChangeEvent:->
+    @_hashChangeEventEnabled=yes
+
+  disableHashChangeEvent:->
+    @_hashChangeEventEnabled=no
+
   _listenToHashRouteChanges:->
     $(window).on "hashchange", =>
+      return if not @_hashChangeEventEnabled
       for dirData in @_directiveInstancesData
         directiveData=@_createDirectiveData(dirData.domElement, dirData.jQueryElemen, dirData.model, dirData.params)
         if (dirData.instance.onHashChange)
@@ -203,3 +213,4 @@ class DOMProcessor
 
 ObliqueNS.DOMProcessor=DOMProcessor
 @.Oblique=DOMProcessor
+

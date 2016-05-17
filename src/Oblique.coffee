@@ -38,6 +38,13 @@ class Oblique
   registerDirectiveAsGlobal: (directiveName, directiveConstructorFn) ->
     @domProcessor.registerDirectiveAsGlobal directiveName, directiveConstructorFn
 
+  enableHashChangeEvent: ->
+    @domProcessor.enableHashChangeEvent()
+
+  disableHashChangeEvent: ->
+    @domProcessor.disableHashChangeEvent()
+
+
   destroy: ->
     @domProcessor.destroy()
     try
@@ -79,3 +86,4 @@ class Oblique
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
+

@@ -21,3 +21,4 @@ class DataModelVariable
     true
 
 ObliqueNS.DataModelVariable=DataModelVariable
+

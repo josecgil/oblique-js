@@ -1,6 +1,3 @@
-
-# ../src/Directives/Directive.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Directive
@@ -19,8 +16,6 @@ class Directive
 
 ObliqueNS.Directive=Directive
 
-
-# ../src/Directives/DirectiveCollection.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -50,9 +45,34 @@ ObliqueNS.DirectiveCollection=DirectiveCollection
 
 
 
-# ../src/Params/0_Param.coffee
+@.ObliqueNS=@.ObliqueNS or {}
+
+class ParamParser
+
+  constructor:(params, separator="&") ->
+    params=params.replace("#","")+separator
+
+    @hashParams=[]
+    currentParam=""
+    isInsideValue=false
+    for ch in params
+      if ch is ']' or ch is ')'
+        isInsideValue=false
+      if ch is '[' or ch is '('
+        isInsideValue=true
+
+      if ch is separator and not isInsideValue
+        @hashParams.push(currentParam)
+        currentParam=""
+        continue
+
+      currentParam=currentParam+ch
+
+ObliqueNS.ParamParser=ParamParser
 
 @.ObliqueNS=@.ObliqueNS or {}
+
+ParamParser=ObliqueNS.ParamParser
 
 class Param
 
@@ -79,7 +99,10 @@ class Param
     false
 
   @parse:(strHashParam)->
-    hashArray=strHashParam.split("=")
+    #hashArray=strHashParam.split("=")
+    hashArray=new ParamParser(strHashParam, "=").hashParams;
+
+
     name=hashArray[0].trim()
     value=""
     value=hashArray[1].trim() if hashArray.length>1
@@ -101,12 +124,10 @@ class Param
     true
 
 ObliqueNS.Param=Param
-
-# ../src/Params/ArrayParam.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 Param=ObliqueNS.Param
+ParamParser=ObliqueNS.ParamParser
 
 class ArrayParam extends ObliqueNS.Param
 
@@ -175,8 +196,6 @@ class ArrayParam extends ObliqueNS.Param
 ObliqueNS.ArrayParam=ArrayParam
 
 
-# ../src/Params/EmptyParam.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class EmptyParam extends ObliqueNS.Param
@@ -186,38 +205,9 @@ class EmptyParam extends ObliqueNS.Param
 
 ObliqueNS.EmptyParam=EmptyParam
 
-# ../src/Params/LocationParser.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
-class LocationParser
-
-  constructor:(locationHash) ->
-    locationHash=locationHash.replace("#","")+"&"
-
-    @hashParams=[]
-    currentParam=""
-    isInsideValue=false
-    for ch in locationHash
-      if ch is ']' or ch is ')'
-        isInsideValue=false
-      if ch is '[' or ch is '('
-        isInsideValue=true
-
-      if ch is '&' and not isInsideValue
-        @hashParams.push(currentParam)
-        currentParam=""
-        continue
-
-      currentParam=currentParam+ch
-
-ObliqueNS.LocationParser=LocationParser
-
-# ../src/Params/ParamCollection.coffee
-
-@.ObliqueNS=@.ObliqueNS or {}
-
-LocationParser=ObliqueNS.LocationParser
+ParamParser=ObliqueNS.ParamParser
 ArrayParam=ObliqueNS.ArrayParam
 RangeParam=ObliqueNS.RangeParam
 SingleParam=ObliqueNS.SingleParam
@@ -229,10 +219,10 @@ class ParamCollection
     @removeAll()
     return if @_StringIsEmpty(locationHash)
 
-    locationParser=new LocationParser locationHash
+    paramParser=new ParamParser locationHash
 
 
-    for hashParam in locationParser.hashParams
+    for hashParam in paramParser.hashParams
       hashParam=decodeURIComponent(hashParam);
       param=undefined
       if (SingleParam.is(hashParam))
@@ -313,11 +303,11 @@ class ParamCollection
     hash
 
 ObliqueNS.ParamCollection=ParamCollection
-# ../src/Params/RangeParam.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
 Param=ObliqueNS.Param
+ParamParser=ObliqueNS.ParamParser
 
 class RangeParam extends ObliqueNS.Param
 
@@ -365,10 +355,10 @@ class RangeParam extends ObliqueNS.Param
     new RangeParam(hashParam.name, min, max)
 
 ObliqueNS.RangeParam=RangeParam
-# ../src/Params/SingleParam.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
+ParamParser=ObliqueNS.ParamParser
 Param=ObliqueNS.Param
 
 class SingleParam extends ObliqueNS.Param
@@ -406,7 +396,6 @@ class SingleParam extends ObliqueNS.Param
     true
 
 ObliqueNS.SingleParam=SingleParam
-# ../src/Templates/Template.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -419,7 +408,6 @@ class Template
     @compiledTemplate(model)
 
 ObliqueNS.Template=Template
-# ../src/Templates/TemplateFactory.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -453,14 +441,35 @@ class TemplateFactory
 
 
 ObliqueNS.TemplateFactory=TemplateFactory
-# ../src/0_functions.coffee
 
 #Add string::trim() if not present
 unless String::trim
   String::trim = ->
     @replace /^\s+|\s+$/g, ""
 
-# ../src/DOMProcessor.coffee
+@.ObliqueNS=@.ObliqueNS or {}
+
+class DataModelVariable
+
+  constructor:(@_expression)->
+    @_firstEqualPosition=@_expression.indexOf("=")
+    @name=@_getVariableName()
+    @isSet = @_isSet()
+
+  _getVariableName: () ->
+    return @_expression if @_firstEqualPosition is -1
+    parts=@_expression.split("=")
+    variableName=(parts[0].replace("var ", "")).trim()
+    return undefined  if variableName is ""
+    variableName
+
+  _isSet:() ->
+    return false if @_firstEqualPosition is -1
+    nextChar=@_expression.substr(@_firstEqualPosition+1, 1)
+    return false if nextChar is "="
+    true
+
+ObliqueNS.DataModelVariable=DataModelVariable
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -484,6 +493,8 @@ class DOMProcessor
 
     @_memory=new ObliqueNS.Memory()
 
+    @_hashChangeEventEnabled = yes
+
     jQuery(document).ready =>
       @_doACycle()
       @_timedDOMObserver.observe()
@@ -491,8 +502,16 @@ class DOMProcessor
 
   @DEFAULT_INTERVAL_MS = 500
 
+
+  enableHashChangeEvent:->
+    @_hashChangeEventEnabled=yes
+
+  disableHashChangeEvent:->
+    @_hashChangeEventEnabled=no
+
   _listenToHashRouteChanges:->
     $(window).on "hashchange", =>
+      return if not @_hashChangeEventEnabled
       for dirData in @_directiveInstancesData
         directiveData=@_createDirectiveData(dirData.domElement, dirData.jQueryElemen, dirData.model, dirData.params)
         if (dirData.instance.onHashChange)
@@ -667,33 +686,6 @@ class DOMProcessor
 
 ObliqueNS.DOMProcessor=DOMProcessor
 @.Oblique=DOMProcessor
-# ../src/DataModelVariable.coffee
-
-@.ObliqueNS=@.ObliqueNS or {}
-
-class DataModelVariable
-
-  constructor:(@_expression)->
-    @_firstEqualPosition=@_expression.indexOf("=")
-    @name=@_getVariableName()
-    @isSet = @_isSet()
-
-  _getVariableName: () ->
-    return @_expression if @_firstEqualPosition is -1
-    parts=@_expression.split("=")
-    variableName=(parts[0].replace("var ", "")).trim()
-    return undefined  if variableName is ""
-    variableName
-
-  _isSet:() ->
-    return false if @_firstEqualPosition is -1
-    nextChar=@_expression.substr(@_firstEqualPosition+1, 1)
-    return false if nextChar is "="
-    true
-
-ObliqueNS.DataModelVariable=DataModelVariable
-
-# ../src/Element.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -755,8 +747,6 @@ class Element
 
 ObliqueNS.Element=Element
 
-# ../src/Memory.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 class Memory
 
@@ -778,8 +768,6 @@ class Memory
     script
 
 ObliqueNS.Memory=Memory
-
-# ../src/Oblique.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -820,6 +808,13 @@ class Oblique
 
   registerDirectiveAsGlobal: (directiveName, directiveConstructorFn) ->
     @domProcessor.registerDirectiveAsGlobal directiveName, directiveConstructorFn
+
+  enableHashChangeEvent: ->
+    @domProcessor.enableHashChangeEvent()
+
+  disableHashChangeEvent: ->
+    @domProcessor.disableHashChangeEvent()
+
 
   destroy: ->
     @domProcessor.destroy()
@@ -863,8 +858,6 @@ class Oblique
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
 
-# ../src/ObliqueError.coffee
-
 @.ObliqueNS=@.ObliqueNS or {}
 
 class ObliqueError extends Error
@@ -873,8 +866,6 @@ class ObliqueError extends Error
     @name = "ObliqueNS.Error"
 
 ObliqueNS.Error=ObliqueError
-
-# ../src/TimedDOMObserver.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -900,3 +891,4 @@ class TimedDOMObserver
     @_intervalId=undefined
 
 ObliqueNS.TimedDOMObserver=TimedDOMObserver
+

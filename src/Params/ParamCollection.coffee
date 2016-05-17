@@ -96,3 +96,4 @@ class ParamCollection
     hash
 
 ObliqueNS.ParamCollection=ParamCollection
+

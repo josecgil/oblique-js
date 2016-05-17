@@ -49,6 +49,14 @@
       return this.domProcessor.registerDirectiveAsGlobal(directiveName, directiveConstructorFn);
     };
 
+    Oblique.prototype.enableHashChangeEvent = function() {
+      return this.domProcessor.enableHashChangeEvent();
+    };
+
+    Oblique.prototype.disableHashChangeEvent = function() {
+      return this.domProcessor.disableHashChangeEvent();
+    };
+
     Oblique.prototype.destroy = function() {
       var e, error1;
       this.domProcessor.destroy();

@@ -959,3 +959,26 @@ describe "Oblique", ->
     finally
       window.jQuery=jQuery
     expect(error).toBeTruthy()
+
+  it "must not listen to hashChange when hashChange is disabled", (done)->
+    onHashChangeWasCalled=no
+
+    class TestDirective
+      constructor: ()->
+
+      onHashChange: ()->
+        onHashChangeWasCalled=yes
+
+    Oblique().registerDirectiveAsGlobal "TestDirective", TestDirective
+
+    setTimeout(->
+      hashParams=Oblique().getHashParams()
+      hashParams.addSingleParam "testDisableHashChange", "true"
+      Oblique().disableHashChangeEvent()
+      Oblique().setHashParams hashParams
+    ,100)
+
+    setTimeout(->
+      expect(onHashChangeWasCalled).toBe no
+      done()
+    ,200)

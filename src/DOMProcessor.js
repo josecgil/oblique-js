@@ -20,6 +20,7 @@
       this._directiveInstancesData = [];
       this._timedDOMObserver = this._createTimedDOMObserver(DOMProcessor.DEFAULT_INTERVAL_MS);
       this._memory = new ObliqueNS.Memory();
+      this._hashChangeEventEnabled = true;
       jQuery(document).ready((function(_this) {
         return function() {
           _this._doACycle();
@@ -31,10 +32,21 @@
 
     DOMProcessor.DEFAULT_INTERVAL_MS = 500;
 
+    DOMProcessor.prototype.enableHashChangeEvent = function() {
+      return this._hashChangeEventEnabled = true;
+    };
+
+    DOMProcessor.prototype.disableHashChangeEvent = function() {
+      return this._hashChangeEventEnabled = false;
+    };
+
     DOMProcessor.prototype._listenToHashRouteChanges = function() {
       return $(window).on("hashchange", (function(_this) {
         return function() {
           var dirData, directiveData, i, len, ref, results;
+          if (!_this._hashChangeEventEnabled) {
+            return;
+          }
           ref = _this._directiveInstancesData;
           results = [];
           for (i = 0, len = ref.length; i < len; i++) {
