@@ -171,11 +171,11 @@ describe "ParamCollection", ->
     paramCollection=new ParamCollection("")
     paramCollection.add(new ArrayParam("sizes",["M"]))
     paramCollection.remove("sizes")
-    expect(paramCollection.getLocationHash()).toBe("")
+    expect(paramCollection.getLocationHash()).toBe("#_")
 
   it "must return location hash for 0 params", () ->
     paramCollection=new ParamCollection("")
-    expect(paramCollection.getLocationHash()).toBe("")
+    expect(paramCollection.getLocationHash()).toBe("#_")
 
   it "must throw an error if array param value is not an array", () ->
     expect(->

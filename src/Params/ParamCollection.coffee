@@ -82,17 +82,15 @@ class ParamCollection
     return param.isEmpty()
 
   getLocationHash: ->
-    #return "" if @count() is 0
-
     hash = "#"
     for paramName, param of @_params
-      #continue if param.isEmpty()
-
       continue if param is undefined
       hash += param.getLocationHash() + "&"
 
-    hash=hash.substr(0,hash.length-1)
-    hash="" if hash is "#"
+    if (hash.length isnt 1)
+      hash=hash.substr(0,hash.length-1)
+
+    hash="#_" if hash is "#"
     hash
 
 ObliqueNS.ParamCollection=ParamCollection

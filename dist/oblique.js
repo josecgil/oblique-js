@@ -480,9 +480,11 @@
         }
         hash += param.getLocationHash() + "&";
       }
-      hash = hash.substr(0, hash.length - 1);
+      if (hash.length !== 1) {
+        hash = hash.substr(0, hash.length - 1);
+      }
       if (hash === "#") {
-        hash = "";
+        hash = "#_";
       }
       return hash;
     };

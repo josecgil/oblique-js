@@ -962,6 +962,17 @@
       Oblique().setHashParams(hashParams);
       return expect(window.location.hash).toBe("#albums&color=green");
     });
+    it("must set hash to '#' when I remove the last param (to prevent reload of the page)", function(done) {
+      var hashParams;
+      window.location.hash = "#referencetopaginate=1TC111333";
+      hashParams = Oblique().getHashParams();
+      hashParams.remove("referencetopaginate");
+      Oblique().setHashParams(hashParams);
+      return setTimeout(function() {
+        expect(window.location.hash).toBe("#_");
+        return done();
+      }, 10);
+    });
     it("must work with params in camel case", function() {
       var hashParams, param;
       window.location.hash = "#Color=red";

@@ -194,12 +194,12 @@
       paramCollection = new ParamCollection("");
       paramCollection.add(new ArrayParam("sizes", ["M"]));
       paramCollection.remove("sizes");
-      return expect(paramCollection.getLocationHash()).toBe("");
+      return expect(paramCollection.getLocationHash()).toBe("#_");
     });
     it("must return location hash for 0 params", function() {
       var paramCollection;
       paramCollection = new ParamCollection("");
-      return expect(paramCollection.getLocationHash()).toBe("");
+      return expect(paramCollection.getLocationHash()).toBe("#_");
     });
     it("must throw an error if array param value is not an array", function() {
       return expect(function() {

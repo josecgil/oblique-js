@@ -785,6 +785,17 @@ describe "Oblique", ->
     Oblique().setHashParams(hashParams)
     expect(window.location.hash).toBe("#albums&color=green")
 
+
+  it "must set hash to '#' when I remove the last param (to prevent reload of the page)", (done)->
+    window.location.hash="#referencetopaginate=1TC111333"
+    hashParams = Oblique().getHashParams()
+    hashParams.remove("referencetopaginate")
+    Oblique().setHashParams(hashParams)
+    setTimeout(->
+      expect(window.location.hash).toBe("#_")
+      done()
+    ,10)
+
   it "must work with params in camel case", ()->
     window.location.hash="#Color=red"
     hashParams = Oblique().getHashParams()
