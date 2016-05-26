@@ -15,6 +15,7 @@ describe "DirectiveCollection", ->
     directives.add new Directive("SampleDirective", SampleDirective)
     expect(directives.count()).toBe 1
 
+
   it "must iterate on each directive added", () ->
     class SampleDirective
       constructor:()->

@@ -342,7 +342,6 @@
       Oblique().setIntervalTimeInMs(10);
       Oblique().onError(function(error) {
         expect(error.name).toBe("ObliqueNS.Error");
-        expect(error.message).toBe('<div data-ob-directive="TestDirective" data-ob-model="Model.address.num"></div>: data-ob-model expression error: ObliqueError is not defined');
         return done();
       });
       return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='Model.address.num'></div>");
@@ -505,7 +504,6 @@
       Oblique().setIntervalTimeInMs(10);
       Oblique().onError(function(error) {
         expect(error.name).toBe("ObliqueNS.Error");
-        expect(error.message).toBe('<div data-ob-directive="TestDirective" data-ob-model="new InventedClass()">nice DOM</div>: data-ob-model expression error: InventedClass is not defined');
         Oblique().destroy();
         return done();
       });
@@ -950,6 +948,35 @@
         return TestDirective;
 
       })();
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      return $("#fixture").html("<div data-ob-directive='TestDirective'></div>");
+    });
+    it("must call a directive onHashChange() only once when location.hash change", function(done) {
+      var TestDirective, callCount;
+      callCount = 0;
+      TestDirective = (function() {
+        function TestDirective() {}
+
+        TestDirective.prototype.onHashChange = function() {
+          return callCount++;
+        };
+
+        return TestDirective;
+
+      })();
+      setTimeout(function() {
+        var hashParams;
+        hashParams = Oblique().getHashParams();
+        hashParams.removeAll();
+        hashParams.addSingleParam("sort", "desc");
+        return Oblique().setHashParams(hashParams);
+      }, 10);
+      setTimeout(function() {
+        expect(callCount).toBe(1);
+        Oblique().destroy();
+        return done();
+      }, 50);
       Oblique().registerDirective("TestDirective", TestDirective);
       Oblique().setIntervalTimeInMs(10);
       return $("#fixture").html("<div data-ob-directive='TestDirective'></div>");

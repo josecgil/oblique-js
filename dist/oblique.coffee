@@ -1,3 +1,6 @@
+
+# ../src/Directives/Directive.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Directive
@@ -16,6 +19,9 @@ class Directive
 
 ObliqueNS.Directive=Directive
 
+
+
+# ../src/Directives/DirectiveCollection.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -45,6 +51,9 @@ ObliqueNS.DirectiveCollection=DirectiveCollection
 
 
 
+
+# ../src/Params/01_ParamParser.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class ParamParser
@@ -69,6 +78,9 @@ class ParamParser
       currentParam=currentParam+ch
 
 ObliqueNS.ParamParser=ParamParser
+
+
+# ../src/Params/02_Param.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -124,6 +136,9 @@ class Param
     true
 
 ObliqueNS.Param=Param
+
+# ../src/Params/ArrayParam.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 Param=ObliqueNS.Param
@@ -196,6 +211,9 @@ class ArrayParam extends ObliqueNS.Param
 ObliqueNS.ArrayParam=ArrayParam
 
 
+
+# ../src/Params/EmptyParam.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class EmptyParam extends ObliqueNS.Param
@@ -204,6 +222,9 @@ class EmptyParam extends ObliqueNS.Param
     super("EmptyParam")
 
 ObliqueNS.EmptyParam=EmptyParam
+
+
+# ../src/Params/ParamCollection.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -302,6 +323,9 @@ class ParamCollection
 
 ObliqueNS.ParamCollection=ParamCollection
 
+
+# ../src/Params/RangeParam.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 Param=ObliqueNS.Param
@@ -354,6 +378,9 @@ class RangeParam extends ObliqueNS.Param
 
 ObliqueNS.RangeParam=RangeParam
 
+
+# ../src/Params/SingleParam.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 ParamParser=ObliqueNS.ParamParser
@@ -395,6 +422,9 @@ class SingleParam extends ObliqueNS.Param
 
 ObliqueNS.SingleParam=SingleParam
 
+
+# ../src/Templates/Template.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Template
@@ -406,6 +436,9 @@ class Template
     @compiledTemplate(model)
 
 ObliqueNS.Template=Template
+
+
+# ../src/Templates/TemplateFactory.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -440,34 +473,16 @@ class TemplateFactory
 
 ObliqueNS.TemplateFactory=TemplateFactory
 
+
+# ../src/0_functions.coffee
+
 #Add string::trim() if not present
 unless String::trim
   String::trim = ->
     @replace /^\s+|\s+$/g, ""
 
-@.ObliqueNS=@.ObliqueNS or {}
 
-class DataModelVariable
-
-  constructor:(@_expression)->
-    @_firstEqualPosition=@_expression.indexOf("=")
-    @name=@_getVariableName()
-    @isSet = @_isSet()
-
-  _getVariableName: () ->
-    return @_expression if @_firstEqualPosition is -1
-    parts=@_expression.split("=")
-    variableName=(parts[0].replace("var ", "")).trim()
-    return undefined  if variableName is ""
-    variableName
-
-  _isSet:() ->
-    return false if @_firstEqualPosition is -1
-    nextChar=@_expression.substr(@_firstEqualPosition+1, 1)
-    return false if nextChar is "="
-    true
-
-ObliqueNS.DataModelVariable=DataModelVariable
+# ../src/DOMProcessor.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -685,6 +700,36 @@ class DOMProcessor
 ObliqueNS.DOMProcessor=DOMProcessor
 @.Oblique=DOMProcessor
 
+
+# ../src/DataModelVariable.coffee
+
+@.ObliqueNS=@.ObliqueNS or {}
+
+class DataModelVariable
+
+  constructor:(@_expression)->
+    @_firstEqualPosition=@_expression.indexOf("=")
+    @name=@_getVariableName()
+    @isSet = @_isSet()
+
+  _getVariableName: () ->
+    return @_expression if @_firstEqualPosition is -1
+    parts=@_expression.split("=")
+    variableName=(parts[0].replace("var ", "")).trim()
+    return undefined  if variableName is ""
+    variableName
+
+  _isSet:() ->
+    return false if @_firstEqualPosition is -1
+    nextChar=@_expression.substr(@_firstEqualPosition+1, 1)
+    return false if nextChar is "="
+    true
+
+ObliqueNS.DataModelVariable=DataModelVariable
+
+
+# ../src/Element.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 
 class Element
@@ -745,6 +790,9 @@ class Element
 
 ObliqueNS.Element=Element
 
+
+# ../src/Memory.coffee
+
 @.ObliqueNS=@.ObliqueNS or {}
 class Memory
 
@@ -766,6 +814,9 @@ class Memory
     script
 
 ObliqueNS.Memory=Memory
+
+
+# ../src/Oblique.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -852,9 +903,13 @@ class Oblique
     urlWithoutHash=location.protocol+"//"+location.host+location.pathname+location.search
     newUrl=urlWithoutHash+hash
     window.location.replace newUrl
+    window.history.replaceState null, null, newUrl
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique
+
+
+# ../src/ObliqueError.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 
@@ -864,6 +919,9 @@ class ObliqueError extends Error
     @name = "ObliqueNS.Error"
 
 ObliqueNS.Error=ObliqueError
+
+
+# ../src/TimedDOMObserver.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
 

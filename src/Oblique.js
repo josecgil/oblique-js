@@ -117,7 +117,8 @@
       location = window.location;
       urlWithoutHash = location.protocol + "//" + location.host + location.pathname + location.search;
       newUrl = urlWithoutHash + hash;
-      return window.location.replace(newUrl);
+      window.location.replace(newUrl);
+      return window.history.replaceState(null, null, newUrl);
     };
 
     return Oblique;
