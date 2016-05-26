@@ -839,11 +839,16 @@ describe "Oblique", ->
     expect(param.value).toBe("red")
 
   it "must work with params with latin characters", ()->
-    window.location.hash="#category=baño"
+    #window.location.hash="#category=baño"
+
     hashParams = Oblique().getHashParams()
-    param=hashParams.getParam("category")
+    hashParams.addSingleParam "category", "baño"
+    Oblique().setHashParams(hashParams)
+
+    hashParams = Oblique().getHashParams()
+    param=hashParams.getParam "category"
     expect(param).toBeDefined()
-    expect(param.value).toBe("baño")
+    expect(param.value).toBe "baño"
 
 
   it "must not throw an error if onHashChange() is not defined in a directive", (done)->

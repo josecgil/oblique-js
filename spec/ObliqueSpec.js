@@ -1018,7 +1018,9 @@
     });
     it("must work with params with latin characters", function() {
       var hashParams, param;
-      window.location.hash = "#category=baño";
+      hashParams = Oblique().getHashParams();
+      hashParams.addSingleParam("category", "baño");
+      Oblique().setHashParams(hashParams);
       hashParams = Oblique().getHashParams();
       param = hashParams.getParam("category");
       expect(param).toBeDefined();
