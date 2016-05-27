@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/todo-list/index.html" afterPath="$PROJECT_DIR$/samples/todo-list/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.coffee" afterPath="$PROJECT_DIR$/dist/oblique.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.js.map" afterPath="$PROJECT_DIR$/dist/oblique.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.js" afterPath="$PROJECT_DIR$/dist/oblique.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.min.js" afterPath="$PROJECT_DIR$/dist/oblique.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -512,12 +507,6 @@
       <option name="number" value="Default" />
       <updated>1394662908407</updated>
     </task>
-    <task id="LOCAL-00126" summary="methods for manipulaing hash routes in Oblique">
-      <created>1414071781202</created>
-      <option name="number" value="00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1414071781202</updated>
-    </task>
     <task id="LOCAL-00127" summary="methods for manipulaing hash routes in Oblique">
       <created>1414077523963</created>
       <option name="number" value="00127" />
@@ -806,7 +795,13 @@
       <option name="project" value="LOCAL" />
       <updated>1464365887030</updated>
     </task>
-    <option name="localTasksCounter" value="175" />
+    <task id="LOCAL-00175" summary="update samples to reflect new syntaxis">
+      <created>1464366848239</created>
+      <option name="number" value="00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1464366848239</updated>
+    </task>
+    <option name="localTasksCounter" value="176" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -871,7 +866,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Remove FormOptions from filter sample" />
     <MESSAGE value="Create find  &amp; isEmpy in ParamCollection&#10;Update filter sample to use new code" />
     <MESSAGE value="OnHashChange is not called on directive creation, only in location.hashChange" />
     <MESSAGE value="?" />
@@ -896,7 +890,8 @@
     <MESSAGE value="Fixed workspace IDE" />
     <MESSAGE value="Better sample, using onInterval" />
     <MESSAGE value="Better sample, using onInterval&#10;Support for configuration of data-ob attributes without the data- (ob-directive, ob-params, ob-var, ob-model)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Better sample, using onInterval&#10;Support for configuration of data-ob attributes without the data- (ob-directive, ob-params, ob-var, ob-model)" />
+    <MESSAGE value="update samples to reflect new syntaxis" />
+    <option name="LAST_COMMIT_MESSAGE" value="update samples to reflect new syntaxis" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.8794326" />
   </component>
   <component name="XDebuggerManager">
