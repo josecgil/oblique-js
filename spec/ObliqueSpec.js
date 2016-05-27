@@ -43,6 +43,21 @@
       Oblique().setIntervalTimeInMs(10);
       return $("#fixture").html("<div data-ob-directive='TestDirective'></div>");
     });
+    it("must register a directive only with ob-directive", function(done) {
+      var TestDirective;
+      TestDirective = (function() {
+        function TestDirective() {
+          Oblique().destroy();
+          done();
+        }
+
+        return TestDirective;
+
+      })();
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      return $("#fixture").html("<div ob-directive='TestDirective'></div>");
+    });
     it("If I register a Directive it calls its constructor only one time when expression is in DOM", function(done) {
       var TestDirective, counter;
       counter = 0;
@@ -223,6 +238,27 @@
       Oblique().registerDirective("TestDirective", TestDirective);
       Oblique().setIntervalTimeInMs(10);
       return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='Model.name'></div>");
+    });
+    it("must receive the model using ob-model instead of data-ob-model", function(done) {
+      var TestDirective, modelToTest;
+      modelToTest = {
+        name: "Carlos",
+        content: "content"
+      };
+      TestDirective = (function() {
+        function TestDirective(data) {
+          expect(data.model).toBe("Carlos");
+          Oblique().destroy();
+          done();
+        }
+
+        return TestDirective;
+
+      })();
+      Oblique().setModel(modelToTest);
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' ob-model='Model.name'></div>");
     });
     it("A directive must receive part of the model that data-ob-model specifies if is a boolean", function(done) {
       var TestDirective, modelToTest;
@@ -524,6 +560,22 @@
       Oblique().registerDirective("TestDirective", TestDirective);
       Oblique().setIntervalTimeInMs(10);
       return $("#fixture").html("<div data-ob-directive='TestDirective' data-ob-params='{\"name\":\"Carlos\"}'>nice DOM</div>");
+    });
+    it("must pass simple param to directive using ob-params instead of data-ob-params", function(done) {
+      var TestDirective;
+      TestDirective = (function() {
+        function TestDirective(data) {
+          expect(data.params.name).toBe("Carlos");
+          Oblique().destroy();
+          done();
+        }
+
+        return TestDirective;
+
+      })();
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      return $("#fixture").html("<div data-ob-directive='TestDirective' ob-params='{\"name\":\"Carlos\"}'>nice DOM</div>");
     });
     it("must pass complex param to directive", function(done) {
       var TestDirective;
@@ -1061,6 +1113,23 @@
       Oblique().setIntervalTimeInMs(10);
       FixtureHelper.clear();
       FixtureHelper.appendHTML("<div data-ob-var='var fooVar=1'></div>");
+      return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='fooVar'>nice DOM</div>");
+    });
+    it("must create a variable in ob-var instead of data-ob-var", function(done) {
+      var TestDirective;
+      TestDirective = (function() {
+        function TestDirective(data) {
+          expect(data.model).toBe(1);
+          done();
+        }
+
+        return TestDirective;
+
+      })();
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      FixtureHelper.clear();
+      FixtureHelper.appendHTML("<div ob-var='var fooVar=1'></div>");
       return FixtureHelper.appendHTML("<div data-ob-directive='TestDirective' data-ob-model='fooVar'>nice DOM</div>");
     });
     it("must create a variable with complex value in data-ob-var", function(done) {

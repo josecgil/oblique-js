@@ -80,10 +80,11 @@ class DOMProcessor
       directive.onInterval() if directive.onInterval
 
   _applyVariablesInDOM: ->
-      $("*[data-ob-var]").each(
+      $("*[data-ob-var], *[ob-var]").each(
         (index, DOMElement) =>
           obElement=new ObliqueNS.Element DOMElement
           scriptAttrValue=obElement.getAttributeValue "data-ob-var"
+          scriptAttrValue=obElement.getAttributeValue "ob-var" if not scriptAttrValue
           @_processScriptElement(obElement, scriptAttrValue) if scriptAttrValue
       )
 
@@ -96,10 +97,11 @@ class DOMProcessor
       )
 
   _applyDirectivesInDOM: ->
-      $("*[data-ob-directive]").each(
+      $("*[data-ob-directive], *[ob-directive]").each(
         (index, DOMElement) =>
           obElement=new ObliqueNS.Element DOMElement
           directiveAttrValue=obElement.getAttributeValue "data-ob-directive"
+          directiveAttrValue=obElement.getAttributeValue "ob-directive" if not directiveAttrValue
           @_processDirectiveElement(obElement, directiveAttrValue) if directiveAttrValue
       )
 
@@ -159,6 +161,7 @@ class DOMProcessor
 
   _getParams : (obElement) ->
     dataParamsExpr=obElement.getAttributeValue("data-ob-params")
+    dataParamsExpr=obElement.getAttributeValue("ob-params") if not dataParamsExpr
     return undefined if not dataParamsExpr
     try
       jQuery.parseJSON(dataParamsExpr)
@@ -174,6 +177,7 @@ class DOMProcessor
         eval(@_memory.localVarsScript())
     ###
     ___dataModelExpr=___obElement.getAttributeValue("data-ob-model")
+    ___dataModelExpr=___obElement.getAttributeValue("ob-model") if not ___dataModelExpr
     return undefined if ___dataModelExpr is undefined
     try
       ___directiveModel = @_execJS(___dataModelExpr)

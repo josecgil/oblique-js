@@ -36,6 +36,15 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
 
+  it "must register a directive only with ob-directive", (done)->
+    class TestDirective
+      constructor: ()->
+        Oblique().destroy()
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div ob-directive='TestDirective'></div>"
 
   it "If I register a Directive it calls its constructor only one time when expression is in DOM", (done)->
     counter=0
@@ -182,6 +191,25 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
 
     FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='Model.name'></div>"
+
+  it "must receive the model using ob-model instead of data-ob-model", (done)->
+    modelToTest =
+      name : "Carlos",
+      content : "content"
+
+    class TestDirective
+      constructor: (data)->
+        expect(data.model).toBe "Carlos"
+        Oblique().destroy()
+        done()
+
+    Oblique().setModel modelToTest
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' ob-model='Model.name'></div>"
+
 
   it "A directive must receive part of the model that data-ob-model specifies if is a boolean", (done)->
     modelToTest =
@@ -440,6 +468,19 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
 
     $("#fixture").html "<div data-ob-directive='TestDirective' data-ob-params='{\"name\":\"Carlos\"}'>nice DOM</div>"
+
+  it "must pass simple param to directive using ob-params instead of data-ob-params", (done)->
+    class TestDirective
+      constructor: (data)->
+        expect(data.params.name).toBe "Carlos"
+        Oblique().destroy()
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+
+    $("#fixture").html "<div data-ob-directive='TestDirective' ob-params='{\"name\":\"Carlos\"}'>nice DOM</div>"
+
 
   it "must pass complex param to directive", (done)->
     class TestDirective
@@ -879,6 +920,18 @@ describe "Oblique", ->
     Oblique().setIntervalTimeInMs 10
     FixtureHelper.clear()
     FixtureHelper.appendHTML "<div data-ob-var='var fooVar=1'></div>"
+    FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='fooVar'>nice DOM</div>"
+
+  it "must create a variable in ob-var instead of data-ob-var", (done)->
+    class TestDirective
+      constructor: (data)->
+        expect(data.model).toBe 1
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    FixtureHelper.clear()
+    FixtureHelper.appendHTML "<div ob-var='var fooVar=1'></div>"
     FixtureHelper.appendHTML "<div data-ob-directive='TestDirective' data-ob-model='fooVar'>nice DOM</div>"
 
   it "must create a variable with complex value in data-ob-var", (done)->

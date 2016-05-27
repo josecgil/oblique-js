@@ -123,11 +123,14 @@
     };
 
     DOMProcessor.prototype._applyVariablesInDOM = function() {
-      return $("*[data-ob-var]").each((function(_this) {
+      return $("*[data-ob-var], *[ob-var]").each((function(_this) {
         return function(index, DOMElement) {
           var obElement, scriptAttrValue;
           obElement = new ObliqueNS.Element(DOMElement);
           scriptAttrValue = obElement.getAttributeValue("data-ob-var");
+          if (!scriptAttrValue) {
+            scriptAttrValue = obElement.getAttributeValue("ob-var");
+          }
           if (scriptAttrValue) {
             return _this._processScriptElement(obElement, scriptAttrValue);
           }
@@ -149,11 +152,14 @@
     };
 
     DOMProcessor.prototype._applyDirectivesInDOM = function() {
-      return $("*[data-ob-directive]").each((function(_this) {
+      return $("*[data-ob-directive], *[ob-directive]").each((function(_this) {
         return function(index, DOMElement) {
           var directiveAttrValue, obElement;
           obElement = new ObliqueNS.Element(DOMElement);
           directiveAttrValue = obElement.getAttributeValue("data-ob-directive");
+          if (!directiveAttrValue) {
+            directiveAttrValue = obElement.getAttributeValue("ob-directive");
+          }
           if (directiveAttrValue) {
             return _this._processDirectiveElement(obElement, directiveAttrValue);
           }
@@ -232,6 +238,9 @@
       var dataParamsExpr, e, error1;
       dataParamsExpr = obElement.getAttributeValue("data-ob-params");
       if (!dataParamsExpr) {
+        dataParamsExpr = obElement.getAttributeValue("ob-params");
+      }
+      if (!dataParamsExpr) {
         return void 0;
       }
       try {
@@ -253,6 +262,9 @@
        */
       var ___dataModelExpr, ___directiveModel, e, error, error1, errorMsg;
       ___dataModelExpr = ___obElement.getAttributeValue("data-ob-model");
+      if (!___dataModelExpr) {
+        ___dataModelExpr = ___obElement.getAttributeValue("ob-model");
+      }
       if (___dataModelExpr === void 0) {
         return void 0;
       }
