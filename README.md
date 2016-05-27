@@ -48,11 +48,20 @@ At the core of `oblique.js` the are a two elements:
 + a DOM Element thats declares code to execute and data to be sent to the code.
 + a javascript constructor function (or more than one) that will be called when `oblique.js` finds the element. Those functions are called `Directives`
 
+###A note about `data-ob` attributes without `data-`
+
+You can always use `data-ob` attributes without the `data-`. So is the same using `data-ob-directive` as `ob-directive` or `data-ob-params` as `ob-params`.
+
 ## Directives
 
 The most simple DOM element that uses `oblique.js`look like this:
 
 ```<p data-ob-directive="HelloDirective">simple example</p>```
+
+or
+
+```<p ob-directive="HelloDirective">simple example</p>``` if you like the attribute without `data-`.
+
 
 It has an important attribute `data-ob-directive`, that declares the name of the directive that `oblique.js` must call when it finds this element. When the element is found it instantiates a new object with the constructor function that is passed in the `Oblique().registerDirective` method (in this case, `new HelloDirective()`, see the next example).
 
