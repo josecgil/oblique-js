@@ -1,6 +1,7 @@
 INSTALL
 --------------------------
 * install node.js
+
 * update npm
 sudo npm install npm -g
 
