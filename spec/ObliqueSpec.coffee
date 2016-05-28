@@ -1079,3 +1079,23 @@ describe "Oblique", ->
       expect(onHashChangeWasCalled).toBe no
       done()
     ,200)
+
+  it "must match directives when name is lowercase", (done)->
+    class TestDirective
+      constructor: ()->
+        Oblique().destroy()
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-directive='testdirective'></div>"
+
+  it "must match directives when name is uppercase", (done)->
+    class TestDirective
+      constructor: ()->
+        Oblique().destroy()
+        done()
+
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-directive='TESTDIRECTIVE'></div>"

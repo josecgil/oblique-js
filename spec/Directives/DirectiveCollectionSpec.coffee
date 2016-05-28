@@ -56,3 +56,27 @@ describe "DirectiveCollection", ->
     expect(directive.callback).toBe SampleDirective3
     expect(directive.isGlobal).toBeFalsy()
 
+
+  it "must return a directive by name case insensitive", () ->
+    class SampleDirective5
+      constructor:()->
+
+    directives=new DirectiveCollection()
+    directives.add new Directive("SampleDirective5", SampleDirective5)
+
+    directive=directives.findByName("sampledirective5")
+    expect(directive.name).toBe "SampleDirective5"
+    expect(directive.callback).toBe SampleDirective5
+    expect(directive.isGlobal).toBeFalsy()
+
+  it "must return a directive by name trimmed", () ->
+    class SampleDirective6
+      constructor:()->
+
+    directives=new DirectiveCollection()
+    directives.add new Directive("SampleDirective6", SampleDirective6)
+
+    directive=directives.findByName("  SampleDirective6   ")
+    expect(directive.name).toBe "SampleDirective6"
+    expect(directive.callback).toBe SampleDirective6
+    expect(directive.isGlobal).toBeFalsy()

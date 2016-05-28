@@ -1293,7 +1293,7 @@
       }
       return expect(error).toBeTruthy();
     });
-    return it("must not listen to hashChange when hashChange is disabled", function(done) {
+    it("must not listen to hashChange when hashChange is disabled", function(done) {
       var TestDirective, onHashChangeWasCalled;
       onHashChangeWasCalled = false;
       TestDirective = (function() {
@@ -1318,6 +1318,36 @@
         expect(onHashChangeWasCalled).toBe(false);
         return done();
       }, 200);
+    });
+    it("must match directives when name is lowercase", function(done) {
+      var TestDirective;
+      TestDirective = (function() {
+        function TestDirective() {
+          Oblique().destroy();
+          done();
+        }
+
+        return TestDirective;
+
+      })();
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      return $("#fixture").html("<div data-ob-directive='testdirective'></div>");
+    });
+    return it("must match directives when name is uppercase", function(done) {
+      var TestDirective;
+      TestDirective = (function() {
+        function TestDirective() {
+          Oblique().destroy();
+          done();
+        }
+
+        return TestDirective;
+
+      })();
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      return $("#fixture").html("<div data-ob-directive='TESTDIRECTIVE'></div>");
     });
   });
 
