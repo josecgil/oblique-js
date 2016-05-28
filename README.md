@@ -42,7 +42,7 @@ Just download [oblique.js](https://raw.githubusercontent.com/josecgil/oblique-js
 
 ## An overview
 
-`oblique.js` constantly searchs the entire DOM tree for elements with the `data-ob-directive` attribute (an exception to this are [Global Directives](#global-directives)). When an element is found, it process it and marks the element as 'processed' so the next time does'nt find it.
+When `oblique.js` constantly traverses the DOM matching directives (#directives) against DOM elements (an exception to this are [Global Directives](#global-directives)). When an element is found, it process it and marks the element as 'processed' so the next time does'nt find it.
 
 At the core of `oblique.js` the are a two elements: 
 + a DOM Element thats declares code to execute and data to be sent to the code.
@@ -50,9 +50,11 @@ At the core of `oblique.js` the are a two elements:
 
 ###A note about `data-ob` attributes without `data-`
 
-You can always use `data-ob` attributes without the `data-`. So is the same using `data-ob-directive` as `ob-directive` or `data-ob-params` as `ob-params`.
+You can always use `data-ob` attributes without the `data-`. So it's the same to user `data-ob-directive` that `ob-directive` or  `ob-params` instead of `data-ob-params.
 
 ## Directives
+
+At a high level, directives are markers on a DOM element that tells `oblique.js` to attach a specified behavior to that DOM element and its children. You need to create your own directives, `oblique.js` doesn't provides with it's own default directives.
 
 The most simple DOM element that uses `oblique.js`look like this:
 
