@@ -41,8 +41,15 @@
       this._directives = {};
     }
 
+    DirectiveCollection.prototype._toKeyName = function(str) {
+      if (!str) {
+        return null;
+      }
+      return str.trim().toLowerCase();
+    };
+
     DirectiveCollection.prototype.add = function(directive) {
-      return this._directives[directive.name] = directive;
+      return this._directives[this._toKeyName(directive.name)] = directive;
     };
 
     DirectiveCollection.prototype.count = function() {
@@ -55,7 +62,7 @@
     };
 
     DirectiveCollection.prototype.findByName = function(name) {
-      return this._directives[name];
+      return this._directives[this._toKeyName(name)];
     };
 
     DirectiveCollection.prototype.each = function(callback) {

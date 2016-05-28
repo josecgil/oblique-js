@@ -30,8 +30,12 @@ class DirectiveCollection
   constructor:()->
     @_directives={}
 
+  _toKeyName:(str)->
+    return null if not str
+    str.trim().toLowerCase()
+
   add:(directive)->
-    @_directives[directive.name]=directive
+    @_directives[@_toKeyName(directive.name)]=directive
 
   count:() ->
     len=0
@@ -39,7 +43,7 @@ class DirectiveCollection
     len
 
   findByName:(name) ->
-    @_directives[name]
+    @_directives[@_toKeyName(name)]
 
   each:(callback) ->
     index=0
