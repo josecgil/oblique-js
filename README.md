@@ -525,11 +525,6 @@ PriceDirective.prototype.onHashChange=function(data) {
 Oblique().registerDirective("PriceDirective", PriceDirective);
 ```
 
-
-###samples
-
-In  [samples/Filters directory](http://github.com/josecgil/oblique-js/tree/master/samples/Filters) there is a complete & functional sample thats uses all the hash routing functionality.
-
 ##Timed events
 
 Every directive you create in `oblique.js` has the possibility to listen to an `onInterval` event. This event is fired every 400ms (this default can be changed via `Oblique().setIntervalTimeInMs()`). Let's see an example:
