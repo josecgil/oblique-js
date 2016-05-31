@@ -117,7 +117,7 @@ describe "DOMProcessor", ->
       DOMProcessor().registerDirective "test", {}
     ).toThrow(new ObError("Directive must be called with a 'Constructor Function/Class' param"))
 
-  it "must execute 1 directive in a 10000 elements DOM in <200ms", (done)->
+  it "must execute 1 directive in a 10000 elements DOM in <600ms", (done)->
 
     DOM_ELEMENTS_COUNT = 4*250
     FixtureHelper.appendHTML "<p data-ob-directive='TestDirective'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
@@ -133,14 +133,14 @@ describe "DOMProcessor", ->
         counter++
         if (counter is (DOM_ELEMENTS_COUNT))
           interval.stop()
-          expect(interval.timeInMs).toBeLessThan 200
+          expect(interval.timeInMs).toBeLessThan 600
           done()
 
     interval.start()
     DOMProcessor().registerDirective "TestDirective", TestDirective
     DOMProcessor().setIntervalTimeInMs 10
 
-  it "must execute 5 _callbacks in a 10000 elements DOM in <400ms", (done)->
+  it "must execute 5 _callbacks in a 10000 elements DOM in <1100ms", (done)->
 
     #TODO: test with different expressions in each Directive
     DOM_ELEMENTS_COUNT = 4*250
@@ -173,7 +173,7 @@ describe "DOMProcessor", ->
         if (counter is (DOM_ELEMENTS_COUNT*5))
           interval.stop()
           console.log "Processed 5 _callbacks in a 10000 elements DOM in #{interval.timeInMs}ms"
-          expect(interval.timeInMs).toBeLessThan 400
+          expect(interval.timeInMs).toBeLessThan 1100
           done()
 
     interval.start()
