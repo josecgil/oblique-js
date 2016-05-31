@@ -93,5 +93,20 @@ class ParamCollection
     hash="#_" if hash is "#"
     hash
 
+  _isEmpty:(paramCollection) ->
+    return true if paramCollection is undefined
+    return paramCollection.isEmpty()
+
+  hasSameParams:(other) ->
+    me = this
+    me = new ParamCollection() if @_isEmpty(me)
+    other = new ParamCollection() if @_isEmpty(other)
+
+    meAsStr=me.getLocationHash()
+    otherAsStr=other.getLocationHash()
+
+    meAsStr is otherAsStr
+
+
 ObliqueNS.ParamCollection=ParamCollection
 

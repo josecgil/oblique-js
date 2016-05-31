@@ -510,3 +510,18 @@ describe "ParamCollection", ->
     expect(colorsValues[0]).toBe("rojo (claro)")
     expect(colorsValues[1]).toBe("azul")
 
+  it "must know when 2 ParamsCollection are identical", () ->
+    paramCollection1=new ParamCollection("#colors=[rojo (claro),azul]&color=red")
+    paramCollection2=new ParamCollection("#colors=[rojo (claro),azul]&color=red")
+    expect(paramCollection1.hasSameParams(paramCollection2)).toBeTruthy()
+
+  it "must say is the same when compares undefined and empty ParamsCollection", () ->
+    paramCollection1=new ParamCollection("")
+    paramCollection2=undefined
+    expect(paramCollection1.hasSameParams(paramCollection2)).toBeTruthy()
+
+  it "must say is the same when compares 2 empty ParamsCollection", () ->
+    paramCollection1=new ParamCollection("")
+    paramCollection2=new ParamCollection("")
+    expect(paramCollection1.hasSameParams(paramCollection2)).toBeTruthy()
+

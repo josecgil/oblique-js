@@ -559,13 +559,31 @@
       expect(filterValues[0]).toBe("JACK=JONES");
       return expect(filterValues[1]).toBe("Otro param");
     });
-    return it("must understand array param with ( in value", function() {
+    it("must understand array param with ( in value", function() {
       var colorsValues, paramCollection;
       paramCollection = new ParamCollection("#colors=[rojo (claro),azul]");
       expect(paramCollection.count()).toBe(1);
       colorsValues = paramCollection.getParam("colors").values;
       expect(colorsValues[0]).toBe("rojo (claro)");
       return expect(colorsValues[1]).toBe("azul");
+    });
+    it("must know when 2 ParamsCollection are identical", function() {
+      var paramCollection1, paramCollection2;
+      paramCollection1 = new ParamCollection("#colors=[rojo (claro),azul]&color=red");
+      paramCollection2 = new ParamCollection("#colors=[rojo (claro),azul]&color=red");
+      return expect(paramCollection1.hasSameParams(paramCollection2)).toBeTruthy();
+    });
+    it("must say is the same when compares undefined and empty ParamsCollection", function() {
+      var paramCollection1, paramCollection2;
+      paramCollection1 = new ParamCollection("");
+      paramCollection2 = void 0;
+      return expect(paramCollection1.hasSameParams(paramCollection2)).toBeTruthy();
+    });
+    return it("must say is the same when compares 2 empty ParamsCollection", function() {
+      var paramCollection1, paramCollection2;
+      paramCollection1 = new ParamCollection("");
+      paramCollection2 = new ParamCollection("");
+      return expect(paramCollection1.hasSameParams(paramCollection2)).toBeTruthy();
     });
   });
 
