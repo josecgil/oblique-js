@@ -154,6 +154,27 @@
       return hash;
     };
 
+    ParamCollection.prototype._isEmpty = function(paramCollection) {
+      if (paramCollection === void 0) {
+        return true;
+      }
+      return paramCollection.isEmpty();
+    };
+
+    ParamCollection.prototype.hasSameParams = function(other) {
+      var me, meAsStr, otherAsStr;
+      me = this;
+      if (this._isEmpty(me)) {
+        me = new ParamCollection();
+      }
+      if (this._isEmpty(other)) {
+        other = new ParamCollection();
+      }
+      meAsStr = me.getLocationHash();
+      otherAsStr = other.getLocationHash();
+      return meAsStr === otherAsStr;
+    };
+
     return ParamCollection;
 
   })();

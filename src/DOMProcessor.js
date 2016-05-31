@@ -51,7 +51,7 @@
           results = [];
           for (i = 0, len = ref.length; i < len; i++) {
             dirData = ref[i];
-            directiveData = _this._createDirectiveData(dirData.domElement, dirData.jQueryElemen, dirData.model, dirData.params);
+            directiveData = _this._createDirectiveData(dirData.domElement, dirData.jQueryElement, dirData.model, dirData.params);
             if (dirData.instance.onHashChange) {
               results.push(dirData.instance.onHashChange(directiveData));
             } else {

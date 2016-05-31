@@ -40,7 +40,7 @@ class DOMProcessor
     $(window).on "hashchange", =>
       return if not @_hashChangeEventEnabled
       for dirData in @_directiveInstancesData
-        directiveData=@_createDirectiveData(dirData.domElement, dirData.jQueryElemen, dirData.model, dirData.params)
+        directiveData=@_createDirectiveData(dirData.domElement, dirData.jQueryElement, dirData.model, dirData.params)
         if (dirData.instance.onHashChange)
           dirData.instance.onHashChange(directiveData)
 
