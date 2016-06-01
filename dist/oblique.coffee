@@ -103,7 +103,6 @@ class Param
     false
 
   @parse:(strHashParam)->
-    #hashArray=strHashParam.split("=")
     hashArray=new ParamParser(strHashParam, "=").hashParams;
 
 
