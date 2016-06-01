@@ -82,8 +82,11 @@ class Oblique
     location=window.location
     urlWithoutHash=location.protocol+"//"+location.host+location.pathname+location.search
     newUrl=urlWithoutHash+hash
-    window.location.replace newUrl
-    window.history.replaceState null, null, newUrl
+    if(navigator.userAgent.match(/Android/i))
+      document.location=uri
+    else
+      window.location.replace newUrl
+      window.history.replaceState null, null, newUrl
 
 ObliqueNS.Oblique=Oblique
 @.Oblique=Oblique

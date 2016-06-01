@@ -117,8 +117,12 @@
       location = window.location;
       urlWithoutHash = location.protocol + "//" + location.host + location.pathname + location.search;
       newUrl = urlWithoutHash + hash;
-      window.location.replace(newUrl);
-      return window.history.replaceState(null, null, newUrl);
+      if (navigator.userAgent.match(/Android/i)) {
+        return document.location = uri;
+      } else {
+        window.location.replace(newUrl);
+        return window.history.replaceState(null, null, newUrl);
+      }
     };
 
     return Oblique;
