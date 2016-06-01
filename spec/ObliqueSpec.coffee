@@ -78,7 +78,7 @@ describe "Oblique", ->
       Oblique().registerDirective "test", {}
     ).toThrow(new ObliqueNS.Error("Directive must be called with a 'Constructor Function/Class' param"))
 
-  it "must execute 1 directive in a 10000 elements DOM in <500ms", (done)->
+  it "must execute 1 directive in a 10000 elements DOM in <700ms", (done)->
 
     DOM_ELEMENTS_COUNT = 4*250
     FixtureHelper.appendHTML "<p data-ob-directive='TestDirective'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
@@ -93,14 +93,14 @@ describe "Oblique", ->
         counter++
         if (counter is (DOM_ELEMENTS_COUNT))
           interval.stop()
-          expect(interval.timeInMs).toBeLessThan 500
+          expect(interval.timeInMs).toBeLessThan 700
           done()
 
     interval.start()
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
 
-  it "must execute 5 _callbacks in a 10000 elements DOM in <400ms", (done)->
+  it "must execute 5 _callbacks in a 10000 elements DOM in <1800ms", (done)->
 
     DOM_ELEMENTS_COUNT = 4*250
     FixtureHelper.appendHTML "<p data-ob-directive='TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</p>", DOM_ELEMENTS_COUNT/4
@@ -131,7 +131,7 @@ describe "Oblique", ->
         counter++
         if (counter is (DOM_ELEMENTS_COUNT*5))
           interval.stop()
-          expect(interval.timeInMs).toBeLessThan 400
+          expect(interval.timeInMs).toBeLessThan 1800
           done()
 
     interval.start()
@@ -762,24 +762,24 @@ describe "Oblique", ->
     expect(window.location.hash).toBe("#sizes=[104,105,XL]")
 
   it "must call a directive onHashChange with correct hashParams", (done)->
-    hashParams=Oblique().getHashParams()
-    hashParams.addSingleParam("sort","desc")
-    Oblique().setHashParams(hashParams)
 
     class TestDirective
       constructor: (data)->
         hashParams = data.hashParams
         expect(hashParams.count()).toBe(1)
-        expect(hashParams.getParam("sort").value).toBe("desc")
+        expect(hashParams.getParam("patata").value).toBe("true")
         Oblique().destroy()
         done()
 
-      onHashChange:()->
+      onHashChange:(data)->
 
     Oblique().registerDirective "TestDirective", TestDirective
     Oblique().setIntervalTimeInMs 10
     $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
 
+    hashParams=Oblique().getHashParams()
+    hashParams.addSingleParam("patata","true")
+    Oblique().setHashParams(hashParams)
 
   it "must call a directive constructor with correct hashParams", (done)->
     hashParams=Oblique().getHashParams()
@@ -829,6 +829,10 @@ describe "Oblique", ->
         onHashChange:()->
           callCount++
 
+    Oblique().registerDirective "TestDirective", TestDirective
+    Oblique().setIntervalTimeInMs 10
+    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
+
     setTimeout(->
       hashParams=Oblique().getHashParams()
       hashParams.removeAll()
@@ -840,12 +844,7 @@ describe "Oblique", ->
       expect(callCount).toBe 1
       Oblique().destroy()
       done()
-    , 50)
-
-    Oblique().registerDirective "TestDirective", TestDirective
-    Oblique().setIntervalTimeInMs 10
-    $("#fixture").html "<div data-ob-directive='TestDirective'></div>"
-
+    , 150)
 
   it "must set correctly # and & when I remove a param from list", ()->
     window.location.hash="#albums=[1]&color=green"

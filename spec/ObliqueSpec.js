@@ -98,7 +98,7 @@
         return Oblique().registerDirective("test", {});
       }).toThrow(new ObliqueNS.Error("Directive must be called with a 'Constructor Function/Class' param"));
     });
-    it("must execute 1 directive in a 10000 elements DOM in <500ms", function(done) {
+    it("must execute 1 directive in a 10000 elements DOM in <700ms", function(done) {
       var DOM_ELEMENTS_COUNT, TestDirective, counter, interval;
       DOM_ELEMENTS_COUNT = 4 * 250;
       FixtureHelper.appendHTML("<p data-ob-directive='TestDirective'>nice DOM</p>", DOM_ELEMENTS_COUNT / 4);
@@ -112,7 +112,7 @@
           counter++;
           if (counter === DOM_ELEMENTS_COUNT) {
             interval.stop();
-            expect(interval.timeInMs).toBeLessThan(500);
+            expect(interval.timeInMs).toBeLessThan(700);
             done();
           }
         }
@@ -124,7 +124,7 @@
       Oblique().registerDirective("TestDirective", TestDirective);
       return Oblique().setIntervalTimeInMs(10);
     });
-    it("must execute 5 _callbacks in a 10000 elements DOM in <400ms", function(done) {
+    it("must execute 5 _callbacks in a 10000 elements DOM in <1800ms", function(done) {
       var DOM_ELEMENTS_COUNT, TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5, counter, interval;
       DOM_ELEMENTS_COUNT = 4 * 250;
       FixtureHelper.appendHTML("<p data-ob-directive='TestDirective, TestDirective2, TestDirective3, TestDirective4, TestDirective5'>nice DOM</p>", DOM_ELEMENTS_COUNT / 4);
@@ -170,7 +170,7 @@
           counter++;
           if (counter === (DOM_ELEMENTS_COUNT * 5)) {
             interval.stop();
-            expect(interval.timeInMs).toBeLessThan(400);
+            expect(interval.timeInMs).toBeLessThan(1800);
             done();
           }
         }
@@ -934,26 +934,27 @@
     });
     it("must call a directive onHashChange with correct hashParams", function(done) {
       var TestDirective, hashParams;
-      hashParams = Oblique().getHashParams();
-      hashParams.addSingleParam("sort", "desc");
-      Oblique().setHashParams(hashParams);
       TestDirective = (function() {
         function TestDirective(data) {
+          var hashParams;
           hashParams = data.hashParams;
           expect(hashParams.count()).toBe(1);
-          expect(hashParams.getParam("sort").value).toBe("desc");
+          expect(hashParams.getParam("patata").value).toBe("true");
           Oblique().destroy();
           done();
         }
 
-        TestDirective.prototype.onHashChange = function() {};
+        TestDirective.prototype.onHashChange = function(data) {};
 
         return TestDirective;
 
       })();
       Oblique().registerDirective("TestDirective", TestDirective);
       Oblique().setIntervalTimeInMs(10);
-      return $("#fixture").html("<div data-ob-directive='TestDirective'></div>");
+      $("#fixture").html("<div data-ob-directive='TestDirective'></div>");
+      hashParams = Oblique().getHashParams();
+      hashParams.addSingleParam("patata", "true");
+      return Oblique().setHashParams(hashParams);
     });
     it("must call a directive constructor with correct hashParams", function(done) {
       var TestDirective, hashParams;
@@ -1017,6 +1018,9 @@
         return TestDirective;
 
       })();
+      Oblique().registerDirective("TestDirective", TestDirective);
+      Oblique().setIntervalTimeInMs(10);
+      $("#fixture").html("<div data-ob-directive='TestDirective'></div>");
       setTimeout(function() {
         var hashParams;
         hashParams = Oblique().getHashParams();
@@ -1024,14 +1028,11 @@
         hashParams.addSingleParam("sort", "desc");
         return Oblique().setHashParams(hashParams);
       }, 10);
-      setTimeout(function() {
+      return setTimeout(function() {
         expect(callCount).toBe(1);
         Oblique().destroy();
         return done();
-      }, 50);
-      Oblique().registerDirective("TestDirective", TestDirective);
-      Oblique().setIntervalTimeInMs(10);
-      return $("#fixture").html("<div data-ob-directive='TestDirective'></div>");
+      }, 150);
     });
     it("must set correctly # and & when I remove a param from list", function() {
       var hashParams;
