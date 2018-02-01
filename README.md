@@ -9,7 +9,7 @@
 + **Hash routing** to handle changes & manipulate hash url params
 + **Timed events** to do recurring tasks
 
-##Table of contents
+## Table of contents
 
 1. [Requeriments](#requeriments)
 2. [Installation](#installation)
@@ -151,7 +151,7 @@ In this example, the `PopupDirective` will receive a JSON object in the `data.pa
 }
 ```
 
-##The Model
+## The Model
 
 In `oblique.js` the Model is the data needed by the page. There are three related items that works with the model.
 
@@ -163,7 +163,7 @@ Let's start with the `Oblique().setModel()` function. It inform `oblique.js` tha
 
 `data-ob-model` then selects what part of the Model is send to a directive in a concrete case.
 
-###A simple example
+### A simple example
 
 Let's say you have a data in you page refered to the current logged user:
 
