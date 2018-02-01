@@ -42,7 +42,7 @@ Just download [oblique.js](https://raw.githubusercontent.com/josecgil/oblique-js
 
 ## An overview
 
-When `oblique.js` constantly traverses the DOM matching directives (#directives) against DOM elements (an exception to this are [Global Directives](#global-directives)). When an element is found, it process it and marks the element as 'processed' so the next time does'nt find it.
+When `oblique.js` constantly traverses the DOM matching [directives] (#Directives) against DOM elements (an exception to this are [Global Directives](#global-directives)). When an element is found, it process it and marks the element as 'processed' so the next time does'nt find it.
 
 At the core of `oblique.js` the are a two elements: 
 + a DOM Element thats declares code to execute and data to be sent to the code.
