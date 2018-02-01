@@ -48,9 +48,9 @@ At the core of `oblique.js` the are a two elements:
 + a DOM Element thats declares code to execute and data to be sent to the code.
 + a javascript constructor function (or more than one) that will be called when `oblique.js` finds the element. Those functions are called `Directives`
 
-###A note about `data-ob` attributes without `data-`
+### A note about `data-ob` attributes without `data-`
 
-You can always use `data-ob` attributes without the `data-`. So it's the same to user `data-ob-directive` that `ob-directive` or  `ob-params` instead of `data-ob-params.
+You can always use `data-ob` attributes without the `data-`. So it's the same to user `data-ob-directive` that `ob-directive` or  `ob-params` instead of `data-ob-params`.
 
 ## Directives
 
@@ -317,7 +317,7 @@ The next html is valid in `oblique.js`:
 
 The second expression `data-ob-model="anAddress"` retrieves the `anAdress` variable from an especial oblique storage so `anAddress` is the same instance of the same object that the previous one `data-ob-model` attribute.
 
-##The data-ob-var attribute
+## The data-ob-var attribute
 
 You can create variables in `oblique.js` and use it in `data-ob-model`  or `data-ob-var` expressions with the `data-ob-var` attribute. This attribute can be declared without a `data-ob-directive` attribute in the same tag.
 
@@ -346,7 +346,7 @@ And here is another usage example:
 
 Note: variables are always executed before any directive execution.
 
-##Templates
+## Templates
 
 `oblique.js` uses [handlebars](http://handlebarsjs.com/) as his template system, it exposes the `Oblique().renderHTML(pathToTemplate, object)` method to use `handlebars`. 
 
@@ -385,11 +385,11 @@ The template part (`/templates/hellouser.hbs` file) will be:
 
 For a complete reference of the template language check [handlebars website](http://handlebarsjs.com/)
 
-##Hash routing
+## Hash routing
 
 Hash routing refers to the hability to check & change document.location.hash values. `oblique.js` provides an easy way to get, add, modify & remove hash params from url & to notify you when params are changed.
 
-###Check hash route params
+### Check hash route params
 Calling `Oblique().getHashParams()` you get a `ParamCollection` object that allows you to check, add, modify and delete current hash params.
 
 It has the following methods to check route values:
@@ -427,7 +427,7 @@ var priceMax=priceParam.max; //"26"
 var color=colorParam.value; //"red"
 ```
 
-###Add hash route params
+### Add hash route params
 
 You add hash params 
 + getting `ParamCollection` object via `Oblique().getHashParams()`
@@ -455,7 +455,7 @@ Oblique().setHashParams(params);
 //#source=1&sizes=[S,M,L]&price=(25,50)&color=green
 ```
 
-###Modify hash route params
+### Modify hash route params
 
 To modify a param you:  
 
@@ -483,7 +483,7 @@ Oblique().setHashParams(params);
 //#sizes=[XL, XXL]&price=(1,100)&color=blue
 ```
 
-###Remove hash route params
+### Remove hash route params
 To remove a hash params you
 + get a `ParamCollection` object via `Oblique().getHashParams()`
 + call `remove(nameOfParam)` or `removeAll()`  
@@ -501,7 +501,7 @@ Oblique().setHashParams(params); //this last line is when the change really occu
 //#price=(1,100)&color=blue
 ```
 
-###Listen to changes in hash route params
+### Listen to changes in hash route params
 
 `oblique.js` provides a convenient mechanism to listen to changes in hash params. You can add a function `onHashChange` to every `directive`. `oblique.js` will call this function on every hash change passing an object with a `ParamCollection` object.   
 
@@ -525,7 +525,7 @@ PriceDirective.prototype.onHashChange=function(data) {
 Oblique().registerDirective("PriceDirective", PriceDirective);
 ```
 
-##Timed events
+## Timed events
 
 Every directive you create in `oblique.js` has the possibility to listen to an `onInterval` event. This event is fired every 400ms (this default can be changed via `Oblique().setIntervalTimeInMs()`). Let's see an example:
 
@@ -542,7 +542,7 @@ TimedExampleDirective.prototype.onInterval=function() {
 
 In  [samples/Timer directory](https://github.com/josecgil/oblique-js/tree/master/samples/Timer) there is a complete & functional sample thats uses the timed events functionality.
 
-##Global Directives
+## Global Directives
 
 Sometimes you want to execute some code that isn't related to an especific part of the DOM. There are two ways to do this:
 
@@ -579,7 +579,7 @@ Oblique().registerDirectiveAsGlobal("GlobalDirective", GlobalDirective);
 ```
 This is the prefered way.
 
-##Error handling
+## Error handling
 
 `oblique.js` has an `onError` event where you can register a function to be called when an error is throw. Here is an example:
 
@@ -596,13 +596,13 @@ This is the prefered way.
 
 `error` is the Error object, it has `name` and a `message` property.
 
-##Notes
+## Notes
 
-###On inserting new 'data-ob-directives' via DOM manipulation
+### On inserting new 'data-ob-directives' via DOM manipulation
 
 `oblique.js` checks the DOM on the moment the DOM is loaded, and then every 400ms (by default) to check for directives loaded dinamically (via DOM manipulation). So, if you use AJAX, your app is a Single Page Application (SPA) or do intensive DOM manipulation there is no problem to use `oblique.js`, it will find and execute dinamically loaded directives.
 
-###Interval to check for directives
+### Interval to check for directives
 
 By default, `oblique.js` checks the DOM every 400ms, but you can change this via the `Oblique().setIntervalTimeInMs()`. This algo changes the frequency of the `onInterval()` event.
 
@@ -614,7 +614,7 @@ For example, if you want that `oblique.js` checks the DOM every second, you can 
 </script>
 ```
 
-##Learn more
+## Learn more
 To learn more and see more complex examples check the [samples directory](http://github.com/josecgil/oblique-js/tree/master/samples)
 
 You can learn more about every object of the system checking usage cases in the [spec directory](https://github.com/josecgil/oblique-js/tree/master/spec)
