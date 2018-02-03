@@ -19,8 +19,6 @@ class Directive
 
 ObliqueNS.Directive=Directive
 
-
-
 # ../src/Directives/DirectiveCollection.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -55,7 +53,6 @@ ObliqueNS.DirectiveCollection=DirectiveCollection
 
 
 
-
 # ../src/Params/01_ParamParser.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -82,7 +79,6 @@ class ParamParser
       currentParam=currentParam+ch
 
 ObliqueNS.ParamParser=ParamParser
-
 
 # ../src/Params/02_Param.coffee
 
@@ -139,7 +135,6 @@ class Param
     true
 
 ObliqueNS.Param=Param
-
 # ../src/Params/ArrayParam.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -212,9 +207,6 @@ class ArrayParam extends ObliqueNS.Param
     return false
 
 ObliqueNS.ArrayParam=ArrayParam
-
-
-
 # ../src/Params/EmptyParam.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -225,8 +217,6 @@ class EmptyParam extends ObliqueNS.Param
     super("EmptyParam")
 
 ObliqueNS.EmptyParam=EmptyParam
-
-
 # ../src/Params/ParamCollection.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -340,8 +330,6 @@ class ParamCollection
 
 
 ObliqueNS.ParamCollection=ParamCollection
-
-
 # ../src/Params/RangeParam.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -395,8 +383,6 @@ class RangeParam extends ObliqueNS.Param
     new RangeParam(hashParam.name, min, max)
 
 ObliqueNS.RangeParam=RangeParam
-
-
 # ../src/Params/SingleParam.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}
@@ -439,8 +425,6 @@ class SingleParam extends ObliqueNS.Param
     true
 
 ObliqueNS.SingleParam=SingleParam
-
-
 # ../src/Templates/Template.coffee
 
 @.ObliqueNS=@.ObliqueNS or {}

@@ -2,20 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/01_ParamParser.coffee" afterPath="$PROJECT_DIR$/src/Params/01_ParamParser.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/02_Param.coffee" afterPath="$PROJECT_DIR$/src/Params/02_Param.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/ArrayParam.coffee" afterPath="$PROJECT_DIR$/src/Params/ArrayParam.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Directives/Directive.coffee" afterPath="$PROJECT_DIR$/src/Directives/Directive.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Directives/DirectiveCollection.coffee" afterPath="$PROJECT_DIR$/src/Directives/DirectiveCollection.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/EmptyParam.coffee" afterPath="$PROJECT_DIR$/src/Params/EmptyParam.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/ParamCollection.coffee" afterPath="$PROJECT_DIR$/src/Params/ParamCollection.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/RangeParam.coffee" afterPath="$PROJECT_DIR$/src/Params/RangeParam.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/SingleParam.coffee" afterPath="$PROJECT_DIR$/src/Params/SingleParam.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Params/01_ParamParser.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Directives/Directive.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Directives/DirectiveCollection.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/Directives/DirectiveCollectionSpec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/Directives/DirectiveSpec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/Params/ParamParserSpec.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/oblique.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/oblique-js.iml" afterPath="$PROJECT_DIR$/.idea/oblique-js.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.coffee" afterPath="$PROJECT_DIR$/dist/oblique.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.js" afterPath="$PROJECT_DIR$/dist/oblique.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.min.js" afterPath="$PROJECT_DIR$/dist/oblique.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -43,7 +38,7 @@
       <file leaf-file-name="01_ParamParser.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Params/01_ParamParser.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.4" vertical-offset="193" max-vertical-offset="660">
+            <state vertical-scroll-proportion="0.0" vertical-offset="528" max-vertical-offset="660">
               <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
@@ -53,8 +48,8 @@
       <file leaf-file-name="02_Param.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Params/02_Param.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.28" vertical-offset="787" max-vertical-offset="1276">
-              <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1122" max-vertical-offset="1276">
+              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -63,8 +58,8 @@
       <file leaf-file-name="ArrayParam.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Params/ArrayParam.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.52" vertical-offset="1205" max-vertical-offset="1650">
-              <caret line="69" column="31" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1496" max-vertical-offset="1650">
+              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -73,8 +68,8 @@
       <file leaf-file-name="EmptyParam.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Params/EmptyParam.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="286">
-              <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="286">
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -83,8 +78,8 @@
       <file leaf-file-name="ParamCollection.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Params/ParamCollection.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2107" max-vertical-offset="2552">
-              <caret line="110" column="41" selection-start-line="110" selection-start-column="41" selection-end-line="110" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2376" max-vertical-offset="2552">
+              <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -93,8 +88,8 @@
       <file leaf-file-name="RangeParam.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Params/RangeParam.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="787" max-vertical-offset="1232">
-              <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1056" max-vertical-offset="1232">
+              <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -103,8 +98,8 @@
       <file leaf-file-name="SingleParam.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Params/SingleParam.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="545" max-vertical-offset="990">
-              <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="836" max-vertical-offset="990">
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -133,8 +128,8 @@
       <file leaf-file-name="ObliqueSpec.coffee" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.2853932" vertical-offset="638" max-vertical-offset="24332">
-              <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="44" max-vertical-offset="24332">
+              <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -193,7 +188,6 @@
         <option value="$PROJECT_DIR$/src/ObliqueError.coffee" />
         <option value="$PROJECT_DIR$/src/TimedDOMObserver.coffee" />
         <option value="$PROJECT_DIR$/spec/Params/ParamCollectionSpec.coffee" />
-        <option value="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
         <option value="$PROJECT_DIR$/src/DOMProcessor.coffee" />
         <option value="$PROJECT_DIR$/src/Oblique.coffee" />
         <option value="$PROJECT_DIR$/src/Params/01_ParamParser.coffee" />
@@ -205,6 +199,7 @@
         <option value="$PROJECT_DIR$/src/Params/SingleParam.coffee" />
         <option value="$PROJECT_DIR$/src/Directives/Directive.coffee" />
         <option value="$PROJECT_DIR$/src/Directives/DirectiveCollection.coffee" />
+        <option value="$PROJECT_DIR$/spec/ObliqueSpec.coffee" />
       </list>
     </option>
   </component>
@@ -304,6 +299,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oblique-js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oblique-js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Directives" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope">
@@ -391,20 +404,13 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <method />
-    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
-    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="INTERPRETER_PATH" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <module name="" />
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
       <envs />
       <method />
     </configuration>
@@ -415,7 +421,14 @@
       <setting name="preferredDebugBrowser" value="Chrome" />
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
       <envs />
       <method />
     </configuration>
@@ -474,12 +487,6 @@
       <created>1394662908407</created>
       <option name="number" value="Default" />
       <updated>1394662908407</updated>
-    </task>
-    <task id="LOCAL-00122" summary="Added initial implementation of Route">
-      <created>1413908374447</created>
-      <option name="number" value="00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1413908374447</updated>
     </task>
     <task id="LOCAL-00123" summary="Refactor param class">
       <created>1413977615148</created>
@@ -769,32 +776,38 @@
       <option name="project" value="LOCAL" />
       <updated>1463472596032</updated>
     </task>
-    <option name="localTasksCounter" value="171" />
+    <task id="LOCAL-00171" summary="Create js counterpart in coffee src files">
+      <created>1517650506357</created>
+      <option name="number" value="00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1517650506358</updated>
+    </task>
+    <option name="localTasksCounter" value="172" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991204" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3240469" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31671554" sideWeight="0.49960285" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23828435" sideWeight="0.49853373" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23828435" sideWeight="0.49853373" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30543318" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30307466" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15250199" sideWeight="0.5014663" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47112462" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3240469" sideWeight="0.49960285" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31671554" sideWeight="0.49960285" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32704404" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -812,9 +825,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30078125" sideWeight="0.4992908" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31761006" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31761006" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -834,7 +847,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Directives and Controllers must not throw an error if onHashChange is not defined" />
     <MESSAGE value="Refactor of filter sample to move DOM manipulation to Directives from Controller" />
     <MESSAGE value="Remove Controller concept from Oblique.js&#10;Move controller responsabilities to Directives&#10;Update filter sample to reflect changes in Oblique.js" />
     <MESSAGE value="Remove FormOptions from filter sample" />
@@ -859,7 +871,8 @@
     <MESSAGE value="update contrib.md &amp; scripts to bundle" />
     <MESSAGE value="Better understanding of param with reserved keyword values" />
     <MESSAGE value="Enable/Disable hashChange Event" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enable/Disable hashChange Event" />
+    <MESSAGE value="Create js counterpart in coffee src files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create js counterpart in coffee src files" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.8794326" />
   </component>
   <component name="XDebuggerManager">
@@ -1153,13 +1166,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="21200" max-vertical-offset="23025">
           <caret line="848" column="11" selection-start-line="848" selection-start-column="11" selection-end-line="848" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Params/01_ParamParser.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.4" vertical-offset="193" max-vertical-offset="660">
+        <state vertical-scroll-proportion="0.0" vertical-offset="528" max-vertical-offset="660">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
@@ -1167,48 +1179,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Params/02_Param.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.28" vertical-offset="787" max-vertical-offset="1276">
-          <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1122" max-vertical-offset="1276">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Params/ArrayParam.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.52" vertical-offset="1205" max-vertical-offset="1650">
-          <caret line="69" column="31" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1496" max-vertical-offset="1650">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Params/EmptyParam.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="286">
-          <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="286">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Params/ParamCollection.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2107" max-vertical-offset="2552">
-          <caret line="110" column="41" selection-start-line="110" selection-start-column="41" selection-end-line="110" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2376" max-vertical-offset="2552">
+          <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Params/RangeParam.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="787" max-vertical-offset="1232">
-          <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1056" max-vertical-offset="1232">
+          <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Params/SingleParam.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="545" max-vertical-offset="990">
-          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="836" max-vertical-offset="990">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1231,8 +1243,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/ObliqueSpec.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.2853932" vertical-offset="638" max-vertical-offset="24332">
-          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="44" max-vertical-offset="24332">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding />
         </state>
       </provider>
