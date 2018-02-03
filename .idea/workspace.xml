@@ -2,20 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2dd7787-5ba2-4e73-ac12-cbcd24ccb069" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/01_ParamParser.coffee" afterPath="$PROJECT_DIR$/src/Params/01_ParamParser.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/02_Param.coffee" afterPath="$PROJECT_DIR$/src/Params/02_Param.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/ArrayParam.coffee" afterPath="$PROJECT_DIR$/src/Params/ArrayParam.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Directives/Directive.coffee" afterPath="$PROJECT_DIR$/src/Directives/Directive.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Directives/DirectiveCollection.coffee" afterPath="$PROJECT_DIR$/src/Directives/DirectiveCollection.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/EmptyParam.coffee" afterPath="$PROJECT_DIR$/src/Params/EmptyParam.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/ParamCollection.coffee" afterPath="$PROJECT_DIR$/src/Params/ParamCollection.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/RangeParam.coffee" afterPath="$PROJECT_DIR$/src/Params/RangeParam.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Params/SingleParam.coffee" afterPath="$PROJECT_DIR$/src/Params/SingleParam.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.coffee" afterPath="$PROJECT_DIR$/dist/oblique.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.js" afterPath="$PROJECT_DIR$/dist/oblique.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/oblique.min.js" afterPath="$PROJECT_DIR$/dist/oblique.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="oblique-js.iws" />
@@ -475,12 +461,6 @@
       <option name="number" value="Default" />
       <updated>1394662908407</updated>
     </task>
-    <task id="LOCAL-00122" summary="Added initial implementation of Route">
-      <created>1413908374447</created>
-      <option name="number" value="00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1413908374447</updated>
-    </task>
     <task id="LOCAL-00123" summary="Refactor param class">
       <created>1413977615148</created>
       <option name="number" value="00123" />
@@ -769,7 +749,13 @@
       <option name="project" value="LOCAL" />
       <updated>1463472596032</updated>
     </task>
-    <option name="localTasksCounter" value="171" />
+    <task id="LOCAL-00171" summary="Create js counterpart in coffee src files">
+      <created>1517650506357</created>
+      <option name="number" value="00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1517650506358</updated>
+    </task>
+    <option name="localTasksCounter" value="172" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -778,20 +764,20 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991204" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3240469" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31671554" sideWeight="0.49960285" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47112462" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15250199" sideWeight="0.5014663" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3240469" sideWeight="0.49960285" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32704404" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23828435" sideWeight="0.49853373" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30543318" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15250199" sideWeight="0.5014663" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47112462" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3240469" sideWeight="0.49960285" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32704404" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -834,7 +820,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Directives and Controllers must not throw an error if onHashChange is not defined" />
     <MESSAGE value="Refactor of filter sample to move DOM manipulation to Directives from Controller" />
     <MESSAGE value="Remove Controller concept from Oblique.js&#10;Move controller responsabilities to Directives&#10;Update filter sample to reflect changes in Oblique.js" />
     <MESSAGE value="Remove FormOptions from filter sample" />
@@ -859,7 +844,8 @@
     <MESSAGE value="update contrib.md &amp; scripts to bundle" />
     <MESSAGE value="Better understanding of param with reserved keyword values" />
     <MESSAGE value="Enable/Disable hashChange Event" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enable/Disable hashChange Event" />
+    <MESSAGE value="Create js counterpart in coffee src files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create js counterpart in coffee src files" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.8794326" />
   </component>
   <component name="XDebuggerManager">
