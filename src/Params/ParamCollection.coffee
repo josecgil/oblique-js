@@ -109,4 +109,3 @@ class ParamCollection
 
 
 ObliqueNS.ParamCollection=ParamCollection
-

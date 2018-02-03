@@ -22,4 +22,3 @@ class ParamParser
       currentParam=currentParam+ch
 
 ObliqueNS.ParamParser=ParamParser
-

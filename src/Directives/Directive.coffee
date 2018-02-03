@@ -15,5 +15,3 @@ class Directive
       throw new ObliqueNS.Error("Directive must be called with a 'Constructor Function/Class' param")
 
 ObliqueNS.Directive=Directive
-
-
